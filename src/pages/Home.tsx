@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
-import {
-  SectionHead,
-  CTASection,
-  FAQList,
-  FlowBoard,
-} from "@/components/sections";
+import { SectionHead, CTASection, FAQList } from "@/components/sections";
 
-const COLLAB =
+const HERO_IMG =
+  "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
+const TEAM_IMG =
   "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
 
 const problems: { icon: IconName; text: string }[] = [
@@ -33,36 +30,104 @@ const problems: { icon: IconName; text: string }[] = [
   },
 ];
 
-const features: { icon: IconName; title: string; body: string }[] = [
+const features: {
+  icon: IconName;
+  title: string;
+  body: string;
+  tone: "" | "blue" | "purple";
+}[] = [
   {
     icon: "capture",
     title: "Capture More Opportunities",
     body: "Bring leads into one organized CRM through forms, landing pages, appointment calendars, phone calls, and other lead sources.",
+    tone: "",
   },
   {
     icon: "message",
-    title: "Keep Conversations Moving",
-    body: "Automated and personal follow-up so no inquiry is left waiting and every lead has a clear next step.",
+    title: "Follow Up Consistently",
+    body: "Use automated email and text-message sequences to respond quickly and stay connected with potential customers.",
+    tone: "blue",
   },
   {
     icon: "calendar",
-    title: "Set More Appointments",
-    body: "Online scheduling with confirmations and reminders so your team can focus on the conversations that matter.",
+    title: "Book More Appointments",
+    body: "Make it easier for prospects to schedule while using confirmations and reminders to reduce missed appointments.",
+    tone: "purple",
   },
   {
     icon: "chart",
-    title: "See Your Pipeline Clearly",
-    body: "Track opportunities from first contact to close with a sales pipeline built around your process.",
+    title: "Organize Your Sales Pipeline",
+    body: "Know exactly where every lead stands, what action is needed next, and which opportunities require attention.",
+    tone: "",
   },
   {
-    icon: "refresh",
-    title: "Reactivate Past Leads",
-    body: "Reconnect with previous inquiries and inactive customers through an approved, organized reactivation process.",
+    icon: "users",
+    title: "Support Daily Operations",
+    body: "Delegate administrative, marketing, customer-service, and sales-support tasks to a trained Virtual Assistant.",
+    tone: "blue",
   },
   {
     icon: "report",
-    title: "Track What Matters",
-    body: "Understand activity, follow-up, and results with reporting that reflects how your business actually works.",
+    title: "Track Performance",
+    body: "Receive updates and reports that help you understand completed tasks, lead activity, appointments, and overall progress.",
+    tone: "purple",
+  },
+];
+
+const process: { icon: IconName; num: string; title: string; body: string }[] =
+  [
+    {
+      icon: "capture",
+      num: "01",
+      title: "Capture",
+      body: "Bring leads from your website, forms, calls, social media, campaigns, and other sources into one centralized system.",
+    },
+    {
+      icon: "message",
+      num: "02",
+      title: "Respond",
+      body: "Send immediate acknowledgments and follow-up messages so potential customers are not left waiting.",
+    },
+    {
+      icon: "heart",
+      num: "03",
+      title: "Nurture",
+      body: "Stay connected through scheduled emails, text messages, calls, reminders, and personalized outreach.",
+    },
+    {
+      icon: "calendar",
+      num: "04",
+      title: "Convert",
+      body: "Move qualified prospects toward appointments, consultations, estimates, proposals, and purchasing decisions.",
+    },
+    {
+      icon: "refresh",
+      num: "05",
+      title: "Retain and Reactivate",
+      body: "Continue communicating with existing customers while reconnecting with previous leads and inactive contacts.",
+    },
+  ];
+
+const connection: { icon: IconName; title: string; sub: string }[] = [
+  {
+    icon: "database",
+    title: "Sales Growth System",
+    sub: "CRM and sales automation",
+  },
+  {
+    icon: "workflow",
+    title: "Follow-Up Workflows",
+    sub: "Lead and pipeline management",
+  },
+  {
+    icon: "users",
+    title: "Dedicated VA",
+    sub: "Personal support and execution",
+  },
+  {
+    icon: "clipboard",
+    title: "Project Coordination",
+    sub: "Accountability and reporting",
   },
 ];
 
@@ -106,39 +171,60 @@ const reasons: { title: string; body: string }[] = [
   },
 ];
 
-const connected: { icon: IconName; title: string; body: string; to: string }[] =
-  [
-    {
-      icon: "database",
-      title: "CRM & Automation",
-      body: "Connect contacts, conversations, appointments, tasks, and your sales pipeline in one organized system.",
-      to: "/crm-automation",
-    },
-    {
-      icon: "cpu",
-      title: "AI & Human Support",
-      body: "Use automation for repetitive work while keeping your people in control of the conversations that need care.",
-      to: "/ai-automation",
-    },
-    {
-      icon: "monitor",
-      title: "Digital Solutions",
-      body: "Connect websites, landing pages, funnels, and approved marketing content to a clear lead-capture and follow-up process.",
-      to: "/digital-solutions",
-    },
-    {
-      icon: "calendar",
-      title: "Appointment Setting",
-      body: "Combine online scheduling, confirmations, reminders, and personal follow-up so your team can focus on what matters.",
-      to: "/appointment-setting",
-    },
-  ];
+const trust: { icon: IconName; title: string; sub: string }[] = [
+  {
+    icon: "database",
+    title: "One central CRM",
+    sub: "Leads, conversations, and opportunities",
+  },
+  {
+    icon: "workflow",
+    title: "Consistent follow-up",
+    sub: "A clear next step for your team",
+  },
+  {
+    icon: "users",
+    title: "Dedicated VA support",
+    sub: "Matched to your business needs",
+  },
+  {
+    icon: "clock",
+    title: "From $10 / hour",
+    sub: "General Virtual Assistant support",
+  },
+];
+
+const floatCards: {
+  icon: IconName;
+  title: string;
+  sub: string;
+  pos: string;
+}[] = [
+  {
+    icon: "database",
+    title: "One organized CRM",
+    sub: "A clearer view of every lead",
+    pos: "top-6 -left-6",
+  },
+  {
+    icon: "users",
+    title: "Real human support",
+    sub: "People who keep work moving",
+    pos: "bottom-16 -right-6",
+  },
+  {
+    icon: "calendar",
+    title: "Follow-up, connected",
+    sub: "From first inquiry to next step",
+    pos: "-bottom-5 left-10",
+  },
+];
 
 export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white pt-12 pb-20">
+      <section className="relative overflow-hidden bg-white pt-12 pb-16">
         <div className="container-gmg grid lg:grid-cols-[1.13fr_1fr] gap-12 items-center">
           <div>
             <span className="eyebrow-pill">
@@ -154,48 +240,71 @@ export default function Home() {
               Without doing everything yourself.
             </p>
             <p className="lead-gmg mt-4 max-w-xl">
-              Global Marketing Group helps you capture, organize, follow up
-              with, and convert more leads — combining a complete CRM and
-              automation system with dependable Virtual Assistant support.
+              Global Marketing Group combines CRM technology, sales automation,
+              proven follow-up processes, and dedicated Virtual Assistant
+              support to help businesses operate more efficiently and grow more
+              consistently.
             </p>
             <div className="flex flex-wrap items-center gap-5 mt-8">
               <Link to="/contact" className="btn-primary-gmg">
                 Book a Free Strategy Call <Icon name="calendar" size={18} />
               </Link>
-              <Link to="/services" className="text-link">
-                Explore our services <Icon name="arrow" size={18} />
-              </Link>
+              <a href="#core-solutions" className="btn-outline-gmg">
+                Explore Our Services <Icon name="arrow" size={18} />
+              </a>
             </div>
+            <p className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
+              <Icon name="check" size={18} className="text-teal" />
+              One system. One support team. A better way to grow.
+            </p>
           </div>
           <div className="relative">
             <div className="absolute -inset-6 bg-gradient-to-br from-mint/40 to-transparent rounded-[40px] blur-2xl" />
             <div className="relative rounded-[28px] border border-line bg-white p-3 shadow-xl">
               <img
-                src={COLLAB}
-                alt="Professionals working together at a laptop"
+                src={HERO_IMG}
+                alt="Support professional wearing a headset and working at a laptop"
                 className="rounded-2xl w-full"
-                loading="lazy"
               />
             </div>
-            <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl border border-line shadow-lg p-4 flex items-center gap-3">
+            {floatCards.map((c) => (
+              <div
+                key={c.title}
+                className={`absolute ${c.pos} bg-white rounded-2xl border border-line shadow-lg p-3 flex items-center gap-3 max-w-[220px]`}
+              >
+                <span className="icon-box">
+                  <Icon name={c.icon} size={20} />
+                </span>
+                <div>
+                  <strong className="text-navy text-sm block">{c.title}</strong>
+                  <span className="text-xs text-muted-foreground">{c.sub}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Trust strip */}
+        <div className="container-gmg mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {trust.map((t) => (
+            <div
+              key={t.title}
+              className="flex items-center gap-3 rounded-2xl border border-line bg-white p-4"
+            >
               <span className="icon-box">
-                <Icon name="headset" size={22} />
+                <Icon name={t.icon} size={22} />
               </span>
               <div>
-                <strong className="text-navy text-sm block">
-                  Real human support
-                </strong>
-                <span className="text-xs text-muted-foreground">
-                  Dependable Virtual Assistant support
-                </span>
+                <strong className="text-navy text-sm block">{t.title}</strong>
+                <span className="text-xs text-muted-foreground">{t.sub}</span>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* Core solutions */}
-      <section className="section-gmg">
+      <section id="core-solutions" className="section-gmg">
         <div className="container-gmg">
           <SectionHead
             center
@@ -318,7 +427,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
               <article key={f.title} className="card-gmg">
-                <span className="icon-box mb-5">
+                <span className={`icon-box ${f.tone} mb-5`}>
                   <Icon name={f.icon} size={24} />
                 </span>
                 <h3 className="text-lg font-bold mb-2">{f.title}</h3>
@@ -329,8 +438,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industries + Why GMG */}
+      {/* Five-part process */}
       <section className="section-gmg pale-bg">
+        <div className="container-gmg">
+          <SectionHead
+            center
+            eyebrow="The five-part Sales Growth process"
+            title="A Clear Process. Connected Follow-Up."
+            subtitle="The Sales Growth System brings structure to the whole customer journey."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {process.map((p) => (
+              <article key={p.num} className="text-center">
+                <div className="relative mx-auto w-16 h-16 rounded-2xl bg-white border border-line flex items-center justify-center shadow-sm mb-4">
+                  <Icon name={p.icon} size={26} className="text-teal" />
+                  <span className="absolute -top-2 -right-2 bg-navy text-white text-[0.65rem] font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                    {p.num}
+                  </span>
+                </div>
+                <h3 className="text-base font-bold mb-2">{p.title}</h3>
+                <p className="text-sm text-muted-foreground">{p.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* People + technology (dark) */}
+      <section className="section-gmg dark-section-gmg">
+        <div className="container-gmg grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <SectionHead
+              eyebrow="The power of people + technology"
+              title={
+                <>
+                  Automation Creates the Process.
+                  <br />
+                  <span className="accent-text">
+                    People Create the Connection.
+                  </span>
+                </>
+              }
+            />
+            <p className="lead-gmg text-white/80">
+              Your system handles the repetitive work while your Virtual
+              Assistant supports the tasks that require judgment, communication,
+              and human connection.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-5">
+            {connection.map((c) => (
+              <article
+                key={c.title}
+                className="rounded-2xl border border-white/15 bg-white/5 p-6 text-center"
+              >
+                <span className="mx-auto mb-4 w-14 h-14 rounded-full bg-teal/20 text-teal flex items-center justify-center">
+                  <Icon name={c.icon} size={26} />
+                </span>
+                <h3 className="text-white text-base font-bold mb-1">
+                  {c.title}
+                </h3>
+                <p className="text-sm text-white/70">{c.sub}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries + Why GMG */}
+      <section className="section-gmg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <SectionHead
@@ -358,6 +534,14 @@ export default function Home() {
             <Link to="/industries" className="text-link mt-6">
               Find your industry <Icon name="arrow" size={18} />
             </Link>
+            <div className="mt-6 rounded-2xl border border-line overflow-hidden">
+              <img
+                src={TEAM_IMG}
+                alt="Professionals working together at a laptop"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
           </div>
           <div>
             <SectionHead
@@ -387,7 +571,7 @@ export default function Home() {
       </section>
 
       {/* Connected services */}
-      <section className="section-gmg">
+      <section className="section-gmg pale-bg">
         <div className="container-gmg">
           <SectionHead
             center
@@ -395,8 +579,27 @@ export default function Home() {
             title="Build the support around your system."
             subtitle="Practical services that strengthen your two core solutions."
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {connected.map((c) => (
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "database" as IconName,
+                title: "CRM & Automation",
+                body: "Connect your contacts, conversations, appointments, tasks, and sales pipeline in one organized system. Build follow-up around the way your business actually works.",
+                to: "/crm-automation",
+              },
+              {
+                icon: "monitor" as IconName,
+                title: "Digital Solutions",
+                body: "Connect websites, landing pages, funnels, and approved marketing content to a clear lead-capture and follow-up process.",
+                to: "/digital-solutions",
+              },
+              {
+                icon: "calendar" as IconName,
+                title: "Appointment Setting",
+                body: "Combine online scheduling, confirmations, reminders, and personal follow-up so your team can focus on the conversations that matter.",
+                to: "/appointment-setting",
+              },
+            ].map((c) => (
               <article key={c.title} className="card-gmg">
                 <span className="icon-box mb-5">
                   <Icon name={c.icon} size={24} />
@@ -413,7 +616,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="section-gmg pale-bg">
+      <section className="section-gmg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <SectionHead
