@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Gift, Share2 } from "lucide-react";
+import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
 
 const Referral = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,45 +16,34 @@ const Referral = () => {
       refContact: formData.get("refContact") as string,
     };
 
-    // Tracking Payload
-    const trackingPayload = {
-      type: "external_form_submission",
-      timestamp: Date.now(),
-      formId: "Referral Form",
-      formData: {
-        organization: data.refName,
-        "contact.referral_contact_person": data.refContact,
-        "contact.referrer_name": data.yourName,
-        "contact.referrer_email": data.yourEmail,
+    postTrackingEvent(
+      buildTrackingPayload(
+        "referral-form",
+        "Referral Form",
+        {
+          organization: data.refName,
+        },
+        {
+          organization: "Business Name",
+        },
+      ),
+      {
+        customFields: {
+          R30rdrrITokjVI26Bz1J: {
+            value: data.refContact,
+            label: "Contact Person",
+          },
+          CcvTRPOprQ69M8yF5Oax: {
+            value: data.yourName,
+            label: "Referrer Name",
+          },
+          xCypGtK2FMI2MiqYwqQq: {
+            value: data.yourEmail,
+            label: "Referrer Email",
+          },
+        },
       },
-      formLabels: {
-        organization: "Business Name",
-        "contact.referral_contact_person": "Contact Person",
-        "contact.referrer_name": "Your Name",
-        "contact.referrer_email": "Your Email",
-      },
-      url: window.location.href,
-      title: document.title,
-      path: window.location.pathname,
-      userAgent: navigator.userAgent,
-      trackingId: "tk_43f08e8d16d64be996b6f6a5db488272",
-      locationId: "6b9ZFpsH6Pv0R2iaasp8",
-      sessionId: crypto.randomUUID(),
-      properties: {
-        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
-          ? "mobile"
-          : "desktop",
-      },
-    };
-
-    fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        version: "2021-07-28",
-      },
-      body: JSON.stringify(trackingPayload),
-    }).catch(() => {});
+    );
 
     alert("Referral submitted successfully!");
     (e.target as HTMLFormElement).reset();

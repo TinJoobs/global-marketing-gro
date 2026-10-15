@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
 import { SectionHead, CTASection, FAQList } from "@/components/sections";
 import { useReveal } from "@/hooks/useReveal";
+import Background3D from "@/components/Background3D";
 
 const HERO_IMG =
   "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
@@ -230,12 +231,12 @@ export default function Home() {
   return (
     <div ref={ref}>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white pt-12 pb-16">
-        <div className="hero-mesh" aria-hidden="true" />
-        <div className="container-gmg grid lg:grid-cols-[1.13fr_1fr] gap-12 items-center relative">
+      <section className="relative overflow-hidden bg-white pt-14 pb-20">
+        <Background3D />
+        <div className="container-gmg grid lg:grid-cols-[1.13fr_1fr] gap-12 items-center relative z-10">
           <div className="reveal">
             <span className="eyebrow-pill">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-teal inline-block animate-pulse" />
               Better systems. Better people. Better growth.
             </span>
             <h1 className="text-5xl md:text-[4.35rem] font-bold mt-6">
@@ -260,14 +261,20 @@ export default function Home() {
                 Explore Our Services <Icon name="arrow" size={18} />
               </a>
             </div>
-            <p className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
-              <Icon name="check" size={18} className="text-teal" />
-              One system. One support team. A better way to grow.
-            </p>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-7 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <Icon name="check" size={18} className="text-teal" />
+                One system. One support team.
+              </span>
+              <span className="flex items-center gap-2">
+                <Icon name="check" size={18} className="text-teal" />A better
+                way to grow.
+              </span>
+            </div>
           </div>
           <div className="relative reveal">
-            <div className="absolute -inset-6 bg-gradient-to-br from-mint/50 via-teal/5 to-transparent rounded-[40px] blur-2xl" />
-            <div className="relative rounded-[28px] border border-line bg-white p-3 shadow-[0_30px_80px_rgba(15,31,51,0.14)]">
+            <div className="absolute -inset-6 bg-gradient-to-br from-mint/50 via-teal/10 to-transparent rounded-[40px] blur-2xl" />
+            <div className="ring-card relative p-3 shadow-[0_30px_80px_rgba(15,31,51,0.16)]">
               <img
                 src={HERO_IMG}
                 alt="Support professional wearing a headset and working at a laptop"
@@ -277,7 +284,7 @@ export default function Home() {
             {floatCards.map((c, i) => (
               <div
                 key={c.title}
-                className={`absolute ${c.pos} bg-white/95 backdrop-blur-sm rounded-2xl border border-line shadow-[0_16px_40px_rgba(15,31,51,0.12)] p-3 flex items-center gap-3 max-w-[220px] animate-floaty`}
+                className={`absolute ${c.pos} bg-white/95 backdrop-blur-sm rounded-2xl border border-line shadow-[0_16px_40px_rgba(15,31,51,0.14)] p-3 flex items-center gap-3 max-w-[220px] animate-floaty`}
                 style={{ animationDelay: c.delay }}
               >
                 <span className="icon-box">
@@ -293,11 +300,11 @@ export default function Home() {
         </div>
 
         {/* Trust strip */}
-        <div className="container-gmg mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 relative">
+        <div className="container-gmg mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
           {trust.map((t) => (
             <div
               key={t.title}
-              className="reveal flex items-center gap-3 rounded-2xl border border-line bg-white p-4 transition-all hover:border-teal/30 hover:shadow-[0_14px_40px_rgba(15,31,51,0.08)]"
+              className="reveal flex items-center gap-3 rounded-2xl border border-line bg-white/90 backdrop-blur-sm p-4 transition-all hover:border-teal/40 hover:shadow-[0_14px_40px_rgba(15,31,51,0.1)] hover:-translate-y-0.5"
             >
               <span className="icon-box">
                 <Icon name={t.icon} size={22} />

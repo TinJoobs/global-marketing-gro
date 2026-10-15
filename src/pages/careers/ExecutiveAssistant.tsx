@@ -11,6 +11,7 @@ import {
   Calendar,
   ShieldCheck,
 } from "lucide-react";
+import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
 
 const ExecutiveAssistant = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,47 +25,32 @@ const ExecutiveAssistant = () => {
       experience: formData.get("experience") as string,
     };
 
-    // Tracking Payload
-    const trackingPayload = {
-      type: "external_form_submission",
-      timestamp: Date.now(),
-      formId: "Executive Assistant Application",
-      formData: {
-        first_name: data.firstName,
-        last_name: data.lastName,
-        email: data.email,
-        phone: data.phone,
-        "contact.relevant_experience": data.experience,
+    postTrackingEvent(
+      buildTrackingPayload(
+        "ea-application",
+        "Executive Assistant Application",
+        {
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone,
+        },
+        {
+          first_name: "First Name",
+          last_name: "Last Name",
+          email: "Email",
+          phone: "Phone Number",
+        },
+      ),
+      {
+        customFields: {
+          "3wgex2CP4Qcr8NXsjtAr": {
+            value: data.experience,
+            label: "Relevant Experience",
+          },
+        },
       },
-      formLabels: {
-        first_name: "First Name",
-        last_name: "Last Name",
-        email: "Email",
-        phone: "Phone Number",
-        "contact.relevant_experience": "Relevant Experience",
-      },
-      url: window.location.href,
-      title: document.title,
-      path: window.location.pathname,
-      userAgent: navigator.userAgent,
-      trackingId: "tk_43f08e8d16d64be996b6f6a5db488272",
-      locationId: "6b9ZFpsH6Pv0R2iaasp8",
-      sessionId: crypto.randomUUID(),
-      properties: {
-        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
-          ? "mobile"
-          : "desktop",
-      },
-    };
-
-    fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        version: "2021-07-28",
-      },
-      body: JSON.stringify(trackingPayload),
-    }).catch(() => {});
+    );
 
     alert("Application submitted successfully!");
     (e.target as HTMLFormElement).reset();

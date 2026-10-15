@@ -11,6 +11,7 @@ import {
   Calendar,
   ShieldCheck,
 } from "lucide-react";
+import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
 
 const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,45 +24,27 @@ const Contact = () => {
       message: formData.get("message") as string,
     };
 
-    // Tracking Payload
-    const trackingPayload = {
-      type: "external_form_submission",
-      timestamp: Date.now(),
-      formId: "Contact Form",
-      formData: {
-        first_name: data.name,
-        email: data.email,
-        "contact.subject": data.subject,
-        "contact.inquiry_message": data.message,
+    postTrackingEvent(
+      buildTrackingPayload(
+        "contact-form",
+        "Contact Form",
+        {
+          first_name: data.name,
+          email: data.email,
+          calendar_notes: data.message,
+        },
+        {
+          first_name: "Full Name",
+          email: "Email Address",
+          calendar_notes: "Message",
+        },
+      ),
+      {
+        customFields: {
+          "09aZnxiqoakrzk5yfNLB": { value: data.subject, label: "Subject" },
+        },
       },
-      formLabels: {
-        first_name: "Full Name",
-        email: "Email Address",
-        "contact.subject": "Subject",
-        "contact.inquiry_message": "Message",
-      },
-      url: window.location.href,
-      title: document.title,
-      path: window.location.pathname,
-      userAgent: navigator.userAgent,
-      trackingId: "tk_43f08e8d16d64be996b6f6a5db488272",
-      locationId: "6b9ZFpsH6Pv0R2iaasp8",
-      sessionId: crypto.randomUUID(),
-      properties: {
-        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
-          ? "mobile"
-          : "desktop",
-      },
-    };
-
-    fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        version: "2021-07-28",
-      },
-      body: JSON.stringify(trackingPayload),
-    }).catch(() => {});
+    );
 
     alert("Thank you for your message! We'll get back to you soon.");
     (e.target as HTMLFormElement).reset();
