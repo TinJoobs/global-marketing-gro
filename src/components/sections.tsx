@@ -10,7 +10,9 @@ export const SectionHead: React.FC<{
 }> = ({ eyebrow, title, subtitle, center }) => (
   <div
     className={
-      center ? "text-center max-w-3xl mx-auto mb-14" : "max-w-2xl mb-10"
+      center
+        ? "text-center max-w-3xl mx-auto mb-14 reveal"
+        : "max-w-2xl mb-10 reveal"
     }
   >
     {eyebrow && <span className="eyebrow">{eyebrow}</span>}
@@ -96,15 +98,15 @@ export const CTASection: React.FC<{
 }) => (
   <section className="py-16">
     <div className="container-gmg">
-      <div className="cta-banner-gmg">
-        <div>
+      <div className="cta-banner-gmg reveal">
+        <div className="relative">
           <span className="eyebrow">{eyebrow}</span>
           <h2 className="text-2xl md:text-[2rem] font-bold max-w-[660px]">
             {title}
           </h2>
           <p className="text-muted-foreground mt-3 max-w-[680px]">{body}</p>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 relative">
           <Link to={primaryTo} className="btn-primary-gmg whitespace-nowrap">
             {primaryLabel}
           </Link>
@@ -129,7 +131,7 @@ export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({
       {items.map((item, i) => (
         <div
           key={i}
-          className="rounded-2xl border border-line bg-white overflow-hidden"
+          className="rounded-2xl border border-line bg-white overflow-hidden transition-colors hover:border-teal/30"
         >
           <button
             type="button"
@@ -141,14 +143,21 @@ export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({
             <Icon
               name="plus"
               size={18}
-              className={`shrink-0 transition-transform ${open === i ? "rotate-45" : ""}`}
+              className={`shrink-0 transition-transform duration-300 ${open === i ? "rotate-45 text-teal" : ""}`}
             />
           </button>
-          {open === i && (
-            <p className="px-5 pb-5 text-muted-foreground leading-relaxed">
-              {item.a}
-            </p>
-          )}
+          <div
+            className="grid transition-all duration-300 ease-out"
+            style={{
+              gridTemplateRows: open === i ? "1fr" : "0fr",
+            }}
+          >
+            <div className="overflow-hidden">
+              <p className="px-5 pb-5 text-muted-foreground leading-relaxed">
+                {item.a}
+              </p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
@@ -190,7 +199,7 @@ export const FeatureGrid: React.FC<{
     }
   >
     {items.map((f, i) => (
-      <article key={i} className="card-gmg">
+      <article key={i} className="card-gmg reveal">
         <span className={`icon-box ${f.tone || ""} mb-5`}>
           <Icon name={f.icon || "check"} size={24} />
         </span>

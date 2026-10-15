@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
 import { SectionHead, CTASection, FAQList } from "@/components/sections";
+import { useReveal } from "@/hooks/useReveal";
 
 const HERO_IMG =
   "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
@@ -199,34 +200,40 @@ const floatCards: {
   title: string;
   sub: string;
   pos: string;
+  delay: string;
 }[] = [
   {
     icon: "database",
     title: "One organized CRM",
     sub: "A clearer view of every lead",
     pos: "top-6 -left-6",
+    delay: "0s",
   },
   {
     icon: "users",
     title: "Real human support",
     sub: "People who keep work moving",
     pos: "bottom-16 -right-6",
+    delay: "1.2s",
   },
   {
     icon: "calendar",
     title: "Follow-up, connected",
     sub: "From first inquiry to next step",
     pos: "-bottom-5 left-10",
+    delay: "0.6s",
   },
 ];
 
 export default function Home() {
+  const ref = useReveal<HTMLDivElement>();
   return (
-    <div>
+    <div ref={ref}>
       {/* Hero */}
       <section className="relative overflow-hidden bg-white pt-12 pb-16">
-        <div className="container-gmg grid lg:grid-cols-[1.13fr_1fr] gap-12 items-center">
-          <div>
+        <div className="hero-mesh" aria-hidden="true" />
+        <div className="container-gmg grid lg:grid-cols-[1.13fr_1fr] gap-12 items-center relative">
+          <div className="reveal">
             <span className="eyebrow-pill">
               <span className="w-1.5 h-1.5 rounded-full bg-teal inline-block" />
               Better systems. Better people. Better growth.
@@ -258,19 +265,20 @@ export default function Home() {
               One system. One support team. A better way to grow.
             </p>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-6 bg-gradient-to-br from-mint/40 to-transparent rounded-[40px] blur-2xl" />
-            <div className="relative rounded-[28px] border border-line bg-white p-3 shadow-xl">
+          <div className="relative reveal">
+            <div className="absolute -inset-6 bg-gradient-to-br from-mint/50 via-teal/5 to-transparent rounded-[40px] blur-2xl" />
+            <div className="relative rounded-[28px] border border-line bg-white p-3 shadow-[0_30px_80px_rgba(15,31,51,0.14)]">
               <img
                 src={HERO_IMG}
                 alt="Support professional wearing a headset and working at a laptop"
                 className="rounded-2xl w-full"
               />
             </div>
-            {floatCards.map((c) => (
+            {floatCards.map((c, i) => (
               <div
                 key={c.title}
-                className={`absolute ${c.pos} bg-white rounded-2xl border border-line shadow-lg p-3 flex items-center gap-3 max-w-[220px]`}
+                className={`absolute ${c.pos} bg-white/95 backdrop-blur-sm rounded-2xl border border-line shadow-[0_16px_40px_rgba(15,31,51,0.12)] p-3 flex items-center gap-3 max-w-[220px] animate-floaty`}
+                style={{ animationDelay: c.delay }}
               >
                 <span className="icon-box">
                   <Icon name={c.icon} size={20} />
@@ -285,11 +293,11 @@ export default function Home() {
         </div>
 
         {/* Trust strip */}
-        <div className="container-gmg mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="container-gmg mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 relative">
           {trust.map((t) => (
             <div
               key={t.title}
-              className="flex items-center gap-3 rounded-2xl border border-line bg-white p-4"
+              className="reveal flex items-center gap-3 rounded-2xl border border-line bg-white p-4 transition-all hover:border-teal/30 hover:shadow-[0_14px_40px_rgba(15,31,51,0.08)]"
             >
               <span className="icon-box">
                 <Icon name={t.icon} size={22} />
@@ -339,7 +347,7 @@ export default function Home() {
                 cta: "Find Your Virtual Assistant",
               },
             ].map((c) => (
-              <article key={c.title} className="card-gmg">
+              <article key={c.title} className="card-gmg reveal">
                 <div className="flex items-center justify-between mb-5">
                   <span className={`icon-box ${c.tone}`}>
                     <Icon name={c.icon} size={26} />
@@ -370,7 +378,7 @@ export default function Home() {
       {/* Problem */}
       <section className="section-gmg pale-bg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
-          <div>
+          <div className="reveal">
             <SectionHead
               eyebrow="The problem"
               title="Your Business May Not Have a Lead Problem."
@@ -380,7 +388,7 @@ export default function Home() {
               {problems.map((p) => (
                 <div
                   key={p.text}
-                  className="flex items-center gap-3 rounded-xl border border-line bg-white p-4"
+                  className="flex items-center gap-3 rounded-xl border border-line bg-white p-4 transition-all hover:border-teal/30 hover:translate-x-1"
                 >
                   <Icon
                     name={p.icon}
@@ -392,7 +400,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="card-gmg">
+          <div className="card-gmg reveal">
             <span className="icon-box mb-5">
               <Icon name="refresh" size={26} />
             </span>
@@ -426,7 +434,7 @@ export default function Home() {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
-              <article key={f.title} className="card-gmg">
+              <article key={f.title} className="card-gmg reveal">
                 <span className={`icon-box ${f.tone} mb-5`}>
                   <Icon name={f.icon} size={24} />
                 </span>
@@ -449,8 +457,8 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {process.map((p) => (
-              <article key={p.num} className="text-center">
-                <div className="relative mx-auto w-16 h-16 rounded-2xl bg-white border border-line flex items-center justify-center shadow-sm mb-4">
+              <article key={p.num} className="text-center reveal">
+                <div className="relative mx-auto w-16 h-16 rounded-2xl bg-white border border-line flex items-center justify-center shadow-sm mb-4 transition-all hover:border-teal/40 hover:shadow-[0_12px_30px_rgba(0,129,132,0.18)]">
                   <Icon name={p.icon} size={26} className="text-teal" />
                   <span className="absolute -top-2 -right-2 bg-navy text-white text-[0.65rem] font-bold rounded-full w-6 h-6 flex items-center justify-center">
                     {p.num}
@@ -467,7 +475,7 @@ export default function Home() {
       {/* People + technology (dark) */}
       <section className="section-gmg dark-section-gmg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="reveal">
             <SectionHead
               eyebrow="The power of people + technology"
               title={
@@ -490,7 +498,7 @@ export default function Home() {
             {connection.map((c) => (
               <article
                 key={c.title}
-                className="rounded-2xl border border-white/15 bg-white/5 p-6 text-center"
+                className="reveal rounded-2xl border border-white/15 bg-white/5 p-6 text-center transition-all hover:bg-white/10 hover:border-teal/40"
               >
                 <span className="mx-auto mb-4 w-14 h-14 rounded-full bg-teal/20 text-teal flex items-center justify-center">
                   <Icon name={c.icon} size={26} />
@@ -508,7 +516,7 @@ export default function Home() {
       {/* Industries + Why GMG */}
       <section className="section-gmg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
-          <div>
+          <div className="reveal">
             <SectionHead
               eyebrow="Who we serve"
               title="Built for Busy Business Owners and Growing Organizations."
@@ -518,7 +526,7 @@ export default function Home() {
                 <Link
                   key={ind.label}
                   to={ind.href}
-                  className="flex items-center gap-2 rounded-xl border border-line bg-white p-3 hover:border-teal/40 transition"
+                  className="flex items-center gap-2 rounded-xl border border-line bg-white p-3 hover:border-teal/40 hover:shadow-[0_10px_24px_rgba(15,31,51,0.07)] transition-all"
                 >
                   <Icon
                     name={ind.icon}
@@ -534,7 +542,7 @@ export default function Home() {
             <Link to="/industries" className="text-link mt-6">
               Find your industry <Icon name="arrow" size={18} />
             </Link>
-            <div className="mt-6 rounded-2xl border border-line overflow-hidden">
+            <div className="mt-6 rounded-2xl border border-line overflow-hidden shadow-sm">
               <img
                 src={TEAM_IMG}
                 alt="Professionals working together at a laptop"
@@ -543,7 +551,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div>
+          <div className="reveal">
             <SectionHead
               eyebrow="Why Global Marketing Group?"
               title="More Than a Software Provider or Staffing Company."
@@ -552,11 +560,9 @@ export default function Home() {
             <div className="space-y-5">
               {reasons.map((r) => (
                 <div key={r.title} className="flex items-start gap-3">
-                  <Icon
-                    name="check"
-                    size={22}
-                    className="text-teal mt-1 shrink-0"
-                  />
+                  <span className="mt-1 shrink-0 w-6 h-6 rounded-full bg-teal/15 flex items-center justify-center">
+                    <Icon name="check" size={16} className="text-teal" />
+                  </span>
                   <div>
                     <h3 className="font-bold text-navy">{r.title}</h3>
                     <p className="text-sm text-muted-foreground mt-1">
@@ -600,7 +606,7 @@ export default function Home() {
                 to: "/appointment-setting",
               },
             ].map((c) => (
-              <article key={c.title} className="card-gmg">
+              <article key={c.title} className="card-gmg reveal">
                 <span className="icon-box mb-5">
                   <Icon name={c.icon} size={24} />
                 </span>
@@ -618,7 +624,7 @@ export default function Home() {
       {/* FAQ */}
       <section className="section-gmg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
-          <div>
+          <div className="reveal">
             <SectionHead
               eyebrow="A few helpful answers"
               title="Start with clarity."

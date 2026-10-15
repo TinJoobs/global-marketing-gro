@@ -8,8 +8,16 @@ const BRAND_LOGO =
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-navy text-white pt-16 pb-8">
-      <div className="container-gmg">
+    <footer className="bg-navy text-white pt-16 pb-8 relative overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -top-40 right-0 w-[420px] h-[420px] rounded-full bg-teal/10 blur-[100px] pointer-events-none"
+      />
+      <div className="container-gmg relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
             <Link to="/" className="flex items-center gap-3 mb-5">
