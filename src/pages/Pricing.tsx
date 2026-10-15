@@ -1,7 +1,16 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Check, ArrowRight, Zap, Target, BarChart3, ShieldCheck, Workflow, MessageSquare } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Check,
+  ArrowRight,
+  Zap,
+  Target,
+  BarChart3,
+  ShieldCheck,
+  Workflow,
+  MessageSquare,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
   const plans = [
@@ -14,8 +23,8 @@ const Pricing = () => {
         "Pipeline visibility",
         "Basic workflow management",
         "Email marketing (up to 5k contacts)",
-        "Standard support"
-      ]
+        "Standard support",
+      ],
     },
     {
       name: "Professional",
@@ -27,9 +36,9 @@ const Pricing = () => {
         "Advanced reporting & analytics",
         "Sales funnel builder",
         "Scheduling system",
-        "Priority support"
+        "Priority support",
       ],
-      popular: true
+      popular: true,
     },
     {
       name: "Enterprise",
@@ -41,18 +50,21 @@ const Pricing = () => {
         "Custom workflow engineering",
         "Unlimited contacts",
         "Dedicated account representative",
-        "24/7 Premium support"
-      ]
-    }
+        "24/7 Premium support",
+      ],
+    },
   ];
 
   return (
     <div className="flex flex-col w-full">
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Automate Success</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Automate Success
+          </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your business goals. Transparent pricing with no hidden fees.
+            Choose the plan that fits your business goals. Transparent pricing
+            with no hidden fees.
           </p>
         </div>
       </section>
@@ -61,7 +73,10 @@ const Pricing = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {plans.map((plan, i) => (
-              <div key={i} className={`glass-card p-10 rounded-3xl flex flex-col relative ${plan.popular ? 'border-primary shadow-primary/20 scale-105 z-10' : ''}`}>
+              <div
+                key={i}
+                className={`glass-card p-10 rounded-3xl flex flex-col relative ${plan.popular ? "border-primary shadow-primary/20 scale-105 z-10" : ""}`}
+              >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-sm font-bold px-4 py-1 rounded-full">
                     MOST POPULAR
@@ -83,7 +98,11 @@ const Pricing = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full h-12" variant={plan.popular ? 'default' : 'outline'} asChild>
+                <Button
+                  className="w-full h-12"
+                  variant={plan.popular ? "default" : "outline"}
+                  asChild
+                >
                   <Link to="/contact">Get Started</Link>
                 </Button>
               </div>
@@ -102,7 +121,7 @@ const Pricing = () => {
               { icon: Target, label: "Pipeline" },
               { icon: Workflow, label: "Conversion" },
               { icon: ShieldCheck, label: "Satisfaction" },
-              { icon: BarChart3, label: "Growth" }
+              { icon: BarChart3, label: "Growth" },
             ].map((step, i) => (
               <div key={i} className="glass-card p-6 rounded-2xl">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">

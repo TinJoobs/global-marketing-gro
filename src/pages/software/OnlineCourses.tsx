@@ -1,7 +1,14 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { BookOpen, Globe, Award, Video, Zap, MousePointer2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  BookOpen,
+  Globe,
+  Award,
+  Video,
+  Zap,
+  MousePointer2,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const OnlineCourses = () => {
   return (
@@ -13,7 +20,9 @@ const OnlineCourses = () => {
               Monetize Your <span className="text-primary">Knowledge</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Turn your expertise into profit with confidence. Our course platform makes it easy to create, market, and sell online courses worldwide.
+              Turn your expertise into profit with confidence. Our course
+              platform makes it easy to create, market, and sell online courses
+              worldwide.
             </p>
             <Button size="lg" asChild>
               <Link to="/contact">Create Your Course</Link>
@@ -26,12 +35,36 @@ const OnlineCourses = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Video, title: "Course Creation", desc: "Upload videos, quizzes, and resources with ease." },
-              { icon: Globe, title: "Worldwide Reach", desc: "Sell your courses to students across the globe." },
-              { icon: Award, title: "Authority Building", desc: "Establish yourself as a leader in your industry." },
-              { icon: BookOpen, title: "Flexible Learning", desc: "Students can learn at their own pace on any device." },
-              { icon: MousePointer2, title: "Sales Integration", desc: "Seamlessly connect your courses to your sales funnels." },
-              { icon: Zap, title: "Instant Access", desc: "Automated student onboarding after purchase." }
+              {
+                icon: Video,
+                title: "Course Creation",
+                desc: "Upload videos, quizzes, and resources with ease.",
+              },
+              {
+                icon: Globe,
+                title: "Worldwide Reach",
+                desc: "Sell your courses to students across the globe.",
+              },
+              {
+                icon: Award,
+                title: "Authority Building",
+                desc: "Establish yourself as a leader in your industry.",
+              },
+              {
+                icon: BookOpen,
+                title: "Flexible Learning",
+                desc: "Students can learn at their own pace on any device.",
+              },
+              {
+                icon: MousePointer2,
+                title: "Sales Integration",
+                desc: "Seamlessly connect your courses to your sales funnels.",
+              },
+              {
+                icon: Zap,
+                title: "Instant Access",
+                desc: "Automated student onboarding after purchase.",
+              },
             ].map((item, i) => (
               <div key={i} className="glass-card p-8 rounded-2xl">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">

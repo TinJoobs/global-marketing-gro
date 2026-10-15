@@ -1,16 +1,43 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { CheckCircle2, ArrowRight, Layers, MousePointer2, Zap, BarChart3, Users, Rocket } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  CheckCircle2,
+  ArrowRight,
+  Layers,
+  MousePointer2,
+  Zap,
+  BarChart3,
+  Users,
+  Rocket,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const SalesFunnels = () => {
   const features = [
-    { title: "Lead Capture", desc: "High-converting forms and popups to grow your list." },
-    { title: "Template Library", desc: "Proven funnel designs for every industry." },
-    { title: "A/B Split Testing", desc: "Optimize every step with data-driven experiments." },
-    { title: "One-Click Upsells", desc: "Increase average order value instantly." },
-    { title: "CRM Integration", desc: "Seamlessly sync every lead with your sales pipeline." },
-    { title: "Advanced Analytics", desc: "Track conversion rates and ROI in real-time." }
+    {
+      title: "Lead Capture",
+      desc: "High-converting forms and popups to grow your list.",
+    },
+    {
+      title: "Template Library",
+      desc: "Proven funnel designs for every industry.",
+    },
+    {
+      title: "A/B Split Testing",
+      desc: "Optimize every step with data-driven experiments.",
+    },
+    {
+      title: "One-Click Upsells",
+      desc: "Increase average order value instantly.",
+    },
+    {
+      title: "CRM Integration",
+      desc: "Seamlessly sync every lead with your sales pipeline.",
+    },
+    {
+      title: "Advanced Analytics",
+      desc: "Track conversion rates and ROI in real-time.",
+    },
   ];
 
   return (
@@ -23,10 +50,13 @@ const SalesFunnels = () => {
               <span>Conversion Optimization</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Create Powerful <span className="text-primary">Sales Funnels</span>
+              Create Powerful{" "}
+              <span className="text-primary">Sales Funnels</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Design high-converting marketing assets and lead capture systems that turn visitors into loyal customers. Our funnel builder is designed for speed and performance.
+              Design high-converting marketing assets and lead capture systems
+              that turn visitors into loyal customers. Our funnel builder is
+              designed for speed and performance.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild>
@@ -44,7 +74,10 @@ const SalesFunnels = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
-              <div key={i} className="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all">
+              <div
+                key={i}
+                className="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all"
+              >
                 <CheckCircle2 className="w-8 h-8 text-primary mb-6" />
                 <h3 className="text-xl font-bold mb-3">{f.title}</h3>
                 <p className="text-muted-foreground">{f.desc}</p>
@@ -58,16 +91,20 @@ const SalesFunnels = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold">Why Our Funnels <span className="text-primary">Convert Better</span></h2>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Why Our Funnels{" "}
+                <span className="text-primary">Convert Better</span>
+              </h2>
               <p className="text-lg text-muted-foreground">
-                We don't just give you a builder; we provide the strategy and automation needed to make your funnels profitable from day one.
+                We don't just give you a builder; we provide the strategy and
+                automation needed to make your funnels profitable from day one.
               </p>
               <div className="space-y-4">
                 {[
                   "Mobile-first responsive designs",
                   "Lightning-fast page load speeds",
                   "Integrated email & SMS automation",
-                  "Expert support and strategy calls"
+                  "Expert support and strategy calls",
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <Rocket className="w-5 h-5 text-primary" />
@@ -77,9 +114,9 @@ const SalesFunnels = () => {
               </div>
             </div>
             <div className="glass-card p-4 rounded-2xl">
-              <img 
-                src="https://vibe.filesafe.space/1778597036474054298/assets/b8aa3bf7-c31d-4200-843e-ef53b2a46dc3.jpg" 
-                alt="Funnel Analytics" 
+              <img
+                src="https://vibe.filesafe.space/1778597036474054298/assets/b8aa3bf7-c31d-4200-843e-ef53b2a46dc3.jpg"
+                alt="Funnel Analytics"
                 className="rounded-xl shadow-lg"
               />
             </div>

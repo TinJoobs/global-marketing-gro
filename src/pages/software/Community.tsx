@@ -1,7 +1,14 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Users, MessageSquare, Heart, Shield, Zap, TrendingUp } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Users,
+  MessageSquare,
+  Heart,
+  Shield,
+  Zap,
+  TrendingUp,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Community = () => {
   return (
@@ -13,7 +20,9 @@ const Community = () => {
               Build a Vibrant <span className="text-primary">Community</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Lead and grow a vibrant community with Global Marketing Group. Our platform provides the tools you need to foster engagement and build authority.
+              Lead and grow a vibrant community with Global Marketing Group. Our
+              platform provides the tools you need to foster engagement and
+              build authority.
             </p>
             <Button size="lg" asChild>
               <Link to="/contact">Launch Your Community</Link>
@@ -26,12 +35,36 @@ const Community = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Users, title: "Member Management", desc: "Easily manage your community members and roles." },
-              { icon: MessageSquare, title: "Engagement Tools", desc: "Fosters discussions with forums, comments, and direct messaging." },
-              { icon: Heart, title: "Brand Loyalty", desc: "Build deep connections with your most dedicated fans." },
-              { icon: Shield, title: "Moderation", desc: "Keep your community safe with powerful moderation tools." },
-              { icon: TrendingUp, title: "Growth Analytics", desc: "Monitor community health and engagement trends." },
-              { icon: Zap, title: "Monetization", desc: "Turn your community into a sustainable business." }
+              {
+                icon: Users,
+                title: "Member Management",
+                desc: "Easily manage your community members and roles.",
+              },
+              {
+                icon: MessageSquare,
+                title: "Engagement Tools",
+                desc: "Fosters discussions with forums, comments, and direct messaging.",
+              },
+              {
+                icon: Heart,
+                title: "Brand Loyalty",
+                desc: "Build deep connections with your most dedicated fans.",
+              },
+              {
+                icon: Shield,
+                title: "Moderation",
+                desc: "Keep your community safe with powerful moderation tools.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Growth Analytics",
+                desc: "Monitor community health and engagement trends.",
+              },
+              {
+                icon: Zap,
+                title: "Monetization",
+                desc: "Turn your community into a sustainable business.",
+              },
             ].map((item, i) => (
               <div key={i} className="glass-card p-8 rounded-2xl">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">

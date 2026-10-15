@@ -1,19 +1,26 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Mail, Phone, MapPin, MessageSquare, Calendar, ShieldCheck } from 'lucide-react';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  MessageSquare,
+  Calendar,
+  ShieldCheck,
+} from "lucide-react";
 
 const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      subject: formData.get('subject') as string,
-      message: formData.get('message') as string,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
     };
 
     // Tracking Payload
@@ -41,7 +48,9 @@ const Contact = () => {
       locationId: "6b9ZFpsH6Pv0R2iaasp8",
       sessionId: crypto.randomUUID(),
       properties: {
-        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "mobile" : "desktop",
+        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
+          ? "mobile"
+          : "desktop",
       },
     };
 
@@ -64,7 +73,8 @@ const Contact = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions? We're here to help. Reach out to our team for support or to schedule a demo of our platform.
+            Have questions? We're here to help. Reach out to our team for
+            support or to schedule a demo of our platform.
           </p>
         </div>
       </section>
@@ -79,22 +89,50 @@ const Contact = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" name="name" placeholder="John Doe" required />
+                      <Input
+                        id="name"
+                        name="name"
+                        placeholder="John Doe"
+                        required
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="john@example.com"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject</Label>
-                    <Input id="subject" name="subject" placeholder="How can we help?" required />
+                    <Input
+                      id="subject"
+                      name="subject"
+                      placeholder="How can we help?"
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="message">Message</Label>
-                    <Textarea id="message" name="message" placeholder="Your message here..." className="min-h-[150px]" required />
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Your message here..."
+                      className="min-h-[150px]"
+                      required
+                    />
                   </div>
-                  <Button type="submit" className="w-full h-14 text-lg" size="lg">Send Message</Button>
+                  <Button
+                    type="submit"
+                    className="w-full h-14 text-lg"
+                    size="lg"
+                  >
+                    Send Message
+                  </Button>
                 </form>
               </div>
             </div>
@@ -109,8 +147,12 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-bold">Phone</p>
-                      <p className="text-muted-foreground">+317 395 6740 (Gary)</p>
-                      <p className="text-muted-foreground">+614 973 6161 (Norly)</p>
+                      <p className="text-muted-foreground">
+                        +317 395 6740 (Gary)
+                      </p>
+                      <p className="text-muted-foreground">
+                        +614 973 6161 (Norly)
+                      </p>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -119,8 +161,12 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-bold">Email</p>
-                      <p className="text-muted-foreground">garyb@glomarkgroup.com</p>
-                      <p className="text-muted-foreground">norly@glomarkgroup.com</p>
+                      <p className="text-muted-foreground">
+                        garyb@glomarkgroup.com
+                      </p>
+                      <p className="text-muted-foreground">
+                        norly@glomarkgroup.com
+                      </p>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -129,7 +175,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-bold">Location</p>
-                      <p className="text-muted-foreground">Global Marketing Group, International</p>
+                      <p className="text-muted-foreground">
+                        Global Marketing Group, International
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -141,7 +189,9 @@ const Contact = () => {
                 <p className="text-primary-foreground/80 mb-6">
                   Want a personalized walkthrough of our CRM and EA services?
                 </p>
-                <Button variant="secondary" className="w-full">Book Your Demo</Button>
+                <Button variant="secondary" className="w-full">
+                  Book Your Demo
+                </Button>
               </div>
             </div>
           </div>

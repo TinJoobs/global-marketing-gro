@@ -1,7 +1,15 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Settings2, Workflow, Zap, BarChart3, Users, Clock, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Settings2,
+  Workflow,
+  Zap,
+  BarChart3,
+  Users,
+  Clock,
+  ArrowRight,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Workflows = () => {
   return (
@@ -17,7 +25,9 @@ const Workflows = () => {
               Build Smarter <span className="text-primary">Workflows</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Automate your marketing and operations with impact. Our visual workflow builder allows you to create complex automations without writing a single line of code.
+              Automate your marketing and operations with impact. Our visual
+              workflow builder allows you to create complex automations without
+              writing a single line of code.
             </p>
             <Button size="lg" asChild>
               <Link to="/contact">Build Your First Workflow</Link>
@@ -30,14 +40,41 @@ const Workflows = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Zap, title: "Visual Builder", desc: "Drag-and-drop interface for creating complex logic flows." },
-              { icon: Clock, title: "Time-Saving", desc: "Automate repetitive tasks and free up your team's time." },
-              { icon: Users, title: "Collaboration", desc: "Share and manage workflows across your entire organization." },
-              { icon: Settings2, title: "Custom Triggers", desc: "Start workflows based on almost any user action." },
-              { icon: BarChart3, title: "Performance Insights", desc: "Detailed reporting on how your automations are performing." },
-              { icon: Workflow, title: "Templates", desc: "Start fast with proven automation templates for your industry." }
+              {
+                icon: Zap,
+                title: "Visual Builder",
+                desc: "Drag-and-drop interface for creating complex logic flows.",
+              },
+              {
+                icon: Clock,
+                title: "Time-Saving",
+                desc: "Automate repetitive tasks and free up your team's time.",
+              },
+              {
+                icon: Users,
+                title: "Collaboration",
+                desc: "Share and manage workflows across your entire organization.",
+              },
+              {
+                icon: Settings2,
+                title: "Custom Triggers",
+                desc: "Start workflows based on almost any user action.",
+              },
+              {
+                icon: BarChart3,
+                title: "Performance Insights",
+                desc: "Detailed reporting on how your automations are performing.",
+              },
+              {
+                icon: Workflow,
+                title: "Templates",
+                desc: "Start fast with proven automation templates for your industry.",
+              },
             ].map((item, i) => (
-              <div key={i} className="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all">
+              <div
+                key={i}
+                className="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all"
+              >
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <item.icon className="w-6 h-6 text-primary" />
                 </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Play, Image as ImageIcon, FileText, Share2 } from 'lucide-react';
+import React from "react";
+import { Play, Image as ImageIcon, FileText, Share2 } from "lucide-react";
 
 const Media = () => {
   return (
@@ -8,7 +8,8 @@ const Media = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Media Center</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Explore our connected toolkit and client project media examples. See how we bring brands to life.
+            Explore our connected toolkit and client project media examples. See
+            how we bring brands to life.
           </p>
         </div>
       </section>
@@ -17,7 +18,10 @@ const Media = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="aspect-square bg-muted rounded-2xl relative group overflow-hidden">
+              <div
+                key={i}
+                className="aspect-square bg-muted rounded-2xl relative group overflow-hidden"
+              >
                 <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
                   <ImageIcon className="w-10 h-10 opacity-20" />
                 </div>

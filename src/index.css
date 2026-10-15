@@ -50,7 +50,11 @@
     --sidebar-ring: 217 91% 60%;
 
     --primary-glow: 217 91% 70%;
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 15%));
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(222 47% 11%),
+      hsl(222 47% 15%)
+    );
     --shadow-premium: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
   }
 
@@ -67,7 +71,9 @@
   }
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/30;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 

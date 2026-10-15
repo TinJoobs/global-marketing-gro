@@ -47,19 +47,28 @@ const App = () => (
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
-            
+
             {/* Software Routes */}
             <Route path="/software/sales-funnels" element={<SalesFunnels />} />
-            <Route path="/software/email-marketing" element={<EmailMarketing />} />
+            <Route
+              path="/software/email-marketing"
+              element={<EmailMarketing />}
+            />
             <Route path="/software/workflows" element={<Workflows />} />
             <Route path="/software/ai" element={<AIPage />} />
             <Route path="/software/websites" element={<Websites />} />
             <Route path="/software/landing-pages" element={<LandingPages />} />
             <Route path="/software/ab-testing" element={<ABTesting />} />
             <Route path="/software/analytics" element={<Analytics />} />
-            <Route path="/software/membership-sites" element={<MembershipSites />} />
+            <Route
+              path="/software/membership-sites"
+              element={<MembershipSites />}
+            />
             <Route path="/software/community" element={<Community />} />
-            <Route path="/software/online-courses" element={<OnlineCourses />} />
+            <Route
+              path="/software/online-courses"
+              element={<OnlineCourses />}
+            />
             <Route path="/software/integrations" element={<Integrations />} />
 
             {/* Other Routes */}
@@ -67,7 +76,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/why-gmg" element={<WhyGMG />} />
-            
+
             {/* Resources Routes */}
             <Route path="/resources/portfolio" element={<Portfolio />} />
             <Route path="/resources/affiliate" element={<Affiliate />} />
@@ -75,7 +84,10 @@ const App = () => (
             <Route path="/resources/media" element={<Media />} />
 
             {/* Careers Routes */}
-            <Route path="/careers/executive-assistant" element={<ExecutiveAssistant />} />
+            <Route
+              path="/careers/executive-assistant"
+              element={<ExecutiveAssistant />}
+            />
             <Route path="/careers/referral" element={<Referral />} />
             <Route path="/careers/account-rep" element={<AccountRep />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />

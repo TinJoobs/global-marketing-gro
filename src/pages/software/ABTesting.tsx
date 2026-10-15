@@ -1,7 +1,14 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Beaker, Split, BarChart3, Target, Zap, TrendingUp } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Beaker,
+  Split,
+  BarChart3,
+  Target,
+  Zap,
+  TrendingUp,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ABTesting = () => {
   return (
@@ -17,7 +24,9 @@ const ABTesting = () => {
               Optimize with <span className="text-primary">A/B Testing</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Stop guessing and start knowing. Optimize performance with data-driven testing across your digital assets to find what truly resonates with your audience.
+              Stop guessing and start knowing. Optimize performance with
+              data-driven testing across your digital assets to find what truly
+              resonates with your audience.
             </p>
             <Button size="lg" asChild>
               <Link to="/contact">Start Testing</Link>
@@ -30,12 +39,36 @@ const ABTesting = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Split, title: "Split Testing", desc: "Compare two versions of any page or email easily." },
-              { icon: TrendingUp, title: "Statistical Significance", desc: "Know when your results are reliable and actionable." },
-              { icon: Target, title: "Audience Targeting", desc: "Run tests on specific segments of your audience." },
-              { icon: BarChart3, title: "Visual Reports", desc: "Clear, easy-to-read data visualizations of test results." },
-              { icon: Zap, title: "Quick Setup", desc: "Launch new experiments in minutes, not hours." },
-              { icon: Beaker, title: "Multivariate Testing", desc: "Test multiple elements simultaneously for deeper insights." }
+              {
+                icon: Split,
+                title: "Split Testing",
+                desc: "Compare two versions of any page or email easily.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Statistical Significance",
+                desc: "Know when your results are reliable and actionable.",
+              },
+              {
+                icon: Target,
+                title: "Audience Targeting",
+                desc: "Run tests on specific segments of your audience.",
+              },
+              {
+                icon: BarChart3,
+                title: "Visual Reports",
+                desc: "Clear, easy-to-read data visualizations of test results.",
+              },
+              {
+                icon: Zap,
+                title: "Quick Setup",
+                desc: "Launch new experiments in minutes, not hours.",
+              },
+              {
+                icon: Beaker,
+                title: "Multivariate Testing",
+                desc: "Test multiple elements simultaneously for deeper insights.",
+              },
             ].map((item, i) => (
               <div key={i} className="glass-card p-8 rounded-2xl">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">

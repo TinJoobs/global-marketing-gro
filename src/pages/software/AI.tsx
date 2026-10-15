@@ -1,7 +1,15 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Cpu, MessageSquare, Bot, Zap, Target, Sparkles, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Cpu,
+  MessageSquare,
+  Bot,
+  Zap,
+  Target,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AIPage = () => {
   return (
@@ -18,7 +26,9 @@ const AIPage = () => {
               Unleash the Power of <span className="text-primary">AI</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Global Marketing Group integrates cutting-edge AI into your daily operations. From smart chatbots to predictive lead scoring, we make AI accessible and profitable.
+              Global Marketing Group integrates cutting-edge AI into your daily
+              operations. From smart chatbots to predictive lead scoring, we
+              make AI accessible and profitable.
             </p>
             <Button size="lg" className="px-10" asChild>
               <Link to="/contact">Get AI-Powered Today</Link>
@@ -31,19 +41,48 @@ const AIPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: MessageSquare, title: "AI Conversations", desc: "Smart live chat that understands intent and drives conversion." },
-              { icon: Bot, title: "Chatbot Workflows", desc: "Automated assistance that handles complex queries 24/7." },
-              { icon: Target, title: "Lead Scoring", desc: "AI models that predict which leads are most likely to buy." },
-              { icon: Zap, title: "Instant Responses", desc: "Reduce response times to seconds with intelligent automation." },
-              { icon: Cpu, title: "GPT Content", desc: "Generate high-quality marketing copy and emails in seconds." },
-              { icon: Sparkles, title: "Smart Optimization", desc: "AI that continuously improves your campaign performance." }
+              {
+                icon: MessageSquare,
+                title: "AI Conversations",
+                desc: "Smart live chat that understands intent and drives conversion.",
+              },
+              {
+                icon: Bot,
+                title: "Chatbot Workflows",
+                desc: "Automated assistance that handles complex queries 24/7.",
+              },
+              {
+                icon: Target,
+                title: "Lead Scoring",
+                desc: "AI models that predict which leads are most likely to buy.",
+              },
+              {
+                icon: Zap,
+                title: "Instant Responses",
+                desc: "Reduce response times to seconds with intelligent automation.",
+              },
+              {
+                icon: Cpu,
+                title: "GPT Content",
+                desc: "Generate high-quality marketing copy and emails in seconds.",
+              },
+              {
+                icon: Sparkles,
+                title: "Smart Optimization",
+                desc: "AI that continuously improves your campaign performance.",
+              },
             ].map((item, i) => (
-              <div key={i} className="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all group">
+              <div
+                key={i}
+                className="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all group"
+              >
                 <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
                   <item.icon className="w-7 h-7 text-primary group-hover:text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
