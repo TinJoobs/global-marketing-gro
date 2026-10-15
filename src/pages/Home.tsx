@@ -1,27 +1,69 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
-import { SectionHead, CTASection, FAQList, FlowBoard } from "@/components/sections";
+import {
+  SectionHead,
+  CTASection,
+  FAQList,
+  FlowBoard,
+} from "@/components/sections";
 
-const COLLAB = "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
+const COLLAB =
+  "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
 
 const problems: { icon: IconName; text: string }[] = [
   { icon: "phone", text: "Calls and messages are not answered quickly" },
   { icon: "clock", text: "Leads are not followed up consistently" },
-  { icon: "database", text: "Customer information is scattered across different platforms" },
+  {
+    icon: "database",
+    text: "Customer information is scattered across different platforms",
+  },
   { icon: "calendar", text: "Appointments are missed or forgotten" },
-  { icon: "briefcase", text: "Business owners spend too much time on administrative work" },
-  { icon: "refresh", text: "Past leads and customers are never contacted again" },
-  { icon: "chart", text: "There is no clear sales pipeline or accountability system" },
+  {
+    icon: "briefcase",
+    text: "Business owners spend too much time on administrative work",
+  },
+  {
+    icon: "refresh",
+    text: "Past leads and customers are never contacted again",
+  },
+  {
+    icon: "chart",
+    text: "There is no clear sales pipeline or accountability system",
+  },
 ];
 
 const features: { icon: IconName; title: string; body: string }[] = [
-  { icon: "capture", title: "Capture More Opportunities", body: "Bring leads into one organized CRM through forms, landing pages, appointment calendars, phone calls, and other lead sources." },
-  { icon: "message", title: "Keep Conversations Moving", body: "Automated and personal follow-up so no inquiry is left waiting and every lead has a clear next step." },
-  { icon: "calendar", title: "Set More Appointments", body: "Online scheduling with confirmations and reminders so your team can focus on the conversations that matter." },
-  { icon: "chart", title: "See Your Pipeline Clearly", body: "Track opportunities from first contact to close with a sales pipeline built around your process." },
-  { icon: "refresh", title: "Reactivate Past Leads", body: "Reconnect with previous inquiries and inactive customers through an approved, organized reactivation process." },
-  { icon: "report", title: "Track What Matters", body: "Understand activity, follow-up, and results with reporting that reflects how your business actually works." },
+  {
+    icon: "capture",
+    title: "Capture More Opportunities",
+    body: "Bring leads into one organized CRM through forms, landing pages, appointment calendars, phone calls, and other lead sources.",
+  },
+  {
+    icon: "message",
+    title: "Keep Conversations Moving",
+    body: "Automated and personal follow-up so no inquiry is left waiting and every lead has a clear next step.",
+  },
+  {
+    icon: "calendar",
+    title: "Set More Appointments",
+    body: "Online scheduling with confirmations and reminders so your team can focus on the conversations that matter.",
+  },
+  {
+    icon: "chart",
+    title: "See Your Pipeline Clearly",
+    body: "Track opportunities from first contact to close with a sales pipeline built around your process.",
+  },
+  {
+    icon: "refresh",
+    title: "Reactivate Past Leads",
+    body: "Reconnect with previous inquiries and inactive customers through an approved, organized reactivation process.",
+  },
+  {
+    icon: "report",
+    title: "Track What Matters",
+    body: "Understand activity, follow-up, and results with reporting that reflects how your business actually works.",
+  },
 ];
 
 const industries: { icon: IconName; label: string; href: string }[] = [
@@ -34,23 +76,63 @@ const industries: { icon: IconName; label: string; href: string }[] = [
   { icon: "heart", label: "Health & Wellness", href: "/industries" },
   { icon: "hands", label: "Churches & Nonprofits", href: "/industries" },
   { icon: "map", label: "Local Service Businesses", href: "/industries" },
-  { icon: "briefcase", label: "Entrepreneurs & Small Business", href: "/industries" },
+  {
+    icon: "briefcase",
+    label: "Entrepreneurs & Small Business",
+    href: "/industries",
+  },
 ];
 
 const reasons: { title: string; body: string }[] = [
-  { title: "Customized Support", body: "We begin with a discovery conversation to understand your goals, challenges, workload, and current processes." },
-  { title: "The Right Virtual Assistant Match", body: "We profile your business needs and match you with a Virtual Assistant whose skills align with the work you need completed." },
-  { title: "Integrated CRM and Automation", body: "We help organize your leads, conversations, appointments, and sales opportunities within one centralized system." },
-  { title: "Ongoing Coordination", body: "Our team supports onboarding, communication, task coordination, client check-ins, and performance reporting." },
-  { title: "Flexible Business Support", body: "Begin with the services you need today and expand your support as your business grows." },
+  {
+    title: "Customized Support",
+    body: "We begin with a discovery conversation to understand your goals, challenges, workload, and current processes.",
+  },
+  {
+    title: "The Right Virtual Assistant Match",
+    body: "We profile your business needs and match you with a Virtual Assistant whose skills align with the work you need completed.",
+  },
+  {
+    title: "Integrated CRM and Automation",
+    body: "We help organize your leads, conversations, appointments, and sales opportunities within one centralized system.",
+  },
+  {
+    title: "Ongoing Coordination",
+    body: "Our team supports onboarding, communication, task coordination, client check-ins, and performance reporting.",
+  },
+  {
+    title: "Flexible Business Support",
+    body: "Begin with the services you need today and expand your support as your business grows.",
+  },
 ];
 
-const connected: { icon: IconName; title: string; body: string; to: string }[] = [
-  { icon: "database", title: "CRM & Automation", body: "Connect contacts, conversations, appointments, tasks, and your sales pipeline in one organized system.", to: "/crm-automation" },
-  { icon: "cpu", title: "AI & Human Support", body: "Use automation for repetitive work while keeping your people in control of the conversations that need care.", to: "/ai-automation" },
-  { icon: "monitor", title: "Digital Solutions", body: "Connect websites, landing pages, funnels, and approved marketing content to a clear lead-capture and follow-up process.", to: "/digital-solutions" },
-  { icon: "calendar", title: "Appointment Setting", body: "Combine online scheduling, confirmations, reminders, and personal follow-up so your team can focus on what matters.", to: "/appointment-setting" },
-];
+const connected: { icon: IconName; title: string; body: string; to: string }[] =
+  [
+    {
+      icon: "database",
+      title: "CRM & Automation",
+      body: "Connect contacts, conversations, appointments, tasks, and your sales pipeline in one organized system.",
+      to: "/crm-automation",
+    },
+    {
+      icon: "cpu",
+      title: "AI & Human Support",
+      body: "Use automation for repetitive work while keeping your people in control of the conversations that need care.",
+      to: "/ai-automation",
+    },
+    {
+      icon: "monitor",
+      title: "Digital Solutions",
+      body: "Connect websites, landing pages, funnels, and approved marketing content to a clear lead-capture and follow-up process.",
+      to: "/digital-solutions",
+    },
+    {
+      icon: "calendar",
+      title: "Appointment Setting",
+      body: "Combine online scheduling, confirmations, reminders, and personal follow-up so your team can focus on what matters.",
+      to: "/appointment-setting",
+    },
+  ];
 
 export default function Home() {
   return (
@@ -64,28 +146,48 @@ export default function Home() {
               Better systems. Better people. Better growth.
             </span>
             <h1 className="text-5xl md:text-[4.35rem] font-bold mt-6">
-              Turn more leads<br />into <span className="accent-text">customers.</span>
+              Turn more leads
+              <br />
+              into <span className="accent-text">customers.</span>
             </h1>
-            <p className="text-xl text-navy font-semibold mt-4">Without doing everything yourself.</p>
+            <p className="text-xl text-navy font-semibold mt-4">
+              Without doing everything yourself.
+            </p>
             <p className="lead-gmg mt-4 max-w-xl">
-              Global Marketing Group helps you capture, organize, follow up with, and convert more leads — combining a
-              complete CRM and automation system with dependable Virtual Assistant support.
+              Global Marketing Group helps you capture, organize, follow up
+              with, and convert more leads — combining a complete CRM and
+              automation system with dependable Virtual Assistant support.
             </p>
             <div className="flex flex-wrap items-center gap-5 mt-8">
-              <Link to="/contact" className="btn-primary-gmg">Book a Free Strategy Call <Icon name="calendar" size={18} /></Link>
-              <Link to="/services" className="text-link">Explore our services <Icon name="arrow" size={18} /></Link>
+              <Link to="/contact" className="btn-primary-gmg">
+                Book a Free Strategy Call <Icon name="calendar" size={18} />
+              </Link>
+              <Link to="/services" className="text-link">
+                Explore our services <Icon name="arrow" size={18} />
+              </Link>
             </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-6 bg-gradient-to-br from-mint/40 to-transparent rounded-[40px] blur-2xl" />
             <div className="relative rounded-[28px] border border-line bg-white p-3 shadow-xl">
-              <img src={COLLAB} alt="Professionals working together at a laptop" className="rounded-2xl w-full" loading="lazy" />
+              <img
+                src={COLLAB}
+                alt="Professionals working together at a laptop"
+                className="rounded-2xl w-full"
+                loading="lazy"
+              />
             </div>
             <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl border border-line shadow-lg p-4 flex items-center gap-3">
-              <span className="icon-box"><Icon name="headset" size={22} /></span>
+              <span className="icon-box">
+                <Icon name="headset" size={22} />
+              </span>
               <div>
-                <strong className="text-navy text-sm block">Real human support</strong>
-                <span className="text-xs text-muted-foreground">Dependable Virtual Assistant support</span>
+                <strong className="text-navy text-sm block">
+                  Real human support
+                </strong>
+                <span className="text-xs text-muted-foreground">
+                  Dependable Virtual Assistant support
+                </span>
               </div>
             </div>
           </div>
@@ -95,25 +197,61 @@ export default function Home() {
       {/* Core solutions */}
       <section className="section-gmg">
         <div className="container-gmg">
-          <SectionHead center eyebrow="Our two core solutions" title="Everything You Need to Grow" subtitle="Sales systems and skilled people, designed to work together." />
+          <SectionHead
+            center
+            eyebrow="Our two core solutions"
+            title="Everything You Need to Grow"
+            subtitle="Sales systems and skilled people, designed to work together."
+          />
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { tone: "blue" as const, num: "01", icon: "database" as IconName, title: "Sales Growth System™", body: "A complete sales and follow-up system designed to help you capture, organize, nurture, and convert more leads.", tags: ["CRM & automation", "Appointments", "Lead reactivation"], to: "/sales-growth-system", cta: "Discover the Sales Growth System" },
-              { tone: "purple" as const, num: "02", icon: "headset" as IconName, title: "Virtual Assistant Services", body: "Skilled Virtual Assistants who help manage the daily tasks that keep your business moving.", tags: ["From $10 per hour", "Philippines-based", "Matched to your needs"], to: "/virtual-assistant-services", cta: "Find Your Virtual Assistant" },
+              {
+                tone: "blue" as const,
+                num: "01",
+                icon: "database" as IconName,
+                title: "Sales Growth System™",
+                body: "A complete sales and follow-up system designed to help you capture, organize, nurture, and convert more leads.",
+                tags: ["CRM & automation", "Appointments", "Lead reactivation"],
+                to: "/sales-growth-system",
+                cta: "Discover the Sales Growth System",
+              },
+              {
+                tone: "purple" as const,
+                num: "02",
+                icon: "headset" as IconName,
+                title: "Virtual Assistant Services",
+                body: "Skilled Virtual Assistants who help manage the daily tasks that keep your business moving.",
+                tags: [
+                  "From $10 per hour",
+                  "Philippines-based",
+                  "Matched to your needs",
+                ],
+                to: "/virtual-assistant-services",
+                cta: "Find Your Virtual Assistant",
+              },
             ].map((c) => (
               <article key={c.title} className="card-gmg">
                 <div className="flex items-center justify-between mb-5">
-                  <span className={`icon-box ${c.tone}`}><Icon name={c.icon} size={26} /></span>
+                  <span className={`icon-box ${c.tone}`}>
+                    <Icon name={c.icon} size={26} />
+                  </span>
                   <span className="text-3xl font-bold text-line">{c.num}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">{c.title}</h3>
                 <p className="text-muted-foreground mb-4">{c.body}</p>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {c.tags.map((t) => (
-                    <span key={t} className="text-xs font-semibold bg-pale text-teal-dark rounded-full px-3 py-1">{t}</span>
+                    <span
+                      key={t}
+                      className="text-xs font-semibold bg-pale text-teal-dark rounded-full px-3 py-1"
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
-                <Link to={c.to} className="text-link">{c.cta} <Icon name="arrow" size={18} /></Link>
+                <Link to={c.to} className="text-link">
+                  {c.cta} <Icon name="arrow" size={18} />
+                </Link>
               </article>
             ))}
           </div>
@@ -124,22 +262,46 @@ export default function Home() {
       <section className="section-gmg pale-bg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
           <div>
-            <SectionHead eyebrow="The problem" title="Your Business May Not Have a Lead Problem." subtitle="It may have a follow-up and execution problem." />
+            <SectionHead
+              eyebrow="The problem"
+              title="Your Business May Not Have a Lead Problem."
+              subtitle="It may have a follow-up and execution problem."
+            />
             <div className="space-y-3">
               {problems.map((p) => (
-                <div key={p.text} className="flex items-center gap-3 rounded-xl border border-line bg-white p-4">
-                  <Icon name={p.icon} size={20} className="text-teal shrink-0" />
+                <div
+                  key={p.text}
+                  className="flex items-center gap-3 rounded-xl border border-line bg-white p-4"
+                >
+                  <Icon
+                    name={p.icon}
+                    size={20}
+                    className="text-teal shrink-0"
+                  />
                   <span className="text-foreground/80">{p.text}</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="card-gmg">
-            <span className="icon-box mb-5"><Icon name="refresh" size={26} /></span>
-            <h3 className="text-xl font-bold mb-3">Every missed follow-up can become a missed sale.</h3>
-            <p className="text-muted-foreground mb-3">Stop losing opportunities because of missed calls, delayed follow-ups, disorganized systems, or an overloaded team.</p>
-            <p className="text-muted-foreground mb-5">Global Marketing Group helps you put the right technology, processes, and people in place so your business can respond faster, stay organized, and convert more opportunities.</p>
-            <Link to="/how-it-works" className="text-link">See how our approach works <Icon name="arrow" size={18} /></Link>
+            <span className="icon-box mb-5">
+              <Icon name="refresh" size={26} />
+            </span>
+            <h3 className="text-xl font-bold mb-3">
+              Every missed follow-up can become a missed sale.
+            </h3>
+            <p className="text-muted-foreground mb-3">
+              Stop losing opportunities because of missed calls, delayed
+              follow-ups, disorganized systems, or an overloaded team.
+            </p>
+            <p className="text-muted-foreground mb-5">
+              Global Marketing Group helps you put the right technology,
+              processes, and people in place so your business can respond
+              faster, stay organized, and convert more opportunities.
+            </p>
+            <Link to="/how-it-works" className="text-link">
+              See how our approach works <Icon name="arrow" size={18} />
+            </Link>
           </div>
         </div>
       </section>
@@ -147,11 +309,18 @@ export default function Home() {
       {/* Features */}
       <section className="section-gmg">
         <div className="container-gmg">
-          <SectionHead center eyebrow="How we help your business grow" title="A clearer path from inquiry to opportunity." subtitle="Capture the lead. Keep the conversation moving. Support the people doing the work." />
+          <SectionHead
+            center
+            eyebrow="How we help your business grow"
+            title="A clearer path from inquiry to opportunity."
+            subtitle="Capture the lead. Keep the conversation moving. Support the people doing the work."
+          />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
               <article key={f.title} className="card-gmg">
-                <span className="icon-box mb-5"><Icon name={f.icon} size={24} /></span>
+                <span className="icon-box mb-5">
+                  <Icon name={f.icon} size={24} />
+                </span>
                 <h3 className="text-lg font-bold mb-2">{f.title}</h3>
                 <p className="text-muted-foreground">{f.body}</p>
               </article>
@@ -164,26 +333,51 @@ export default function Home() {
       <section className="section-gmg pale-bg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
           <div>
-            <SectionHead eyebrow="Who we serve" title="Built for Busy Business Owners and Growing Organizations." />
+            <SectionHead
+              eyebrow="Who we serve"
+              title="Built for Busy Business Owners and Growing Organizations."
+            />
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {industries.map((ind) => (
-                <Link key={ind.label} to={ind.href} className="flex items-center gap-2 rounded-xl border border-line bg-white p-3 hover:border-teal/40 transition">
-                  <Icon name={ind.icon} size={20} className="text-teal shrink-0" />
-                  <span className="text-sm font-medium text-navy">{ind.label}</span>
+                <Link
+                  key={ind.label}
+                  to={ind.href}
+                  className="flex items-center gap-2 rounded-xl border border-line bg-white p-3 hover:border-teal/40 transition"
+                >
+                  <Icon
+                    name={ind.icon}
+                    size={20}
+                    className="text-teal shrink-0"
+                  />
+                  <span className="text-sm font-medium text-navy">
+                    {ind.label}
+                  </span>
                 </Link>
               ))}
             </div>
-            <Link to="/industries" className="text-link mt-6">Find your industry <Icon name="arrow" size={18} /></Link>
+            <Link to="/industries" className="text-link mt-6">
+              Find your industry <Icon name="arrow" size={18} />
+            </Link>
           </div>
           <div>
-            <SectionHead eyebrow="Why Global Marketing Group?" title="More Than a Software Provider or Staffing Company." subtitle="We help connect your strategy, systems, and support team." />
+            <SectionHead
+              eyebrow="Why Global Marketing Group?"
+              title="More Than a Software Provider or Staffing Company."
+              subtitle="We help connect your strategy, systems, and support team."
+            />
             <div className="space-y-5">
               {reasons.map((r) => (
                 <div key={r.title} className="flex items-start gap-3">
-                  <Icon name="check" size={22} className="text-teal mt-1 shrink-0" />
+                  <Icon
+                    name="check"
+                    size={22}
+                    className="text-teal mt-1 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-navy">{r.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{r.body}</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {r.body}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -195,14 +389,23 @@ export default function Home() {
       {/* Connected services */}
       <section className="section-gmg">
         <div className="container-gmg">
-          <SectionHead center eyebrow="Connected services" title="Build the support around your system." subtitle="Practical services that strengthen your two core solutions." />
+          <SectionHead
+            center
+            eyebrow="Connected services"
+            title="Build the support around your system."
+            subtitle="Practical services that strengthen your two core solutions."
+          />
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {connected.map((c) => (
               <article key={c.title} className="card-gmg">
-                <span className="icon-box mb-5"><Icon name={c.icon} size={24} /></span>
+                <span className="icon-box mb-5">
+                  <Icon name={c.icon} size={24} />
+                </span>
                 <h3 className="text-lg font-bold mb-2">{c.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{c.body}</p>
-                <Link to={c.to} className="text-link text-sm">Explore this service <Icon name="arrow" size={16} /></Link>
+                <Link to={c.to} className="text-link text-sm">
+                  Explore this service <Icon name="arrow" size={16} />
+                </Link>
               </article>
             ))}
           </div>
@@ -213,18 +416,38 @@ export default function Home() {
       <section className="section-gmg pale-bg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12 items-start">
           <div>
-            <SectionHead eyebrow="A few helpful answers" title="Start with clarity." subtitle="Explore how the system and your Virtual Assistant can work for your business." />
-            <Link to="/faq" className="text-link">Read all FAQs <Icon name="arrow" size={18} /></Link>
+            <SectionHead
+              eyebrow="A few helpful answers"
+              title="Start with clarity."
+              subtitle="Explore how the system and your Virtual Assistant can work for your business."
+            />
+            <Link to="/faq" className="text-link">
+              Read all FAQs <Icon name="arrow" size={18} />
+            </Link>
           </div>
-          <FAQList items={[
-            { q: "Is the Sales Growth System only a CRM?", a: "No. The CRM is the central platform, but the service also includes strategy, workflow development, automation, follow-up processes, and optional Virtual Assistant support." },
-            { q: "How much do Virtual Assistant services cost?", a: "General Virtual Assistant support starts at $10 per hour. Specialized or certified support may require a different rate depending on the qualifications and scope of work required." },
-            { q: "Can I use Virtual Assistant services without purchasing the Sales Growth System?", a: "Yes. Virtual Assistant support can be used as a separate service or integrated with the Sales Growth System." },
-          ]} />
+          <FAQList
+            items={[
+              {
+                q: "Is the Sales Growth System only a CRM?",
+                a: "No. The CRM is the central platform, but the service also includes strategy, workflow development, automation, follow-up processes, and optional Virtual Assistant support.",
+              },
+              {
+                q: "How much do Virtual Assistant services cost?",
+                a: "General Virtual Assistant support starts at $10 per hour. Specialized or certified support may require a different rate depending on the qualifications and scope of work required.",
+              },
+              {
+                q: "Can I use Virtual Assistant services without purchasing the Sales Growth System?",
+                a: "Yes. Virtual Assistant support can be used as a separate service or integrated with the Sales Growth System.",
+              },
+            ]}
+          />
         </div>
       </section>
 
-      <CTASection title="Your Next Customer May Already Be in Your Pipeline" body="The opportunity may have entered your business through a phone call, form, email, social media message, or previous inquiry. Let us help you follow up and turn more opportunities into customers." />
+      <CTASection
+        title="Your Next Customer May Already Be in Your Pipeline"
+        body="The opportunity may have entered your business through a phone call, form, email, social media message, or previous inquiry. Let us help you follow up and turn more opportunities into customers."
+      />
     </div>
   );
 }

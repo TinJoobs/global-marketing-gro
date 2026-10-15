@@ -58,10 +58,20 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-      BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Arial,
+      sans-serif;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply text-navy;
     letter-spacing: -0.035em;
     line-height: 1.15;
@@ -140,15 +150,17 @@
   .dark-section-gmg {
     @apply bg-navy text-white;
   }
-  .dark-section-gmg h2, .dark-section-gmg h3 {
+  .dark-section-gmg h2,
+  .dark-section-gmg h3 {
     @apply text-white;
   }
-  .dark-section-gmg p, .dark-section-gmg li {
+  .dark-section-gmg p,
+  .dark-section-gmg li {
     @apply text-white/80;
   }
   .page-hero-gmg {
-    background: radial-gradient(ellipse at 93% 20%, #e3f3ef, transparent 50%),
-      #f8fbfc;
+    background:
+      radial-gradient(ellipse at 93% 20%, #e3f3ef, transparent 50%), #f8fbfc;
     @apply pt-12 pb-16 border-b border-line;
   }
   .breadcrumb-gmg {
@@ -170,5 +182,13 @@
   }
   .widget-notice {
     @apply rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 mb-6;
+  }
+  /* Helpers used by shadcn-styled pages */
+  .glass-card {
+    @apply bg-white rounded-2xl border border-line;
+    box-shadow: 0 18px 50px hsl(213 74% 14% / 0.06);
+  }
+  .section-padding {
+    @apply py-16 md:py-24;
   }
 }

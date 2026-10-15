@@ -35,7 +35,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sales-growth-system" element={<SalesGrowthSystem />} />
-          <Route path="/virtual-assistant-services" element={<VirtualAssistant />} />
+          <Route
+            path="/virtual-assistant-services"
+            element={<VirtualAssistant />}
+          />
           <Route path="/services" element={<Services />} />
           <Route path="/crm-automation" element={<CrmAutomation />} />
           <Route path="/ai-automation" element={<AiAutomation />} />

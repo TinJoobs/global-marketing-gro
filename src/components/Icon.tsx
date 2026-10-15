@@ -63,19 +63,29 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M8 7V4h8v3M2 12l10 4 10-4m-10 2v4" />
     </>
   ),
-  refresh: <path d="M20 8a8 8 0 0 0-14-3L3 8m0-5v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5" />,
+  refresh: (
+    <path d="M20 8a8 8 0 0 0-14-3L3 8m0-5v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5" />
+  ),
   capture: (
     <>
       <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
       <circle cx="12" cy="12" r="4" />
     </>
   ),
-  report: <path d="M6 2h9l5 5v15H4V4a2 2 0 0 1 2-2Zm8 0v6h6M8 17v-3m4 3v-6m4 6v-4" />,
-  bell: <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-9 12a3 3 0 0 0 6 0" />,
+  report: (
+    <path d="M6 2h9l5 5v15H4V4a2 2 0 0 1 2-2Zm8 0v6h6M8 17v-3m4 3v-6m4 6v-4" />
+  ),
+  bell: (
+    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-9 12a3 3 0 0 0 6 0" />
+  ),
   filter: <path d="M3 4h18l-7 8v7l-4 2v-9Z" />,
-  star: <path d="m12 2 3.1 6.4 7.1 1-5.1 5 .9 7.1-6-3.4-6 3.4.9-7.1-5.1-5 7.1-1Z" />,
+  star: (
+    <path d="m12 2 3.1 6.4 7.1 1-5.1 5 .9 7.1-6-3.4-6 3.4.9-7.1-5.1-5 7.1-1Z" />
+  ),
   file: <path d="M6 2h9l5 5v15H4V4a2 2 0 0 1 2-2Zm8 0v6h6M8 12h8m-8 4h8" />,
-  heart: <path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z" />,
+  heart: (
+    <path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z" />
+  ),
   megaphone: <path d="m3 10 14-6v15L3 14Zm14-3h4v9h-4M5 15l2 7h4l-2-6" />,
   clipboard: (
     <>
@@ -90,9 +100,13 @@ const paths: Record<string, React.ReactNode> = {
       <path d="m15 15 7 7" />
     </>
   ),
-  rocket: <path d="M14 3c3-2 7-2 7-2s0 4-2 7l-9 9-5-5ZM8 9H3l-2 5 5 1m9 0 1 5 5-2v-5M4 18l-2 4 4-2" />,
+  rocket: (
+    <path d="M14 3c3-2 7-2 7-2s0 4-2 7l-9 9-5-5ZM8 9H3l-2 5 5 1m9 0 1 5 5-2v-5M4 18l-2 4 4-2" />
+  ),
   home: <path d="m2 11 10-9 10 9M5 9v13h14V9M9 22v-8h6v8" />,
-  building: <path d="M3 22V7l8-5v20m0-16h10v16M1 22h22M6 9h2m-2 4h2m-2 4h2m6-7h3m-3 4h3m-3 4h3" />,
+  building: (
+    <path d="M3 22V7l8-5v20m0-16h10v16M1 22h22M6 9h2m-2 4h2m-2 4h2m6-7h3m-3 4h3m-3 4h3" />
+  ),
   shield: (
     <>
       <path d="m12 2 9 4v6c0 5-5 8-9 10-4-2-9-5-9-10V6Z" />
@@ -105,8 +119,12 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M12 7v9m-4-5h8" />
     </>
   ),
-  utensils: <path d="M3 2v7a3 3 0 0 0 6 0V2M6 2v20M20 2c-5 4-5 9 0 10v10m0-20v10" />,
-  hands: <path d="m2 12 4-6h5l3 3-3 3-3-2m14 2-4-6h-5M4 11l-2 4 9 7 9-7-2-4M9 15l5 4m-3-7 6 5" />,
+  utensils: (
+    <path d="M3 2v7a3 3 0 0 0 6 0V2M6 2v20M20 2c-5 4-5 9 0 10v10m0-20v10" />
+  ),
+  hands: (
+    <path d="m2 12 4-6h5l3 3-3 3-3-2m14 2-4-6h-5M4 11l-2 4 9 7 9-7-2-4M9 15l5 4m-3-7 6 5" />
+  ),
   map: (
     <>
       <path d="M20 9c0 6-8 13-8 13S4 15 4 9a8 8 0 0 1 16 0Z" />
@@ -133,7 +151,9 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M9 1v4m6-4v4M9 19v4m6-4v4M1 9h4m-4 6h4m14-6h4m-4 6h4" />
     </>
   ),
-  link: <path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 10a4 4 0 0 0 6 0l5-5a4 4 0 0 0-6-6l-2 2" />,
+  link: (
+    <path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 10a4 4 0 0 0 6 0l5-5a4 4 0 0 0-6-6l-2 2" />
+  ),
   mail: (
     <>
       <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -147,7 +167,9 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M2 12h20M4 6h16M4 18h16" />
     </>
   ),
-  book: <path d="M12 5C7 2 2 3 2 3v17s5-1 10 2c5-3 10-2 10-2V3s-5-1-10 2Zm0 0v17" />,
+  book: (
+    <path d="M12 5C7 2 2 3 2 3v17s5-1 10 2c5-3 10-2 10-2V3s-5-1-10 2Zm0 0v17" />
+  ),
   lock: (
     <>
       <rect x="4" y="10" width="16" height="12" rx="2" />

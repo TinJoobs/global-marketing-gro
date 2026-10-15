@@ -8,7 +8,11 @@ export const SectionHead: React.FC<{
   subtitle?: React.ReactNode;
   center?: boolean;
 }> = ({ eyebrow, title, subtitle, center }) => (
-  <div className={center ? "text-center max-w-3xl mx-auto mb-14" : "max-w-2xl mb-10"}>
+  <div
+    className={
+      center ? "text-center max-w-3xl mx-auto mb-14" : "max-w-2xl mb-10"
+    }
+  >
     {eyebrow && <span className="eyebrow">{eyebrow}</span>}
     <h2 className="text-3xl md:text-[2.65rem] font-bold">{title}</h2>
     {subtitle && <p className="lead-gmg mt-4">{subtitle}</p>}
@@ -24,18 +28,35 @@ export const PageHero: React.FC<{
   secondaryCta?: { label: string; to: string };
   visual?: React.ReactNode;
   simple?: boolean;
-}> = ({ eyebrow, title, lead, note, primaryCta, secondaryCta, visual, simple }) => (
+}> = ({
+  eyebrow,
+  title,
+  lead,
+  note,
+  primaryCta,
+  secondaryCta,
+  visual,
+  simple,
+}) => (
   <section className="page-hero-gmg">
     <div className="container-gmg">
       <nav className="breadcrumb-gmg" aria-label="Breadcrumb">
         <Link to="/">Home</Link>
       </nav>
-      <div className={simple ? "max-w-[820px]" : "grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center"}>
+      <div
+        className={
+          simple
+            ? "max-w-[820px]"
+            : "grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center"
+        }
+      >
         <div>
           <span className="eyebrow">{eyebrow}</span>
           <h1 className="text-4xl md:text-[3.8rem] font-bold">{title}</h1>
           <p className="lead-gmg mt-6 max-w-[610px]">{lead}</p>
-          {note && <p className="mt-4 text-muted-foreground max-w-[610px]">{note}</p>}
+          {note && (
+            <p className="mt-4 text-muted-foreground max-w-[610px]">{note}</p>
+          )}
           {(primaryCta || secondaryCta) && (
             <div className="flex flex-wrap items-center gap-5 mt-8">
               {primaryCta && (
@@ -65,20 +86,32 @@ export const CTASection: React.FC<{
   primaryLabel?: string;
   primaryTo?: string;
   secondaryLabel?: string;
-}> = ({ eyebrow = "Your next step", title, body, primaryLabel = "Book a Free Strategy Call", primaryTo = "/contact", secondaryLabel = "Or contact Global Marketing Group" }) => (
+}> = ({
+  eyebrow = "Your next step",
+  title,
+  body,
+  primaryLabel = "Book a Free Strategy Call",
+  primaryTo = "/contact",
+  secondaryLabel = "Or contact Global Marketing Group",
+}) => (
   <section className="py-16">
     <div className="container-gmg">
       <div className="cta-banner-gmg">
         <div>
           <span className="eyebrow">{eyebrow}</span>
-          <h2 className="text-2xl md:text-[2rem] font-bold max-w-[660px]">{title}</h2>
+          <h2 className="text-2xl md:text-[2rem] font-bold max-w-[660px]">
+            {title}
+          </h2>
           <p className="text-muted-foreground mt-3 max-w-[680px]">{body}</p>
         </div>
         <div className="flex flex-col gap-3">
           <Link to={primaryTo} className="btn-primary-gmg whitespace-nowrap">
             {primaryLabel}
           </Link>
-          <Link to="/contact" className="text-xs text-center text-muted-foreground hover:text-teal-dark">
+          <Link
+            to="/contact"
+            className="text-xs text-center text-muted-foreground hover:text-teal-dark"
+          >
             {secondaryLabel}
           </Link>
         </div>
@@ -87,12 +120,17 @@ export const CTASection: React.FC<{
   </section>
 );
 
-export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({ items }) => {
+export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({
+  items,
+}) => {
   const [open, setOpen] = React.useState<number | null>(0);
   return (
     <div className="space-y-3">
       {items.map((item, i) => (
-        <div key={i} className="rounded-2xl border border-line bg-white overflow-hidden">
+        <div
+          key={i}
+          className="rounded-2xl border border-line bg-white overflow-hidden"
+        >
           <button
             type="button"
             onClick={() => setOpen(open === i ? null : i)}
@@ -100,16 +138,26 @@ export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({ items
             aria-expanded={open === i}
           >
             {item.q}
-            <Icon name="plus" size={18} className={`shrink-0 transition-transform ${open === i ? "rotate-45" : ""}`} />
+            <Icon
+              name="plus"
+              size={18}
+              className={`shrink-0 transition-transform ${open === i ? "rotate-45" : ""}`}
+            />
           </button>
-          {open === i && <p className="px-5 pb-5 text-muted-foreground leading-relaxed">{item.a}</p>}
+          {open === i && (
+            <p className="px-5 pb-5 text-muted-foreground leading-relaxed">
+              {item.a}
+            </p>
+          )}
         </div>
       ))}
     </div>
   );
 };
 
-export const FlowBoard: React.FC<{ rows: { title: string; sub: string; icon?: IconName }[] }> = ({ rows }) => (
+export const FlowBoard: React.FC<{
+  rows: { title: string; sub: string; icon?: IconName }[];
+}> = ({ rows }) => (
   <div className="rounded-2xl border border-line bg-white p-6 space-y-4 shadow-sm">
     {rows.map((r, i) => (
       <div key={i} className="flex items-center gap-4">
@@ -125,8 +173,22 @@ export const FlowBoard: React.FC<{ rows: { title: string; sub: string; icon?: Ic
   </div>
 );
 
-export const FeatureGrid: React.FC<{ items: { title: string; body: string; icon?: IconName; tone?: "" | "blue" | "purple" }[]; cols?: 2 | 3 }> = ({ items, cols = 3 }) => (
-  <div className={cols === 2 ? "grid md:grid-cols-2 gap-6" : "grid md:grid-cols-2 lg:grid-cols-3 gap-6"}>
+export const FeatureGrid: React.FC<{
+  items: {
+    title: string;
+    body: string;
+    icon?: IconName;
+    tone?: "" | "blue" | "purple";
+  }[];
+  cols?: 2 | 3;
+}> = ({ items, cols = 3 }) => (
+  <div
+    className={
+      cols === 2
+        ? "grid md:grid-cols-2 gap-6"
+        : "grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+    }
+  >
     {items.map((f, i) => (
       <article key={i} className="card-gmg">
         <span className={`icon-box ${f.tone || ""} mb-5`}>

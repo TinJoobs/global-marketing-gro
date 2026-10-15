@@ -57,6 +57,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // GMG brand tokens (ported from source repo)
+        navy: "hsl(var(--navy))",
+        "navy-2": "hsl(var(--navy-2))",
+        teal: "hsl(var(--teal))",
+        "teal-dark": "hsl(var(--teal-dark))",
+        mint: "hsl(var(--mint))",
+        ink: "hsl(var(--ink))",
+        line: "hsl(var(--line))",
+        pale: "hsl(var(--pale))",
       },
       borderRadius: {
         lg: "var(--radius)",

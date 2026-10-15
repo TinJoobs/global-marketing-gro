@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from "./Icon";
 import { cn } from "@/lib/utils";
 
-const BRAND_LOGO = "https://vibe.filesafe.space/1778597036474054298/assets/28bec8d6-0757-447c-b40e-79be9086e02b.png";
+const BRAND_LOGO =
+  "https://vibe.filesafe.space/1778597036474054298/assets/28bec8d6-0757-447c-b40e-79be9086e02b.png";
 
 const nav = [
   { name: "Home", path: "/" },
@@ -12,24 +13,30 @@ const nav = [
   {
     name: "Explore",
     submenu: [
-      { group: "Solutions & services", links: [
-        { name: "All Services", path: "/services" },
-        { name: "CRM & Automation", path: "/crm-automation" },
-        { name: "AI & Human Support", path: "/ai-automation" },
-        { name: "Digital Solutions", path: "/digital-solutions" },
-        { name: "Appointment Setting", path: "/appointment-setting" },
-        { name: "Lead Follow-Up", path: "/lead-follow-up" },
-        { name: "Integrations", path: "/integrations" },
-      ]},
-      { group: "Explore GMG", links: [
-        { name: "Industries We Serve", path: "/industries" },
-        { name: "How It Works", path: "/how-it-works" },
-        { name: "Pricing & Support", path: "/pricing" },
-        { name: "Portfolio", path: "/portfolio" },
-        { name: "Guides & Resources", path: "/resources" },
-        { name: "Frequently Asked Questions", path: "/faq" },
-        { name: "Careers", path: "/careers" },
-      ]},
+      {
+        group: "Solutions & services",
+        links: [
+          { name: "All Services", path: "/services" },
+          { name: "CRM & Automation", path: "/crm-automation" },
+          { name: "AI & Human Support", path: "/ai-automation" },
+          { name: "Digital Solutions", path: "/digital-solutions" },
+          { name: "Appointment Setting", path: "/appointment-setting" },
+          { name: "Lead Follow-Up", path: "/lead-follow-up" },
+          { name: "Integrations", path: "/integrations" },
+        ],
+      },
+      {
+        group: "Explore GMG",
+        links: [
+          { name: "Industries We Serve", path: "/industries" },
+          { name: "How It Works", path: "/how-it-works" },
+          { name: "Pricing & Support", path: "/pricing" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Guides & Resources", path: "/resources" },
+          { name: "Frequently Asked Questions", path: "/faq" },
+          { name: "Careers", path: "/careers" },
+        ],
+      },
     ],
   },
   { name: "About", path: "/about" },
@@ -57,12 +64,22 @@ const Header = () => {
     <header
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b",
-        scrolled ? "bg-white/90 backdrop-blur-md border-line py-2.5 shadow-sm" : "bg-white border-transparent py-4",
+        scrolled
+          ? "bg-white/90 backdrop-blur-md border-line py-2.5 shadow-sm"
+          : "bg-white border-transparent py-4",
       )}
     >
       <div className="container-gmg flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3" aria-label="Global Marketing Group home">
-          <img src={BRAND_LOGO} alt="Global Marketing Group" className="w-11 h-11 object-contain" />
+        <Link
+          to="/"
+          className="flex items-center gap-3"
+          aria-label="Global Marketing Group home"
+        >
+          <img
+            src={BRAND_LOGO}
+            alt="Global Marketing Group"
+            className="w-11 h-11 object-contain"
+          />
           <span className="flex flex-col leading-[0.85] font-bold text-sm tracking-tight text-navy">
             <span className="text-[0.95rem]">GLOBAL</span>
             <span>MARKETING</span>
@@ -70,10 +87,18 @@ const Header = () => {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
+        <nav
+          className="hidden lg:flex items-center gap-7"
+          aria-label="Main navigation"
+        >
           {nav.map((item) =>
             item.submenu ? (
-              <div key={item.name} className="relative" onMouseEnter={() => setExploreOpen(true)} onMouseLeave={() => setExploreOpen(false)}>
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => setExploreOpen(true)}
+                onMouseLeave={() => setExploreOpen(false)}
+              >
                 <button className="flex items-center gap-1 text-sm font-semibold text-navy hover:text-teal-dark transition-colors py-2">
                   {item.name} <Icon name="chevron" size={16} />
                 </button>
@@ -82,10 +107,16 @@ const Header = () => {
                     <div className="grid grid-cols-2 gap-6 bg-white rounded-2xl border border-line shadow-xl p-6">
                       {item.submenu.map((col) => (
                         <div key={col.group}>
-                          <span className="eyebrow text-[0.65rem]">{col.group}</span>
+                          <span className="eyebrow text-[0.65rem]">
+                            {col.group}
+                          </span>
                           <div className="flex flex-col">
                             {col.links.map((l) => (
-                              <Link key={l.path} to={l.path} className="py-1.5 text-sm text-foreground/80 hover:text-teal-dark min-h-[36px]">
+                              <Link
+                                key={l.path}
+                                to={l.path}
+                                className="py-1.5 text-sm text-foreground/80 hover:text-teal-dark min-h-[36px]"
+                              >
                                 {l.name}
                               </Link>
                             ))}
@@ -100,7 +131,12 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={cn("text-sm font-semibold transition-colors", location.pathname === item.path ? "text-teal-dark" : "text-navy hover:text-teal-dark")}
+                className={cn(
+                  "text-sm font-semibold transition-colors",
+                  location.pathname === item.path
+                    ? "text-teal-dark"
+                    : "text-navy hover:text-teal-dark",
+                )}
               >
                 {item.name}
               </Link>
@@ -111,8 +147,17 @@ const Header = () => {
           </Link>
         </nav>
 
-        <button className="lg:hidden p-2 text-navy" onClick={() => setIsOpen(!isOpen)} aria-label="Open navigation" aria-expanded={isOpen}>
-          <Icon name={isOpen ? "plus" : "menu"} size={26} className={isOpen ? "rotate-45" : ""} />
+        <button
+          className="lg:hidden p-2 text-navy"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Open navigation"
+          aria-expanded={isOpen}
+        >
+          <Icon
+            name={isOpen ? "plus" : "menu"}
+            size={26}
+            className={isOpen ? "rotate-45" : ""}
+          />
         </button>
       </div>
 
@@ -123,12 +168,18 @@ const Header = () => {
             {nav.map((item) =>
               item.submenu ? (
                 <div key={item.name} className="py-2">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-muted-foreground">{item.name}</span>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-muted-foreground">
+                    {item.name}
+                  </span>
                   {item.submenu.map((col) => (
                     <div key={col.group} className="mt-3">
                       <span className="eyebrow text-[0.6rem]">{col.group}</span>
                       {col.links.map((l) => (
-                        <Link key={l.path} to={l.path} className="block py-2 text-base font-medium text-navy">
+                        <Link
+                          key={l.path}
+                          to={l.path}
+                          className="block py-2 text-base font-medium text-navy"
+                        >
                           {l.name}
                         </Link>
                       ))}
@@ -136,12 +187,19 @@ const Header = () => {
                   ))}
                 </div>
               ) : (
-                <Link key={item.path} to={item.path} className="py-3 text-lg font-semibold text-navy border-b border-line">
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="py-3 text-lg font-semibold text-navy border-b border-line"
+                >
                   {item.name}
                 </Link>
               ),
             )}
-            <Link to="/contact" className="btn-dark-gmg mt-6 w-full justify-center">
+            <Link
+              to="/contact"
+              className="btn-dark-gmg mt-6 w-full justify-center"
+            >
               Book a Strategy Call
             </Link>
           </nav>
