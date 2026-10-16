@@ -11,6 +11,9 @@ const Background3D: React.FC<{ variant?: "hero" | "section" }> = ({
 }) => {
   return (
     <div className="bg3d" aria-hidden="true" data-variant={variant}>
+      {/* Slow-spinning aurora wash for premium depth */}
+      <div className="bg3d-aurora" />
+
       {/* Floating gradient orbs for depth */}
       <span className="bg3d-orb bg3d-orb-a" />
       <span className="bg3d-orb bg3d-orb-b" />
@@ -21,7 +24,7 @@ const Background3D: React.FC<{ variant?: "hero" | "section" }> = ({
         <div className="bg3d-grid" />
       </div>
 
-      {/* Soft vignette to keep content readable */}
+      {/* Gentle bottom fade so the hero blends into the next section */}
       <div className="bg3d-vignette" />
     </div>
   );
