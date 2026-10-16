@@ -26,10 +26,20 @@ const Media = () => {
                   <ImageIcon className="w-10 h-10 opacity-20" />
                 </div>
                 <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                  <button className="p-3 bg-white rounded-full text-primary hover:scale-110 transition-transform">
+                  <button
+                    type="button"
+                    aria-label="Play media preview"
+                    onClick={() => window.open("/portfolio", "_self")}
+                    className="p-3 bg-white rounded-full text-primary hover:scale-110 transition-transform"
+                  >
                     <Play className="w-5 h-5 fill-current" />
                   </button>
-                  <button className="p-3 bg-white rounded-full text-primary hover:scale-110 transition-transform">
+                  <button
+                    type="button"
+                    aria-label="View case study"
+                    onClick={() => window.open("/resources", "_self")}
+                    className="p-3 bg-white rounded-full text-primary hover:scale-110 transition-transform"
+                  >
                     <Share2 className="w-5 h-5" />
                   </button>
                 </div>

@@ -44,7 +44,17 @@ export default function HomeHero() {
             <Link to="/contact" className="btn-primary-gmg">
               Book a Free Strategy Call <Icon name="calendar" size={18} />
             </Link>
-            <a href="#core-solutions" className="btn-outline-gmg">
+            <a
+              href="#core-solutions"
+              className="btn-outline-gmg scroll-mt-24"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("core-solutions");
+                const top =
+                  (el?.getBoundingClientRect().top ?? 0) + window.scrollY - 96;
+                window.scrollTo({ top, behavior: "smooth" });
+              }}
+            >
               Explore Our Services <Icon name="arrow" size={18} />
             </a>
           </motion.div>
