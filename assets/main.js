@@ -310,7 +310,7 @@
   }));
 })();
 
-/* Two logo rows share one animation loop; native scrolling remains available. */
+/* A single logo row uses one animation loop; native scrolling remains available. */
 (() => {
   const root=document.getElementById('gmg-site');
   const slider=root?.querySelector('[data-integration-slider]');
