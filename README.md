@@ -1,121 +1,63 @@
-# Global Marketing Group Website
+# Global Marketing Group
 
-Production-ready static website for **Global Marketing Group**.
+The active project is a **React + Vite + TypeScript application**. `index.html` mounts `src/main.tsx`; React Router renders the GMG pages. The production output is `dist/`.
 
-The public site is intentionally placed at the repository root so it can be uploaded directly to GitHub, GitHub Pages, Netlify, Vercel, Cloudflare Pages, or a standard static web host without a framework or build system.
+## Run the project
 
-## Quick start
+Use a supported Node version: **20.19+, 22.13+, or 24+**, matching the ranges in `package.json`.
 
-1. Upload every file and folder in this repository to a new GitHub repository.
-2. Keep the default branch named `main`.
-3. Open `assets/gmg-config.js` and add the approved public GHL form/calendar URLs.
-4. For GitHub Pages, go to **Settings > Pages > Source > GitHub Actions**.
-5. Push to `main`. The included workflow validates and deploys the public website automatically.
-
-To preview locally:
-
-```bash
-python -m http.server 8080
+```sh
+npm ci
+npm run dev
 ```
 
-Then open `http://localhost:8080`.
+Vite listens on `0.0.0.0:8080` by default. Localhost and `.modal.host` previews are allowed. Set `GMG_ALLOWED_HOSTS=preview.example.com,another.example.com` for additional trusted preview hostnames; host checking remains enabled.
 
-## GHL integration
-
-Edit `assets/gmg-config.js`.
-
-Only use public form/calendar/embed URLs. Never place a GHL private API key in frontend files.
-
-```js
-window.GMG_CONFIG = {
-  siteUrl: 'https://glomarkgroup.com',
-  contactEmail: '',
-  contactPhone: '',
-  contactPhoneHref: '',
-  forms: {
-    contact: '',
-    careers: ''
-  },
-  calendars: {
-    strategy: '',
-    salesGrowth: '',
-    virtualAssistant: ''
-  }
-};
+```sh
+npm run typecheck
+npm run lint
+npm test
+npm run build
+npm run preview
+# With the preview running and Chrome installed:
+npm run test:browser
 ```
 
-The contact and booking areas remain safe, disabled previews until real public GHL widget URLs are added.
+Browser QA accepts `GMG_TEST_URL` and `GMG_BROWSER_EXECUTABLE` for a different server or Chromium executable. It intercepts CRM submissions.
 
-## Repository structure
+Type checking does not emit JavaScript, declaration files or build-info files into the source tree. The npm lockfile is authoritative; `npm ci` installs the verified dependency graph.
 
-```text
-/
-├── index.html
-├── about-us.html
-├── sales-growth-system.html
-├── virtual-assistant-services.html
-├── ...other public pages
-├── assets/
-│   ├── styles.css
-│   ├── main.js
-│   ├── gmg-config.js
-│   └── images/
-├── .github/workflows/deploy-pages.yml
-├── scripts/check_repo.py
-├── project/
-│   ├── ghl-blocks/
-│   ├── standalone/
-│   ├── source/
-│   ├── docs/
-│   └── previews/
-├── netlify.toml
-├── vercel.json
-├── robots.txt
-└── sitemap.xml
-```
+## Application structure
 
-## Deployment options
+- `src/App.tsx`: real page routes, legacy aliases and the 404 route.
+- `src/components`: shared navigation, footer, layout and the native single-line integration-logo strip.
+- `src/pages`: GMG service pages, pricing, integration directory, contact, guides, careers and the Missed Revenue Calculator.
+- `src/data`: source-backed packages, integration options, official logo manifest and guide content.
+- `src/index.css`, `src/theme.css`, `src/hero.css`: reused GMG styles and the approved dark/gold design.
+- `public/assets/images`: local brand, logo and support artwork.
+- `public/robots.txt`, `public/sitemap.xml`: crawler files copied into the production build.
+- `docs/HARNESS-REPAIR.md`: assessment, verification and operational limits.
 
-### GitHub Pages
-The included `.github/workflows/deploy-pages.yml` publishes only the public site files and runs the repository validation first.
+Old `.html` URLs resolve to the corresponding React route. Unknown URLs show a 404 page rather than Home. The calculator is available on Home and under Resources. Its results are estimates and remain available without signup.
 
-### Netlify
-Import the repository. `netlify.toml` is already included. No build framework is required.
+## Forms
 
-### Vercel
-Import the repository as a static project. `vercel.json` is included.
+Email signup, consultation requests and careers forms use the existing CRM intake identifiers in `src/lib/tracking.ts`. Forms show pending and retryable failure states and only acknowledge an accepted HTTP response. They do not guarantee email delivery or reserve an appointment. Calculator inputs are not sent with email signup. Keep CRM workflows and delivery configuration in the owner's CRM account; never put private credentials in frontend files.
 
-### GHL
-Use the page fragments in `project/ghl-blocks/` when you want to paste page content into GoHighLevel Custom HTML elements. Full standalone HTML versions are in `project/standalone/`.
+## Deploy
 
-## Validation
+Netlify and Vercel configurations build this Vite application and publish `dist/` with SPA deep-link fallback. Keep security headers and the `public/` crawler files. See [DEPLOYMENT.md](DEPLOYMENT.md). Other hosts need the same `npm ci` / `npm run build` / `dist` setup.
 
-Rebuild the root website, standalone pages, and GHL blocks together with Python 3.12 or newer:
+## Historical static/GHL exports
 
-```bash
+The former root HTML and assets are preserved in `project/legacy-static/`. Standalone pages and GHL fragments remain in `project/standalone/` and `project/ghl-blocks/`. They are historical exports, not the active application's routes or styling source.
+
+The optional Python generator now writes **only** to the historical export folders and cannot overwrite the React entry point:
+
+```sh
+# Requires Python 3.12+
 python3 project/source/build.py
+python3 scripts/check_repo.py
 ```
 
-The generator reads the shared files in `assets/`. Edit those files and the templates in `project/source/build.py`, then rebuild rather than editing portable copies individually.
-
-Run:
-
-```bash
-python scripts/check_repo.py
-```
-
-The full browser QA suite is at `project/source/test_site.py`; install its development dependencies from `project/source/requirements-dev.txt` and run `python3 project/source/test_site.py`. It checks all 28 pages at seven widths and exercises the form/calendar integration hooks with test URLs. Use `GMG_BROWSER_EXECUTABLE` to select an installed Chrome/Chromium binary.
-
-Additional keyboard-navigation and unavailable-contact regressions run with `node scripts/test_navigation.cjs` (requires the Playwright Node package and Chrome/Chromium). The UI refresh report is in `project/docs/UI-UX-REFRESH-QA.md`.
-
-## Before launch
-
-- Add the approved GHL public form and calendar URLs.
-- Confirm the business email and phone number.
-- Replace draft Privacy, Terms, and Refund pages with approved legal copy.
-- Confirm the production domain in `assets/gmg-config.js`, `robots.txt`, and `sitemap.xml`.
-- If you use a custom domain on GitHub Pages, configure it in GitHub Pages settings. Do not add a `CNAME` file until the domain is final.
-
-## Important
-
-This repository contains no private GHL credentials and does not require Node, React, npm, or a server-side runtime to serve the website.
+Node/Vite builds do not require Python. Future product changes should be made in React; update legacy exports separately when needed. The independent static browser QA script remains for historical exports only.

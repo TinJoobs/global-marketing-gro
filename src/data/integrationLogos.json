@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "facebook-lead-ads",
+    "name": "Facebook Lead Ads",
+    "file": "assets/images/integrations/facebook-lead-ads.png",
+    "url": "https://www.facebook.com/business/ads/lead-ads"
+  },
+  {
+    "slug": "instagram",
+    "name": "Instagram",
+    "file": "assets/images/integrations/instagram.webp",
+    "url": "https://www.instagram.com/"
+  },
+  {
+    "slug": "gmail",
+    "name": "Gmail",
+    "file": "assets/images/integrations/gmail.svg",
+    "url": "https://workspace.google.com/products/gmail/"
+  },
+  {
+    "slug": "google-calendar",
+    "name": "Google Calendar",
+    "file": "assets/images/integrations/google-calendar.svg",
+    "url": "https://workspace.google.com/products/calendar/"
+  },
+  {
+    "slug": "stripe",
+    "name": "Stripe",
+    "file": "assets/images/integrations/stripe.svg",
+    "url": "https://stripe.com/"
+  },
+  {
+    "slug": "paypal",
+    "name": "PayPal",
+    "file": "assets/images/integrations/paypal.png",
+    "url": "https://www.paypal.com/"
+  },
+  {
+    "slug": "shopify",
+    "name": "Shopify",
+    "file": "assets/images/integrations/shopify.svg",
+    "url": "https://www.shopify.com/"
+  },
+  {
+    "slug": "zapier",
+    "name": "Zapier",
+    "file": "assets/images/integrations/zapier.png",
+    "url": "https://zapier.com/"
+  },
+  {
+    "slug": "outlook-email",
+    "name": "Outlook Email",
+    "file": "assets/images/integrations/outlook-email.png",
+    "url": "https://outlook.live.com/"
+  },
+  {
+    "slug": "zoom",
+    "name": "Zoom",
+    "file": "assets/images/integrations/zoom.png",
+    "url": "https://www.zoom.com/"
+  },
+  {
+    "slug": "quickbooks",
+    "name": "QuickBooks",
+    "file": "assets/images/integrations/quickbooks.svg",
+    "url": "https://quickbooks.intuit.com/"
+  },
+  {
+    "slug": "make",
+    "name": "Make",
+    "file": "assets/images/integrations/make.png",
+    "url": "https://www.make.com/"
+  }
+]

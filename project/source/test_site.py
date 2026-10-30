@@ -9,7 +9,7 @@ import json, os, re, shutil, sys
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parent.parent
-WEB=ROOT.parent
+WEB=ROOT/'legacy-static'
 (ROOT/'previews').mkdir(exist_ok=True)
 failures=[];checks=0;cases=0
 

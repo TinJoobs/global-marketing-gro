@@ -7,7 +7,7 @@ from html import escape
 import base64, json, re, csv, shutil
 from content import *
 ROOT = Path(__file__).resolve().parent.parent
-WEB = ROOT.parent
+WEB = ROOT/'legacy-static'
 ASSETS = WEB/'assets'
 PAGES = {}
 E = escape
@@ -409,6 +409,7 @@ def inline_images(markup):
     return re.sub(r'(?P<prefix>src=")(assets/images/[^"]+)(?P<suffix>")',lambda m:m.group('prefix')+data_uri(WEB/m.group(2))+m.group('suffix'),markup)
 
 def build():
+    WEB.mkdir(parents=True,exist_ok=True)
     for folder in ('standalone', 'ghl-blocks', 'docs'):
         (ROOT/folder).mkdir(exist_ok=True)
     home(); sales_growth(); virtual_assistant(); services(); industries(); about(); how_it_works(); pricing(); contact(); booking(); resources(); careers(); portfolio(); legal_and_utility()

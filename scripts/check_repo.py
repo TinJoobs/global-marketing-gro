@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1]/'project/legacy-static'
 PAGES = sorted(ROOT.glob("*.html"))
 FAIL = []
 
