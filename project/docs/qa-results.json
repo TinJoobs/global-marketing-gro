@@ -1,0 +1,17 @@
+{
+  "pages": 28,
+  "viewport_cases": 196,
+  "checks": 1717,
+  "failures": [],
+  "widths": [
+    320,
+    360,
+    390,
+    768,
+    1024,
+    1440,
+    1920
+  ],
+  "rendering": "Chromium set_content, standalone HTML, offline",
+  "live_ghl_tested": false
+}

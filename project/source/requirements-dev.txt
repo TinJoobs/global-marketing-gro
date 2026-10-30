@@ -1,0 +1,5 @@
+# Optional development checks and image extraction only.
+# Not required to view, host, or rebuild the supplied HTML pages.
+beautifulsoup4
+playwright
+Pillow
