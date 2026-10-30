@@ -80,7 +80,7 @@ with sync_playwright() as pw:
    page.set_viewport_size({'width':width,'height':1000 if width>760 else 844})
    metrics=page.evaluate('''() => ({width:innerWidth,scroll:document.documentElement.scrollWidth,
     bad:Array.from(document.querySelectorAll('main a,main button,main input,main select,main textarea')).filter(e=>{
-     const r=e.getBoundingClientRect();return r.width>0&&(r.left < -2||r.right>innerWidth+2)
+     if(e.closest('[data-logo-row]'))return false;const r=e.getBoundingClientRect();return r.width>0&&(r.left < -2||r.right>innerWidth+2)
     }).map(e=>({text:e.textContent.slice(0,50),left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right}))})''')
    verify(metrics['scroll']<=width,f'{p.name}@{width}: horizontal overflow {metrics}')
    verify(not metrics['bad'],f'{p.name}@{width}: controls outside viewport {metrics["bad"]}')
