@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
 import { PageHero, SectionHead, CTASection } from "@/components/sections";
+import { guides } from "@/data/guides";
 
 const resources: { icon: IconName; title: string; body: string; to: string }[] =
   [
+    { icon: "chart", title: "Missed Revenue Calculator", body: "Estimate the monthly opportunity lost when inquiries go unanswered, then plan your follow-up.", to: "/missed-revenue-calculator" },
     {
       icon: "monitor",
       title: "Portfolio",
@@ -17,12 +19,12 @@ const resources: { icon: IconName; title: string; body: string; to: string }[] =
       body: "Unlock your earning potential with our exclusive affiliate program.",
       to: "/resources/affiliate",
     },
-    {
-      icon: "book",
-      title: "Blog",
-      body: "Guides and insights on CRM, automation, and business growth.",
-      to: "/resources",
-    },
+    ...guides.map(guide => ({
+      icon: "book" as IconName,
+      title: guide.name,
+      body: guide.intro,
+      to: `/${guide.slug}`,
+    })),
     {
       icon: "briefcase",
       title: "Services",
@@ -38,7 +40,7 @@ const resources: { icon: IconName; title: string; body: string; to: string }[] =
     {
       icon: "chart",
       title: "Pricing",
-      body: "Transparent plans with no hidden fees.",
+      body: "Compare service plans, setup fees, and optional boosts.",
       to: "/pricing",
     },
   ];

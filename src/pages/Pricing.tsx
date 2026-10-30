@@ -1,140 +1,63 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Check,
-  ArrowRight,
-  Zap,
-  Target,
-  BarChart3,
-  ShieldCheck,
-  Workflow,
-  MessageSquare,
-} from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Check } from "lucide-react";
+import { PageHero, SectionHead, CTASection } from "@/components/sections";
+import { packages, addonBoosts, pricingTerms } from "@/data/packages";
 
-const Pricing = () => {
-  const plans = [
-    {
-      name: "Starter",
-      price: "297",
-      desc: "Perfect for small businesses starting their automation journey.",
-      features: [
-        "Complete integration platform",
-        "Pipeline visibility",
-        "Basic workflow management",
-        "Email marketing (up to 5k contacts)",
-        "Standard support",
-      ],
-    },
-    {
-      name: "Professional",
-      price: "497",
-      desc: "Ideal for growing businesses needing advanced CRM features.",
-      features: [
-        "Everything in Starter",
-        "Multi-channel campaigns",
-        "Advanced reporting & analytics",
-        "Sales funnel builder",
-        "Scheduling system",
-        "Priority support",
-      ],
-      popular: true,
-    },
-    {
-      name: "Enterprise",
-      price: "997",
-      desc: "Full-scale automation and AI support for established teams.",
-      features: [
-        "Everything in Professional",
-        "AI-enhanced executive assistant",
-        "Custom workflow engineering",
-        "Unlimited contacts",
-        "Dedicated account representative",
-        "24/7 Premium support",
-      ],
-    },
-  ];
+const money = (amount: number, cents = false) => new Intl.NumberFormat("en-US", {
+  style: "currency", currency: "USD", minimumFractionDigits: cents ? 2 : 0,
+  maximumFractionDigits: cents ? 2 : 0,
+}).format(amount);
 
+export default function Pricing() {
+  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
+  const annual = billing === "annual";
   return (
-    <div className="flex flex-col w-full">
-      <section className="section-padding bg-secondary/30 border-b border-border">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Automate Success
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your business goals. Transparent pricing
-            with no hidden fees.
-          </p>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {plans.map((plan, i) => (
-              <div
-                key={i}
-                className={`glass-card p-10 rounded-3xl flex flex-col relative ${plan.popular ? "border-primary shadow-primary/20 scale-105 z-10" : ""}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-sm font-bold px-4 py-1 rounded-full">
-                    MOST POPULAR
-                  </div>
-                )}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-muted-foreground text-sm">{plan.desc}</p>
-                </div>
-                <div className="mb-8">
-                  <span className="text-5xl font-bold">${plan.price}</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <ul className="space-y-4 mb-10 flex-grow">
-                  {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary shrink-0" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  className="w-full h-12"
-                  variant={plan.popular ? "default" : "outline"}
-                  asChild
-                >
-                  <Link to="/contact">Get Started</Link>
-                </Button>
-              </div>
-            ))}
+    <div>
+      <PageHero simple eyebrow="Pricing & support" title={<>Simple Plans. Real Support.<br /><span className="text-primary">No Guesswork.</span></>}
+        lead="Automation plus offshore talent, packaged into three clear plans. Upgrade anytime as you grow."
+        note={pricingTerms.target_audience} />
+      <section className="section-gmg" aria-labelledby="plans-title">
+        <div className="container-gmg">
+          <h2 id="plans-title" className="sr-only">Choose your plan</h2>
+          <div className="flex flex-wrap justify-center gap-3 mb-5" role="group" aria-label="Billing frequency">
+            <button type="button" className={annual ? "btn-outline-gmg" : "btn-primary-gmg"} aria-pressed={!annual} onClick={() => setBilling("monthly")}>Monthly</button>
+            <button type="button" className={annual ? "btn-primary-gmg" : "btn-outline-gmg"} aria-pressed={annual} onClick={() => setBilling("annual")}>Annual — save 10%</button>
+          </div>
+          <p className="text-center text-sm text-muted-foreground mb-12" role="status">{annual ? "Annual service paid upfront. Monthly equivalent shown below; setup billed separately at signing." : "Monthly service pricing. Setup billed separately at signing."}</p>
+          <div className="grid lg:grid-cols-3 gap-7 items-stretch">
+            {packages.map(plan => {
+              const monthlyEquivalent = annual ? plan.monthly * (1 - pricingTerms.annual_discount_percent / 100) : plan.monthly;
+              return <article key={plan.slug} aria-label={`${plan.name} plan`} className={`card-gmg flex flex-col relative ${plan.popular ? "border-primary" : ""}`}>
+                {plan.popular && <span className="eyebrow mb-4">Most popular</span>}
+                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                <p className="text-muted-foreground mb-7 min-h-12">{plan.tagline}</p>
+                <div className="mb-3"><span className="text-4xl xl:text-5xl font-bold">{money(monthlyEquivalent, annual)}</span><span className="text-muted-foreground"> /month{annual ? " equivalent" : ""}</span></div>
+                {annual && <p className="font-semibold mb-3">{money(monthlyEquivalent * 12, true)} billed annually</p>}
+                <p className="text-sm text-muted-foreground pb-6 border-b border-border">{money(plan.setup)} one-time setup · due at signing</p>
+                <ul className="space-y-4 my-7 flex-1">{plan.features.map(feature => <li key={feature} className="flex gap-3 text-sm leading-relaxed"><Check aria-hidden="true" className="text-primary w-5 h-5 shrink-0 mt-0.5" /><span>{feature}</span></li>)}</ul>
+                <Link to={`/contact?plan=${plan.slug}&billing=${billing}`} className={plan.popular ? "btn-primary-gmg justify-center" : "btn-outline-gmg justify-center"}>Choose {plan.name}</Link>
+              </article>;
+            })}
+          </div>
+          <div className="text-center mt-8 space-y-2 text-muted-foreground text-sm">
+            <p>All plans require a {pricingTerms.minimum_months}-month minimum term. {pricingTerms.setup_due}</p>
+            <p>{pricingTerms.custom_note} <Link to="/contact?plan=custom" className="text-link">Discuss a custom plan</Link></p>
           </div>
         </div>
       </section>
-
-      <section className="section-padding bg-secondary/30">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-12">The GMG Success Journey</h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              { icon: Zap, label: "Awareness" },
-              { icon: MessageSquare, label: "Engagement" },
-              { icon: Target, label: "Pipeline" },
-              { icon: Workflow, label: "Conversion" },
-              { icon: ShieldCheck, label: "Satisfaction" },
-              { icon: BarChart3, label: "Growth" },
-            ].map((step, i) => (
-              <div key={i} className="glass-card p-6 rounded-2xl">
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <step.icon className="w-5 h-5 text-primary" />
-                </div>
-                <p className="font-bold text-sm">{step.label}</p>
-              </div>
-            ))}
-          </div>
+      <section className="section-gmg bg-secondary/30">
+        <div className="container-gmg">
+          <SectionHead eyebrow="Add-on boosts" title="More support, when you need it." subtitle="Attach to any plan to expand your account as you grow." />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">{addonBoosts.map(boost => <article className="card-gmg" key={boost.slug}>
+            <h3 className="font-bold text-lg mb-3">{boost.name}</h3>
+            <p className="text-2xl font-bold">{money(boost.monthly)}<span className="text-sm font-normal text-muted-foreground"> /month</span></p>
+            {boost.spend_extra && <p className="text-sm text-muted-foreground mt-2">+ advertising spend</p>}
+          </article>)}</div>
+          <p className="text-sm text-muted-foreground mt-6">We’ll confirm service scope, usage costs, and any third-party charges before you sign. The annual discount applies to plan service pricing; setup remains separate.</p>
         </div>
       </section>
+      <CTASection title="Ready to Stop Losing Leads?" body="Tell us where your business needs support. We’ll help you choose the right plan." primaryLabel="Book Your Free Growth Audit" />
     </div>
   );
-};
-
-export default Pricing;
+}

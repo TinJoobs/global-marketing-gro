@@ -1,19 +1,7 @@
-import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import { useReveal } from "@/hooks/useReveal";
-
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const ref = useReveal<HTMLDivElement>();
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow pt-[72px]" ref={ref}>
-        {children}
-      </main>
-      <Footer />
-    </div>
-  );
-};
-
-export default Layout;
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
+import Header from './Header';
+import Footer from './Footer';
+import { useReveal } from '@/hooks/useReveal';
+export default function Layout({children}:{children:React.ReactNode}){const {pathname}=useLocation();const ref=useReveal<HTMLDivElement>();useEffect(()=>{window.scrollTo(0,0);const heading=document.querySelector('h1')?.textContent;document.title=`${heading||'Sales Systems. People. Growth.'} | Global Marketing Group`;const description=pathname==='/missed-revenue-calculator'?'Estimate the monthly opportunity lost when inquiries go unanswered. Use your own assumptions, follow the checklist, and build a better follow-up process.':'Global Marketing Group connects CRM automation and Philippines-based Virtual Assistant support. Explore Launch, Growth and Scale packages.';document.querySelector('meta[name="description"]')?.setAttribute('content',description);document.querySelector('link[rel="canonical"]')?.setAttribute('href',window.location.origin+pathname);},[pathname]);return <MotionConfig reducedMotion="user"><div id="gmg-site" className="flex flex-col min-h-screen"><a className="skip-to-content" href="#main-content">Skip to content</a><Header/><main id="main-content" tabIndex={-1} className="flex-grow" ref={ref}>{children}</main><Footer/></div></MotionConfig>}

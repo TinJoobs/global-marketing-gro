@@ -42,9 +42,6 @@ export const PageHero: React.FC<{
 }) => (
   <section className="page-hero-gmg">
     <div className="container-gmg">
-      <nav className="breadcrumb-gmg" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
-      </nav>
       <div
         className={
           simple
@@ -92,7 +89,7 @@ export const CTASection: React.FC<{
   eyebrow = "Your next step",
   title,
   body,
-  primaryLabel = "Book a Free Strategy Call",
+  primaryLabel = "Book your free growth audit",
   primaryTo = "/contact",
   secondaryLabel = "Or contact Global Marketing Group",
 }) => (

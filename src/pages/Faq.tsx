@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "How much do Virtual Assistant services cost?",
-    a: "General Virtual Assistant support starts at $10 per hour. Specialized or certified support may require a different rate depending on the qualifications and scope of work required.",
+    a: "Growth is $1,697/month plus $2,997 setup and includes one dedicated trained Philippines-based VA. Scale is $3,497/month plus $4,997 setup. VA Boost is $1,497/month.",
   },
   {
     q: "Can I use Virtual Assistant services without purchasing the Sales Growth System?",

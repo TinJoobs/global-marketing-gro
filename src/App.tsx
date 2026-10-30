@@ -1,7 +1,15 @@
+import Affiliate from './pages/resources/Affiliate';
+import Media from './pages/resources/Media';
+import AccountRep from './pages/careers/AccountRep';
+import ExecutiveAssistant from './pages/careers/ExecutiveAssistant';
+import Referral from './pages/careers/Referral';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import MissedRevenueCalculator from "./pages/MissedRevenueCalculator";
+import GuidePage from "./pages/GuidePage";
+import LegacyRedirect from "./pages/LegacyRedirect";
 import NotFound from "./pages/NotFound";
 
 import SalesGrowthSystem from "./pages/SalesGrowthSystem";
@@ -34,6 +42,11 @@ const App = () => (
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/missed-revenue-calculator" element={<MissedRevenueCalculator />} />
+          <Route path="/guide-va-delegation" element={<GuidePage slug="guide-va-delegation" />} />
+          <Route path="/guide-lead-follow-up" element={<GuidePage slug="guide-lead-follow-up" />} />
+          <Route path="/guide-crm-readiness" element={<GuidePage slug="guide-crm-readiness" />} />
+          <Route path="/book-a-call" element={<Contact />} />
           <Route path="/sales-growth-system" element={<SalesGrowthSystem />} />
           <Route
             path="/virtual-assistant-services"
@@ -55,9 +68,15 @@ const App = () => (
           <Route path="/faq" element={<Faq />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/affiliate" element={<Affiliate />} />
+          <Route path="/resources/media" element={<Media />} />
+          <Route path="/careers/account-rep" element={<AccountRep />} />
+          <Route path="/careers/executive-assistant" element={<ExecutiveAssistant />} />
+          <Route path="/careers/referral" element={<Referral />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/refund" element={<RefundPolicy />} />
+          <Route path="/:legacy.html" element={<LegacyRedirect />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

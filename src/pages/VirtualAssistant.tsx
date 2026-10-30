@@ -49,8 +49,8 @@ const benefits: { icon: IconName; title: string; body: string }[] = [
   },
   {
     icon: "clock",
-    title: "From $10 per Hour",
-    body: "Dependable support starting at $10 per hour, with specialized options available.",
+    title: "Dedicated support in Growth",
+    body: "Dedicated support with recruiting, vetting and backup coverage in the Growth plan.",
   },
   {
     icon: "globe",
@@ -71,7 +71,7 @@ export default function VirtualAssistant() {
         eyebrow="Our core solution"
         title={<>Virtual Assistant Services</>}
         lead="Skilled Virtual Assistants who help manage the daily tasks that keep your business moving — so you can focus on growth."
-        note="General Virtual Assistant support starts at $10 per hour. Specialized or certified support may require a different rate depending on qualifications and scope."
+        note="Growth includes a dedicated Philippines-based VA for $1,697/month plus $2,997 setup. VA Boost is $1,497/month."
         primaryCta={{ label: "Get Your Executive Assistant", to: "/contact" }}
         secondaryCta={{ label: "View all services", to: "/services" }}
       />

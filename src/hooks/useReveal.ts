@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 /**
@@ -7,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export function useReveal<T extends HTMLElement = HTMLDivElement>() {
   const ref = useRef<T | null>(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const root = ref.current;
@@ -31,7 +33,7 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [pathname]);
 
   return ref;
 }

@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 
-const BRAND_LOGO =
-  "https://vibe.filesafe.space/1778597036474054298/assets/28bec8d6-0757-447c-b40e-79be9086e02b.png";
+const BRAND_LOGO = "/assets/images/gmg-headset-logo.webp";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -24,7 +23,7 @@ const Footer = () => {
               <img
                 src={BRAND_LOGO}
                 alt="Global Marketing Group"
-                className="w-11 h-11 object-contain"
+                className="w-16 h-16 object-contain"
               />
               <span className="flex flex-col leading-[0.85] font-bold text-sm tracking-tight">
                 <span className="text-[0.95rem]">GLOBAL</span>
@@ -41,7 +40,7 @@ const Footer = () => {
               Global Marketing Group connects your strategy, systems, and
               support team so you can focus on growing your business.
             </p>
-            <Link to="/contact" className="text-link text-[#72d8c7] mt-4">
+            <p className="mt-4 text-sm"><a href="mailto:garyb@glomarkgroup.com">garyb@glomarkgroup.com</a><br/><a href="mailto:norly@glomarkgroup.com">norly@glomarkgroup.com</a></p><Link to="/contact" className="text-link text-[#72d8c7] mt-4">
               Talk with our team <Icon name="arrow" size={16} />
             </Link>
           </div>
@@ -99,6 +98,7 @@ const Footer = () => {
                 ["Portfolio", "/portfolio"],
                 ["Guides & Resources", "/resources"],
                 ["Help & FAQs", "/faq"],
+                ["Missed Revenue Calculator", "/missed-revenue-calculator"],
                 ["Careers", "/careers"],
                 ["Contact Us", "/contact"],
               ].map(([l, p]) => (

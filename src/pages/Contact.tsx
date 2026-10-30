@@ -1,187 +1,154 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
+import { useRef, useState, type FormEvent } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  MessageSquare,
-  Calendar,
-  ShieldCheck,
-} from "lucide-react";
-import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
+import { buildTrackingPayload } from "@/lib/tracking";
+import { packages, pricingTerms } from "@/data/packages";
 
-const Contact = () => {
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      subject: formData.get("subject") as string,
-      message: formData.get("message") as string,
+const consentText = "I agree that Global Marketing Group may contact me by email about this consultation request.";
+const money = (amount: number, cents = false) => new Intl.NumberFormat("en-US", {
+  style: "currency", currency: "USD", minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0,
+}).format(amount);
+const labels = { name: "Full name", email: "Email address", subject: "Subject", message: "What would you like help with?", consent: "Contact consent" };
+type Field = keyof typeof labels;
+
+export default function Contact() {
+  const [params] = useSearchParams();
+  const plan = packages.find((item) => item.slug === params.get("plan"));
+  const annual = params.get("billing") === "annual";
+  const leadFollowUp = params.get("service") === "lead-follow-up";
+  const monthly = plan ? plan.monthly * (annual ? 1 - pricingTerms.annual_discount_percent / 100 : 1) : 0;
+  const planContext = plan
+    ? `${plan.name}: ${money(monthly, annual)} /month${annual ? " equivalent" : ""}${annual ? `; ${money(monthly * 12, true)} billed annually` : ""}; ${money(plan.setup)} one-time setup due at signing; ${pricingTerms.minimum_months}-month minimum term.`
+    : params.get("plan") === "custom" ? "Custom plan consultation; pricing and scope to be discussed." : "";
+  const initialSubject = leadFollowUp ? "Lead follow-up growth audit" : plan ? `${plan.name} plan consultation` : params.get("plan") === "custom" ? "Custom plan consultation" : "";
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
+  const errorSummary = useRef<HTMLDivElement>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "pending" || status === "success") return;
+    const form = new FormData(event.currentTarget);
+    const values = {
+      name: String(form.get("name") ?? "").trim(), email: String(form.get("email") ?? "").trim(),
+      subject: String(form.get("subject") ?? "").trim(), message: String(form.get("message") ?? "").trim(),
     };
-
-    postTrackingEvent(
-      buildTrackingPayload(
-        "contact-form",
-        "Contact Form",
-        {
-          first_name: data.name,
-          email: data.email,
-          calendar_notes: data.message,
-        },
-        {
-          first_name: "Full Name",
-          email: "Email Address",
-          calendar_notes: "Message",
-        },
-      ),
-      {
-        customFields: {
-          "09aZnxiqoakrzk5yfNLB": { value: data.subject, label: "Subject" },
-        },
-      },
-    );
-
-    alert("Thank you for your message! We'll get back to you soon.");
-    (e.target as HTMLFormElement).reset();
-  };
+    const nextErrors: Partial<Record<Field, string>> = {};
+    if (!values.name || values.name.length > 100) nextErrors.name = "Enter your name (up to 100 characters).";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) || values.email.length > 254) nextErrors.email = "Enter a valid email address.";
+    if (!values.subject || values.subject.length > 200) nextErrors.subject = "Enter a subject (up to 200 characters).";
+    if (!values.message || values.message.length > 5000) nextErrors.message = "Tell us what you need help with (up to 5,000 characters).";
+    if (form.get("consent") !== "on") nextErrors.consent = "Please agree to email contact about your request.";
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) {
+      requestAnimationFrame(() => errorSummary.current?.focus());
+      return;
+    }
+    setStatus("pending");
+    const notes = [values.message, planContext, leadFollowUp ? "Service: Lead follow-up growth audit" : "", `Consent: ${consentText}`].filter(Boolean).join("\n\n");
+    try {
+      const body = new FormData();
+      body.append("event", JSON.stringify(buildTrackingPayload("contact-form", "Consultation Request", {
+        first_name: values.name, email: values.email, calendar_notes: notes, consent: true, "09aZnxiqoakrzk5yfNLB": values.subject,
+      }, {
+        first_name: "Full Name", email: "Email Address", calendar_notes: "Consultation Request and Context", consent: "Contact Consent", "09aZnxiqoakrzk5yfNLB": "Subject",
+      })));
+      const response = await fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
+        method: "POST", headers: { version: "2021-07-28" }, body,
+      });
+      if (!response.ok) throw new Error("Request not accepted");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
-    <div className="flex flex-col w-full">
-      <section className="section-padding bg-secondary/30 border-b border-border">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Us</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions? We're here to help. Reach out to our team for
-            support or to schedule a demo of our platform.
-          </p>
+    <div>
+      <section className="section-gmg bg-secondary/30 border-b border-border">
+        <div className="container-gmg max-w-4xl text-center">
+          <span className="eyebrow">Let's find your next growth opportunity</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Book your free growth audit</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{leadFollowUp ? "Turn your calculator estimate into a practical follow-up plan. Tell us where inquiries get stuck." : "Tell us where your business needs support. Request a conversation about your leads, follow-up, and operations."}</p>
+          <p className="text-sm text-muted-foreground mt-5">Submit a consultation request below. We'll coordinate availability by email; submitting does not reserve an appointment.</p>
         </div>
       </section>
 
-      <section className="section-padding">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
-              <div className="glass-card p-10 rounded-2xl">
-                <h2 className="text-3xl font-bold mb-8">Send Us a Message</h2>
-                <form className="space-y-6" onSubmit={handleSubmit}>
-                  <div className="grid md:grid-cols-2 gap-6">
+      <section className="section-gmg">
+        <div className="container-gmg grid lg:grid-cols-3 gap-8 items-start">
+          <div className="lg:col-span-2 space-y-6">
+            {plan && <section className="card-gmg" aria-label="Your selected plan">
+              <span className="eyebrow">Your selected plan</span>
+              <h2 className="text-2xl font-bold mb-3">{plan.name}</h2>
+              <p className="text-lg font-semibold">{money(monthly, annual)} /month{annual ? " equivalent" : ""}</p>
+              {annual && <p className="mt-2">{money(monthly * 12, true)} billed annually, paid upfront.</p>}
+              <p className="text-muted-foreground mt-3">{money(plan.setup)} one-time setup · due at signing.</p>
+              <p className="text-muted-foreground mt-2">{pricingTerms.minimum_months}-month minimum term. Service scope and any third-party charges confirmed before signing.</p>
+              <Link to="/pricing" className="text-link mt-4">Review all plans</Link>
+            </section>}
+            {!plan && params.get("plan") === "custom" && <p className="card-gmg">Let's discuss a custom plan. Pricing and scope will depend on your needs.</p>}
+            <div className="card-gmg">
+              <h2 className="text-2xl font-bold mb-3">Request a consultation</h2>
+              <p className="text-muted-foreground mb-6">Share a little context so our team can prepare a useful conversation.</p>
+              <form onSubmit={handleSubmit} noValidate aria-label="Consultation request" aria-busy={status === "pending"}>
+                {Object.keys(errors).length > 0 && <div ref={errorSummary} tabIndex={-1} role="alert" className="border border-red-400 rounded-lg p-4 mb-6 text-sm">
+                  <p className="font-semibold mb-2">Please check these fields:</p>
+                  <ul className="space-y-1">{(Object.keys(errors) as Field[]).map((field) => <li key={field}><a className="underline underline-offset-4" href={`#contact-${field}`}>{labels[field]}</a></li>)}</ul>
+                </div>}
+                <fieldset disabled={status === "pending" || status === "success"} className="space-y-6">
+                  <legend className="sr-only">Your contact details and request</legend>
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="John Doe"
-                        required
-                      />
+                      <Label htmlFor="contact-name">Full name</Label>
+                      <Input id="contact-name" name="name" autoComplete="name" required maxLength={100} className="h-12" aria-invalid={!!errors.name} aria-describedby={errors.name ? "contact-name-error" : undefined} />
+                      {errors.name && <p id="contact-name-error" className="text-sm text-red-300">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="john@example.com"
-                        required
-                      />
+                      <Label htmlFor="contact-email">Email address</Label>
+                      <Input id="contact-email" name="email" type="email" autoComplete="email" required maxLength={254} className="h-12" aria-invalid={!!errors.email} aria-describedby={errors.email ? "contact-email-error" : undefined} />
+                      {errors.email && <p id="contact-email-error" className="text-sm text-red-300">{errors.email}</p>}
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="How can we help?"
-                      required
-                    />
+                    <Label htmlFor="contact-subject">Subject</Label>
+                    <Input id="contact-subject" name="subject" required maxLength={200} defaultValue={initialSubject} className="h-12" aria-invalid={!!errors.subject} aria-describedby={errors.subject ? "contact-subject-error" : undefined} />
+                    {errors.subject && <p id="contact-subject-error" className="text-sm text-red-300">{errors.subject}</p>}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Your message here..."
-                      className="min-h-[150px]"
-                      required
-                    />
+                    <Label htmlFor="contact-message">What would you like help with?</Label>
+                    <Textarea id="contact-message" name="message" required maxLength={5000} className="min-h-36 text-base" aria-invalid={!!errors.message} aria-describedby={errors.message ? "contact-message-error" : undefined} />
+                    {errors.message && <p id="contact-message-error" className="text-sm text-red-300">{errors.message}</p>}
                   </div>
-                  <Button
-                    type="submit"
-                    className="w-full h-14 text-lg"
-                    size="lg"
-                  >
-                    Send Message
-                  </Button>
-                </form>
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              <div className="glass-card p-8 rounded-2xl">
-                <h3 className="text-xl font-bold mb-6">Contact Details</h3>
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-bold">Phone</p>
-                      <p className="text-muted-foreground">
-                        +317 395 6740 (Gary)
-                      </p>
-                      <p className="text-muted-foreground">
-                        +614 973 6161 (Norly)
-                      </p>
-                    </div>
+                  <div>
+                    <label className="flex gap-3 items-start min-h-12 py-2 cursor-pointer text-sm leading-relaxed" htmlFor="contact-consent">
+                      <input id="contact-consent" name="consent" type="checkbox" required className="w-5 h-5 shrink-0 mt-0.5 accent-primary" aria-invalid={!!errors.consent} aria-describedby={errors.consent ? "contact-consent-error" : undefined} />
+                      <span>{consentText}</span>
+                    </label>
+                    {errors.consent && <p id="contact-consent-error" className="text-sm text-red-300">{errors.consent}</p>}
+                    <p className="text-sm text-muted-foreground mt-2">See our <Link to="/privacy" className="underline underline-offset-4">Privacy Policy</Link> for how we handle your information.</p>
                   </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-bold">Email</p>
-                      <p className="text-muted-foreground">
-                        garyb@glomarkgroup.com
-                      </p>
-                      <p className="text-muted-foreground">
-                        norly@glomarkgroup.com
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-bold">Location</p>
-                      <p className="text-muted-foreground">
-                        Global Marketing Group, International
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="glass-card p-8 rounded-2xl bg-primary text-white">
-                <Calendar className="w-10 h-10 mb-4" />
-                <h3 className="text-xl font-bold mb-2">Schedule a Demo</h3>
-                <p className="text-primary-foreground/80 mb-6">
-                  Want a personalized walkthrough of our CRM and EA services?
-                </p>
-                <Button variant="secondary" className="w-full">
-                  Book Your Demo
-                </Button>
-              </div>
+                  <button className="btn-primary-gmg w-full min-h-12" type="submit">{status === "pending" ? "Submitting…" : status === "success" ? "Request submitted" : "Request consultation"}</button>
+                </fieldset>
+                {status === "success" && <p role="status" className="mt-5 border border-primary rounded-lg p-4">Request received. Thank you for reaching out. An appointment has not been booked; our team can coordinate the next step by email.</p>}
+                {status === "error" && <p role="alert" className="mt-5 border border-red-400 rounded-lg p-4">We could not receive your request. Please try again or <a className="underline underline-offset-4" href="mailto:garyb@glomarkgroup.com">email Gary</a> or <a className="underline underline-offset-4" href="mailto:norly@glomarkgroup.com">email Norly</a> directly.</p>}
+              </form>
             </div>
           </div>
+
+          <aside className="space-y-6" aria-label="Contact details">
+            <div className="card-gmg space-y-7">
+              <h2 className="text-2xl font-bold">Talk to our team</h2>
+              <div className="flex gap-3"><Mail aria-hidden="true" className="w-5 h-5 text-primary shrink-0 mt-1" /><div className="min-w-0"><h3 className="font-semibold mb-2">Email</h3><a className="block text-sm underline underline-offset-4 break-all py-2" href="mailto:garyb@glomarkgroup.com">garyb@glomarkgroup.com</a><a className="block text-sm underline underline-offset-4 break-all py-2" href="mailto:norly@glomarkgroup.com">norly@glomarkgroup.com</a></div></div>
+              <div className="flex gap-3"><Phone aria-hidden="true" className="w-5 h-5 text-primary shrink-0 mt-1" /><div><h3 className="font-semibold mb-2">Phone</h3><p className="text-sm text-muted-foreground">+317 395 6740 (Gary)</p><p className="text-sm text-muted-foreground mt-2">+614 973 6161 (Norly)</p></div></div>
+              <div className="flex gap-3"><MapPin aria-hidden="true" className="w-5 h-5 text-primary shrink-0 mt-1" /><div><h3 className="font-semibold mb-2">Location</h3><p className="text-sm text-muted-foreground">Global Marketing Group, International</p></div></div>
+            </div>
+            <div className="card-gmg"><ShieldCheck className="text-primary w-8 h-8 mb-4" aria-hidden="true" /><h2 className="font-bold text-lg mb-3">A conversation, without pressure.</h2><p className="text-sm text-muted-foreground leading-relaxed">We'll discuss your workflow and where support might help. A consultation request does not commit you to a plan or payment.</p></div>
+          </aside>
         </div>
       </section>
     </div>
   );
-};
-
-export default Contact;
+}

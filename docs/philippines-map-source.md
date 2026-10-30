@@ -1,0 +1,1 @@
+Decorative Philippines silhouette derived from https://github.com/johan/world.geo.json/blob/master/countries/PHL.geo.json (Natural Earth country geometry). Simplified decorative map, not a boundary reference. Logo enhanced from owner-supplied artwork and encoded as WebP for the website.

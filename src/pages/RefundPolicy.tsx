@@ -10,11 +10,11 @@ const sections = [
   },
   {
     heading: "2. Cancellation",
-    body: "You may cancel your subscription at any time. Cancellation stops future billing but does not entitle you to a refund of fees already paid for the current billing period unless eligible under Section 1.",
+    body: "All published plans require a 3-month minimum term. Cancellation timing, notice, and any remaining billing obligations are subject to your signed service agreement. Contact our team to confirm the effective end date and any applicable refund eligibility.",
   },
   {
     heading: "3. Virtual Assistant Services",
-    body: "Virtual Assistant services are billed based on hours delivered. Hours already worked and delivered are non-refundable. Unused prepaid hours may be eligible for refund at our discretion.",
+    body: "Virtual Assistant support is offered through the Growth and Scale plans and the VA Boost add-on. The agreed service scope, billing, cancellation, and any refund eligibility are set out in your signed service agreement.",
   },
   {
     heading: "4. Requesting a Refund",
