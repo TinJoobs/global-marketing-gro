@@ -281,6 +281,14 @@ export default function Header() {
           </button>
         </nav>
       </div>
+      <div
+        className={`gmg-nav-backdrop${open ? " is-open" : ""}`}
+        aria-hidden="true"
+        onClick={() => {
+          setOpen(false);
+          setActiveMenu(null);
+        }}
+      />
 
       {renderMega("solutions", solutions, "Solutions")}
       {renderMega("resources", resources, "Resources")}

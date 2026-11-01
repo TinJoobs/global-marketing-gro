@@ -225,6 +225,11 @@ button {
   border: 1px solid #36556f;
   border-radius: 8px;
   place-items: center;
+  color: #f3f8ff;
+  background: transparent;
+}
+.gmg-nav-backdrop {
+  display: none;
 }
 .home-tool-card {
   border: 1px solid #36556f;
@@ -272,28 +277,71 @@ button {
     flex-wrap: wrap;
     gap: 0;
     min-height: 82px;
+    position: relative;
+    z-index: 2;
+  }
+  .gmg-nav-backdrop.is-open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: 82px;
+    z-index: 1;
+    background: rgba(3, 14, 32, 0.62);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
   }
   .gmg-header nav {
     display: none;
     width: 100%;
-    padding: 18px 0;
-    max-height: calc(100dvh - 92px);
+    padding: 20px;
+    margin-top: 12px;
+    max-height: calc(100dvh - 110px);
     overflow-y: auto;
+    border-radius: 18px;
+    border: 1px solid rgba(114, 228, 212, 0.18);
+    background: linear-gradient(
+      160deg,
+      rgba(11, 33, 57, 0.96),
+      rgba(8, 24, 46, 0.98)
+    );
+    box-shadow: 0 30px 70px rgba(2, 8, 22, 0.5);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
   }
   .gmg-header nav.is-open {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
+    gap: 4px;
   }
   .gmg-header nav > a,
-  .gmg-header summary {
-    padding: 12px;
+  .gmg-header summary,
+  .gmg-header .gmg-nav-link,
+  .gmg-header .gmg-nav-trigger {
+    padding: 14px 12px;
+    border-radius: 12px;
+    min-height: 48px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .gmg-header nav > a:hover,
+  .gmg-header summary:hover,
+  .gmg-header .gmg-nav-link:hover,
+  .gmg-header .gmg-nav-trigger:hover {
+    background: rgba(114, 228, 212, 0.1);
+  }
+  .gmg-nav-cta {
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
   }
   .gmg-dropdown {
     position: static;
     min-width: 0;
     box-shadow: none;
+    background: transparent;
+    border: 0;
+    padding: 4px 0 4px 12px;
   }
   .gmg-brand img {
     width: 64px;

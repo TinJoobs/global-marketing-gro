@@ -16,11 +16,12 @@ export default function WhoWeHelp() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-  // Smooth the scroll-driven translate with a spring for a cinematic glide.
+  // Smooth the scroll-driven translate with a softer spring for a cinematic,
+  // trailing glide — panels ease in and out instead of snapping to scroll.
   const progress = useSpring(scrollYProgress, {
-    stiffness: 120,
+    stiffness: 70,
     damping: 30,
-    mass: 0.4,
+    mass: 0.5,
   });
   const x = useTransform(progress, [0, 1], [0, -distance]);
   const progressScale = useTransform(progress, [0, 1], ["8%", "100%"]);
