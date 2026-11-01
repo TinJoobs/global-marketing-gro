@@ -354,7 +354,38 @@ export const testimonials: {
   role: string;
   industry: string;
   rating: number;
+  avatar?: string;
 }[] = [
+  {
+    quote:
+      "The Global EA Team added instant value to our growing organization. They are professional, polite, and genuinely care about performing their tasks well. I would highly recommend Global to those looking to gain their time back and simultaneously increasing productivity.",
+    name: "Chris Borja",
+    role: "Become a Better Networker",
+    industry: "Professional Networking",
+    rating: 5,
+    avatar:
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c5cc8475422fc318f.png",
+  },
+  {
+    quote:
+      "Global Marketing Group has helped me streamline my business! They have taken so much stress off my shoulders with helping me with automations and my marketing! I am grateful and highly recommend their team!",
+    name: "Wayside Bookkeeping",
+    role: "Bookkeeping & Accounting Services",
+    industry: "Financial Services",
+    rating: 5,
+    avatar:
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2db5921b2f43.png",
+  },
+  {
+    quote:
+      "Global Marketing Group has done a terrific job for us at Klinghammer Construction, and are always there for you if needed in many ways. Give them a chance and you'll be glad you did!",
+    name: "Klinghammer Construction",
+    role: "Construction, LLC",
+    industry: "General Contracting",
+    rating: 5,
+    avatar:
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2d7d231b2f44.png",
+  },
   {
     quote:
       "Global Marketing Group rebuilt our follow-up from the ground up. We stopped losing leads the first week. Our VA handles the inbox now and I finally have my evenings back.",
@@ -377,30 +408,6 @@ export const testimonials: {
     name: "Lara S.",
     role: "Agency Principal",
     industry: "Insurance",
-    rating: 5,
-  },
-  {
-    quote:
-      "Booked calls went up the moment the funnel went live. I'm finally selling instead of chasing. Best money I've spent on the business.",
-    name: "James T.",
-    role: "Business Coach",
-    industry: "Coaching & Consulting",
-    rating: 5,
-  },
-  {
-    quote:
-      "From the website to the lead capture to the VA calling quotes back — it all just works together. One team, one system, no gaps.",
-    name: "Ricardo V.",
-    role: "General Contractor",
-    industry: "Construction",
-    rating: 5,
-  },
-  {
-    quote:
-      "We used to miss calls all day. Now every inquiry gets a fast reply and a next step. It's like we hired three people for the price of one.",
-    name: "Dana K.",
-    role: "Founder",
-    industry: "Local Services",
     rating: 5,
   },
 ];

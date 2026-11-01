@@ -24,29 +24,33 @@ export default function HomeHero() {
         <div className="hero-grid">
           <div className="hero-copy">
             <span className="hero-kicker">
-              <span /> SYSTEMS. PEOPLE. GROWTH.
+              <span /> AI-ENHANCED EXECUTIVE ASSISTANTS
             </span>
             <h1>
-              Your business.
+              Global Marketing Group
               <br />
-              <span className="accent">In full flow.</span>
+              <span className="accent">Delegate smarter, not harder.</span>
             </h1>
             <p className="lead">
-              Connected systems. Dedicated people. More room to grow. Bring your
-              CRM, follow-up, and Philippines-based support team together—and
-              get back to the work you love.
+              Our AI-driven assistants and all-in-one CRM automate workflows,
+              streamline operations, and free you to focus on scaling your
+              business with less friction and more momentum.
             </p>
             <div className="actions">
               <button
                 className="btn-primary-gmg"
                 type="button"
-                onClick={book({ subject: "Free growth audit" })}
+                onClick={book({ subject: "Quick Hire / EA Discovery Call" })}
               >
-                Book your free growth audit <Icon name="arrow" size={18} />
+                Quick Hire Services <Icon name="arrow" size={18} />
               </button>
-              <Link className="btn-outline-gmg" to="/pricing">
-                Explore the plans <Icon name="arrow" size={18} />
-              </Link>
+              <button
+                className="btn-outline-gmg"
+                type="button"
+                onClick={book({ subject: "Schedule A Demo" })}
+              >
+                Schedule A Demo <Icon name="calendar" size={18} />
+              </button>
             </div>
             <p className="hero-note">
               <Icon name="check" size={16} />

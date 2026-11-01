@@ -53,9 +53,20 @@ export default function Testimonials() {
               </div>
               <blockquote className="test-quote">“{t.quote}”</blockquote>
               <figcaption className="test-author">
-                <span className="test-avatar" aria-hidden="true">
-                  {t.name.charAt(0)}
-                </span>
+                {t.avatar ? (
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="test-avatar w-11 h-11 rounded-full object-cover border border-[#72e4d4]/30"
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="test-avatar" aria-hidden="true">
+                    {t.name.charAt(0)}
+                  </span>
+                )}
                 <span className="test-author-meta">
                   <strong>{t.name}</strong>
                   <span>{t.role}</span>
