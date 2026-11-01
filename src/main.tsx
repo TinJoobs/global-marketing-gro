@@ -6,6 +6,7 @@ import "./index.css";
 import "./theme.css";
 import "./components/modal/modal.css";
 import "./cinematic.css";
+import "./glass.css";
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

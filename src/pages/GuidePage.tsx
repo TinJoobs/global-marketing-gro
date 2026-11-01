@@ -49,7 +49,7 @@ function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
       <section className="section-gmg">
         <div className="container-gmg grid lg:grid-cols-[250px_minmax(0,1fr)] gap-10 lg:gap-16 print:block">
           <aside className="print:hidden">
-            <nav aria-label="Inside this guide" className="lg:sticky lg:top-28">
+            <nav aria-label="Inside this guide" className="guide-navigation lg:sticky lg:top-28">
               <span className="eyebrow">Inside this guide</span>
               <ol className="space-y-3">
                 {guide.sections.map((section, index) => (
@@ -114,7 +114,7 @@ function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
                       return (
                         <li
                           key={item}
-                          className="rounded-xl border border-border px-4"
+                          className="guide-check-item rounded-xl border border-border px-4"
                         >
                           <label className="flex items-start gap-3 min-h-12 py-3 cursor-pointer leading-relaxed">
                             <input

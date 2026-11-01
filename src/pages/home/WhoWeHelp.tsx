@@ -1,160 +1,29 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Icon } from "@/components/Icon";
-import { useModalCTA } from "@/components/modal/useModalCTA";
-import { industryShowcase } from "./homeData";
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Icon } from '@/components/Icon';
+import { useModalCTA } from '@/components/modal/useModalCTA';
+import { industryShowcase } from './homeData';
 
 export default function WhoWeHelp() {
-  const containerRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [distance, setDistance] = useState(0);
-  const [enabled, setEnabled] = useState(false);
-  const { book } = useModalCTA();
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-  // Smooth the scroll-driven translate with a softer spring for a cinematic,
-  // trailing glide — panels ease in and out instead of snapping to scroll.
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 70,
-    damping: 30,
-    mass: 0.5,
-  });
-  const x = useTransform(progress, [0, 1], [0, -distance]);
-  const progressScale = useTransform(progress, [0, 1], ["8%", "100%"]);
-
-  useEffect(() => {
-    const desktop = matchMedia("(min-width: 820px)");
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-    const measure = () => {
-      if (!desktop.matches || reduced.matches) {
-        setEnabled(false);
-        setDistance(0);
-        return;
-      }
-      setEnabled(true);
-      requestAnimationFrame(() => {
-        const track = trackRef.current;
-        if (!track) return;
-        setDistance(Math.max(0, track.scrollWidth - window.innerWidth));
-      });
-    };
-    measure();
-    desktop.addEventListener("change", measure);
-    window.addEventListener("resize", measure);
-    return () => {
-      desktop.removeEventListener("change", measure);
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  const Panels = ({ forTrack }: { forTrack?: boolean }) => (
-    <>
-      {industryShowcase.map((industry) => (
-        <article
-          className={`who-help-panel${forTrack ? "" : " is-static"}`}
-          key={industry.label}
-        >
-          <div
-            className="who-help-media"
-            style={{ backgroundImage: `url(${industry.image})` }}
-            role="img"
-            aria-label={`${industry.label} — ${industry.blurb}`}
-          />
-          <div className="who-help-overlay" aria-hidden="true" />
-          <div className="who-help-body">
-            <span className="who-help-icon">
-              <Icon name={industry.icon} size={26} />
-            </span>
-            <h3 className="who-help-label">{industry.label}</h3>
-            <p className="who-help-blurb">{industry.blurb}</p>
-            <Link className="who-help-link" to={industry.to}>
-              How GMG helps <Icon name="arrow" size={16} />
-            </Link>
-          </div>
-        </article>
-      ))}
-      <article
-        className={`who-help-panel who-help-cta${forTrack ? "" : " is-static"}`}
-      >
-        <div className="who-help-body">
-          <span className="who-help-icon who-help-icon-cta">
-            <Icon name="globe" size={26} />
-          </span>
-          <h3 className="who-help-label">
-            Every industry. One connected system.
-          </h3>
-          <p className="who-help-blurb">
-            From lead capture to follow-up to the people behind it — built
-            around how your business actually works.
-          </p>
-          <Link className="btn-primary-gmg" to="/industries">
-            See all industries <Icon name="arrow" size={16} />
-          </Link>
-          <button
-            type="button"
-            className="who-help-cta-secondary"
-            onClick={book({ subject: "Industry fit call" })}
-          >
-            or book a fit call <Icon name="arrow" size={14} />
-          </button>
-        </div>
-      </article>
-    </>
-  );
-
-  return (
-    <section
-      ref={containerRef}
-      className="who-we-help"
-      aria-labelledby="who-help-title"
-      style={enabled ? { height: `calc(100vh + ${distance}px)` } : undefined}
-    >
-      <div className="who-help-canvas" aria-hidden="true" />
-      <div className="who-help-glow" aria-hidden="true" />
-      <div className="who-help-sticky">
-        <div className="who-help-head container-gmg">
-          <span className="eyebrow">Who we help</span>
-          <h2 id="who-help-title">
-            Built for the businesses that{" "}
-            <span className="accent-text">never stop moving.</span>
-          </h2>
-          <p className="who-help-lead">
-            Scroll through the real work we support — then see it connected to
-            one system and one team behind it.
-          </p>
-        </div>
-
-        {enabled ? (
-          <div className="who-help-viewport">
-            <motion.div ref={trackRef} className="who-help-track" style={{ x }}>
-              <Panels forTrack />
-            </motion.div>
-          </div>
-        ) : (
-          <div className="who-help-grid container-gmg">
-            <Panels />
-          </div>
-        )}
-
-        <div className="who-help-bar container-gmg" aria-hidden={!enabled}>
-          <span className="who-help-bar-label">
-            Scroll to explore industries
-          </span>
-          <span className="who-help-bar-track">
-            <motion.span
-              className="who-help-bar-fill"
-              style={{ width: progressScale }}
-            />
-          </span>
-          <span className="who-help-bar-count">
-            {industryShowcase.length} industries
-          </span>
-        </div>
+  const rail=useRef<HTMLDivElement>(null);
+  const [progress,setProgress]=useState(0);
+  const {book}=useModalCTA();
+  const move=(direction:number)=>rail.current?.scrollBy({left:rail.current.clientWidth*.8*direction,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  return <section className="who-we-help industry-carousel" aria-labelledby="who-help-title">
+    <div className="who-help-canvas" aria-hidden="true"/>
+    <div className="who-help-sticky">
+      <div className="who-help-head container-gmg"><span className="eyebrow">Who we help</span><h2 id="who-help-title">Built for the businesses that <span className="accent-text">never stop moving.</span></h2><p className="who-help-lead">Real work. Connected support. Explore how GMG fits your industry.</p></div>
+      <div className="industry-controls container-gmg"><span>Swipe, scroll, or use the arrows to explore</span><div><button type="button" aria-label="Previous industries" onClick={()=>move(-1)}><Icon name="arrow" className="industry-previous" size={19}/></button><button type="button" aria-label="Next industries" onClick={()=>move(1)}><Icon name="arrow" size={19}/></button></div></div>
+      <div className="industry-rail" ref={rail} role="region" aria-label="Industries carousel" tabIndex={0}
+        onScroll={event=>{const el=event.currentTarget;const max=el.scrollWidth-el.clientWidth;setProgress(max>0?el.scrollLeft/max:0)}}>
+        {industryShowcase.map(industry=><article className="who-help-panel" key={industry.label}>
+          <img className="who-help-media" src={industry.image} alt="" loading="lazy" decoding="async" onError={event=>{event.currentTarget.hidden=true}}/>
+          <div className="who-help-overlay" aria-hidden="true"/>
+          <div className="who-help-body"><span className="who-help-icon"><Icon name={industry.icon} size={26}/></span><h3 className="who-help-label">{industry.label}</h3><p className="who-help-blurb">{industry.blurb}</p><Link className="who-help-link" to={industry.to}>How GMG helps <Icon name="arrow" size={16}/></Link></div>
+        </article>)}
+        <article className="who-help-panel who-help-cta"><div className="who-help-body"><span className="who-help-icon"><Icon name="globe" size={26}/></span><h3 className="who-help-label">Every industry. One connected system.</h3><p className="who-help-blurb">Built around your business, from the first inquiry to the people who follow through.</p><Link className="btn-primary-gmg" to="/industries">See all industries <Icon name="arrow" size={16}/></Link><button type="button" className="who-help-cta-secondary" onClick={book({subject:'Industry fit call'})}>or book a fit call <Icon name="arrow" size={14}/></button></div></article>
       </div>
-    </section>
-  );
+      <div className="industry-progress container-gmg" aria-hidden="true"><span><i style={{transform:`scaleX(${.08+Math.min(1,Math.max(0,progress))*.92})`}}/></span><small>{industryShowcase.length} industries. One connected team.</small></div>
+    </div>
+  </section>;
 }

@@ -991,8 +991,10 @@
 
 /* ---- Integration slider: keep dark, remove the jarring light row ---- */
 #gmg-site .integration-logo-slides {
-  background: linear-gradient(100deg, #081f3c, #0a2547) !important;
-  border-block: 1px solid rgba(114, 228, 212, 0.14) !important;
+  background: linear-gradient(110deg, #b7ddff0e, #72e4d405), #0b2546a6;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-block: 1px solid rgba(167, 212, 248, 0.22);
 }
 #gmg-site .integration-logo-card {
   opacity: 0.85;
@@ -1008,11 +1010,11 @@
   background: rgba(114, 228, 212, 0.1) !important;
 }
 #gmg-site .integration-logo-art img {
-  filter: grayscale(0.3) brightness(1.15);
+  filter: none;
   transition: filter 0.3s ease;
 }
 #gmg-site .integration-logo-card:hover .integration-logo-art img {
-  filter: grayscale(0) brightness(1.2);
+  filter: none;
 }
 
 /* ---- Spacing/responsive audit: tighten section rhythm ---- */

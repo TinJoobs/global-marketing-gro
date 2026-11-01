@@ -45,11 +45,13 @@ export default function PricingHighlight() {
               }}
               key={p.slug}
             >
+              <div className="price-badge-slot">
               {p.popular && (
                 <span className="price-popular-badge">
                   <Icon name="star" size={14} /> Most popular
                 </span>
               )}
+              </div>
               <div className="price-card-glow" aria-hidden="true" />
               <div className="price-card-top">
                 <span className="price-tier">{p.name}</span>
@@ -77,7 +79,7 @@ export default function PricingHighlight() {
                   <button
                     type="button"
                     className="btn-primary-gmg"
-                    onClick={book({ subject: `${p.name} plan consultation` })}
+                    onClick={book({ plan: p.slug, billing: "monthly", subject: `${p.name} plan consultation` })}
                   >
                     Get started with {p.name} <Icon name="arrow" size={16} />
                   </button>

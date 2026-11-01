@@ -127,27 +127,40 @@ export default function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    const close = (e: Event) => {
-      const target = e.target as Element;
-      if (!ref.current?.contains(target)) {
-        setActiveMenu(null);
-        setOpen(false);
+    const close = (event: Event) => {
+      if (!ref.current?.contains(event.target as Node)) {
+        setActiveMenu(null); setOpen(false);
       }
     };
-    const escape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveMenu(null);
-        setOpen(false);
-        toggle.current?.focus();
-      }
+    const escape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || (!activeMenu && !open)) return;
+      const trigger = activeMenu
+        ? ref.current?.querySelector<HTMLButtonElement>(`[data-menu-trigger="${activeMenu}"]`)
+        : toggle.current;
+      setActiveMenu(null); if (!activeMenu) setOpen(false); trigger?.focus();
     };
-    document.addEventListener("pointerdown", close);
-    document.addEventListener("keydown", escape);
+    const desktop = matchMedia('(min-width: 1201px)');
+    const resize = () => {
+      const focused = document.activeElement;
+      const insideNav = ref.current?.querySelector('nav')?.contains(focused);
+      const submenu = focused?.closest('.gmg-mega');
+      const submenuTrigger = submenu && ref.current?.querySelector<HTMLButtonElement>(`[aria-controls="${submenu.id}"]`);
+      setActiveMenu(null); setOpen(false);
+      if (!desktop.matches && insideNav) toggle.current?.focus();
+      else if (desktop.matches && submenuTrigger) submenuTrigger.focus();
+      else if (desktop.matches && focused === toggle.current) ref.current?.querySelector<HTMLButtonElement>('[data-menu-trigger]')?.focus();
+    };
+    document.addEventListener('pointerdown', close);
+    document.addEventListener('focusin', close);
+    document.addEventListener('keydown', escape);
+    desktop.addEventListener('change', resize);
     return () => {
-      document.removeEventListener("pointerdown", close);
-      document.removeEventListener("keydown", escape);
+      document.removeEventListener('pointerdown', close);
+      document.removeEventListener('focusin', close);
+      document.removeEventListener('keydown', escape);
+      desktop.removeEventListener('change', resize);
     };
-  }, []);
+  }, [activeMenu, open]);
 
   const megaLinks = (items: MenuItem[]) =>
     items.map((item) => (
@@ -173,7 +186,8 @@ export default function Header() {
   const renderMega = (id: string, items: MenuItem[], label: string) => (
     <div
       className={`gmg-mega ${activeMenu === id ? "is-open" : ""}`}
-      aria-hidden={activeMenu !== id}
+      id={`gmg-menu-${id}`}
+      hidden={activeMenu !== id}
     >
       <div className="gmg-mega-inner container-gmg">
         <div className="gmg-mega-grid">{megaLinks(items)}</div>
@@ -243,14 +257,16 @@ export default function Header() {
           <button
             type="button"
             className="gmg-nav-link gmg-nav-trigger"
+            data-menu-trigger="solutions"
+            aria-controls="gmg-menu-solutions"
             aria-expanded={activeMenu === "solutions"}
             onClick={() =>
               setActiveMenu(activeMenu === "solutions" ? null : "solutions")
             }
-            onMouseEnter={() => setActiveMenu("solutions")}
           >
             Solutions <Icon name="chevron" size={14} />
           </button>
+          {renderMega("solutions", solutions, "Solutions")}
           {inlineLinks.map((item) => (
             <Link
               key={item.to}
@@ -264,14 +280,16 @@ export default function Header() {
           <button
             type="button"
             className="gmg-nav-link gmg-nav-trigger"
+            data-menu-trigger="resources"
+            aria-controls="gmg-menu-resources"
             aria-expanded={activeMenu === "resources"}
             onClick={() =>
               setActiveMenu(activeMenu === "resources" ? null : "resources")
             }
-            onMouseEnter={() => setActiveMenu("resources")}
           >
             Resources <Icon name="chevron" size={14} />
           </button>
+          {renderMega("resources", resources, "Resources")}
           <button
             type="button"
             className="btn-primary-gmg gmg-nav-cta"
@@ -290,8 +308,6 @@ export default function Header() {
         }}
       />
 
-      {renderMega("solutions", solutions, "Solutions")}
-      {renderMega("resources", resources, "Resources")}
     </header>
   );
 }

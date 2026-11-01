@@ -22,7 +22,10 @@ npm run preview
 # With the preview running and Chrome installed:
 npm run test:browser
 npm run test:cinematic
+npm run test:glass
 ```
+
+Shared glass surfaces, restored workflow layouts, accessible native industry scrolling, and responsive menu repairs are documented in [docs/GLASS-POLISH.md](docs/GLASS-POLISH.md).
 
 The cinematic design follows the live GMG navy/blue identity with logo-inspired teal lighting. The homepage includes the Philippines-backed 3D hero and a three-chapter connected-workflow story. See [docs/CINEMATIC-AUDIT.md](docs/CINEMATIC-AUDIT.md) for the audit and verified fixes.
 

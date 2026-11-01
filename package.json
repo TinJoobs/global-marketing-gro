@@ -15,7 +15,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:browser": "node scripts/check-browser.cjs",
-    "test:cinematic": "node scripts/check-cinematic.cjs"
+    "test:cinematic": "node scripts/check-cinematic.cjs",
+    "test:glass": "node scripts/check-glass.cjs"
   },
   "dependencies": {
     "@radix-ui/react-label": "2.1.17",

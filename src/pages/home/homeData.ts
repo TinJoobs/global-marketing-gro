@@ -353,7 +353,6 @@ export const testimonials: {
   name: string;
   role: string;
   industry: string;
-  rating: number;
   avatar?: string;
 }[] = [
   {
@@ -362,7 +361,6 @@ export const testimonials: {
     name: "Chris Borja",
     role: "Become a Better Networker",
     industry: "Professional Networking",
-    rating: 5,
     avatar:
       "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c5cc8475422fc318f.png",
   },
@@ -372,7 +370,6 @@ export const testimonials: {
     name: "Wayside Bookkeeping",
     role: "Bookkeeping & Accounting Services",
     industry: "Financial Services",
-    rating: 5,
     avatar:
       "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2db5921b2f43.png",
   },
@@ -382,32 +379,7 @@ export const testimonials: {
     name: "Klinghammer Construction",
     role: "Construction, LLC",
     industry: "General Contracting",
-    rating: 5,
     avatar:
       "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2d7d231b2f44.png",
-  },
-  {
-    quote:
-      "Global Marketing Group rebuilt our follow-up from the ground up. We stopped losing leads the first week. Our VA handles the inbox now and I finally have my evenings back.",
-    name: "Megan R.",
-    role: "Broker/Owner",
-    industry: "Real Estate",
-    rating: 5,
-  },
-  {
-    quote:
-      "The CRM and automations paid for themselves in a month. Reminders cut no-shows and our front desk feels half the chaos it used to.",
-    name: "Dr. Anthony P.",
-    role: "Practice Owner",
-    industry: "Medical & Healthcare",
-    rating: 5,
-  },
-  {
-    quote:
-      "Renewal follow-up used to fall through the cracks. Now nothing slips. The team treats my clients like I would — that's rare.",
-    name: "Lara S.",
-    role: "Agency Principal",
-    industry: "Insurance",
-    rating: 5,
   },
 ];
