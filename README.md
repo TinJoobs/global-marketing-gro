@@ -23,9 +23,12 @@ npm run preview
 npm run test:browser
 npm run test:cinematic
 npm run test:glass
+npm run test:heroes
 ```
 
 Shared glass surfaces, restored workflow layouts, accessible native industry scrolling, and responsive menu repairs are documented in [docs/GLASS-POLISH.md](docs/GLASS-POLISH.md).
+
+Interactive hero objects cover every canonical page, with mouse/touch/keyboard rotation, reset controls, and a selectable extruded Philippines map on Home. See [docs/HERO-3D.md](docs/HERO-3D.md) for coverage and interaction details.
 
 The cinematic design follows the live GMG navy/blue identity with logo-inspired teal lighting. The homepage includes the Philippines-backed 3D hero and a three-chapter connected-workflow story. See [docs/CINEMATIC-AUDIT.md](docs/CINEMATIC-AUDIT.md) for the audit and verified fixes.
 

@@ -1,3 +1,4 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
@@ -8,6 +9,7 @@ const Affiliate = () => {
     <div className="flex flex-col w-full">
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
+          <Hero3DLayout variant="affiliate">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Unlock Your{" "}
@@ -22,7 +24,8 @@ const Affiliate = () => {
               <Link to="/contact">Join the Program</Link>
             </Button>
           </div>
-        </div>
+        </Hero3DLayout>
+      </div>
       </section>
 
       <section className="section-padding">

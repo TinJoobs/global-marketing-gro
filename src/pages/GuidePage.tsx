@@ -1,3 +1,4 @@
+import { Hero3DLayout, type Hero3DVariant } from "@/components/hero3d/Hero3DScene";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Printer, RotateCcw } from "lucide-react";
@@ -22,11 +23,13 @@ export default function GuidePage({ slug }: { slug: string }) {
 }
 
 function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
+  const guideScene:Record<string,Hero3DVariant>={"guide-va-delegation":"guide-va","guide-lead-follow-up":"guide-lead","guide-crm-readiness":"guide-crm"};
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   return (
     <div>
       <section className="page-hero-gmg">
-        <div className="container-gmg max-w-5xl">
+        <div className="container-gmg">
+          <Hero3DLayout variant={guideScene[guide.slug] ?? "resources"}>
           <span className="eyebrow">{guide.name}</span>
           <h1 className="text-4xl md:text-[3.5rem] font-bold max-w-4xl">
             {guide.title}
@@ -44,6 +47,7 @@ function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
               Explore our services
             </Link>
           </div>
+        </Hero3DLayout>
         </div>
       </section>
       <section className="section-gmg">

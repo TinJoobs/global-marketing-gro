@@ -1,3 +1,4 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Users, Target, Rocket, Heart, ShieldCheck } from "lucide-react";
@@ -20,13 +21,15 @@ const About = () => {
     <div className="flex flex-col w-full">
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
+          <Hero3DLayout variant="about">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Who We Are</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Global Marketing Group is a team of pioneers in marketing
             innovation. We combine executive-level support with cutting-edge AI
             to help businesses scale with precision.
           </p>
-        </div>
+        </Hero3DLayout>
+      </div>
       </section>
 
       <section className="section-padding">

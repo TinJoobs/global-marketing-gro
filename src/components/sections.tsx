@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon, type IconName } from "./Icon";
 import { useModalCTA } from "./modal/useModalCTA";
 import { Hero3DScene, type Hero3DVariant } from "./hero3d/Hero3DScene";
 import "./hero3d/hero3d.css";
+import { pageHeroVariants } from "./hero3d/heroScenes";
 
 export const SectionHead: React.FC<{
   eyebrow?: string;
@@ -47,17 +48,15 @@ export const PageHero: React.FC<{
   visual,
   simple,
   variant,
-}) => (
-  <section className="page-hero-gmg page-hero-gmg--3d">
+}) => {
+ const {pathname}=useLocation();
+ const sceneVariant=variant ?? pageHeroVariants[pathname] ?? 'generic';
+ return <section className="page-hero-gmg page-hero-gmg--3d">
     <div className="container-gmg">
       <div
-        className={
-          simple
-            ? "max-w-[820px]"
-            : "grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center"
-        }
+        className={`hero-page-layout ${simple ? "is-compact" : ""}`}
       >
-        <div>
+        <div className="hero-page-copy">
           <span className="eyebrow">{eyebrow}</span>
           <h1 className="text-4xl md:text-[3.8rem] font-bold leading-[1.08]">
             {title}
@@ -82,11 +81,11 @@ export const PageHero: React.FC<{
             </div>
           )}
         </div>
-        {!simple && (visual ?? (variant && <Hero3DScene variant={variant} />))}
+        {visual ?? <Hero3DScene variant={sceneVariant}/>}
       </div>
     </div>
-  </section>
-);
+  </section>;
+};
 
 export const CTASection: React.FC<{
   eyebrow?: string;

@@ -147,8 +147,8 @@ export default function Contact() {
               by email; submitting does not reserve an appointment.
             </p>
           </div>
-          <div className="hero-3d-slot" aria-hidden="true">
-            <Hero3DScene variant="generic" />
+          <div className="hero-3d-slot">
+            <Hero3DScene variant="contact" />
           </div>
         </div>
       </section>

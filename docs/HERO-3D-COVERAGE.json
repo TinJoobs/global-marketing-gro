@@ -1,0 +1,206 @@
+[
+  {
+    "path": "/",
+    "variant": "philippines",
+    "kind": "map",
+    "heading": "Global Marketing Group\nDelegate smarter, not harder."
+  },
+  {
+    "path": "/pricing",
+    "variant": "pricing",
+    "kind": "tiers",
+    "heading": "Simple Plans. Real Support.\nNo Guesswork."
+  },
+  {
+    "path": "/services",
+    "variant": "services",
+    "kind": "hub",
+    "heading": "Elevate Your Marketing Strategy"
+  },
+  {
+    "path": "/integrations",
+    "variant": "integrations",
+    "kind": "hub",
+    "heading": "Your tools.\nOne connected workflow."
+  },
+  {
+    "path": "/missed-revenue-calculator",
+    "variant": "calculator",
+    "kind": "calculator",
+    "heading": "Missed Revenue\nCalculator"
+  },
+  {
+    "path": "/contact",
+    "variant": "contact",
+    "kind": "envelope",
+    "heading": "Book your free growth audit"
+  },
+  {
+    "path": "/about",
+    "variant": "about",
+    "kind": "globe",
+    "heading": "Who We Are"
+  },
+  {
+    "path": "/portfolio",
+    "variant": "portfolio",
+    "kind": "browser",
+    "heading": "Portfolio"
+  },
+  {
+    "path": "/faq",
+    "variant": "faq",
+    "kind": "book",
+    "heading": "Frequently Asked Questions"
+  },
+  {
+    "path": "/careers",
+    "variant": "careers",
+    "kind": "briefcase",
+    "heading": "Grow With Global Marketing Group"
+  },
+  {
+    "path": "/resources",
+    "variant": "resources",
+    "kind": "book",
+    "heading": "Guides, Tools & Insights"
+  },
+  {
+    "path": "/how-it-works",
+    "variant": "how",
+    "kind": "steps",
+    "heading": "A Clearer Path from Inquiry to Opportunity"
+  },
+  {
+    "path": "/sales-growth-system",
+    "variant": "crm",
+    "kind": "database",
+    "heading": "The Sales Growth System™"
+  },
+  {
+    "path": "/virtual-assistant-services",
+    "variant": "va",
+    "kind": "headset",
+    "heading": "Virtual Assistant Services"
+  },
+  {
+    "path": "/crm-automation",
+    "variant": "crm",
+    "kind": "database",
+    "heading": "CRM & Automation"
+  },
+  {
+    "path": "/ai-automation",
+    "variant": "ai",
+    "kind": "cube",
+    "heading": "AI & Human Support"
+  },
+  {
+    "path": "/digital-solutions",
+    "variant": "digital",
+    "kind": "browser",
+    "heading": "Digital Solutions"
+  },
+  {
+    "path": "/appointment-setting",
+    "variant": "appointment",
+    "kind": "calendar",
+    "heading": "Appointment Setting"
+  },
+  {
+    "path": "/lead-follow-up",
+    "variant": "lead",
+    "kind": "messages",
+    "heading": "Lead Follow-Up"
+  },
+  {
+    "path": "/industries",
+    "variant": "industries",
+    "kind": "buildings",
+    "heading": "Industries We Support"
+  },
+  {
+    "path": "/guide-va-delegation",
+    "variant": "guide-va",
+    "kind": "book",
+    "heading": "Know What to Delegate. Set Your VA Up to Succeed."
+  },
+  {
+    "path": "/guide-lead-follow-up",
+    "variant": "guide-lead",
+    "kind": "book",
+    "heading": "A Practical Checkup for Your Lead Journey."
+  },
+  {
+    "path": "/guide-crm-readiness",
+    "variant": "guide-crm",
+    "kind": "book",
+    "heading": "Build the Process Before You Build the Automation."
+  },
+  {
+    "path": "/resources/affiliate",
+    "variant": "affiliate",
+    "kind": "hub",
+    "heading": "Unlock Your Earning Potential"
+  },
+  {
+    "path": "/resources/media",
+    "variant": "media",
+    "kind": "browser",
+    "heading": "Explore GMG's work and practical guides."
+  },
+  {
+    "path": "/careers/account-rep",
+    "variant": "career-sales",
+    "kind": "briefcase",
+    "heading": "Account Representative"
+  },
+  {
+    "path": "/careers/executive-assistant",
+    "variant": "career-ea",
+    "kind": "headset",
+    "heading": "Become an AI-Enhanced Executive Assistant"
+  },
+  {
+    "path": "/careers/referral",
+    "variant": "referral",
+    "kind": "hub",
+    "heading": "Referral Program"
+  },
+  {
+    "path": "/privacy",
+    "variant": "privacy",
+    "kind": "shield",
+    "heading": "Privacy Policy"
+  },
+  {
+    "path": "/terms",
+    "variant": "terms",
+    "kind": "document",
+    "heading": "Terms of Service"
+  },
+  {
+    "path": "/refund",
+    "variant": "refund",
+    "kind": "coin",
+    "heading": "Refund Policy"
+  },
+  {
+    "path": "/thank-you",
+    "variant": "thanks",
+    "kind": "envelope",
+    "heading": "Thank You for Connecting."
+  },
+  {
+    "path": "/book-a-call",
+    "variant": "contact",
+    "kind": "envelope",
+    "heading": "Book your free growth audit"
+  },
+  {
+    "path": "/unknown-page",
+    "variant": "navigation",
+    "kind": "compass",
+    "heading": "404"
+  }
+]

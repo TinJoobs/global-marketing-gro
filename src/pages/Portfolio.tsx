@@ -29,7 +29,7 @@ export default function Portfolio() {
   return (
     <div>
       <PageHero
-        variant="digital"
+        variant="portfolio"
         eyebrow="Resources"
         title={<>Portfolio</>}
         lead="Client success gallery — website and landing page development, funnel design, AI chatbots, and AI lead generation across industries."

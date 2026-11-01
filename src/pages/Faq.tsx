@@ -47,7 +47,7 @@ export default function Faq() {
   return (
     <div>
       <PageHero
-        variant="generic"
+        variant="faq"
         eyebrow="Help center"
         title={<>Frequently Asked Questions</>}
         lead="Start with clarity. Explore how the system and your Virtual Assistant can work for your business."

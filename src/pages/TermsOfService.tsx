@@ -1,11 +1,12 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
   return (
-    <div className="container mx-auto px-4 py-20 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
+    <div className="container-gmg py-20">
+      <section className="legal-page-hero"><Hero3DLayout variant="terms"><span className="eyebrow">Legal</span><h1 className="text-4xl font-bold mb-8">Terms of Service</h1><p className="lead-gmg mt-6">Understand the terms of using Global Marketing Group services.</p></Hero3DLayout></section>
       <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
         <p>
           Welcome to Global Marketing Group. By using our services, you agree to

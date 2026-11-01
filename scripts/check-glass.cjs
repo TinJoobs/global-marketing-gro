@@ -16,23 +16,22 @@ const routes=['/','/pricing','/services','/integrations','/missed-revenue-calcul
  await page.setViewportSize({width:1440,height:1000});await page.goto(base+'/');await page.locator('h1').waitFor();
  assert.equal(await page.locator('.story-layout').evaluate(el=>getComputedStyle(el).display),'grid','restored workflow layout');
  assert.ok(await page.locator('.story-diagram').evaluate(el=>el.getBoundingClientRect().height>=300),'restored diagram dimensions');
- assert.ok((await page.locator('.industry-carousel').boundingBox()).height<1400,'no enormous industry spacer');
- const rail=page.getByRole('region',{name:'Industries carousel'});await rail.scrollIntoViewIfNeeded();
- const initial=await rail.evaluate(el=>el.scrollLeft);await page.getByRole('button',{name:'Next industries'}).click();await page.waitForFunction(()=>document.querySelector('.industry-rail').scrollLeft>100);assert.ok(await rail.evaluate(el=>el.scrollLeft)>initial);
- await rail.focus();await page.keyboard.press('End');await page.waitForTimeout(200);await rail.evaluate(el=>el.scrollLeft=el.scrollWidth);await page.locator('.who-help-cta a').focus();assert.ok(await page.locator('.who-help-cta a').evaluate(el=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth}),'last card keyboard reachable');
- await page.locator('.industry-rail img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
- await page.waitForFunction(()=>[...document.querySelectorAll('.industry-rail img')].every(img=>img.complete&&img.naturalWidth>0));
+ const deck=page.locator('.who-help-deck');
+ assert.equal(await deck.locator('.who-help-layer').count(),7,'preserved six industries and CTA');
+ assert.equal(await deck.locator('.who-help-layer').first().evaluate(el=>getComputedStyle(el).position),'sticky','preserved desktop stacking design');
+ await deck.locator('img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
+ await page.waitForFunction(()=>[...document.querySelectorAll('.who-help-layer img')].every(img=>img.complete&&img.naturalWidth>0));
  assert.equal(await page.locator('.test-card').count(),3);assert.equal(await page.locator('.test-score').count(),0);
  await page.evaluate(()=>scrollTo(0,0));const trigger=page.getByRole('button',{name:'Solutions',exact:true});await trigger.click();assert.ok(await page.getByRole('link',{name:/Capture, nurture/}).isVisible());await page.keyboard.press('Escape');assert.ok(await trigger.evaluate(el=>el===document.activeElement));assert.ok(await page.locator('#gmg-menu-solutions').isHidden());
  await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Open navigation'}).click();await trigger.click();const nav=page.locator('#gmg-nav');await nav.getByRole('link',{name:/All services/}).scrollIntoViewIfNeeded();assert.ok(await nav.getByRole('link',{name:/All services/}).evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}),'last mobile submenu link reachable');
  await page.keyboard.press('Escape');assert.ok(await trigger.evaluate(el=>el===document.activeElement));await page.keyboard.press('Escape');assert.ok(await page.getByRole('button',{name:'Open navigation'}).evaluate(el=>el===document.activeElement));
  await page.getByRole('button',{name:'Open navigation'}).click();await trigger.click();await nav.getByRole('link',{name:/All services/}).focus();await page.setViewportSize({width:1440,height:1000});await page.waitForTimeout(100);assert.ok(await trigger.evaluate(el=>el===document.activeElement),'focus restores to desktop trigger after resize');
- await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.industry-rail').evaluate(el=>getComputedStyle(el).scrollBehavior),'auto');
+ await page.emulateMedia({reducedMotion:'reduce'});assert.notEqual(await deck.locator('.who-help-layer').first().evaluate(el=>getComputedStyle(el).position),'sticky','static reduced-motion industry layout');
  fs.mkdirSync(artifacts,{recursive:true});
  for(const [route,name] of [['/','home'],['/pricing','pricing'],['/contact','contact'],['/guide-va-delegation','guide']]){
   await page.goto(base+route);await page.locator('h1').waitFor();await page.screenshot({path:artifacts+'/'+name+'-mobile.jpg',type:'jpeg',quality:85,fullPage:false});
  }
  assert.deepEqual(errors,[]);
- console.log('Glass QA passed: 128 route/viewport checks, restored story layout, bounded native carousel, all 6 industry photos loaded, keyboard/arrow access, 3 source-backed testimonials, desktop/mobile submenu focus and reachability, reduced motion; no page errors.');
+ console.log('Glass QA passed: 128 route/viewport checks, restored story layout, preserved industry stacking deck and static fallback, all 6 industry photos loaded, 3 source-backed testimonials, desktop/mobile submenu focus and reachability, reduced motion; no page errors.');
  }finally{await browser.close()}
 })().catch(error=>{console.error(error);process.exitCode=1});

@@ -1,3 +1,4 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -61,6 +62,7 @@ const AccountRep = () => {
     <div className="flex flex-col w-full">
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
+          <Hero3DLayout variant="career-sales">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Account <span className="text-primary">Representative</span>
@@ -70,7 +72,8 @@ const AccountRep = () => {
               team and represent a platform that truly delivers results.
             </p>
           </div>
-        </div>
+        </Hero3DLayout>
+      </div>
       </section>
 
       <section className="section-padding">

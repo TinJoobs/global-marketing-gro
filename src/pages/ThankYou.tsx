@@ -1,8 +1,10 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import { Link } from "react-router-dom";
 export default function ThankYou() {
   return (
     <section className="section-gmg">
-      <div className="container-gmg max-w-3xl text-center">
+      <div className="container-gmg">
+          <Hero3DLayout variant="thanks">
         <span className="eyebrow">Global Marketing Group</span>
         <h1 className="text-4xl md:text-5xl">Thank You for Connecting.</h1>
         <p className="lead-gmg mt-6">
@@ -22,6 +24,7 @@ export default function ThankYou() {
             Back to Home
           </Link>
         </div>
+      </Hero3DLayout>
       </div>
     </section>
   );

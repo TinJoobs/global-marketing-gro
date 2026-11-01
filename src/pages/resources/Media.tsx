@@ -4,6 +4,7 @@ export default function Media() {
   return (
     <>
       <PageHero
+        variant="media"
         eyebrow="Media & resources"
         title="Explore GMG's work and practical guides."
         lead="Learn about our services and find useful ways to improve your sales process, follow-up, and daily operations."

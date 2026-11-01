@@ -54,7 +54,7 @@ export default function Resources() {
   return (
     <div>
       <PageHero
-        variant="generic"
+        variant="resources"
         eyebrow="Resources"
         title={<>Guides, Tools & Insights</>}
         lead="Explore our portfolio, affiliate program, services, and media center — everything you need to learn about GMG and grow your business."

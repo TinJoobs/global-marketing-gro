@@ -1,0 +1,12 @@
+# Interactive hero objects
+
+Base: a14355748c8aa0d83c0700c9100e6b39cda49388. The partial implementation covers shared non-simple heroes and Contact/Home; About, careers applications, guides, calculator, legal pages and confirmation/error pages are missing. Most scenes repeat one icon slab, orbit labels overlap, and Home uses three arbitrary blobs rather than the existing geographic silhouette. It lacks drag/keyboard/reset controls and offscreen animation suspension.
+
+Design approved through the user's request to execute: retain GMG's navy/blue/teal glass palette, existing headlines, CTA destinations and page content. Use native CSS 3D geometry and SVG layers, not a new rendering dependency. Home uses the source-backed Philippines silhouette with extruded side layers and selectable Luzon/Visayas/Mindanao regions, explicitly geographic rather than an office-location claim. Other heroes use content-relevant database cylinders, neural cubes, browser windows, calendars, conversation stacks, network hubs, buildings, tier columns, books, shields, documents, calculator and headset objects.
+
+1. Write regressions for semantic scene controls, arrow/reset behavior, region selection, unique SVG IDs and lifecycle cleanup; show them fail before implementation.
+2. Replace the partial scene with a reusable drag/keyboard/button stage. Keep vertical touch scrolling, bounded tilt, pointer capture/cancel cleanup, and user-controlled static rotation with reduced motion. Auto animation pauses offscreen/hidden and is absent with reduced motion.
+3. Apply a shared visual layout to all 32 canonical page heroes plus 404; preserve forms, calculator state, plan selection, guides and legal text. Compact/mobile layouts stay readable without overflow; all CTAs remain outside draggable surfaces.
+4. Visit every route at desktop/mobile widths. Verify model choice, geometry, real pointer drag, keyboard/reset, region selection, reduced motion and offscreen pause. Run full build/lint/tests and relevant existing browser suites. Independently review, then push with a fresh expected-head check.
+
+Execution complete: tests 105/105, build/lint passed. Browser 136/136 route/viewport checks and native mouse/touch/keyboard tests passed. Existing functional browser suites passed. Every model variant renders, SVG IDs stay unique, all missing hero wrappers are supplied. Independent final code review had no actionable findings; no deferred minor findings introduced by this change. Existing large-bundle advisory is recorded in docs/HERO-3D.md.

@@ -1,530 +1,111 @@
-/**
- * Hero 3D scene system — per-page themed interactive 3D objects.
- *
- * Architecture:
- *  - `Hero3DStage`         : the perspective container + parallax camera rig
- *  - `Hero3DScene`         : dispatcher that renders the right scene by `variant`
- *  - scene components      : Philippines map, orbiting nodes, etc.
- *
- * All motion is driven by framer-motion `useScroll`/`useTransform` for smooth,
- * GPU-accelerated parallax + pointer-tilt, with full `prefers-reduced-motion`
- * safety (no animation, static fallback). No new runtime deps.
- */
+import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from 'react';
+import { Icon } from '@/components/Icon';
+import { heroScenes, type Hero3DVariant, type ObjectKind } from './heroScenes';
+import islands from './philippines.json';
+import './hero3d.css';
+export type { Hero3DVariant } from './heroScenes';
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
-import {
-  motion,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import { Icon, type IconName } from "@/components/Icon";
+const initialView={x:14,y:-22};
+const clamp=(value:number,min:number,max:number)=>Math.max(min,Math.min(max,value));
 
-/* ------------------------------------------------------------------ *
- *  Theme tokens — color + symbol per page. Each variant maps to the
- *  visual concept of that page so the object reinforces the message.
- * ------------------------------------------------------------------ */
-export type Hero3DVariant =
-  | "philippines"
-  | "crm"
-  | "ai"
-  | "digital"
-  | "appointment"
-  | "lead"
-  | "integrations"
-  | "industries"
-  | "how"
-  | "pricing"
-  | "about"
-  | "services"
-  | "va"
-  | "generic";
-
-type Theme = {
-  /** accent ring / edge color */
-  edge: string;
-  /** core gradient stops */
-  coreA: string;
-  coreB: string;
-  /** ambient glow color */
-  glow: string;
-  /** orbit node fill */
-  node: string;
-  /** primary symbol for the central core */
-  symbol: IconName;
-  /** floating data chips rendered around the core */
-  chips: { icon: IconName; label: string }[];
-};
-
-export const heroThemes: Record<Hero3DVariant, Theme> = {
-  philippines: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#04121f",
-    glow: "rgba(114,228,212,0.45)",
-    node: "#1f6f8a",
-    symbol: "globe",
-    chips: [
-      { icon: "users", label: "Manila" },
-      { icon: "headset", label: "Cebu" },
-      { icon: "database", label: "Davao" },
-      { icon: "clock", label: "24/7" },
-    ],
-  },
-  crm: {
-    edge: "#5aa8ff",
-    coreA: "#0a2c52",
-    coreB: "#031022",
-    glow: "rgba(90,168,255,0.4)",
-    node: "#1f5f8a",
-    symbol: "database",
-    chips: [
-      { icon: "users", label: "Contacts" },
-      { icon: "message", label: "Inbox" },
-      { icon: "chart", label: "Pipeline" },
-      { icon: "refresh", label: "Reactivation" },
-    ],
-  },
-  ai: {
-    edge: "#c08bff",
-    coreA: "#23124a",
-    coreB: "#0c0820",
-    glow: "rgba(192,139,255,0.42)",
-    node: "#6a3fb0",
-    symbol: "cpu",
-    chips: [
-      { icon: "message", label: "Chatbot" },
-      { icon: "clock", label: "24/7" },
-      { icon: "search", label: "Lead scoring" },
-      { icon: "refresh", label: "Auto follow-up" },
-    ],
-  },
-  digital: {
-    edge: "#48d6c8",
-    coreA: "#0a2c4a",
-    coreB: "#041827",
-    glow: "rgba(72,214,200,0.4)",
-    node: "#1f6f8a",
-    symbol: "monitor",
-    chips: [
-      { icon: "monitor", label: "Website" },
-      { icon: "capture", label: "Landing" },
-      { icon: "workflow", label: "Funnel" },
-      { icon: "search", label: "SEO" },
-    ],
-  },
-  appointment: {
-    edge: "#ffb866",
-    coreA: "#2a1f0a",
-    coreB: "#1a0f03",
-    glow: "rgba(255,184,102,0.4)",
-    node: "#a06a2a",
-    symbol: "calendar",
-    chips: [
-      { icon: "calendar", label: "Scheduling" },
-      { icon: "bell", label: "Reminders" },
-      { icon: "message", label: "Follow-up" },
-      { icon: "refresh", label: "Reschedule" },
-    ],
-  },
-  lead: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#041220",
-    glow: "rgba(114,228,212,0.4)",
-    node: "#1f6f8a",
-    symbol: "message",
-    chips: [
-      { icon: "message", label: "Sequences" },
-      { icon: "phone", label: "Multi-channel" },
-      { icon: "refresh", label: "Reactivation" },
-      { icon: "clock", label: "Speed to lead" },
-    ],
-  },
-  integrations: {
-    edge: "#7fd0ff",
-    coreA: "#0a2c52",
-    coreB: "#031122",
-    glow: "rgba(127,208,255,0.4)",
-    node: "#1f5f8a",
-    symbol: "link",
-    chips: [
-      { icon: "link", label: "Native" },
-      { icon: "code", label: "API" },
-      { icon: "refresh", label: "Connector" },
-      { icon: "lock", label: "Secure sync" },
-    ],
-  },
-  industries: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#041220",
-    glow: "rgba(114,228,212,0.4)",
-    node: "#1f6f8a",
-    symbol: "map",
-    chips: [
-      { icon: "briefcase", label: "Accounting" },
-      { icon: "home", label: "Real estate" },
-      { icon: "medical", label: "Medical" },
-      { icon: "building", label: "Construction" },
-    ],
-  },
-  how: {
-    edge: "#ffb866",
-    coreA: "#24180a",
-    coreB: "#160c02",
-    glow: "rgba(255,184,102,0.4)",
-    node: "#a06a2a",
-    symbol: "workflow",
-    chips: [
-      { icon: "calendar", label: "Book" },
-      { icon: "settings", label: "Choose" },
-      { icon: "rocket", label: "Launch" },
-      { icon: "growth", label: "Scale" },
-    ],
-  },
-  pricing: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#04121f",
-    glow: "rgba(114,228,212,0.4)",
-    node: "#1f6f8a",
-    symbol: "chart",
-    chips: [
-      { icon: "database", label: "3 plans" },
-      { icon: "users", label: "Offshore talent" },
-      { icon: "rocket", label: "Boosts" },
-      { icon: "check", label: "No guesswork" },
-    ],
-  },
-  about: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#041220",
-    glow: "rgba(114,228,212,0.4)",
-    node: "#1f6f8a",
-    symbol: "users",
-    chips: [
-      { icon: "users", label: "Leadership" },
-      { icon: "rocket", label: "Innovation" },
-      { icon: "shield", label: "Client-first" },
-      { icon: "growth", label: "Growth" },
-    ],
-  },
-  services: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#041220",
-    glow: "rgba(114,228,212,0.4)",
-    node: "#1f6f8a",
-    symbol: "briefcase",
-    chips: [
-      { icon: "workflow", label: "Funnels" },
-      { icon: "database", label: "CRM setup" },
-      { icon: "refresh", label: "Automation" },
-      { icon: "chart", label: "Optimization" },
-    ],
-  },
-  va: {
-    edge: "#ffb866",
-    coreA: "#24180a",
-    coreB: "#160c02",
-    glow: "rgba(255,184,102,0.4)",
-    node: "#a06a2a",
-    symbol: "headset",
-    chips: [
-      { icon: "briefcase", label: "Accounting" },
-      { icon: "home", label: "Realtor" },
-      { icon: "medical", label: "Medical" },
-      { icon: "shield", label: "Insurance" },
-    ],
-  },
-  generic: {
-    edge: "#72e4d4",
-    coreA: "#0a2a4a",
-    coreB: "#041220",
-    glow: "rgba(114,228,212,0.4)",
-    node: "#1f6f8a",
-    symbol: "globe",
-    chips: [
-      { icon: "database", label: "CRM" },
-      { icon: "users", label: "Support" },
-      { icon: "refresh", label: "Automation" },
-      { icon: "chart", label: "Reporting" },
-    ],
-  },
-};
-
-/* ------------------------------------------------------------------ *
- *  Reduced-motion hook (matches the rest of the site's motion logic)
- * ------------------------------------------------------------------ */
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  return reduced;
-}
-
-/* ------------------------------------------------------------------ *
- *  Parallax + pointer-tilt camera rig
- * ------------------------------------------------------------------ */
-export function Hero3DStage({
-  children,
-  className,
-  style,
-}: {
-  children: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduced = usePrefersReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
+/** A demand-rendered CSS camera: no perpetual JavaScript frame loop. */
+export function Hero3DStage({children,variant}:{children:ReactNode;variant:Hero3DVariant}) {
+ const ref=useRef<HTMLElement>(null);
+ const view=useRef({...initialView});
+ const drag=useRef<{id:number;x:number;y:number;view:{x:number;y:number}}|null>(null);
+ const frame=useRef(0);
+ const hintId=useId();
+ const scene=heroScenes[variant];
+ const rotate=(x:number,y:number)=>{
+  view.current={x:clamp(x,-32,48),y:clamp(y,-65,65)};
+  cancelAnimationFrame(frame.current);
+  frame.current=requestAnimationFrame(()=>{
+   ref.current?.style.setProperty('--view-x',`${view.current.x}deg`);
+   ref.current?.style.setProperty('--view-y',`${view.current.y}deg`);
   });
-
-  // Camera pulls back + tilts as you scroll through the hero.
-  const z = useTransform(scrollYProgress, [0, 1], [0, -180]);
-  const rotX = useTransform(scrollYProgress, [0, 1], [0, 12]);
-  const rotZ = useTransform(scrollYProgress, [0, 1], [0, 4]);
-
-  // Pointer tilt (springy, desktop only).
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const sx = useSpring(px, { stiffness: 120, damping: 18 });
-  const sy = useSpring(py, { stiffness: 120, damping: 18 });
-  const tiltX = useTransform(sy, [-0.5, 0.5], [8, -8]);
-  const tiltY = useTransform(sx, [-0.5, 0.5], [-10, 10]);
-
-  const onMove = useCallback(
-    (e: React.PointerEvent<HTMLElement>) => {
-      if (reduced) return;
-      const el = e.currentTarget;
-      const r = el.getBoundingClientRect();
-      px.set((e.clientX - r.left) / r.width - 0.5);
-      py.set((e.clientY - r.top) / r.height - 0.5);
-    },
-    [px, py, reduced],
-  );
-  const onLeave = useCallback(() => {
-    px.set(0);
-    py.set(0);
-  }, [px, py]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={`hero3d-stage ${className ?? ""}`}
-      style={style}
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-    >
-      <motion.div
-        className="hero3d-rig"
-        style={
-          reduced
-            ? undefined
-            : {
-                z,
-                rotateX: tiltX,
-                rotateY: tiltY,
-                rotateZ: rotZ,
-              }
-        }
-      >
-        <motion.div
-          className="hero3d-scroll-tilt"
-          style={reduced ? undefined : { rotateX: rotX }}
-        >
-          {children}
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  );
+ };
+ const endDrag=(event:PointerEvent<HTMLDivElement>)=>{
+  if(drag.current?.id!==event.pointerId)return;
+  drag.current=null;
+  if(event.currentTarget.hasPointerCapture?.(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);
+  ref.current?.removeAttribute('data-dragging');
+ };
+ useEffect(()=>{
+  const element=ref.current;if(!element)return;
+  const preference=matchMedia('(prefers-reduced-motion: reduce)');
+  let visible=!('IntersectionObserver' in window);
+  const sync=()=>{element.dataset.active=String(visible&&!document.hidden&&!preference.matches)};
+  const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??false;sync()}):null;
+  observer?.observe(element);
+  preference.addEventListener('change',sync);document.addEventListener('visibilitychange',sync);sync();
+  return()=>{observer?.disconnect();preference.removeEventListener('change',sync);document.removeEventListener('visibilitychange',sync);cancelAnimationFrame(frame.current);drag.current=null};
+ },[]);
+ return <figure ref={ref} className={`hero3d-stage hero3d-stage--${variant}`} data-hero-scene={variant} data-object-kind={scene.kind}
+   style={{'--scene-accent':('accent' in scene?scene.accent:'#72e4d4'),'--view-x':`${initialView.x}deg`,'--view-y':`${initialView.y}deg`} as CSSProperties}>
+  <div className="hero3d-viewport" tabIndex={0} role="group" aria-label={`${scene.title} — interactive 3D object`} aria-describedby={hintId}
+   onPointerDown={event=>{if(!event.isPrimary||event.button!==0||(event.target as Element).closest('button'))return;drag.current={id:event.pointerId,x:event.clientX,y:event.clientY,view:{...view.current}};event.currentTarget.setPointerCapture(event.pointerId);ref.current?.setAttribute('data-dragging','true')}}
+   onPointerMove={event=>{const start=drag.current;if(!start||start.id!==event.pointerId)return;rotate(start.view.x-(event.clientY-start.y)*.18,start.view.y+(event.clientX-start.x)*.25)}}
+   onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={()=>{drag.current=null;ref.current?.removeAttribute('data-dragging')}}
+   onKeyDown={event=>{if(event.target!==event.currentTarget)return;const steps:Record<string,[number,number]>={ArrowLeft:[0,-10],ArrowRight:[0,10],ArrowUp:[-8,0],ArrowDown:[8,0]};if(event.key==='Home'){event.preventDefault();rotate(initialView.x,initialView.y)}else if(steps[event.key]){event.preventDefault();const[x,y]=steps[event.key];rotate(view.current.x+x,view.current.y+y)}}}>
+   <div className="hero3d-floor" aria-hidden="true"/>
+   <div className="hero3d-rig">{children}</div>
+   {variant==='philippines'&&<span className="hero3d-object-label" aria-hidden="true">PHILIPPINES</span>}
+  </div>
+  <figcaption className="hero3d-caption"><strong>{scene.title}</strong><span id={hintId}>Drag to turn · Arrow keys to rotate</span></figcaption>
+  <div className="hero3d-controls" aria-label="3D view controls">
+   {([['left',0,-10,180],['up',-8,0,-90],['down',8,0,90],['right',0,10,0]] as const).map(([direction,x,y,angle])=><button key={direction} type="button" aria-label={`Rotate object ${direction}`} onClick={()=>rotate(view.current.x+x,view.current.y+y)}><Icon name="arrow" size={16} style={{transform:`rotate(${angle}deg)`}}/></button>)}
+   <button type="button" className="hero3d-reset" aria-label="Reset 3D view" onClick={()=>rotate(initialView.x,initialView.y)}><Icon name="refresh" size={16}/><span>Reset</span></button>
+  </div>
+ </figure>;
 }
 
-/* ------------------------------------------------------------------ *
- *  Central layered core (glassy 3D "platform")
- * ------------------------------------------------------------------ */
-function Core({ theme }: { theme: Theme }) {
-  return (
-    <div
-      className="hero3d-core"
-      style={
-        {
-          "--edge": theme.edge,
-          "--core-a": theme.coreA,
-          "--core-b": theme.coreB,
-          "--glow": theme.glow,
-          "--node": theme.node,
-        } as CSSProperties
-      }
-    >
-      <div className="hero3d-core-layer hero3d-core-bottom" />
-      <div className="hero3d-core-layer hero3d-core-middle" />
-      <div className="hero3d-core-top">
-        <span className="hero3d-core-symbol">
-          <Icon name={theme.symbol} size={44} />
-        </span>
-      </div>
-      <span className="hero3d-core-halo" />
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ *
- *  Orbiting node ring — the themed "chips" rotate around the core.
- *  Suspended so the ring stays visible even when reduced motion is on
- *  (position is fixed, only the orbit animation is disabled).
- * ------------------------------------------------------------------ */
-function OrbitRing({ theme }: { theme: Theme }) {
-  const reduced = usePrefersReducedMotion();
-  return (
-    <div className={`hero3d-orbit${reduced ? " is-static" : ""}`}>
-      <div className="hero3d-orbit-track">
-        {theme.chips.map((chip, i) => {
-          const total = theme.chips.length;
-          const angle = (i / total) * 360;
-          return (
-            <div
-              key={chip.label}
-              className="hero3d-orbit-node"
-              style={
-                {
-                  "--angle": `${angle}deg`,
-                } as CSSProperties
-              }
-            >
-              <span className="hero3d-orbit-icon">
-                <Icon name={chip.icon} size={18} />
-              </span>
-              <small>{chip.label}</small>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ *
- *  Philippines 3D map — the home hero centerpiece.
- *  A stylized archipelago: three landmass slabs tilted in 3D with
- *  pulsing connection nodes between Luzon, Visayas, and Mindanao.
- * ------------------------------------------------------------------ */
-const PH_ISLANDS = [
-  {
-    name: "Luzon",
-    d: "M40 60 q18 -4 30 -22 q10 -16 6 -34 q-2 -10 -14 -12 q-22 -3 -34 6 q-14 12 -16 28 q-2 22 12 36 q8 6 16 -2 Z",
-    cx: 40,
-    cy: 60,
-    delay: "0s",
-  },
-  {
-    name: "Visayas",
-    d: "M118 150 q6 -14 0 -26 q-8 -14 -24 -10 q-18 4 -24 14 q-6 14 4 22 q12 10 24 6 q14 -2 20 -6 Z",
-    cx: 96,
-    cy: 140,
-    delay: "0.6s",
-  },
-  {
-    name: "Mindanao",
-    d: "M150 220 q18 -6 24 -26 q6 -22 -4 -38 q-12 -18 -32 -16 q-22 2 -30 18 q-10 22 2 42 q14 24 40 20 Z",
-    cx: 140,
-    cy: 210,
-    delay: "1.2s",
-  },
-];
-
+const regions=[{id:'luzon',name:'Luzon',x:44,y:27,detail:'Northern island group'},{id:'visayas',name:'Visayas',x:65,y:56,detail:'Central island group'},{id:'mindanao',name:'Mindanao',x:79,y:81,detail:'Southern island group'}];
 export function PhilippinesMap() {
-  const reduced = usePrefersReducedMotion();
-  return (
-    <div className={`hero3d-ph${reduced ? " is-static" : ""}`}>
-      <svg
-        viewBox="0 0 220 280"
-        className="hero3d-ph-svg"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <radialGradient id="ph-grad" cx="50%" cy="40%" r="70%">
-            <stop offset="0%" stopColor="rgba(114,228,212,0.28)" />
-            <stop offset="100%" stopColor="rgba(8,32,60,0.0)" />
-          </radialGradient>
-          <filter id="ph-glow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="3" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        <rect width="220" height="280" fill="url(#ph-grad)" rx="18" />
-        <g className="hero3d-ph-land" filter="url(#ph-glow)">
-          {PH_ISLANDS.map((isl) => (
-            <path key={isl.name} d={isl.d} />
-          ))}
-        </g>
-        {/* pulsing connection nodes + links */}
-        {PH_ISLANDS.map((isl) => (
-          <g
-            key={`n-${isl.name}`}
-            className="hero3d-ph-node"
-            style={{ animationDelay: isl.delay }}
-          >
-            <circle cx={isl.cx} cy={isl.cy} r="4.5" />
-          </g>
-        ))}
-        <g
-          className="hero3d-ph-links"
-          fill="none"
-          stroke="rgba(114,228,212,0.6)"
-        >
-          <path d="M40 64 Q80 100 96 138" />
-          <path d="M96 140 Q120 170 140 206" />
-        </g>
-      </svg>
-      <span className="hero3d-ph-label">
-        Philippines-based support · connected to your CRM
-      </span>
-    </div>
-  );
+ const [selected,setSelected]=useState('luzon');
+ const id=useId().replace(/:/g,'');
+ const region=regions.find(item=>item.id===selected)!;
+ return <>
+  <div className="hero3d-map" data-map-region={selected}>
+   {[-24,-20,-16,-12,-8,-4,0].map((depth,index)=><svg key={depth} viewBox="0 0 365 530" aria-hidden="true" focusable="false" className="hero3d-map-layer" data-map-layer={depth===0?'surface':index} style={{transform:`translateZ(${depth}px)`}}>
+    {depth===0&&<defs><linearGradient id={`${id}-land`} x1="0" y1="0" x2="1" y2="1"><stop stopColor="#8cf5df" stopOpacity=".9"/><stop offset=".5" stopColor="#178ba4"/><stop offset="1" stopColor="#0e385e"/></linearGradient></defs>}
+    {islands.map((island,i)=><path key={i} d={island.d} data-region={island.region} className={selected===island.region?'is-selected':''} fill={depth===0?`url(#${id}-land)`:'#0b4962'}/>)}
+   </svg>)}
+   {regions.map(item=><button key={item.id} type="button" className="hero3d-map-pin" style={{left:`${item.x}%`,top:`${item.y}%`}} aria-label={`Explore ${item.name}`} aria-pressed={item.id===selected} onClick={()=>setSelected(item.id)}><i/><span>{item.name}</span></button>)}
+   <span className="hero3d-map-coordinate" aria-hidden="true">LUZON · VISAYAS · MINDANAO</span>
+  </div>
+  <div className="hero3d-map-detail" role="status"><strong>{region.name}</strong><span>{region.detail} · Geographic view</span></div>
+ </>;
 }
 
-/* ------------------------------------------------------------------ *
- *  Scene dispatcher
- * ------------------------------------------------------------------ */
-export function Hero3DScene({ variant }: { variant: Hero3DVariant }) {
-  if (variant === "philippines") {
-    return (
-      <Hero3DStage className="hero3d-stage--philippines">
-        <PhilippinesMap />
-      </Hero3DStage>
-    );
-  }
-  const theme = heroThemes[variant];
-  return (
-    <Hero3DStage className={`hero3d-stage--${variant}`}>
-      <div className="hero3d-scene">
-        <Core theme={theme} />
-        <OrbitRing theme={theme} />
-      </div>
-    </Hero3DStage>
-  );
+function Prism({children,className='',style}:{children?:ReactNode;className?:string;style?:CSSProperties}) {
+ return <div className={`object-prism ${className}`} style={style}>{['back','left','right','top','bottom'].map(face=><div key={face} className={`prism-face prism-${face}`}/>)}<div className="prism-face prism-front">{children}</div></div>;
 }
-
+function Model({kind,variant}:{kind:ObjectKind;variant:Hero3DVariant}) {
+ const scene=heroScenes[variant];
+ const symbol=<Icon name={scene.icon} size={56}/>;
+ switch(kind){
+  case 'database':return <div className="object-database">{[0,1,2].map(i=><div className="database-cylinder" key={i} style={{top:i*53,transform:`translateZ(${i*12}px)`}}><span/><i/><b/><em/></div>)}</div>;
+  case 'cube':return <Prism className="object-cube">{symbol}<div className="neural-nodes">{Array.from({length:9},(_,i)=><i key={i}/>)}</div></Prism>;
+  case 'browser':return <div className="object-browsers">{[0,1,2].map(i=><Prism key={i} className="object-browser" style={{transform:`translate3d(${(i-1)*35}px,${(i-1)*-28}px,${i*24}px)`}}><div className="browser-top"><i/><i/><i/><span>gmg</span></div><div className="browser-layout"><b/><div><span/><span/><em/></div></div></Prism>)}</div>;
+  case 'calendar':return <Prism className="object-calendar"><div className="calendar-binding"><i/><i/></div><div className="calendar-title">YOUR NEXT STEP</div><div className="calendar-grid">{Array.from({length:21},(_,i)=><span key={i} className={i===10?'selected':''}>{i===10?<Icon name="check" size={22}/>:''}</span>)}</div></Prism>;
+  case 'messages':return <div className="object-messages">{[0,1,2].map(i=><Prism key={i} className="object-message" style={{transform:`translate3d(${(i-1)*45}px,${(i-1)*-68}px,${i*26}px)`}}><Icon name={i===1?'check':'message'} size={27}/><div><span/><span/></div></Prism>)}</div>;
+  case 'hub':return <div className="object-network"><div className="network-ring ring-a"/><div className="network-ring ring-b"/><Prism className="network-core">{symbol}</Prism>{[0,1,2,3].map((i)=><span key={i} className={`network-node node-${i}`}><Icon name={['database','mail','calendar','users'][i] as 'database'|'mail'|'calendar'|'users'} size={24}/></span>)}</div>;
+  case 'buildings':case 'steps':case 'tiers':return <div className={`object-columns object-${kind}`}>{[0,1,2].map(i=><Prism key={i} className="object-column" style={{'--height':`${80+i*55}px`,'--width':'76px','--depth':'42px',left:`${i*85}px`,bottom:0} as CSSProperties}><Icon name={kind==='buildings'?'building':kind==='tiers'?'chart':'check'} size={24}/><span>{kind==='tiers'?['Launch','Growth','Scale'][i]:`0${i+1}`}</span>{kind==='buildings'&&<div className="building-windows">{Array.from({length:6},(_,j)=><i key={j}/>)}</div>}</Prism>)}</div>;
+  case 'globe':return <div className="object-globe"><div className="globe-sphere"><i/><i/><i/><b/><b/><span>GMG</span></div><div className="globe-ring"/></div>;
+  case 'headset':return <div className="object-headset"><div className="headset-band"/><Prism className="headset-ear ear-left"/><Prism className="headset-ear ear-right"/><div className="headset-mic"/><span className="headset-center"><Icon name="users" size={48}/></span></div>;
+  case 'book':return <div className="object-book"><Prism className="book-left"><span className="book-line"/><span className="book-line"/>{symbol}<span className="book-line short"/></Prism><Prism className="book-right"><span className="book-line"/><span className="book-line"/><span className="book-line short"/><span className="book-mark"><Icon name="check" size={28}/></span></Prism></div>;
+  case 'shield':return <div className="object-shield">{[-24,-18,-12,-6,0].map(z=><svg key={z} viewBox="0 0 200 240" style={{transform:`translateZ(${z}px)`}}><path d="M100 10 184 44v65c0 55-38 93-84 121-46-28-84-66-84-121V44Z"/></svg>)}<span>{symbol}</span></div>;
+  case 'document':return <Prism className="object-document"><span className="document-seal">{symbol}</span>{Array.from({length:5},(_,i)=><span key={i} className="book-line"/>)}</Prism>;
+  case 'calculator':return <Prism className="object-calculator"><div className="calculator-display"><span>ESTIMATE</span><b>$ —</b></div><div className="calculator-keys">{Array.from({length:12},(_,i)=><span key={i}>{i===11?'=':i===10?'+':i===9?'0':String(i+1)}</span>)}</div></Prism>;
+  case 'briefcase':return <div className="object-case"><div className="case-handle"/><Prism className="case-body">{symbol}<span className="case-latch"/></Prism></div>;
+  case 'envelope':return <div className="object-envelope"><Prism className="envelope-letter"><Icon name={scene.icon} size={44}/><span className="book-line"/><span className="book-line short"/></Prism><Prism className="envelope-pocket"><span/></Prism></div>;
+  case 'coin':case 'compass':return <div className={`object-disc object-${kind}`}>{[-28,-21,-14,-7,0].map(z=><div className="disc-layer" key={z} style={{transform:`translateZ(${z}px)`}}/>)}<span>{kind==='compass'?<i className="compass-needle"/>:symbol}</span></div>;
+  default:return null;
+ }
+}
+export function Hero3DScene({variant}:{variant:Hero3DVariant}) {
+ const scene=heroScenes[variant];
+ return <Hero3DStage variant={variant}>{scene.kind==='map'?<PhilippinesMap/>:<><div className={`hero3d-object hero3d-object--${scene.kind}`} aria-hidden="true"><Model kind={scene.kind} variant={variant}/></div><div className="hero3d-chips" aria-hidden="true">{scene.labels.map((label,index)=><span className={`hero3d-chip chip-${index}`} key={label}><i/>{label}</span>)}</div></>}</Hero3DStage>;
+}
+export function Hero3DLayout({children,variant}:{children:ReactNode;variant:Hero3DVariant}) {return <div className="hero-page-layout"><div className="hero-page-copy">{children}</div><Hero3DScene variant={variant}/></div>}
 export default Hero3DScene;

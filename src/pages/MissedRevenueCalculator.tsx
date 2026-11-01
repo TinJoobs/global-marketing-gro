@@ -1,3 +1,4 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Calculator, Check, ShieldCheck } from "lucide-react";
@@ -100,6 +101,7 @@ export default function MissedRevenueCalculator() {
     <div className="revenue-calculator">
       <section className="revenue-hero">
         <div className="container-gmg">
+          <Hero3DLayout variant="calculator">
           <span className="revenue-eyebrow">
             <Calculator size={16} aria-hidden="true" /> Find the opportunity in
             your inbox
@@ -117,6 +119,7 @@ export default function MissedRevenueCalculator() {
             <ShieldCheck size={16} aria-hidden="true" /> Free to use. No email
             needed to calculate.
           </span>
+        </Hero3DLayout>
         </div>
       </section>
 

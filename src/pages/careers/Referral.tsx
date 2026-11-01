@@ -1,3 +1,4 @@
+import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -65,6 +66,7 @@ const Referral = () => {
     <div className="flex flex-col w-full">
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
+          <Hero3DLayout variant="referral">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Referral <span className="text-primary">Program</span>
@@ -74,7 +76,8 @@ const Referral = () => {
               Marketing Group and earn rewards for every successful connection.
             </p>
           </div>
-        </div>
+        </Hero3DLayout>
+      </div>
       </section>
 
       <section className="section-padding">

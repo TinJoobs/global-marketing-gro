@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import visual from "@/assets/platform-visual.html?raw";
 import { initializeHero } from "@/lib/heroMotion";
 import { Icon } from "@/components/Icon";
 import { useModalCTA } from "@/components/modal/useModalCTA";
@@ -59,7 +58,7 @@ export default function HomeHero() {
               Built for growing businesses. Backed by real human support.
             </p>
           </div>
-          <div className="hero-3d-slot" aria-hidden="true">
+          <div className="hero-3d-slot">
             <Hero3DScene variant="philippines" />
           </div>
         </div>

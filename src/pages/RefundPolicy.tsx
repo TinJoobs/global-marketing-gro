@@ -34,6 +34,7 @@ export default function RefundPolicy() {
   return (
     <div>
       <PageHero
+        variant="refund"
         eyebrow="Legal"
         title={<>Refund Policy</>}
         lead="Our policy for refunds, cancellations, and service eligibility at Global Marketing Group."
