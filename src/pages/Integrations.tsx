@@ -7,6 +7,38 @@ import {
   marketplaceUrl,
   integrationsCheckedDate,
 } from "@/data/integrations";
+import { brandFor } from "@/data/brandLogos";
+
+function BrandBadge({ slug }: { slug: string }) {
+  const brand = brandFor(slug);
+  const style = { "--brand-color": brand.color } as React.CSSProperties;
+  if (brand.src) {
+    return (
+      <span className="int-brand" style={style}>
+        <img
+          src={brand.src}
+          alt=""
+          width="40"
+          height="40"
+          loading="lazy"
+          decoding="async"
+        />
+      </span>
+    );
+  }
+  // Monogram fallback for brands without a published icon.
+  const initials = slug
+    .split("-")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  return (
+    <span className="int-brand int-brand-monogram" style={style}>
+      <span className="mono">{initials}</span>
+    </span>
+  );
+}
 
 const routeNotes = [
   {
@@ -152,13 +184,8 @@ export default function Integrations() {
           >
             {results.map((item) => (
               <article className="card-gmg flex flex-col" key={item.slug}>
-                <div className="flex items-center justify-between gap-3 mb-5">
-                  <span
-                    aria-hidden="true"
-                    className="icon-box text-lg font-bold"
-                  >
-                    {item.mark}
-                  </span>
+                <div className="flex items-start justify-between gap-3 mb-5">
+                  <BrandBadge slug={item.slug} />
                   <span className="rounded-full border border-border px-3 py-1 text-xs font-semibold">
                     {item.connection}
                   </span>

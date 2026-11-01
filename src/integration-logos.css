@@ -181,3 +181,77 @@
     display: none !important;
   }
 }
+
+/* Directory card brand logos (Integrations page) */
+#gmg-site .int-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  padding: 14px;
+  background: color-mix(in oklab, var(--surface, #fff) 92%, transparent);
+  border: 1px solid hsl(var(--border));
+  color: var(--brand-color, hsl(var(--foreground)));
+  box-shadow:
+    0 1px 2px hsl(var(--foreground) / 0.05),
+    0 8px 24px -12px hsl(var(--foreground) / 0.18);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+#gmg-site .int-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+  max-height: 40px;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+  filter: grayscale(0.35);
+  opacity: 0.92;
+  transition:
+    filter 0.2s ease,
+    opacity 0.2s ease;
+}
+#gmg-site .int-brand-monogram {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    var(--brand-color, hsl(var(--primary))),
+    color-mix(in oklab, var(--brand-color, hsl(var(--primary))) 55%, #000)
+  );
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+#gmg-site .int-brand-monogram .mono {
+  display: inline-block;
+  transform: translateY(0.5px);
+}
+#gmg-site .card-gmg:hover .int-brand {
+  border-color: color-mix(
+    in oklab,
+    var(--brand-color, hsl(var(--primary))) 60%,
+    hsl(var(--border))
+  );
+  box-shadow:
+    0 2px 6px hsl(var(--foreground) / 0.1),
+    0 14px 30px -14px
+      color-mix(
+        in oklab,
+        var(--brand-color, hsl(var(--primary))) 70%,
+        transparent
+      );
+  transform: translateY(-2px);
+}
+#gmg-site .card-gmg:hover .int-brand img {
+  filter: grayscale(0);
+  opacity: 1;
+}
