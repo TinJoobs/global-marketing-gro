@@ -50,7 +50,44 @@
   border-bottom-color: rgba(114, 228, 212, 0.3);
 }
 
-.gmg-nav-link,
+/* Inline nav links: clean, compact, never card-styled */
+.gmg-nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #c0d6f0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0 4px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.gmg-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 10px;
+  height: 2px;
+  background: linear-gradient(90deg, #72e4d4, #3fd8c0);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0.85;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gmg-nav-link:hover::after,
+.gmg-nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+.gmg-nav-link[aria-current="page"] {
+  color: #72e4d4;
+}
+/* Trigger buttons (Solutions / Resources dropdowns) */
 .gmg-nav-trigger {
   font-size: 14px;
   font-weight: 600;
@@ -65,7 +102,6 @@
   padding: 0 4px;
   transition: color 0.2s ease;
 }
-.gmg-nav-link:hover,
 .gmg-nav-trigger:hover,
 .gmg-nav-trigger[aria-expanded="true"] {
   color: #72e4d4;
@@ -425,11 +461,85 @@
   }
 }
 
-/* ---- Who we help scroll carousel ---- */
+/* ---- Who we help: full-bleed cinematic scroll carousel ---- */
 .who-we-help {
   position: relative;
-  background: linear-gradient(160deg, #041225 0%, #06182f 100%);
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 20% 0%,
+      rgba(1, 78, 166, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 100%,
+      rgba(114, 228, 212, 0.14),
+      transparent 60%
+    ),
+    linear-gradient(170deg, #031024 0%, #061a35 50%, #04132c 100%);
   overflow: hidden;
+}
+/* Layered cinematic backdrop — never a blank BG */
+.who-help-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(72, 180, 220, 0.18),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 82% 70%,
+      rgba(114, 228, 212, 0.16),
+      transparent 24%
+    );
+  filter: blur(2px);
+}
+.who-help-canvas::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background-image:
+    linear-gradient(rgba(114, 228, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(114, 228, 212, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  transform: perspective(700px) rotateX(62deg) translateZ(0);
+  transform-origin: 50% 0;
+  mask-image: radial-gradient(ellipse at 50% 35%, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at 50% 35%,
+    #000,
+    transparent 72%
+  );
+}
+.who-help-canvas::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 140%;
+  height: 70%;
+  background: conic-gradient(
+    from 200deg at 50% 50%,
+    rgba(72, 180, 220, 0.1),
+    rgba(114, 228, 212, 0.08),
+    rgba(1, 78, 166, 0.12),
+    rgba(72, 180, 220, 0.1)
+  );
+  filter: blur(70px);
+  opacity: 0.6;
+  animation: whoHelpAurora 34s linear infinite;
+}
+@keyframes whoHelpAurora {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .who-help-canvas::after {
+    animation: none;
+  }
 }
 .who-help-glow {
   position: absolute;
@@ -637,6 +747,9 @@
   .who-help-sticky {
     min-height: auto;
     padding: 64px 0;
+  }
+  .who-help-canvas {
+    opacity: 0.7;
   }
 }
 @media (max-width: 560px) {

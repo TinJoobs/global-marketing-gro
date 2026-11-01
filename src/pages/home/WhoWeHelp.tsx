@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { useModalCTA } from "@/components/modal/useModalCTA";
@@ -16,8 +16,14 @@ export default function WhoWeHelp() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
-  const progressScale = useTransform(scrollYProgress, [0, 1], ["8%", "100%"]);
+  // Smooth the scroll-driven translate with a spring for a cinematic glide.
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.4,
+  });
+  const x = useTransform(progress, [0, 1], [0, -distance]);
+  const progressScale = useTransform(progress, [0, 1], ["8%", "100%"]);
 
   useEffect(() => {
     const desktop = matchMedia("(min-width: 820px)");
@@ -106,6 +112,7 @@ export default function WhoWeHelp() {
       aria-labelledby="who-help-title"
       style={enabled ? { height: `calc(100vh + ${distance}px)` } : undefined}
     >
+      <div className="who-help-canvas" aria-hidden="true" />
       <div className="who-help-glow" aria-hidden="true" />
       <div className="who-help-sticky">
         <div className="who-help-head container-gmg">

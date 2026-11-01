@@ -106,6 +106,12 @@ const resources: MenuItem[] = [
   },
 ];
 
+const inlineLinks: MenuItem[] = [
+  { label: "How it works", to: "/how-it-works" },
+  { label: "Pricing", to: "/pricing" },
+  { label: "Integrations", to: "/integrations" },
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -143,7 +149,7 @@ export default function Header() {
     };
   }, []);
 
-  const links = (items: MenuItem[]) =>
+  const megaLinks = (items: MenuItem[]) =>
     items.map((item) => (
       <Link
         key={item.to}
@@ -170,7 +176,7 @@ export default function Header() {
       aria-hidden={activeMenu !== id}
     >
       <div className="gmg-mega-inner container-gmg">
-        <div className="gmg-mega-grid">{links(items)}</div>
+        <div className="gmg-mega-grid">{megaLinks(items)}</div>
         <aside className="gmg-mega-feature">
           <span className="eyebrow">{label}</span>
           <p>
@@ -245,11 +251,16 @@ export default function Header() {
           >
             Solutions <Icon name="chevron" size={14} />
           </button>
-          {links([
-            { label: "How it works", to: "/how-it-works" },
-            { label: "Pricing", to: "/pricing" },
-            { label: "Integrations", to: "/integrations" },
-          ])}
+          {inlineLinks.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className="gmg-nav-link"
+              aria-current={pathname === item.to ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
           <button
             type="button"
             className="gmg-nav-link gmg-nav-trigger"
