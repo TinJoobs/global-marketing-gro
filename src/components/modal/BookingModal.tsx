@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Icon } from "@/components/Icon";
-import { useModal } from "./modalContext";
 import type { ContactPreset } from "./modalContext";
 import {
   fetchCalendarFreeSlots,
@@ -11,7 +10,7 @@ import {
   slotsToOptions,
   submitCalendarBooking,
 } from "@/lib/booking";
-import { buildTrackingPayload } from "@/lib/tracking";
+import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
 
 const CONSENT =
   "I agree that Global Marketing Group may contact me about this booking request.";
@@ -33,6 +32,8 @@ export function BookingModal({
   });
   const [slots, setSlots] = useState<{ date: string; iso: string }[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(true);
+  const [availabilityError, setAvailabilityError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
   const [selected, setSelected] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -41,14 +42,15 @@ export function BookingModal({
   useEffect(() => {
     let active = true;
     setLoadingSlots(true);
+    setAvailabilityError(false);
     fetchCalendarFreeSlots(range.start, range.end)
       .then((data) => active && setSlots(slotsToOptions(data)))
-      .catch(() => active && setSlots([]))
+      .catch(() => { if(active) { setSlots([]); setAvailabilityError(true); } })
       .finally(() => active && setLoadingSlots(false));
     return () => {
       active = false;
     };
-  }, [range.start, range.end]);
+  }, [range.start, range.end, attempt]);
 
   const contextNote = useMemo(() => {
     const bits = [
@@ -78,7 +80,7 @@ export function BookingModal({
       next.email = "Enter a valid email.";
     if (phone.replace(/\D/g, "").length < 7)
       next.phone = "Enter a phone number.";
-    if (!selected) next.slot = "Choose a time.";
+    if (!selected || !slots.some(slot => slot.iso === selected)) next.slot = "Choose a time.";
     if (!consent) next.consent = "Please agree to be contacted.";
     setErrors(next);
     if (Object.keys(next).length) return;
@@ -94,7 +96,7 @@ export function BookingModal({
     });
     if (ok) {
       // Also fire a form-tracking event so the lead joins the CRM contact list.
-      buildTrackingPayload("booking-modal", "Booking Request", {
+      void postTrackingEvent(buildTrackingPayload("booking-modal", "Booking Request", {
         first_name: firstName,
         last_name: lastName,
         email,
@@ -103,7 +105,7 @@ export function BookingModal({
           .filter(Boolean)
           .join("\n\n"),
         consent,
-      });
+      })).catch(() => { /* The appointment is already booked; do not retry it for analytics. */ });
       setStatus("success");
       formRef.current?.reset();
     } else {
@@ -121,9 +123,7 @@ export function BookingModal({
           You're booked. Talk soon.
         </h2>
         <p className="text-muted-foreground mt-3 max-w-md mx-auto">
-          Thank you for scheduling with Global Marketing Group. A confirmation
-          and calendar invite are on their way to your inbox. We'll see you at
-          the time you selected.
+          Thank you for scheduling with Global Marketing Group. Your selected time is {formatSlot(selected)} ({Intl.DateTimeFormat().resolvedOptions().timeZone}). Keep this time for your records; contact us if you need to make a change.
         </p>
         <button className="btn-primary-gmg mt-7" type="button" onClick={onDone}>
           Done
@@ -139,6 +139,7 @@ export function BookingModal({
       onSubmit={handleSubmit}
       noValidate
     >
+      <fieldset disabled={status === "submitting"} className="booking-fields">
       <span className="eyebrow">Free discovery call</span>
       <h2 className="text-2xl md:text-3xl font-bold mt-1">
         Book your strategy call
@@ -159,51 +160,59 @@ export function BookingModal({
           <Label htmlFor="bk-first">First name</Label>
           <Input
             id="bk-first"
+            aria-invalid={!!errors.firstName}
+            aria-describedby={errors.firstName ? "bk-first-error" : undefined}
             name="firstName"
             required
             autoComplete="given-name"
             className="h-12"
           />
           {errors.firstName && (
-            <p className="gmg-field-error">{errors.firstName}</p>
+            <p id="bk-first-error" className="gmg-field-error">{errors.firstName}</p>
           )}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="bk-last">Last name</Label>
           <Input
             id="bk-last"
+            aria-invalid={!!errors.lastName}
+            aria-describedby={errors.lastName ? "bk-last-error" : undefined}
             name="lastName"
             required
             autoComplete="family-name"
             className="h-12"
           />
           {errors.lastName && (
-            <p className="gmg-field-error">{errors.lastName}</p>
+            <p id="bk-last-error" className="gmg-field-error">{errors.lastName}</p>
           )}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="bk-email">Email</Label>
           <Input
             id="bk-email"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "bk-email-error" : undefined}
             name="email"
             type="email"
             required
             autoComplete="email"
             className="h-12"
           />
-          {errors.email && <p className="gmg-field-error">{errors.email}</p>}
+          {errors.email && <p id="bk-email-error" className="gmg-field-error">{errors.email}</p>}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="bk-phone">Phone</Label>
           <Input
             id="bk-phone"
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "bk-phone-error" : undefined}
             name="phone"
             type="tel"
             required
             autoComplete="tel"
             className="h-12"
           />
-          {errors.phone && <p className="gmg-field-error">{errors.phone}</p>}
+          {errors.phone && <p id="bk-phone-error" className="gmg-field-error">{errors.phone}</p>}
         </div>
       </div>
 
@@ -221,6 +230,7 @@ export function BookingModal({
 
       <fieldset className="mt-5">
         <legend className="sr-only">Choose a time</legend>
+        <p className="gmg-timezone">Times shown in {Intl.DateTimeFormat().resolvedOptions().timeZone}.</p>
         <span className="text-sm font-semibold text-navy block mb-2">
           Choose a time
         </span>
@@ -228,23 +238,22 @@ export function BookingModal({
           <div className="gmg-slots-skeleton" aria-live="polite">
             <span>Loading available times…</span>
           </div>
+        ) : availabilityError ? (
+          <div className="gmg-slots-empty" role="alert">
+            <p>We couldn't load available times. Check your connection and try again.</p>
+            <button type="button" className="text-link mt-3" onClick={() => setAttempt(value => value + 1)}>Retry availability</button>
+          </div>
         ) : slots.length ? (
           <div
             className="gmg-slots"
-            role="listbox"
             aria-label="Available times"
           >
-            {slots.slice(0, 12).map((s) => (
-              <button
-                key={s.iso}
-                type="button"
-                role="option"
-                aria-selected={selected === s.iso}
-                className={`gmg-slot ${selected === s.iso ? "is-selected" : ""}`}
-                onClick={() => setSelected(s.iso)}
-              >
-                {formatSlot(s.iso)}
-              </button>
+            {slots.map((s) => (
+              <label key={s.iso} className={`gmg-slot ${selected === s.iso ? "is-selected" : ""}`}>
+                <input type="radio" name="booking-time" value={s.iso} checked={selected === s.iso}
+                  onChange={() => setSelected(s.iso)} aria-invalid={!!errors.slot} aria-describedby={errors.slot ? "bk-slot-error" : undefined}/>
+                <span>{formatSlot(s.iso)}</span>
+              </label>
             ))}
           </div>
         ) : (
@@ -254,18 +263,21 @@ export function BookingModal({
             and we'll find one.
           </div>
         )}
-        {errors.slot && <p className="gmg-field-error mt-2">{errors.slot}</p>}
+        {errors.slot && <p id="bk-slot-error" className="gmg-field-error mt-2">{errors.slot}</p>}
       </fieldset>
 
       <label className="gmg-consent mt-5">
         <input
           type="checkbox"
           name="consent"
+          aria-invalid={!!errors.consent}
+          aria-describedby={errors.consent ? "bk-consent-error" : undefined}
           required
           className="mt-0.5 accent-primary"
         />
         <span>{CONSENT}</span>
       </label>
+      {errors.consent && <p id="bk-consent-error" className="gmg-field-error">{errors.consent}</p>}
 
       <button
         className="btn-primary-gmg w-full mt-6"
@@ -275,6 +287,7 @@ export function BookingModal({
         {status === "submitting" ? "Booking…" : "Confirm my call"}
         <Icon name="arrow" size={18} />
       </button>
+      </fieldset>
       {status === "error" && (
         <p role="alert" className="gmg-field-error mt-3 text-center">
           We couldn't book that time. Please try again or email us directly.

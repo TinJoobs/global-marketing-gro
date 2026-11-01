@@ -2,6 +2,7 @@
 const { chromium } = require('playwright-core');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const artifactDir=process.env.GMG_TEST_ARTIFACT_DIR || 'docs/previews';
 const base = process.env.GMG_TEST_URL || 'http://127.0.0.1:8080';
 const routes = ['/', '/pricing', '/services', '/integrations', '/missed-revenue-calculator', '/contact', '/about', '/portfolio', '/faq', '/careers', '/resources', '/how-it-works', '/sales-growth-system', '/virtual-assistant-services', '/crm-automation', '/ai-automation', '/digital-solutions', '/appointment-setting', '/lead-follow-up', '/industries', '/guide-va-delegation', '/guide-lead-follow-up', '/guide-crm-readiness', '/resources/affiliate', '/resources/media', '/careers/account-rep', '/careers/executive-assistant', '/careers/referral', '/privacy', '/terms', '/refund', '/thank-you'];
 (async () => {
@@ -51,9 +52,9 @@ const routes = ['/', '/pricing', '/services', '/integrations', '/missed-revenue-
   await page.getByRole('link',{name:'Explore integration options',exact:false}).click(); await page.waitForURL('**/integrations');
   await page.getByRole('link',{name:'Global Marketing Group home'}).click(); await strip.waitFor();
   assert.equal(await page.locator('[data-logo-clone]').count(),1,'remount does not duplicate clones');
-  fs.mkdirSync('docs/previews',{recursive:true});
-  await page.screenshot({path:'docs/previews/harness-home.png',fullPage:false});
-  await strip.scrollIntoViewIfNeeded(); await strip.screenshot({path:'docs/previews/harness-logo-strip.png'});
+  fs.mkdirSync(artifactDir,{recursive:true});
+  await page.screenshot({path:artifactDir+'/harness-home.png',fullPage:false});
+  await strip.scrollIntoViewIfNeeded(); await strip.screenshot({path:artifactDir+'/harness-logo-strip.png'});
   await page.goto(base+'/missed-revenue-calculator');
   for(const [id,value] of Object.entries({inquiries:'100',unfollowed:'30',closeRate:'25',saleValue:'500'})) await page.locator('#revenue-'+id).fill(value);
   assert.match(await page.getByLabel('Estimated monthly lost opportunity').innerText(),/3,750/);
@@ -65,7 +66,7 @@ const routes = ['/', '/pricing', '/services', '/integrations', '/missed-revenue-
   await page.getByText(/could not receive your request/).waitFor(); assert.equal(submissions,1);
   assert.equal(await page.getByLabel('Email address',{exact:true}).inputValue(),'browser-test@example.invalid');
   await page.setViewportSize({width:390,height:844}); await page.goto(base+'/missed-revenue-calculator');
-  await page.screenshot({path:'docs/previews/harness-calculator-mobile.png',fullPage:true});
+  await page.screenshot({path:artifactDir+'/harness-calculator-mobile.png',fullPage:true});
   await page.getByRole('button',{name:'Open navigation'}).click(); await page.keyboard.press('Escape');
   assert.equal(await page.getByRole('button',{name:'Open navigation'}).getAttribute('aria-expanded'),'false');
   for(const file of ['robots.txt','sitemap.xml']){const response=await page.request.get(base+'/'+file);const body=await response.text();assert.ok(!body.includes('<!doctype html>'));assert.match(body,file==='robots.txt'?/Sitemap:/:/<urlset/);}

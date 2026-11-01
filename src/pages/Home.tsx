@@ -3,7 +3,7 @@ import HomeSections from "@/pages/home/HomeSections";
 
 export default function Home() {
   return (
-    <div>
+    <div className="cinematic-home">
       <HomeHero />
       <HomeSections />
     </div>

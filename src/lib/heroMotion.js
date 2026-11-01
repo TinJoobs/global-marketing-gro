@@ -35,7 +35,7 @@ export function initializeHero(hero, root) {
       if (x < 0 || x > width || y < 0 || y > height) return;
       context.beginPath();
       context.arc(x, y, Math.min(2, scale), 0, Math.PI * 2);
-      context.fillStyle = `rgba(217,180,106,${Math.min(0.65, scale * 0.4)})`;
+      context.fillStyle = `rgba(114,228,212,${Math.min(0.65, scale * 0.4)})`;
       context.fill();
     });
   }

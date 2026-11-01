@@ -1,8 +1,9 @@
+import ConnectedStory from "./ConnectedStory";
 import IntegrationLogoSlider from "@/components/IntegrationLogoSlider";
 import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { SectionHead, FAQList, CTASection } from "@/components/sections";
-import { coreSolutions, features, process, industries, faqs } from "./homeData";
+import { coreSolutions, industries, faqs } from "./homeData";
 import { packages } from "@/data/packages";
 export default function HomeSections() {
   return (
@@ -47,7 +48,7 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-      <section className="section-gmg pale-bg" id="core-solutions">
+      <section className="section-gmg pale-bg solutions-section" id="core-solutions">
         <div className="container-gmg">
           <SectionHead
             center
@@ -83,41 +84,7 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-      <section className="section-gmg">
-        <div className="container-gmg">
-          <SectionHead
-            eyebrow="From inquiry to next step"
-            title="A connected process for every opportunity."
-          />
-          <div className="gmg-app-grid">
-            {features.slice(0, 3).map((f) => (
-              <article className="card-gmg" key={f.title}>
-                <span className="icon-box mb-6">
-                  <Icon name={f.icon} />
-                </span>
-                <h3 className="text-xl mb-4">{f.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {f.body}
-                </p>
-              </article>
-            ))}
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-12">
-            {process.map((p) => (
-              <article key={p.num}>
-                <span className="text-primary font-bold">{p.num}</span>
-                <h3 className="text-lg my-3">{p.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {p.body}
-                </p>
-              </article>
-            ))}
-          </div>
-          <Link to="/how-it-works" className="text-link mt-8">
-            See how we get you started <Icon name="arrow" size={18} />
-          </Link>
-        </div>
-      </section>
+      <ConnectedStory/>
       <section className="section-gmg pale-bg">
         <div className="container-gmg grid md:grid-cols-2 gap-12 items-center">
           <img
@@ -152,7 +119,7 @@ export default function HomeSections() {
             {packages.map((p) => (
               <article
                 className="card-gmg flex flex-col"
-                style={p.popular ? { borderColor: "#dfbb76" } : undefined}
+                style={p.popular ? { borderColor: "var(--brand-teal)" } : undefined}
                 key={p.slug}
               >
                 <span className="eyebrow">

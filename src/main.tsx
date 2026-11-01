@@ -5,6 +5,7 @@ import App from "./App";
 import "./index.css";
 import "./theme.css";
 import "./components/modal/modal.css";
+import "./cinematic.css";
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

@@ -119,13 +119,15 @@ export function ContactModal({
         <Label htmlFor="cm-name">Full name</Label>
         <Input
           id="cm-name"
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "cm-name-error" : undefined}
           name="name"
           required
           maxLength={100}
           autoComplete="name"
           className="h-12"
         />
-        {errors.name && <p className="gmg-field-error">{errors.name}</p>}
+        {errors.name && <p id="cm-name-error" className="gmg-field-error">{errors.name}</p>}
       </div>
 
       <div className="gmg-modal-grid mt-5">
@@ -133,13 +135,15 @@ export function ContactModal({
           <Label htmlFor="cm-email">Email</Label>
           <Input
             id="cm-email"
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "cm-email-error" : undefined}
             name="email"
             type="email"
             required
             autoComplete="email"
             className="h-12"
           />
-          {errors.email && <p className="gmg-field-error">{errors.email}</p>}
+          {errors.email && <p id="cm-email-error" className="gmg-field-error">{errors.email}</p>}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="cm-phone">Phone (optional)</Label>
@@ -174,24 +178,29 @@ export function ContactModal({
         <Label htmlFor="cm-message">What would you like help with?</Label>
         <Textarea
           id="cm-message"
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "cm-message-error" : undefined}
           name="message"
           required
           maxLength={5000}
           className="min-h-28"
           placeholder="Share a little about your business and where you'd like support."
         />
-        {errors.message && <p className="gmg-field-error">{errors.message}</p>}
+        {errors.message && <p id="cm-message-error" className="gmg-field-error">{errors.message}</p>}
       </div>
 
       <label className="gmg-consent mt-5">
         <input
           type="checkbox"
           name="consent"
+          aria-invalid={!!errors.consent}
+          aria-describedby={errors.consent ? "cm-consent-error" : undefined}
           required
           className="mt-0.5 accent-primary"
         />
         <span>{CONSENT}</span>
       </label>
+      {errors.consent && <p id="cm-consent-error" className="gmg-field-error">{errors.consent}</p>}
 
       <button
         className="btn-primary-gmg w-full mt-6"

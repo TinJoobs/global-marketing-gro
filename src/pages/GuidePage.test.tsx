@@ -1,3 +1,4 @@
+import { ModalProvider } from "@/components/modal/ModalProvider";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
@@ -8,7 +9,7 @@ afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
 });
-const router = (page: React.ReactNode) => <MemoryRouter>{page}</MemoryRouter>;
+const router = (page: React.ReactNode) => <MemoryRouter><ModalProvider>{page}</ModalProvider></MemoryRouter>;
 
 describe("planning guides", () => {
   it.each([

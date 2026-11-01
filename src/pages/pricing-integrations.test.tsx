@@ -1,3 +1,4 @@
+import { ModalProvider } from "@/components/modal/ModalProvider";
 import {
   cleanup,
   fireEvent,
@@ -15,9 +16,9 @@ afterEach(cleanup);
 describe("package billing", () => {
   it("shows photo pricing and annual savings without discounting setup", () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter><ModalProvider>
         <Pricing />
-      </MemoryRouter>,
+      </ModalProvider></MemoryRouter>,
     );
     const launch = screen.getByRole("article", { name: "Launch plan" });
     expect(within(launch).getByText("$597")).toBeInTheDocument();
@@ -43,9 +44,9 @@ describe("package billing", () => {
 describe("integration directory", () => {
   it("combines category and text search, announces an empty state, and resets", () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter><ModalProvider>
         <Integrations />
-      </MemoryRouter>,
+      </ModalProvider></MemoryRouter>,
     );
     expect(
       screen.getAllByRole("link", { name: /Official details for/ }),

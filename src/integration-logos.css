@@ -1,10 +1,10 @@
 /* Official artwork stays in one unboxed, horizontally scrollable row. */
 
 #gmg-site .integration-logo-band {
-  background: #071611;
-  color: #edf5f2;
+  background: #06172e;
+  color: #f3f8ff;
   overflow: hidden;
-  border-block: 1px solid #294234;
+  border-block: 1px solid #294862;
   padding-block: 64px;
 }
 #gmg-site .integration-logo-band .section-head {
@@ -13,22 +13,22 @@
   text-align: center;
 }
 #gmg-site .integration-logo-band .eyebrow {
-  color: #dfbb76;
+  color: #72e4d4;
 }
 #gmg-site .integration-logo-band h2 {
-  color: #edf5f2;
+  color: #f3f8ff;
   font-size: clamp(1.9rem, 3vw, 2.6rem);
 }
 #gmg-site .integration-logo-band h2 span {
-  color: #dfbb76;
+  color: #72e4d4;
 }
 #gmg-site .integration-logo-band .section-head p {
-  color: #adbfba;
+  color: #adc0d5;
 }
 #gmg-site .integration-logo-slides {
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  background: linear-gradient(100deg, #f3f9f6, #e8f0ec);
+  background: linear-gradient(100deg, #f3f8ff, #e9f1fa);
   border-block: 1px solid #c9d9cf;
 }
 #gmg-site .integration-logo-row {
@@ -78,7 +78,7 @@
 }
 #gmg-site .integration-logo-card:focus-visible,
 #gmg-site .integration-logo-row:focus-visible {
-  outline: 3px solid #dfbb76;
+  outline: 3px solid #72e4d4;
   outline-offset: -4px;
 }
 #gmg-site .integration-logo-art {
@@ -104,7 +104,7 @@
   margin: 20px auto 0;
   text-align: center;
   font-size: 0.75rem;
-  color: #adbfba;
+  color: #adc0d5;
 }
 #gmg-site .integration-logo-band .actions {
   display: flex;
@@ -113,11 +113,11 @@
 }
 #gmg-site .integration-logo-band .btn-outline {
   border-color: #466050;
-  color: #edf5f2;
+  color: #f3f8ff;
   background: transparent;
 }
 #gmg-site .integration-logo-band .btn-outline:hover {
-  border-color: #dfbb76;
+  border-color: #72e4d4;
   color: #f0d29b;
   background: #183328;
 }
@@ -127,7 +127,7 @@
   margin: 28px auto 0;
   font-size: 0.8125rem;
   line-height: 1.7;
-  color: #adbfba;
+  color: #adc0d5;
 }
 @media (max-width: 600px) {
   #gmg-site .integration-logo-band {

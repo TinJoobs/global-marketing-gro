@@ -2,9 +2,9 @@
 #gmg-site .hero-experience {
   position: relative;
   overflow: hidden;
-  background: #071011;
+  background: #041225;
   padding: 52px 0 28px;
-  border-color: #314738;
+  border-color: #294862;
 }
 #gmg-site .hero-experience .container {
   position: relative;
@@ -23,7 +23,7 @@
 #gmg-site .hero-experience .lead {
   font-size: 1.075rem;
   max-width: 550px;
-  color: #bac9c2;
+  color: #c0d1e6;
 }
 #gmg-site .hero-experience .eyebrow.pill {
   font-size: 0.65rem;
@@ -39,7 +39,7 @@
   padding-inline: 19px;
 }
 #gmg-site .hero-experience .hero-note {
-  color: #a4b8ac;
+  color: #9eb7cf;
   font-size: 0.75rem;
 }
 #gmg-site .hero-experience .hero-note .icon {
@@ -64,7 +64,7 @@
   width: 580px;
   height: 580px;
   border-radius: 50%;
-  background: radial-gradient(circle, #286b4548, transparent 66%);
+  background: radial-gradient(circle, #014ea66b, transparent 66%);
   animation: gmg-ambient 17s ease-in-out infinite alternate;
   animation-play-state: paused;
 }
@@ -77,7 +77,7 @@
   height: 380px;
   right: 35%;
   top: 35%;
-  background: radial-gradient(circle, #aa75302b, transparent 68%);
+  background: radial-gradient(circle, #19bda92b, transparent 68%);
   animation-delay: -8s;
 }
 #gmg-site .perspective-grid {
@@ -87,8 +87,8 @@
   left: 10%;
   top: 47%;
   background-image:
-    linear-gradient(#a5c8910c 1px, transparent 1px),
-    linear-gradient(90deg, #a5c8910c 1px, transparent 1px);
+    linear-gradient(#8bbdff13 1px, transparent 1px),
+    linear-gradient(90deg, #8bbdff13 1px, transparent 1px);
   background-size: 55px 55px;
   transform: perspective(600px) rotateX(65deg) rotateZ(-18deg);
   transform-origin: 50% 0;
@@ -121,18 +121,18 @@
 #gmg-site .core-layer {
   position: absolute;
   inset: 0;
-  border: 1px solid #b499514f;
+  border: 1px solid #62c6ee66;
   border-radius: 34px;
-  background: linear-gradient(135deg, #274c35, #10231b 65%, #b59343);
+  background: linear-gradient(135deg, #155284, #072242 65%, #269fa9);
   box-shadow:
-    0 0 18px #e8bb3e29,
-    inset 0 0 16px #c8bd6426;
+    0 0 18px #48cdd829,
+    inset 0 0 16px #70aee826;
 }
 #gmg-site .layer-bottom {
   transform: translateZ(-34px);
   box-shadow:
-    0 15px 55px #e2ad3245,
-    0 0 0 2px #997b3549;
+    0 15px 55px #157be345,
+    0 0 0 2px #3db7e749;
 }
 #gmg-site .layer-middle {
   transform: translateZ(-17px);
@@ -145,13 +145,13 @@
   align-items: center;
   justify-content: center;
   gap: 2px;
-  border: 2px solid #cab66c;
+  border: 2px solid #72e4d4;
   border-radius: 34px;
-  background: linear-gradient(135deg, #284335, #0a1914 65%);
+  background: linear-gradient(135deg, #164973, #06172e 65%);
   color: var(--gold);
   box-shadow:
-    inset 0 0 35px #b9a55720,
-    0 0 28px #d8b65255;
+    inset 0 0 35px #6bc7e020,
+    0 0 28px #3bcbde55;
   transform: translateZ(6px);
 }
 #gmg-site .core-top > strong {
@@ -174,19 +174,19 @@
   top: 50%;
   width: 90%;
   height: 74%;
-  border: 1px solid #a98d4160;
+  border: 1px solid #6bb9ed60;
   border-radius: 50%;
   transform: translate(-50%, -50%) rotateX(56deg) rotateZ(-20deg);
   box-shadow:
-    0 0 20px #b19c2220,
-    inset 0 0 22px #97972f0d;
+    0 0 20px #429bd520,
+    inset 0 0 22px #429bd50d;
 }
 #gmg-site .orbit-two {
   width: 72%;
   height: 60%;
   top: 54%;
   border-style: dashed;
-  border-color: #71b17b55;
+  border-color: #72e4d455;
   transform: translate(-50%, -50%) rotateX(56deg) rotateZ(25deg);
 }
 #gmg-site .platform-floor {
@@ -195,7 +195,7 @@
   top: 60%;
   width: 65%;
   height: 40%;
-  background: radial-gradient(ellipse, #c7ac3540, transparent 68%);
+  background: radial-gradient(ellipse, #168ad340, transparent 68%);
   transform: translate(-50%, -50%) rotateX(56deg);
 }
 #gmg-site .platform-links {
@@ -206,7 +206,7 @@
   overflow: visible;
 }
 #gmg-site .platform-links path {
-  stroke: #bc9f5b;
+  stroke: #72e4d4;
   stroke-width: 1;
   stroke-dasharray: 3 9;
   opacity: 0.7;
@@ -232,20 +232,20 @@
   height: 62px;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, #233b27, #0a1a14);
-  border: 1px solid #b19755b0;
+  background: linear-gradient(135deg, #16466a, #082039);
+  border: 1px solid #6bb9ed90;
   border-radius: 50%;
   color: var(--gold-bright);
   box-shadow:
-    0 0 20px #d0a94830,
-    inset 0 0 14px #b3953b20;
+    0 0 20px #39b1ee30,
+    inset 0 0 14px #66bbff20;
 }
 #gmg-site .platform-node .icon {
   width: 29px;
   height: 29px;
 }
 #gmg-site .platform-node strong {
-  color: #d2ddce;
+  color: #c9dff4;
   font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -254,8 +254,8 @@
   position: absolute;
   width: 5px;
   height: 5px;
-  background: #f5df9f;
-  box-shadow: 0 0 12px 3px #e6ca7366;
+  background: #b7fff2;
+  box-shadow: 0 0 12px 3px #72e4d466;
   border-radius: 50%;
   animation: gmg-spark 8s ease-in-out infinite;
   animation-play-state: paused;
@@ -271,19 +271,19 @@
 }
 #gmg-site .platform-visual figcaption {
   text-align: center;
-  color: #cbd8cd;
+  color: #c0d1e6;
   font-size: 0.8125rem;
   line-height: 1.6;
 }
 #gmg-site .platform-visual figcaption > span {
   font-size: 0.625rem;
-  color: #8ca593;
+  color: #9eb7cf;
 }
 #gmg-site .hero-motion-control {
   gap: 8px;
   background: transparent;
-  color: #b7c8bb;
-  border: 1px solid #3b5143;
+  color: #adc0d5;
+  border: 1px solid #36556f;
   border-radius: 6px;
   padding: 5px 12px;
   margin-top: 17px;
@@ -302,7 +302,7 @@
 #gmg-site .hero-proof-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid #b5c9a91f;
+  border-top: 1px solid #8bbdff26;
   margin-top: 24px;
   padding-top: 25px;
   gap: 20px;
@@ -312,7 +312,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  color: #b8cabc;
+  color: #adc0d5;
   font-size: 0.8125rem;
   min-height: 44px;
 }
@@ -418,7 +418,7 @@
 #gmg-site .hero-experience .lead {
   font-size: 1.08rem;
   line-height: 1.8;
-  color: #adbfba;
+  color: #adc0d5;
   margin-top: 28px;
   max-width: 590px;
 }
@@ -432,7 +432,7 @@
   gap: 10px;
   font-size: 0.8rem;
   margin-top: 20px;
-  color: #adbfba;
+  color: #adc0d5;
 }
 #gmg-site .icon {
   width: 22px;

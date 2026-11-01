@@ -36,8 +36,8 @@ import TermsOfService from "./pages/TermsOfService";
 import RefundPolicy from "./pages/RefundPolicy";
 
 const App = () => (
-  <Layout>
-    <ModalProvider>
+  <ModalProvider>
+    <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/thank-you" element={<ThankYou />} />
@@ -110,8 +110,8 @@ const App = () => (
         <Route path="/:legacy.html" element={<LegacyRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </ModalProvider>
-  </Layout>
+    </Layout>
+  </ModalProvider>
 );
 
 export default App;

@@ -21,6 +21,11 @@ export function ModalShell({
   // Lock body scroll while the modal is open (offset for scrollbar width).
   useEffect(() => {
     previouslyFocused.current = document.activeElement as HTMLElement;
+    const background = document.getElementById("gmg-site");
+    const previousHidden = background?.getAttribute("aria-hidden");
+    const previousInert = background?.hasAttribute("inert");
+    background?.setAttribute("inert", "");
+    background?.setAttribute("aria-hidden", "true");
     const prevOverflow = document.body.style.overflow;
     const prevPadding = document.body.style.paddingRight;
     const scrollbar = window.innerWidth - document.documentElement.clientWidth;
@@ -31,7 +36,15 @@ export function ModalShell({
     return () => {
       document.body.style.overflow = prevOverflow;
       document.body.style.paddingRight = prevPadding;
-      previouslyFocused.current?.focus?.();
+      if (!previousInert) background?.removeAttribute("inert");
+      if (previousHidden == null) background?.removeAttribute("aria-hidden");
+      else background?.setAttribute("aria-hidden", previousHidden);
+      const visible = (element: HTMLElement | null) => element?.isConnected && element.getClientRects().length > 0 && !element.closest('[inert]');
+      const trigger = previouslyFocused.current;
+      const toggle = document.querySelector<HTMLElement>('.gmg-menu-toggle');
+      // A mobile navigation CTA becomes hidden when its popup opens.
+      const target = visible(trigger) ? trigger : visible(toggle) ? toggle : document.getElementById('main-content');
+      target?.focus({ preventScroll: true });
     };
   }, []);
 
@@ -105,7 +118,7 @@ export function ModalShell({
         >
           <Icon name="x" size={22} />
         </button>
-        <div aria-hidden id={descId} className="sr-only">
+        <div id={descId} className="sr-only">
           {kind === "booking"
             ? "Book a discovery call with Global Marketing Group."
             : "Send a message to Global Marketing Group."}

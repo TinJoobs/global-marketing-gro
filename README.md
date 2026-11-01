@@ -21,9 +21,12 @@ npm run build
 npm run preview
 # With the preview running and Chrome installed:
 npm run test:browser
+npm run test:cinematic
 ```
 
-Browser QA accepts `GMG_TEST_URL` and `GMG_BROWSER_EXECUTABLE` for a different server or Chromium executable. It intercepts CRM submissions.
+The cinematic design follows the live GMG navy/blue identity with logo-inspired teal lighting. The homepage includes the Philippines-backed 3D hero and a three-chapter connected-workflow story. See [docs/CINEMATIC-AUDIT.md](docs/CINEMATIC-AUDIT.md) for the audit and verified fixes.
+
+Browser QA accepts `GMG_TEST_URL` and `GMG_BROWSER_EXECUTABLE` for a different server or Chromium executable. Set `GMG_TEST_ARTIFACT_DIR` to write browser screenshots outside `docs/previews`. It intercepts CRM submissions.
 
 Type checking does not emit JavaScript, declaration files or build-info files into the source tree. The npm lockfile is authoritative; `npm ci` installs the verified dependency graph.
 

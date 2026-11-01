@@ -1,13 +1,13 @@
 .revenue-calculator {
-  --revenue-gold: #e7c77a;
-  --revenue-muted: #b8c8bd;
-  color: #f4f6ed;
-  background: #07140f;
+  --revenue-gold: #72e4d4;
+  --revenue-muted: #adc0d5;
+  color: #f3f8ff;
+  background: #041225;
   padding-bottom: 5rem;
 }
 .revenue-hero {
   padding: clamp(3.5rem, 8vw, 6rem) 0 3rem;
-  background: radial-gradient(ellipse at 80% 10%, #24433380, transparent 65%);
+  background: radial-gradient(ellipse at 80% 10%, #014ea650, transparent 65%);
 }
 .revenue-eyebrow,
 .revenue-reassurance {
@@ -27,7 +27,7 @@
   line-height: 1.05;
   letter-spacing: -0.05em;
   margin: 1.5rem 0;
-  color: #f4f6ed;
+  color: #f3f8ff;
 }
 .revenue-hero h1 span {
   color: var(--revenue-gold);
@@ -49,15 +49,15 @@
   align-items: start;
 }
 .revenue-calculator .card-gmg {
-  background: #10251b;
-  border: 1px solid #365342;
+  background: #0b2139;
+  border: 1px solid #36556f;
   box-shadow: none;
   padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: 1.25rem;
 }
 .revenue-calculator .card-gmg:hover {
   transform: none;
-  border-color: #58725b;
+  border-color: #72e4d4;
   box-shadow: none;
 }
 .revenue-step {
@@ -70,7 +70,7 @@
   margin-bottom: 1rem;
 }
 .revenue-calculator h2 {
-  color: #f4f6ed;
+  color: #f3f8ff;
   font-size: clamp(1.4rem, 2.8vw, 1.8rem);
   line-height: 1.25;
   letter-spacing: -0.025em;
@@ -113,10 +113,10 @@
   display: block;
   width: 100%;
   min-height: 3.25rem;
-  border: 1px solid #78917e;
+  border: 1px solid #7da2c6;
   border-radius: 0.6rem;
-  color: #f4f6ed;
-  background: #091b12;
+  color: #f3f8ff;
+  background: #071a30;
   padding: 0.75rem 4rem 0.75rem 1rem;
   font-size: 1.1rem;
 }
@@ -156,10 +156,10 @@
   padding-left: 1rem;
   font-size: 0.85rem;
   margin: 1.5rem 0;
-  color: #d5e0d7;
+  color: #d1e0f2;
 }
 .revenue-assumptions {
-  border-top: 1px solid #365342;
+  border-top: 1px solid #36556f;
   padding-top: 1rem;
   color: var(--revenue-muted);
   font-size: 0.85rem;
@@ -167,7 +167,7 @@
 .revenue-assumptions summary {
   cursor: pointer;
   min-height: 44px;
-  color: #f4f6ed;
+  color: #f3f8ff;
   font-weight: 600;
 }
 .revenue-assumptions p {
@@ -175,7 +175,7 @@
 }
 .revenue-calculator .btn-primary-gmg {
   background: var(--revenue-gold);
-  color: #142015;
+  color: #103c53;
   border: 1px solid var(--revenue-gold);
   font-size: 0.9rem;
   min-height: 48px;
@@ -184,7 +184,7 @@
   text-align: center;
 }
 .revenue-calculator .btn-primary-gmg:hover {
-  background: #f1d99f;
+  background: #b7fff2;
   box-shadow: none;
   transform: none;
 }
@@ -202,7 +202,7 @@
   min-height: 44px;
   cursor: pointer;
   padding: 0.65rem 0;
-  color: #d5e0d7;
+  color: #d1e0f2;
   font-size: 0.9rem;
   line-height: 1.55;
 }
@@ -239,7 +239,7 @@
   text-underline-offset: 3px;
 }
 .revenue-success {
-  color: #b9e7c1;
+  color: #b7fff2;
   margin-top: 1rem;
 }
 .revenue-error-summary {

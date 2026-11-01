@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import {
   ModalContext,
   type ContactPreset,
@@ -23,20 +23,13 @@ export function ModalProvider({ children }: { children: ReactNode }) {
   }, []);
   const closeModal = useCallback(() => setState(null), []);
 
-  // Restore focus-friendly state on unmount.
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
   return (
     <ModalContext.Provider
       value={{ state, openBooking, openContact, closeModal }}
     >
       {children}
       {state && (
-        <ModalShell onClose={closeModal} kind={state.kind}>
+        <ModalShell key={state.kind} onClose={closeModal} kind={state.kind}>
           {state.kind === "booking" ? (
             <BookingModal preset={state.preset} onDone={closeModal} />
           ) : (
