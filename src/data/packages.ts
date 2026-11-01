@@ -8,7 +8,7 @@ export const packages = [
     setup: 1997,
     popular: false,
     features: [
-      "Full GoHighLevel CRM build on your branded sub-account",
+      "Full custom CRM build on your branded account",
       "Missed-call text-back, review automation & instant lead capture",
       "Two-way texting & email connected to your lead sources",
       "Onboarding strategy call + 30 days of post-launch support",

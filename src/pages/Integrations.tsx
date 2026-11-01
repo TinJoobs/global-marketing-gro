@@ -43,11 +43,11 @@ function BrandBadge({ slug }: { slug: string }) {
 const routeNotes = [
   {
     name: "Native",
-    body: "Built-in HighLevel settings, calendars, Social Planner, SMTP, or workflow actions. Native describes the setup route; accounts, permissions, usage fees, and premium action charges may still apply.",
+    body: "Built-in platform settings, calendars, Social Planner, SMTP, or workflow actions. Native describes the setup route; accounts, permissions, usage fees, and premium action charges may still apply.",
   },
   {
     name: "Marketplace",
-    body: "Install an app through HighLevel App Marketplace. App availability, permissions, installation requirements, and any subscription fees vary by provider.",
+    body: "Install an app through the App Marketplace. App availability, permissions, installation requirements, and any subscription fees vary by provider.",
   },
   {
     name: "Connector",
@@ -246,7 +246,7 @@ export default function Integrations() {
             <SectionHead
               eyebrow="Beyond this directory"
               title="Explore the wider app ecosystem."
-              subtitle={`This is a researched editorial snapshot, checked ${integrationsCheckedDate}. The live HighLevel Marketplace contains the wider, changing app catalog.`}
+              subtitle={`This is a researched editorial snapshot, checked ${integrationsCheckedDate}. The live marketplace contains the wider, changing app catalog.`}
             />
             <a
               className="btn-outline-gmg"
@@ -254,7 +254,7 @@ export default function Integrations() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Browse HighLevel Marketplace{" "}
+              Browse App Marketplace{" "}
               <ArrowUpRight aria-hidden="true" className="w-4 h-4" />
               <span className="sr-only">(opens in a new tab)</span>
             </a>

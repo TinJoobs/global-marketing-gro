@@ -418,7 +418,7 @@ export const integrations = [
     name: "Make",
     category: "automation",
     connection: "Connector",
-    description: "Build scenarios using supported GoHighLevel modules in Make.",
+    description: "Build scenarios using supported platform modules in Make.",
     url: "https://apps.make.com/highlevel?hl=en-US",
     mark: "Mk",
     color: "#6D00CC",

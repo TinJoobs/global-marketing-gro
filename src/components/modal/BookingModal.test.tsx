@@ -37,7 +37,8 @@ function open() {
   render(<BookingModal onDone={() => {}} preset={{ plan: "growth" }} />);
 }
 async function fill() {
-  await screen.findByRole("radio", { name: /8:00/ });
+  const radio = (await screen.findAllByRole("radio", { name: /8:00/ }))[0];
+  fireEvent.click(radio);
   fireEvent.change(screen.getByLabelText("First name"), {
     target: { value: "Test" },
   });
