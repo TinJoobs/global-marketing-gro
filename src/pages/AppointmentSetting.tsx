@@ -44,6 +44,7 @@ export default function AppointmentSetting() {
   return (
     <div>
       <PageHero
+        variant="appointment"
         eyebrow="Connected service"
         title={<>Appointment Setting</>}
         lead="Combine online scheduling, confirmations, reminders, and personal follow-up so your team can focus on the conversations that matter."

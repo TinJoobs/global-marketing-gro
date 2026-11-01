@@ -47,6 +47,7 @@ export default function Services() {
   return (
     <div>
       <PageHero
+        variant="services"
         eyebrow="What we do"
         title={<>Elevate Your Marketing Strategy</>}
         lead="Sales funnel creation, CRM setup, marketing automation, campaign optimization, and full-service digital strategy — all under one roof."

@@ -44,6 +44,7 @@ export default function DigitalSolutions() {
   return (
     <div>
       <PageHero
+        variant="digital"
         eyebrow="Connected service"
         title={<>Digital Solutions</>}
         lead="Create a website that reflects your vision and delivers results — professional development, conversion-focused design, brand alignment, SEO, automation, and support."

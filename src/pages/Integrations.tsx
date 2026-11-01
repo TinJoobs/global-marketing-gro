@@ -80,7 +80,7 @@ export default function Integrations() {
   return (
     <div>
       <PageHero
-        simple
+        variant="integrations"
         eyebrow="Integrations"
         title={
           <>

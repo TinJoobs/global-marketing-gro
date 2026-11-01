@@ -69,6 +69,7 @@ export default function SalesGrowthSystem() {
   return (
     <div>
       <PageHero
+        variant="crm"
         eyebrow="Our core solution"
         title={<>The Sales Growth System™</>}
         lead="A complete sales and follow-up system designed to help you capture, organize, nurture, and convert more leads — without doing everything yourself."

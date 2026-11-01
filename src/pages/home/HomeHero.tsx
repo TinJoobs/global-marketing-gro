@@ -4,7 +4,9 @@ import visual from "@/assets/platform-visual.html?raw";
 import { initializeHero } from "@/lib/heroMotion";
 import { Icon } from "@/components/Icon";
 import { useModalCTA } from "@/components/modal/useModalCTA";
+import { Hero3DScene } from "@/components/hero3d/Hero3DScene";
 import "@/hero.css";
+import "@/components/hero3d/hero3d.css";
 export default function HomeHero() {
   const ref = useRef<HTMLElement>(null);
   const { book } = useModalCTA();
@@ -13,7 +15,7 @@ export default function HomeHero() {
       return initializeHero(ref.current, document.getElementById("gmg-site"));
   }, []);
   return (
-    <section className="hero-experience" ref={ref}>
+    <section className="hero-experience hero-experience--3d" ref={ref}>
       <div className="hero-atmosphere" aria-hidden="true">
         <canvas data-depth-canvas />
         <span className="ambient-glow glow-one" />
@@ -57,7 +59,9 @@ export default function HomeHero() {
               Built for growing businesses. Backed by real human support.
             </p>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: visual }} />
+          <div className="hero-3d-slot" aria-hidden="true">
+            <Hero3DScene variant="philippines" />
+          </div>
         </div>
         <a href="#connected-story" className="hero-scroll-link">
           <span className="scroll-line" /> Discover a more connected business{" "}

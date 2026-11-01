@@ -47,10 +47,10 @@ export default function Faq() {
   return (
     <div>
       <PageHero
+        variant="generic"
         eyebrow="Help center"
         title={<>Frequently Asked Questions</>}
         lead="Start with clarity. Explore how the system and your Virtual Assistant can work for your business."
-        simple
       />
       <section className="section-gmg">
         <div className="container-gmg max-w-3xl">

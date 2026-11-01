@@ -44,6 +44,7 @@ export default function LeadFollowUp() {
   return (
     <div>
       <PageHero
+        variant="lead"
         eyebrow="Connected service"
         title={<>Lead Follow-Up</>}
         lead="Your business may not have a lead problem — it may have a follow-up and execution problem. We fix that."

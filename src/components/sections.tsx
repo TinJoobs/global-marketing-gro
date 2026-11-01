@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "./Icon";
 import { useModalCTA } from "./modal/useModalCTA";
+import { Hero3DScene, type Hero3DVariant } from "./hero3d/Hero3DScene";
+import "./hero3d/hero3d.css";
 
 export const SectionHead: React.FC<{
   eyebrow?: string;
@@ -33,6 +35,8 @@ export const PageHero: React.FC<{
   secondaryCta?: { label: string; to: string };
   visual?: React.ReactNode;
   simple?: boolean;
+  /** Themed 3D object rendered in the hero's visual slot. */
+  variant?: Hero3DVariant;
 }> = ({
   eyebrow,
   title,
@@ -42,8 +46,9 @@ export const PageHero: React.FC<{
   secondaryCta,
   visual,
   simple,
+  variant,
 }) => (
-  <section className="page-hero-gmg">
+  <section className="page-hero-gmg page-hero-gmg--3d">
     <div className="container-gmg">
       <div
         className={
@@ -77,7 +82,7 @@ export const PageHero: React.FC<{
             </div>
           )}
         </div>
-        {!simple && visual && <div>{visual}</div>}
+        {!simple && (visual ?? (variant && <Hero3DScene variant={variant} />))}
       </div>
     </div>
   </section>

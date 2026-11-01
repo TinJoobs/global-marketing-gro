@@ -29,6 +29,7 @@ export default function HowItWorks() {
   return (
     <div>
       <PageHero
+        variant="how"
         eyebrow="How it works"
         title={<>A Clearer Path from Inquiry to Opportunity</>}
         lead="Four simple steps to put the right technology, processes, and people in place so your business can respond faster and convert more."

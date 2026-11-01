@@ -60,6 +60,7 @@ export default function Industries() {
   return (
     <div>
       <PageHero
+        variant="industries"
         eyebrow="Who we serve"
         title={<>Industries We Support</>}
         lead="Built for busy business owners and growing organizations across industries — from accounting and real estate to wellness, education, and local services."

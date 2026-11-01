@@ -37,6 +37,7 @@ export default function Careers() {
   return (
     <div>
       <PageHero
+        variant="va"
         eyebrow="Careers"
         title={<>Grow With Global Marketing Group</>}
         lead="Join a team that connects strategy, systems, and support to help businesses grow. Explore our open roles and referral opportunities."

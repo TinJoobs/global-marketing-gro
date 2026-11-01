@@ -68,6 +68,7 @@ export default function VirtualAssistant() {
   return (
     <div>
       <PageHero
+        variant="va"
         eyebrow="Our core solution"
         title={<>Virtual Assistant Services</>}
         lead="Skilled Virtual Assistants who help manage the daily tasks that keep your business moving — so you can focus on growth."

@@ -237,6 +237,43 @@ html {
       #f8fbfc;
     @apply pt-20 pb-20 md:pt-28 md:pb-24 border-b border-line;
   }
+  /* Dark cinematic hero backdrop for the themed 3D scenes. */
+  .page-hero-gmg--3d {
+    position: relative;
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 75% 10%,
+        hsl(181 100% 25% / 0.18),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 70% 60% at 10% 100%,
+        hsl(167 60% 40% / 0.14),
+        transparent 60%
+      ),
+      linear-gradient(165deg, #031024 0%, #061a35 55%, #04132c 100%);
+    color: #e8f1ff;
+    border-bottom-color: rgba(114, 228, 212, 0.16);
+  }
+  .page-hero-gmg--3d .eyebrow {
+    color: #72e4d4;
+  }
+  .page-hero-gmg--3d h1,
+  .page-hero-gmg--3d .lead-gmg {
+    color: #f3f8ff;
+  }
+  .page-hero-gmg--3d .lead-gmg {
+    color: #c0d6f0;
+  }
+  .page-hero-gmg--3d .text-muted-foreground {
+    color: #adc0d5;
+  }
+  .page-hero-gmg--3d .btn-outline-gmg {
+    @apply bg-white/5 border-white/20 text-white;
+  }
+  .page-hero-gmg--3d .text-link {
+    @apply text-[#72e4d4];
+  }
   .breadcrumb-gmg {
     @apply flex flex-wrap gap-2 items-center text-muted-foreground text-xs mb-10;
   }

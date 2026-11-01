@@ -400,10 +400,25 @@
 #gmg-site .platform-stage > :not(.philippines-backdrop) {
   z-index: 1;
 }
+/* Interactive 3D scene slot in the home hero */
+#gmg-site .hero-3d-slot {
+  position: relative;
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 760px) {
+  #gmg-site .hero-3d-slot {
+    min-height: 280px;
+  }
+}
 @media (max-width: 460px) {
   #gmg-site .brand img {
     width: 64px;
     height: 64px;
+  }
+  #gmg-site .hero-3d-slot {
+    min-height: 240px;
   }
 }
 

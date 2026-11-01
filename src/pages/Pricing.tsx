@@ -18,7 +18,7 @@ export default function Pricing() {
   return (
     <div>
       <PageHero
-        simple
+        variant="pricing"
         eyebrow="Pricing & support"
         title={
           <>

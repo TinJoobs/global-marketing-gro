@@ -45,6 +45,7 @@ export default function AiAutomation() {
   return (
     <div>
       <PageHero
+        variant="ai"
         eyebrow="Connected service"
         title={<>AI & Human Support</>}
         lead="Unleash the power of AI with Global Marketing Group — conversations, live chat, chatbot workflow automation, smart lead scoring, and GPT-powered content creation."

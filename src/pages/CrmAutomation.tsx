@@ -44,6 +44,7 @@ export default function CrmAutomation() {
   return (
     <div>
       <PageHero
+        variant="crm"
         eyebrow="Connected service"
         title={<>CRM & Automation</>}
         lead="Connect contacts, conversations, appointments, tasks, and your sales pipeline in one organized system."

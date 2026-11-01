@@ -1,0 +1,321 @@
+/* ============================================================
+   Hero 3D scene system — per-page themed interactive 3D objects
+   Pure CSS-3D + framer-motion parallax. No new runtime deps.
+   ============================================================ */
+
+.hero3d-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+  -webkit-perspective: 1200px;
+  -webkit-perspective-origin: 50% 40%;
+  pointer-events: auto;
+}
+
+.hero3d-rig {
+  position: relative;
+  width: min(440px, 88%);
+  aspect-ratio: 1 / 1;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero3d-scroll-tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.hero3d-scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* ---- Central layered glass core ---- */
+.hero3d-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56%;
+  height: 48%;
+  transform: translate(-50%, -50%) rotateX(48deg) rotateZ(-28deg);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+.hero3d-core-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  border: 1px solid color-mix(in srgb, var(--edge) 55%, transparent);
+  background: linear-gradient(
+    135deg,
+    var(--core-a),
+    var(--core-b) 62%,
+    color-mix(in srgb, var(--node) 60%, var(--core-b))
+  );
+  box-shadow:
+    0 0 22px var(--glow),
+    inset 0 0 18px color-mix(in srgb, var(--edge) 14%, transparent);
+}
+.hero3d-core-bottom {
+  transform: translateZ(-34px);
+  box-shadow:
+    0 18px 56px color-mix(in srgb, var(--edge) 32%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--edge) 28%, transparent);
+}
+.hero3d-core-middle {
+  transform: translateZ(-16px);
+}
+.hero3d-core-top {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 26px;
+  border: 1.5px solid var(--edge);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--core-a) 80%, transparent),
+    var(--core-b) 70%
+  );
+  color: var(--edge);
+  box-shadow:
+    inset 0 0 34px color-mix(in srgb, var(--edge) 18%, transparent),
+    0 0 30px var(--glow);
+  transform: translateZ(8px);
+}
+.hero3d-core-symbol .icon {
+  width: 46px;
+  height: 46px;
+  filter: drop-shadow(0 0 10px var(--glow));
+}
+.hero3d-core-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%) translateZ(-60px);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow), transparent 62%);
+  pointer-events: none;
+  filter: blur(8px);
+  animation: hero3d-halo 6s ease-in-out infinite;
+}
+@keyframes hero3d-halo {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) translateZ(-60px) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(-60px) scale(1.08);
+  }
+}
+
+/* ---- Orbiting node ring ---- */
+.hero3d-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 96%;
+  height: 96%;
+  transform: translate(-50%, -50%) rotateX(62deg) rotateZ(-18deg);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+.hero3d-orbit-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--edge) 45%, transparent);
+  animation: hero3d-spin 22s linear infinite;
+}
+.hero3d-orbit.is-static .hero3d-orbit-track {
+  animation: none;
+}
+@keyframes hero3d-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hero3d-orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  transform: rotate(var(--angle)) translate(48%) rotate(calc(var(--angle) * -1));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.hero3d-orbit-node .hero3d-orbit-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--core-a), var(--core-b));
+  border: 1px solid color-mix(in srgb, var(--edge) 60%, transparent);
+  color: var(--edge);
+  box-shadow:
+    0 0 16px var(--glow),
+    inset 0 0 10px color-mix(in srgb, var(--edge) 18%, transparent);
+}
+.hero3d-orbit-node small {
+  color: #c0d6f0;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Philippines 3D map ---- */
+.hero3d-ph {
+  position: relative;
+  width: min(420px, 86%);
+  aspect-ratio: 11 / 14;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  animation: hero3d-ph-float 9s ease-in-out infinite;
+}
+.hero3d-ph.is-static {
+  animation: none;
+}
+@keyframes hero3d-ph-float {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(10deg) rotateY(-12deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(8deg) rotateY(-14deg);
+  }
+}
+.hero3d-ph-svg {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  filter: drop-shadow(0 30px 50px rgba(2, 12, 28, 0.6));
+}
+.hero3d-ph-land path {
+  fill: rgba(114, 228, 212, 0.16);
+  stroke: rgba(114, 228, 212, 0.7);
+  stroke-width: 1.2;
+}
+.hero3d-ph-node circle {
+  fill: #72e4d4;
+  filter: drop-shadow(0 0 6px rgba(114, 228, 212, 0.9));
+  transform-origin: center;
+  animation: hero3d-ph-pulse 2.4s ease-in-out infinite;
+}
+@keyframes hero3d-ph-pulse {
+  0%,
+  100% {
+    r: 4.5;
+    opacity: 0.8;
+  }
+  50% {
+    r: 7;
+    opacity: 1;
+  }
+}
+.hero3d-ph-links path {
+  stroke-dasharray: 3 8;
+  animation: hero3d-current 14s linear infinite;
+}
+@keyframes hero3d-current {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+.hero3d-ph-label {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8fd9cc;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Stages inside the dark hero keep the cinematic feel */
+.hero3d-stage--philippines,
+.hero3d-stage--crm,
+.hero3d-stage--ai,
+.hero3d-stage--digital,
+.hero3d-stage--appointment,
+.hero3d-stage--lead,
+.hero3d-stage--integrations,
+.hero3d-stage--industries,
+.hero3d-stage--how,
+.hero3d-stage--pricing,
+.hero3d-stage--about,
+.hero3d-stage--services,
+.hero3d-stage--va,
+.hero3d-stage--generic {
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 30%,
+      rgba(114, 228, 212, 0.1),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 50% 100%,
+      rgba(1, 78, 166, 0.12),
+      transparent 60%
+    );
+}
+
+/* Responsive: shrink and relax tilt on small screens */
+@media (max-width: 760px) {
+  .hero3d-stage {
+    min-height: 300px;
+  }
+  .hero3d-rig {
+    width: min(320px, 82%);
+  }
+  .hero3d-ph {
+    width: min(280px, 80%);
+  }
+  .hero3d-orbit-node small {
+    display: none;
+  }
+}
+@media (max-width: 460px) {
+  .hero3d-stage {
+    min-height: 240px;
+  }
+  .hero3d-rig {
+    width: min(260px, 86%);
+  }
+}
+
+/* Reduced motion: flatten everything, keep it visible & static */
+@media (prefers-reduced-motion: reduce) {
+  .hero3d-rig,
+  .hero3d-scroll-tilt,
+  .hero3d-ph {
+    transform: none !important;
+  }
+  .hero3d-core {
+    transform: translate(-50%, -50%) rotateX(40deg) rotateZ(-24deg);
+  }
+  .hero3d-orbit {
+    transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-16deg);
+  }
+}
