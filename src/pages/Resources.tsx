@@ -6,7 +6,12 @@ import { guides } from "@/data/guides";
 
 const resources: { icon: IconName; title: string; body: string; to: string }[] =
   [
-    { icon: "chart", title: "Missed Revenue Calculator", body: "Estimate the monthly opportunity lost when inquiries go unanswered, then plan your follow-up.", to: "/missed-revenue-calculator" },
+    {
+      icon: "chart",
+      title: "Missed Revenue Calculator",
+      body: "Estimate the monthly opportunity lost when inquiries go unanswered, then plan your follow-up.",
+      to: "/missed-revenue-calculator",
+    },
     {
       icon: "monitor",
       title: "Portfolio",
@@ -19,7 +24,7 @@ const resources: { icon: IconName; title: string; body: string; to: string }[] =
       body: "Unlock your earning potential with our exclusive affiliate program.",
       to: "/resources/affiliate",
     },
-    ...guides.map(guide => ({
+    ...guides.map((guide) => ({
       icon: "book" as IconName,
       title: guide.name,
       body: guide.intro,

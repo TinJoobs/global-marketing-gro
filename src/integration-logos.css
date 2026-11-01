@@ -1,27 +1,183 @@
 /* Official artwork stays in one unboxed, horizontally scrollable row. */
 
-#gmg-site .integration-logo-band {background:#071611;color:#edf5f2;overflow:hidden;border-block:1px solid #294234;padding-block:64px;}
-#gmg-site .integration-logo-band .section-head {max-width:850px;margin:0 auto 40px;text-align:center;}
-#gmg-site .integration-logo-band .eyebrow {color:#dfbb76;}
-#gmg-site .integration-logo-band h2 {color:#edf5f2;font-size:clamp(1.9rem,3vw,2.6rem);}
-#gmg-site .integration-logo-band h2 span {color:#dfbb76;}
-#gmg-site .integration-logo-band .section-head p {color:#adbfba;}
-#gmg-site .integration-logo-slides {width:100vw;margin-left:calc(50% - 50vw);background:linear-gradient(100deg,#f3f9f6,#e8f0ec);border-block:1px solid #c9d9cf;}
-#gmg-site .integration-logo-row {overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y;border-radius:0;}
-#gmg-site .integration-logo-row::-webkit-scrollbar {display:none;}
-#gmg-site .integration-logo-track {display:flex;width:max-content;}
-#gmg-site .integration-logo-group {display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-around;gap:32px;padding-right:32px;min-width:100vw;flex:none;}
-#gmg-site [data-logo-clone][hidden] {display:none!important;}
-#gmg-site .integration-logo-card {width:140px;height:94px;padding:20px 12px;display:flex;align-items:center;justify-content:center;border:0;border-radius:0;background:transparent;flex:none;text-decoration:none;}
-#gmg-site .integration-logo-card:hover {background:#d6e6dd;text-decoration:none;}
-#gmg-site .integration-logo-card:focus-visible,#gmg-site .integration-logo-row:focus-visible {outline:3px solid #dfbb76;outline-offset:-4px;}
-#gmg-site .integration-logo-art {display:flex;align-items:center;justify-content:center;width:116px;height:48px;padding:0;background:transparent;}
-#gmg-site .integration-logo-art img {display:block;width:96px;height:44px;max-width:100%;max-height:44px;min-width:0;min-height:0;object-fit:contain;}
-#gmg-site .integration-slide-hint {margin:20px auto 0;text-align:center;font-size:.75rem;color:#adbfba;}
-#gmg-site .integration-logo-band .actions {display:flex;justify-content:center;margin-top:28px;}
-#gmg-site .integration-logo-band .btn-outline {border-color:#466050;color:#edf5f2;background:transparent;}
-#gmg-site .integration-logo-band .btn-outline:hover {border-color:#dfbb76;color:#f0d29b;background:#183328;}
-#gmg-site .integration-slide-note {max-width:1080px;text-align:center;margin:28px auto 0;font-size:.8125rem;line-height:1.7;color:#adbfba;}
-@media(max-width:600px){#gmg-site .integration-logo-band{padding-block:45px;}#gmg-site .integration-logo-card{width:120px;height:82px;padding:16px 8px;}#gmg-site .integration-logo-group{gap:24px;padding-right:24px;}#gmg-site .integration-logo-band .section-head{margin-bottom:28px;}}
-@media(prefers-reduced-motion:reduce){#gmg-site .integration-logo-row{scroll-behavior:auto;}#gmg-site [data-logo-clone]{display:none!important;}}
-@media print{#gmg-site .integration-logo-band{background:#fff;color:#111;}#gmg-site .integration-logo-row{overflow:visible;}#gmg-site .integration-logo-track,#gmg-site .integration-logo-group{width:100%;flex-wrap:wrap;}#gmg-site .integration-logo-card{background:#fff;color:#111;}#gmg-site .integration-logo-band h2,#gmg-site .integration-logo-band h2 span,#gmg-site .integration-slide-note{color:#111;}#gmg-site [data-logo-clone],#gmg-site .integration-slide-hint{display:none!important;}}
+#gmg-site .integration-logo-band {
+  background: #071611;
+  color: #edf5f2;
+  overflow: hidden;
+  border-block: 1px solid #294234;
+  padding-block: 64px;
+}
+#gmg-site .integration-logo-band .section-head {
+  max-width: 850px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+#gmg-site .integration-logo-band .eyebrow {
+  color: #dfbb76;
+}
+#gmg-site .integration-logo-band h2 {
+  color: #edf5f2;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+#gmg-site .integration-logo-band h2 span {
+  color: #dfbb76;
+}
+#gmg-site .integration-logo-band .section-head p {
+  color: #adbfba;
+}
+#gmg-site .integration-logo-slides {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: linear-gradient(100deg, #f3f9f6, #e8f0ec);
+  border-block: 1px solid #c9d9cf;
+}
+#gmg-site .integration-logo-row {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  border-radius: 0;
+}
+#gmg-site .integration-logo-row::-webkit-scrollbar {
+  display: none;
+}
+#gmg-site .integration-logo-track {
+  display: flex;
+  width: max-content;
+}
+#gmg-site .integration-logo-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 32px;
+  padding-right: 32px;
+  min-width: 100vw;
+  flex: none;
+}
+#gmg-site [data-logo-clone][hidden] {
+  display: none !important;
+}
+#gmg-site .integration-logo-card {
+  width: 140px;
+  height: 94px;
+  padding: 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  flex: none;
+  text-decoration: none;
+}
+#gmg-site .integration-logo-card:hover {
+  background: #d6e6dd;
+  text-decoration: none;
+}
+#gmg-site .integration-logo-card:focus-visible,
+#gmg-site .integration-logo-row:focus-visible {
+  outline: 3px solid #dfbb76;
+  outline-offset: -4px;
+}
+#gmg-site .integration-logo-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+  height: 48px;
+  padding: 0;
+  background: transparent;
+}
+#gmg-site .integration-logo-art img {
+  display: block;
+  width: 96px;
+  height: 44px;
+  max-width: 100%;
+  max-height: 44px;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+}
+#gmg-site .integration-slide-hint {
+  margin: 20px auto 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #adbfba;
+}
+#gmg-site .integration-logo-band .actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+#gmg-site .integration-logo-band .btn-outline {
+  border-color: #466050;
+  color: #edf5f2;
+  background: transparent;
+}
+#gmg-site .integration-logo-band .btn-outline:hover {
+  border-color: #dfbb76;
+  color: #f0d29b;
+  background: #183328;
+}
+#gmg-site .integration-slide-note {
+  max-width: 1080px;
+  text-align: center;
+  margin: 28px auto 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #adbfba;
+}
+@media (max-width: 600px) {
+  #gmg-site .integration-logo-band {
+    padding-block: 45px;
+  }
+  #gmg-site .integration-logo-card {
+    width: 120px;
+    height: 82px;
+    padding: 16px 8px;
+  }
+  #gmg-site .integration-logo-group {
+    gap: 24px;
+    padding-right: 24px;
+  }
+  #gmg-site .integration-logo-band .section-head {
+    margin-bottom: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #gmg-site .integration-logo-row {
+    scroll-behavior: auto;
+  }
+  #gmg-site [data-logo-clone] {
+    display: none !important;
+  }
+}
+@media print {
+  #gmg-site .integration-logo-band {
+    background: #fff;
+    color: #111;
+  }
+  #gmg-site .integration-logo-row {
+    overflow: visible;
+  }
+  #gmg-site .integration-logo-track,
+  #gmg-site .integration-logo-group {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #gmg-site .integration-logo-card {
+    background: #fff;
+    color: #111;
+  }
+  #gmg-site .integration-logo-band h2,
+  #gmg-site .integration-logo-band h2 span,
+  #gmg-site .integration-slide-note {
+    color: #111;
+  }
+  #gmg-site [data-logo-clone],
+  #gmg-site .integration-slide-hint {
+    display: none !important;
+  }
+}

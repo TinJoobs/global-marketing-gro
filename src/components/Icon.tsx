@@ -5,6 +5,7 @@ const paths: Record<string, React.ReactNode> = {
   chevron: <path d="m6 9 6 6 6-6" />,
   plus: <path d="M12 5v14M5 12h14" />,
   check: <path d="m5 12 4 4L19 6" />,
+  x: <path d="M6 6l12 12M18 6L6 18" />,
   menu: <path d="M4 6h16M4 12h16M4 18h16" />,
   calendar: (
     <>

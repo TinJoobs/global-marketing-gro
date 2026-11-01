@@ -6,7 +6,9 @@ import { Gift, Share2 } from "lucide-react";
 import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
 
 const Referral = () => {
-  const [status, setStatus] = useState<"idle" | "pending" | "accepted" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "pending" | "accepted" | "error"
+  >("idle");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -151,17 +153,39 @@ const Referral = () => {
                 </div>
               </div>
               <label className="flex items-start gap-3 text-sm text-muted-foreground">
-                <input type="checkbox" name="consent" required className="mt-1 accent-primary" />
-                <span>I agree to the <a href="/privacy" className="text-primary underline">Privacy Policy</a> and the use of these details to process this referral.</span>
+                <input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  className="mt-1 accent-primary"
+                />
+                <span>
+                  I agree to the{" "}
+                  <a href="/privacy" className="text-primary underline">
+                    Privacy Policy
+                  </a>{" "}
+                  and the use of these details to process this referral.
+                </span>
               </label>
-              <Button type="submit" className="w-full" size="lg" disabled={status === "pending"}>
+              <Button
+                type="submit"
+                className="w-full"
+                size="lg"
+                disabled={status === "pending"}
+              >
                 {status === "pending" ? "Submitting…" : "Submit Referral"}
               </Button>
               {status === "accepted" && (
-                <p role="status" className="text-sm text-primary">Your referral has been received. Our team will review the details.</p>
+                <p role="status" className="text-sm text-primary">
+                  Your referral has been received. Our team will review the
+                  details.
+                </p>
               )}
               {status === "error" && (
-                <p role="alert" className="text-sm text-destructive">We could not receive your referral. Your details are still here; please try again.</p>
+                <p role="alert" className="text-sm text-destructive">
+                  We could not receive your referral. Your details are still
+                  here; please try again.
+                </p>
               )}
             </form>
           </div>

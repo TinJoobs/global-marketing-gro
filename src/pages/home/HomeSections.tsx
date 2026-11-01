@@ -1,17 +1,239 @@
-import IntegrationLogoSlider from '@/components/IntegrationLogoSlider';
-import { Link } from 'react-router-dom';
-import { Icon } from '@/components/Icon';
-import { SectionHead, FAQList, CTASection } from '@/components/sections';
-import { coreSolutions,features,process,industries,faqs } from './homeData';
-import { packages } from '@/data/packages';
-export default function HomeSections(){return <>
-<IntegrationLogoSlider/>
-<section className="section-gmg"><div className="container-gmg"><div className="home-tool-card grid md:grid-cols-[1.4fr_1fr] items-center gap-10"><div><span className="eyebrow">Free Missed Revenue Calculator</span><h2 className="text-3xl md:text-4xl mb-5">How Much Revenue Slips Through the Cracks?</h2><p>Estimate the monthly opportunity lost when inquiries go unanswered—then build a follow-up process that gives every lead a next step.</p><Link className="btn-primary-gmg mt-7" to="/missed-revenue-calculator">Calculate your missed opportunity <Icon name="arrow" size={18}/></Link></div><div className="border border-line rounded-xl p-7 bg-background/40"><span className="gmg-stat">4 inputs.</span><br/><span className="text-2xl font-semibold">One clearer picture.</span><p className="mt-4 text-sm">Your inquiry volume, follow-up gap, estimated close rate, and average sale value. Results are estimates, with every assumption explained.</p><p className="mt-4 text-sm">No signup needed to see your estimate.</p></div></div></div></section>
-<section className="section-gmg pale-bg" id="core-solutions"><div className="container-gmg"><SectionHead center eyebrow="Systems + people" title="Build the system. Put the right people behind it."/><div className="grid md:grid-cols-2 gap-6">{coreSolutions.map(c=><article className="card-gmg" key={c.title}><span className="icon-box mb-6"><Icon name={c.icon}/></span><h3 className="text-2xl mb-4">{c.title}</h3><p className="text-muted-foreground leading-relaxed mb-5">{c.body}</p><div className="flex flex-wrap gap-2 mb-7">{c.tags.map(tag=><span className="border border-line bg-secondary rounded-full px-3 py-1 text-xs" key={tag}>{tag}</span>)}</div><Link className="text-link" to={c.to}>{c.cta}<Icon name="arrow" size={16}/></Link></article>)}</div></div></section>
-<section className="section-gmg"><div className="container-gmg"><SectionHead eyebrow="From inquiry to next step" title="A connected process for every opportunity."/><div className="gmg-app-grid">{features.slice(0,3).map(f=><article className="card-gmg" key={f.title}><span className="icon-box mb-6"><Icon name={f.icon}/></span><h3 className="text-xl mb-4">{f.title}</h3><p className="text-muted-foreground leading-relaxed">{f.body}</p></article>)}</div><div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-12">{process.map(p=><article key={p.num}><span className="text-primary font-bold">{p.num}</span><h3 className="text-lg my-3">{p.title}</h3><p className="text-sm text-muted-foreground leading-relaxed">{p.body}</p></article>)}</div><Link to="/how-it-works" className="text-link mt-8">See how we get you started <Icon name="arrow" size={18}/></Link></div></section>
-<section className="section-gmg pale-bg"><div className="container-gmg grid md:grid-cols-2 gap-12 items-center"><img className="rounded-2xl w-full" src="/assets/images/support-professional.webp" alt="Support professional working at a laptop with a headset" width="780" height="660" loading="lazy"/><div><SectionHead eyebrow="Real people. Reliable follow-through." title="More room to run your business." subtitle="A trained Philippines-based Virtual Assistant helps keep the daily work moving, supported by recruiting, vetting, backup coverage, and regular reporting."/><Link className="btn-primary-gmg" to="/virtual-assistant-services">Meet your support options <Icon name="arrow" size={18}/></Link></div></div></section>
-<section className="section-gmg"><div className="container-gmg"><SectionHead center eyebrow="Simple plans. Real support." title="Choose the support your business needs." subtitle="Start with automation. Add dedicated people and operational support as you grow."/><div className="gmg-app-grid">{packages.map(p=><article className="card-gmg flex flex-col" style={p.popular?{borderColor:'#dfbb76'}:undefined} key={p.slug}><span className="eyebrow">{p.popular?'Most popular':p.name}</span><h3 className="text-2xl">{p.name}</h3><p className="text-muted-foreground my-4">{p.tagline}</p><p><strong className="gmg-stat">${p.monthly.toLocaleString('en-US')}</strong><span className="text-sm text-muted-foreground"> /month</span></p><p className="text-sm text-muted-foreground mt-3 mb-6">+ ${p.setup.toLocaleString('en-US')} one-time setup</p><ul className="space-y-3 text-sm text-muted-foreground mb-7">{p.features.slice(0,2).map(f=><li key={f} className="flex gap-2"><Icon name="check" size={16}/>{f}</li>)}</ul><Link to={`/contact?plan=${p.slug}&billing=monthly`} className="btn-outline-gmg mt-auto">Explore {p.name}<Icon name="arrow" size={16}/></Link></article>)}</div><p className="text-center text-sm text-muted-foreground mt-7">3-month minimum. Setup billed at signing. Annual plans save 10%. <Link className="text-link" to="/pricing">Compare every feature and add-on</Link></p></div></section>
-<section className="section-gmg pale-bg"><div className="container-gmg"><SectionHead eyebrow="Who we help" title="Built for busy service businesses."/><div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">{industries.map(i=><Link key={i.label} to="/industries" className="flex items-center gap-3 border border-line rounded-xl p-5 text-sm"><Icon name={i.icon} size={20}/>{i.label}</Link>)}</div></div></section>
-<section className="section-gmg"><div className="container-gmg grid lg:grid-cols-2 gap-12"><SectionHead eyebrow="A few helpful answers" title="Start with clarity." subtitle="Understand how the platform and your support team can work together."/><div><FAQList items={faqs}/><Link className="text-link mt-7" to="/faq">Read all questions <Icon name="arrow" size={16}/></Link></div></div></section>
-<CTASection title="Ready to stop losing leads?" body="Bring your CRM, follow-up, and support team together. Start with a free growth audit and a clear plan for what comes next."/>
-</>}
+import IntegrationLogoSlider from "@/components/IntegrationLogoSlider";
+import { Link } from "react-router-dom";
+import { Icon } from "@/components/Icon";
+import { SectionHead, FAQList, CTASection } from "@/components/sections";
+import { coreSolutions, features, process, industries, faqs } from "./homeData";
+import { packages } from "@/data/packages";
+export default function HomeSections() {
+  return (
+    <>
+      <IntegrationLogoSlider />
+      <section className="section-gmg">
+        <div className="container-gmg">
+          <div className="home-tool-card grid md:grid-cols-[1.4fr_1fr] items-center gap-10">
+            <div>
+              <span className="eyebrow">Free Missed Revenue Calculator</span>
+              <h2 className="text-3xl md:text-4xl mb-5">
+                How Much Revenue Slips Through the Cracks?
+              </h2>
+              <p>
+                Estimate the monthly opportunity lost when inquiries go
+                unanswered—then build a follow-up process that gives every lead
+                a next step.
+              </p>
+              <Link
+                className="btn-primary-gmg mt-7"
+                to="/missed-revenue-calculator"
+              >
+                Calculate your missed opportunity{" "}
+                <Icon name="arrow" size={18} />
+              </Link>
+            </div>
+            <div className="border border-line rounded-xl p-7 bg-background/40">
+              <span className="gmg-stat">4 inputs.</span>
+              <br />
+              <span className="text-2xl font-semibold">
+                One clearer picture.
+              </span>
+              <p className="mt-4 text-sm">
+                Your inquiry volume, follow-up gap, estimated close rate, and
+                average sale value. Results are estimates, with every assumption
+                explained.
+              </p>
+              <p className="mt-4 text-sm">
+                No signup needed to see your estimate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section-gmg pale-bg" id="core-solutions">
+        <div className="container-gmg">
+          <SectionHead
+            center
+            eyebrow="Systems + people"
+            title="Build the system. Put the right people behind it."
+          />
+          <div className="grid md:grid-cols-2 gap-6">
+            {coreSolutions.map((c) => (
+              <article className="card-gmg" key={c.title}>
+                <span className="icon-box mb-6">
+                  <Icon name={c.icon} />
+                </span>
+                <h3 className="text-2xl mb-4">{c.title}</h3>
+                <p className="text-muted-foreground leading-relaxed mb-5">
+                  {c.body}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-7">
+                  {c.tags.map((tag) => (
+                    <span
+                      className="border border-line bg-secondary rounded-full px-3 py-1 text-xs"
+                      key={tag}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Link className="text-link" to={c.to}>
+                  {c.cta}
+                  <Icon name="arrow" size={16} />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section-gmg">
+        <div className="container-gmg">
+          <SectionHead
+            eyebrow="From inquiry to next step"
+            title="A connected process for every opportunity."
+          />
+          <div className="gmg-app-grid">
+            {features.slice(0, 3).map((f) => (
+              <article className="card-gmg" key={f.title}>
+                <span className="icon-box mb-6">
+                  <Icon name={f.icon} />
+                </span>
+                <h3 className="text-xl mb-4">{f.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {f.body}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-12">
+            {process.map((p) => (
+              <article key={p.num}>
+                <span className="text-primary font-bold">{p.num}</span>
+                <h3 className="text-lg my-3">{p.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {p.body}
+                </p>
+              </article>
+            ))}
+          </div>
+          <Link to="/how-it-works" className="text-link mt-8">
+            See how we get you started <Icon name="arrow" size={18} />
+          </Link>
+        </div>
+      </section>
+      <section className="section-gmg pale-bg">
+        <div className="container-gmg grid md:grid-cols-2 gap-12 items-center">
+          <img
+            className="rounded-2xl w-full"
+            src="/assets/images/support-professional.webp"
+            alt="Support professional working at a laptop with a headset"
+            width="780"
+            height="660"
+            loading="lazy"
+          />
+          <div>
+            <SectionHead
+              eyebrow="Real people. Reliable follow-through."
+              title="More room to run your business."
+              subtitle="A trained Philippines-based Virtual Assistant helps keep the daily work moving, supported by recruiting, vetting, backup coverage, and regular reporting."
+            />
+            <Link className="btn-primary-gmg" to="/virtual-assistant-services">
+              Meet your support options <Icon name="arrow" size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="section-gmg">
+        <div className="container-gmg">
+          <SectionHead
+            center
+            eyebrow="Simple plans. Real support."
+            title="Choose the support your business needs."
+            subtitle="Start with automation. Add dedicated people and operational support as you grow."
+          />
+          <div className="gmg-app-grid">
+            {packages.map((p) => (
+              <article
+                className="card-gmg flex flex-col"
+                style={p.popular ? { borderColor: "#dfbb76" } : undefined}
+                key={p.slug}
+              >
+                <span className="eyebrow">
+                  {p.popular ? "Most popular" : p.name}
+                </span>
+                <h3 className="text-2xl">{p.name}</h3>
+                <p className="text-muted-foreground my-4">{p.tagline}</p>
+                <p>
+                  <strong className="gmg-stat">
+                    ${p.monthly.toLocaleString("en-US")}
+                  </strong>
+                  <span className="text-sm text-muted-foreground"> /month</span>
+                </p>
+                <p className="text-sm text-muted-foreground mt-3 mb-6">
+                  + ${p.setup.toLocaleString("en-US")} one-time setup
+                </p>
+                <ul className="space-y-3 text-sm text-muted-foreground mb-7">
+                  {p.features.slice(0, 2).map((f) => (
+                    <li key={f} className="flex gap-2">
+                      <Icon name="check" size={16} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to={`/contact?plan=${p.slug}&billing=monthly`}
+                  className="btn-outline-gmg mt-auto"
+                >
+                  Explore {p.name}
+                  <Icon name="arrow" size={16} />
+                </Link>
+              </article>
+            ))}
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-7">
+            3-month minimum. Setup billed at signing. Annual plans save 10%.{" "}
+            <Link className="text-link" to="/pricing">
+              Compare every feature and add-on
+            </Link>
+          </p>
+        </div>
+      </section>
+      <section className="section-gmg pale-bg">
+        <div className="container-gmg">
+          <SectionHead
+            eyebrow="Who we help"
+            title="Built for busy service businesses."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {industries.map((i) => (
+              <Link
+                key={i.label}
+                to="/industries"
+                className="flex items-center gap-3 border border-line rounded-xl p-5 text-sm"
+              >
+                <Icon name={i.icon} size={20} />
+                {i.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section-gmg">
+        <div className="container-gmg grid lg:grid-cols-2 gap-12">
+          <SectionHead
+            eyebrow="A few helpful answers"
+            title="Start with clarity."
+            subtitle="Understand how the platform and your support team can work together."
+          />
+          <div>
+            <FAQList items={faqs} />
+            <Link className="text-link mt-7" to="/faq">
+              Read all questions <Icon name="arrow" size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <CTASection
+        title="Ready to stop losing leads?"
+        body="Bring your CRM, follow-up, and support team together. Start with a free growth audit and a clear plan for what comes next."
+      />
+    </>
+  );
+}

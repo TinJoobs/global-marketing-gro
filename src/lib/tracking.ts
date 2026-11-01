@@ -123,3 +123,9 @@ export const buildTrackingPayload = (
     formName,
   },
 });
+
+/** Shared analytics session id — reuses the published site's __vibe_sid cookie
+ *  so a booking joins the same visit session; falls back to a fresh id when the
+ *  cookie is absent or unreadable (e.g. sandboxed iframe). Reused by the booking
+ *  helper so calendar submissions are attributed to the same visit as page views. */
+export const getSessionId = getTrackingSessionId;

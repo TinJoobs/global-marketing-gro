@@ -1,46 +1,272 @@
-.revenue-calculator { --revenue-gold: #e7c77a; --revenue-muted: #b8c8bd; color: #f4f6ed; background: #07140f; padding-bottom: 5rem; }
-.revenue-hero { padding: clamp(3.5rem, 8vw, 6rem) 0 3rem; background: radial-gradient(ellipse at 80% 10%, #24433380, transparent 65%); }
-.revenue-eyebrow, .revenue-reassurance { display: flex; align-items: center; gap: .6rem; font-size: .85rem; }
-.revenue-eyebrow { color: var(--revenue-gold); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; }
-.revenue-hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -.05em; margin: 1.5rem 0; color: #f4f6ed; }
-.revenue-hero h1 span { color: var(--revenue-gold); }
-.revenue-hero p { max-width: 42rem; font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--revenue-muted); line-height: 1.7; margin-bottom: 1.5rem; }
-.revenue-reassurance { color: var(--revenue-muted); }
-.revenue-workspace { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.5rem; align-items: start; }
-.revenue-calculator .card-gmg { background: #10251b; border: 1px solid #365342; box-shadow: none; padding: clamp(1.25rem, 3vw, 2rem); border-radius: 1.25rem; }
-.revenue-calculator .card-gmg:hover { transform: none; border-color: #58725b; box-shadow: none; }
-.revenue-step { display: block; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 700; color: var(--revenue-gold); margin-bottom: 1rem; }
-.revenue-calculator h2 { color: #f4f6ed; font-size: clamp(1.4rem, 2.8vw, 1.8rem); line-height: 1.25; letter-spacing: -.025em; margin-bottom: .85rem; }
-.revenue-calculator p { line-height: 1.65; }
-.revenue-inputs > p, .revenue-checklist > p, .revenue-signup > div > p { color: var(--revenue-muted); margin-bottom: 1.25rem; }
-.revenue-fields { display: grid; gap: 1.4rem; margin-top: 1.5rem; }
-.revenue-field label, .revenue-signup form > label:first-of-type { display: block; font-weight: 600; font-size: .95rem; margin-bottom: .55rem; }
-.revenue-input-wrap { position: relative; }
-.revenue-input-wrap > span { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--revenue-muted); font-size: .85rem; pointer-events: none; }
-.revenue-calculator input:not([type="checkbox"]) { display: block; width: 100%; min-height: 3.25rem; border: 1px solid #78917e; border-radius: .6rem; color: #f4f6ed; background: #091b12; padding: .75rem 4rem .75rem 1rem; font-size: 1.1rem; }
-.revenue-calculator input[aria-invalid="true"] { border-color: #ffb7a7; }
-.revenue-calculator :is(input, button, a, summary, [tabindex]):focus-visible { outline: 3px solid var(--revenue-gold); outline-offset: 4px; }
-.revenue-calculator .revenue-hint { color: var(--revenue-muted); font-size: .8rem; margin-top: .5rem; }
-.revenue-calculator .revenue-error { color: #ffb7a7; font-size: .85rem; margin-top: .5rem; }
-.revenue-total { display: block; font-size: clamp(2.3rem, 5vw, 4rem); font-weight: 700; letter-spacing: -.05em; line-height: 1.15; color: var(--revenue-gold); padding: 1rem 0 .5rem; overflow-wrap: anywhere; }
-.revenue-result-detail { color: var(--revenue-muted); font-size: .9rem; }
-.revenue-disclaimer { border-left: 2px solid var(--revenue-gold); padding-left: 1rem; font-size: .85rem; margin: 1.5rem 0; color: #d5e0d7; }
-.revenue-assumptions { border-top: 1px solid #365342; padding-top: 1rem; color: var(--revenue-muted); font-size: .85rem; }
-.revenue-assumptions summary { cursor: pointer; min-height: 44px; color: #f4f6ed; font-weight: 600; }
-.revenue-assumptions p { margin-bottom: 1rem; }
-.revenue-calculator .btn-primary-gmg { background: var(--revenue-gold); color: #142015; border: 1px solid var(--revenue-gold); font-size: .9rem; min-height: 48px; box-shadow: none; line-height: 1.5; text-align: center; }
-.revenue-calculator .btn-primary-gmg:hover { background: #f1d99f; box-shadow: none; transform: none; }
-.revenue-consult { width: 100%; margin-top: 1.5rem; }
-.revenue-checklist { padding: 2rem .5rem .5rem; }
-.revenue-check { display: flex; gap: .75rem; align-items: flex-start; min-height: 44px; cursor: pointer; padding: .65rem 0; color: #d5e0d7; font-size: .9rem; line-height: 1.55; }
-.revenue-check input { flex: 0 0 20px; width: 20px; height: 20px; margin-top: 2px; accent-color: var(--revenue-gold); }
-.revenue-checklist input:checked + span { text-decoration: line-through; color: var(--revenue-muted); }
-.revenue-signup-section { margin-top: 3rem; }
-.revenue-signup { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-.revenue-consent { margin-top: .75rem; font-size: .8rem; }
-.revenue-signup button { width: 100%; margin-top: 1rem; }
-.revenue-calculator a:not(.btn-primary-gmg) { color: var(--revenue-gold); text-decoration: underline; text-underline-offset: 3px; }
-.revenue-success { color: #b9e7c1; margin-top: 1rem; }
-.revenue-error-summary { padding: .75rem; border: 1px solid #ffb7a7; border-radius: .5rem; color: #ffb7a7; margin-bottom: 1rem; }
-@media (max-width: 767px) { .revenue-workspace, .revenue-signup { grid-template-columns: minmax(0, 1fr); } .revenue-signup { gap: 1rem; } .revenue-hero { padding-top: 3rem; } .revenue-eyebrow { font-size: .7rem; letter-spacing: .07em; } }
-@media (prefers-reduced-motion: reduce) { .revenue-calculator * { transition: none !important; } }
+.revenue-calculator {
+  --revenue-gold: #e7c77a;
+  --revenue-muted: #b8c8bd;
+  color: #f4f6ed;
+  background: #07140f;
+  padding-bottom: 5rem;
+}
+.revenue-hero {
+  padding: clamp(3.5rem, 8vw, 6rem) 0 3rem;
+  background: radial-gradient(ellipse at 80% 10%, #24433380, transparent 65%);
+}
+.revenue-eyebrow,
+.revenue-reassurance {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+.revenue-eyebrow {
+  color: var(--revenue-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.revenue-hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  margin: 1.5rem 0;
+  color: #f4f6ed;
+}
+.revenue-hero h1 span {
+  color: var(--revenue-gold);
+}
+.revenue-hero p {
+  max-width: 42rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--revenue-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.revenue-reassurance {
+  color: var(--revenue-muted);
+}
+.revenue-workspace {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.revenue-calculator .card-gmg {
+  background: #10251b;
+  border: 1px solid #365342;
+  box-shadow: none;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 1.25rem;
+}
+.revenue-calculator .card-gmg:hover {
+  transform: none;
+  border-color: #58725b;
+  box-shadow: none;
+}
+.revenue-step {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--revenue-gold);
+  margin-bottom: 1rem;
+}
+.revenue-calculator h2 {
+  color: #f4f6ed;
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.85rem;
+}
+.revenue-calculator p {
+  line-height: 1.65;
+}
+.revenue-inputs > p,
+.revenue-checklist > p,
+.revenue-signup > div > p {
+  color: var(--revenue-muted);
+  margin-bottom: 1.25rem;
+}
+.revenue-fields {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 1.5rem;
+}
+.revenue-field label,
+.revenue-signup form > label:first-of-type {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.55rem;
+}
+.revenue-input-wrap {
+  position: relative;
+}
+.revenue-input-wrap > span {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--revenue-muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+.revenue-calculator input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  min-height: 3.25rem;
+  border: 1px solid #78917e;
+  border-radius: 0.6rem;
+  color: #f4f6ed;
+  background: #091b12;
+  padding: 0.75rem 4rem 0.75rem 1rem;
+  font-size: 1.1rem;
+}
+.revenue-calculator input[aria-invalid="true"] {
+  border-color: #ffb7a7;
+}
+.revenue-calculator :is(input, button, a, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--revenue-gold);
+  outline-offset: 4px;
+}
+.revenue-calculator .revenue-hint {
+  color: var(--revenue-muted);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.revenue-calculator .revenue-error {
+  color: #ffb7a7;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+.revenue-total {
+  display: block;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+  color: var(--revenue-gold);
+  padding: 1rem 0 0.5rem;
+  overflow-wrap: anywhere;
+}
+.revenue-result-detail {
+  color: var(--revenue-muted);
+  font-size: 0.9rem;
+}
+.revenue-disclaimer {
+  border-left: 2px solid var(--revenue-gold);
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  margin: 1.5rem 0;
+  color: #d5e0d7;
+}
+.revenue-assumptions {
+  border-top: 1px solid #365342;
+  padding-top: 1rem;
+  color: var(--revenue-muted);
+  font-size: 0.85rem;
+}
+.revenue-assumptions summary {
+  cursor: pointer;
+  min-height: 44px;
+  color: #f4f6ed;
+  font-weight: 600;
+}
+.revenue-assumptions p {
+  margin-bottom: 1rem;
+}
+.revenue-calculator .btn-primary-gmg {
+  background: var(--revenue-gold);
+  color: #142015;
+  border: 1px solid var(--revenue-gold);
+  font-size: 0.9rem;
+  min-height: 48px;
+  box-shadow: none;
+  line-height: 1.5;
+  text-align: center;
+}
+.revenue-calculator .btn-primary-gmg:hover {
+  background: #f1d99f;
+  box-shadow: none;
+  transform: none;
+}
+.revenue-consult {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.revenue-checklist {
+  padding: 2rem 0.5rem 0.5rem;
+}
+.revenue-check {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  min-height: 44px;
+  cursor: pointer;
+  padding: 0.65rem 0;
+  color: #d5e0d7;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.revenue-check input {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--revenue-gold);
+}
+.revenue-checklist input:checked + span {
+  text-decoration: line-through;
+  color: var(--revenue-muted);
+}
+.revenue-signup-section {
+  margin-top: 3rem;
+}
+.revenue-signup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+.revenue-consent {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+.revenue-signup button {
+  width: 100%;
+  margin-top: 1rem;
+}
+.revenue-calculator a:not(.btn-primary-gmg) {
+  color: var(--revenue-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.revenue-success {
+  color: #b9e7c1;
+  margin-top: 1rem;
+}
+.revenue-error-summary {
+  padding: 0.75rem;
+  border: 1px solid #ffb7a7;
+  border-radius: 0.5rem;
+  color: #ffb7a7;
+  margin-bottom: 1rem;
+}
+@media (max-width: 767px) {
+  .revenue-workspace,
+  .revenue-signup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .revenue-signup {
+    gap: 1rem;
+  }
+  .revenue-hero {
+    padding-top: 3rem;
+  }
+  .revenue-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.07em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revenue-calculator * {
+    transition: none !important;
+  }
+}

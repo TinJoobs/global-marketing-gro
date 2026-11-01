@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
+import { useModalCTA } from "./modal/useModalCTA";
 
 const BRAND_LOGO = "/assets/images/gmg-headset-logo.webp";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { contact } = useModalCTA();
   return (
     <footer className="bg-navy text-white pt-16 pb-8 relative overflow-hidden">
       <div
@@ -40,9 +42,18 @@ const Footer = () => {
               Global Marketing Group connects your strategy, systems, and
               support team so you can focus on growing your business.
             </p>
-            <p className="mt-4 text-sm"><a href="mailto:garyb@glomarkgroup.com">garyb@glomarkgroup.com</a><br/><a href="mailto:norly@glomarkgroup.com">norly@glomarkgroup.com</a></p><Link to="/contact" className="text-link text-[#72d8c7] mt-4">
+            <p className="mt-4 text-sm">
+              <a href="mailto:garyb@glomarkgroup.com">garyb@glomarkgroup.com</a>
+              <br />
+              <a href="mailto:norly@glomarkgroup.com">norly@glomarkgroup.com</a>
+            </p>
+            <button
+              type="button"
+              onClick={contact()}
+              className="text-link text-[#72d8c7] mt-4 inline-flex items-center gap-2 font-semibold hover:underline underline-offset-4"
+            >
               Talk with our team <Icon name="arrow" size={16} />
-            </Link>
+            </button>
           </div>
 
           <div>

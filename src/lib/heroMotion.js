@@ -1,10 +1,10 @@
 export function initializeHero(hero, root) {
-if(!root)return()=>{};
-const $ = (selector, scope=hero) => scope.querySelector(selector);
-  const canvas = $('[data-depth-canvas]', hero);
-  const stage = $('.platform-stage', hero);
-  const context = canvas && canvas.getContext('2d');
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (!root) return () => {};
+  const $ = (selector, scope = hero) => scope.querySelector(selector);
+  const canvas = $("[data-depth-canvas]", hero);
+  const stage = $(".platform-stage", hero);
+  const context = canvas && canvas.getContext("2d");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const rect = hero.getBoundingClientRect();
   let inView = rect.bottom > 0 && rect.top < window.innerHeight;
   let running = false;
@@ -13,16 +13,20 @@ const $ = (selector, scope=hero) => scope.querySelector(selector);
   let width = 0;
   let height = 0;
   let previous = 0;
-  const particles = Array.from({ length: window.innerWidth < 760 ? 28 : 58 }, () => ({
-    x: (Math.random() - 0.5) * 1800,
-    y: (Math.random() - 0.5) * 1000,
-    z: 100 + Math.random() * 1500,
-  }));
-  const motionAllowed = () => root.dataset.motion === 'on' && !document.hidden && inView;
+  const particles = Array.from(
+    { length: window.innerWidth < 760 ? 28 : 58 },
+    () => ({
+      x: (Math.random() - 0.5) * 1800,
+      y: (Math.random() - 0.5) * 1000,
+      z: 100 + Math.random() * 1500,
+    }),
+  );
+  const motionAllowed = () =>
+    root.dataset.motion === "on" && !document.hidden && inView;
   function draw(delta = 0) {
     if (!context || !width || !height) return;
     context.clearRect(0, 0, width, height);
-    particles.forEach(point => {
+    particles.forEach((point) => {
       point.z -= delta * 0.012;
       if (point.z < 100) point.z = 1600;
       const scale = 550 / point.z;
@@ -44,8 +48,8 @@ const $ = (selector, scope=hero) => scope.querySelector(selector);
   function resetPointer() {
     cancelAnimationFrame(pointerFrame);
     if (stage) {
-      stage.style.removeProperty('--pointer-x');
-      stage.style.removeProperty('--pointer-y');
+      stage.style.removeProperty("--pointer-x");
+      stage.style.removeProperty("--pointer-y");
     }
   }
   function syncMotion() {
@@ -75,41 +79,50 @@ const $ = (selector, scope=hero) => scope.querySelector(selector);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     draw();
   }
-  const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(resize) : null;
-  if(resizeObserver) resizeObserver.observe(hero);
-  else window.addEventListener('resize', resize, { passive: true });
-  const intersectionObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-    inView = entries[0].isIntersecting;
+  const resizeObserver =
+    "ResizeObserver" in window ? new ResizeObserver(resize) : null;
+  if (resizeObserver) resizeObserver.observe(hero);
+  else window.addEventListener("resize", resize, { passive: true });
+  const intersectionObserver =
+    "IntersectionObserver" in window
+      ? new IntersectionObserver((entries) => {
+          inView = entries[0].isIntersecting;
+          syncMotion();
+        })
+      : null;
+  if (intersectionObserver) intersectionObserver.observe(hero);
+  document.addEventListener("visibilitychange", syncMotion);
+  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const updatePreference = () => {
+    root.dataset.motion = preference.matches ? "off" : "on";
     syncMotion();
-  }) : null;
-  if(intersectionObserver) intersectionObserver.observe(hero);
-  document.addEventListener('visibilitychange', syncMotion);
-  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const updatePreference = () => { root.dataset.motion = preference.matches ? 'off' : 'on'; syncMotion(); };
-  preference.addEventListener('change', updatePreference);
-  const onPointerMove = event => {
+  };
+  preference.addEventListener("change", updatePreference);
+  const onPointerMove = (event) => {
     if (!stage || !finePointer.matches || !motionAllowed()) return;
     const box = hero.getBoundingClientRect();
     const x = (event.clientX - box.left) / box.width - 0.5;
     const y = (event.clientY - box.top) / box.height - 0.5;
     cancelAnimationFrame(pointerFrame);
     pointerFrame = requestAnimationFrame(() => {
-      stage.style.setProperty('--pointer-x', `${x * 7}deg`);
-      stage.style.setProperty('--pointer-y', `${-y * 6}deg`);
+      stage.style.setProperty("--pointer-x", `${x * 7}deg`);
+      stage.style.setProperty("--pointer-y", `${-y * 6}deg`);
     });
   };
-  hero.addEventListener('pointermove', onPointerMove);
-  hero.addEventListener('pointerleave', resetPointer);
+  hero.addEventListener("pointermove", onPointerMove);
+  hero.addEventListener("pointerleave", resetPointer);
   resize();
   updatePreference();
   return () => {
-    running = false; cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame);
-    resizeObserver?.disconnect(); intersectionObserver?.disconnect();
-    window.removeEventListener('resize', resize);
-    document.removeEventListener('visibilitychange', syncMotion);
-    preference.removeEventListener('change', updatePreference);
-    hero.removeEventListener('pointermove', onPointerMove);
-    hero.removeEventListener('pointerleave', resetPointer);
+    running = false;
+    cancelAnimationFrame(frame);
+    cancelAnimationFrame(pointerFrame);
+    resizeObserver?.disconnect();
+    intersectionObserver?.disconnect();
+    window.removeEventListener("resize", resize);
+    document.removeEventListener("visibilitychange", syncMotion);
+    preference.removeEventListener("change", updatePreference);
+    hero.removeEventListener("pointermove", onPointerMove);
+    hero.removeEventListener("pointerleave", resetPointer);
   };
-
 }

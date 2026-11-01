@@ -3,15 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Mail,
-  Calendar,
-  ShieldCheck,
-} from "lucide-react";
+import { Mail, Calendar, ShieldCheck } from "lucide-react";
 import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
 
 const ExecutiveAssistant = () => {
-  const [status, setStatus] = useState<"idle" | "pending" | "accepted" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "pending" | "accepted" | "error"
+  >("idle");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -178,17 +176,39 @@ const ExecutiveAssistant = () => {
                   />
                 </div>
                 <label className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <input type="checkbox" name="consent" required className="mt-1 accent-primary" />
-                  <span>I agree to the <a href="/privacy" className="text-primary underline">Privacy Policy</a> and the use of these details to process this application.</span>
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    required
+                    className="mt-1 accent-primary"
+                  />
+                  <span>
+                    I agree to the{" "}
+                    <a href="/privacy" className="text-primary underline">
+                      Privacy Policy
+                    </a>{" "}
+                    and the use of these details to process this application.
+                  </span>
                 </label>
-                <Button type="submit" className="w-full" size="lg" disabled={status === "pending"}>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  disabled={status === "pending"}
+                >
                   {status === "pending" ? "Submitting…" : "Submit Application"}
                 </Button>
                 {status === "accepted" && (
-                  <p role="status" className="text-sm text-primary">Your application has been received. Our team will review the details.</p>
+                  <p role="status" className="text-sm text-primary">
+                    Your application has been received. Our team will review the
+                    details.
+                  </p>
                 )}
                 {status === "error" && (
-                  <p role="alert" className="text-sm text-destructive">We could not receive your application. Your details are still here; please try again.</p>
+                  <p role="alert" className="text-sm text-destructive">
+                    We could not receive your application. Your details are
+                    still here; please try again.
+                  </p>
                 )}
               </form>
             </div>

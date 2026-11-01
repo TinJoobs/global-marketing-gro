@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "./Icon";
+import { useModalCTA } from "./modal/useModalCTA";
 
 export const SectionHead: React.FC<{
   eyebrow?: string;
@@ -92,32 +93,49 @@ export const CTASection: React.FC<{
   primaryLabel = "Book your free growth audit",
   primaryTo = "/contact",
   secondaryLabel = "Or contact Global Marketing Group",
-}) => (
-  <section className="py-16">
-    <div className="container-gmg">
-      <div className="cta-banner-gmg reveal">
-        <div className="relative">
-          <span className="eyebrow">{eyebrow}</span>
-          <h2 className="text-2xl md:text-[2rem] font-bold max-w-[660px]">
-            {title}
-          </h2>
-          <p className="text-muted-foreground mt-3 max-w-[680px]">{body}</p>
-        </div>
-        <div className="flex flex-col gap-3 relative">
-          <Link to={primaryTo} className="btn-primary-gmg whitespace-nowrap">
-            {primaryLabel}
-          </Link>
-          <Link
-            to="/contact"
-            className="text-xs text-center text-muted-foreground hover:text-teal-dark"
-          >
-            {secondaryLabel}
-          </Link>
+}) => {
+  const { book, contact } = useModalCTA();
+  return (
+    <section className="py-16">
+      <div className="container-gmg">
+        <div className="cta-banner-gmg reveal">
+          <div className="relative">
+            <span className="eyebrow">{eyebrow}</span>
+            <h2 className="text-2xl md:text-[2rem] font-bold max-w-[660px]">
+              {title}
+            </h2>
+            <p className="text-muted-foreground mt-3 max-w-[680px]">{body}</p>
+          </div>
+          <div className="flex flex-col gap-3 relative">
+            {primaryTo ? (
+              <Link
+                to={primaryTo}
+                className="btn-primary-gmg whitespace-nowrap"
+              >
+                {primaryLabel}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className="btn-primary-gmg whitespace-nowrap"
+                onClick={book()}
+              >
+                {primaryLabel}
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={contact()}
+              className="text-xs text-center text-muted-foreground hover:text-teal-dark"
+            >
+              {secondaryLabel}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({
   items,

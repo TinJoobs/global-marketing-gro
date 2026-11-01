@@ -1,3 +1,41 @@
-import { Link } from 'react-router-dom';
-import { PageHero, SectionHead } from '@/components/sections';
-export default function Media(){return <><PageHero eyebrow="Media & resources" title="Explore GMG's work and practical guides." lead="Learn about our services and find useful ways to improve your sales process, follow-up, and daily operations." simple/><section className="section-gmg"><div className="container-gmg"><SectionHead title="Choose where to start."/><div className="grid md:grid-cols-2 gap-6"><article className="card-gmg"><h2 className="text-2xl mb-4">Project examples</h2><p className="text-muted-foreground mb-6">Explore the businesses and project examples featured in our portfolio.</p><Link className="btn-primary-gmg" to="/portfolio">Explore the portfolio</Link></article><article className="card-gmg"><h2 className="text-2xl mb-4">Guides and tools</h2><p className="text-muted-foreground mb-6">Use our delegation planners, follow-up checklist, CRM guide, and revenue calculator.</p><Link className="btn-outline-gmg" to="/resources">Browse resources</Link></article></div></div></section></>}
+import { Link } from "react-router-dom";
+import { PageHero, SectionHead } from "@/components/sections";
+export default function Media() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Media & resources"
+        title="Explore GMG's work and practical guides."
+        lead="Learn about our services and find useful ways to improve your sales process, follow-up, and daily operations."
+        simple
+      />
+      <section className="section-gmg">
+        <div className="container-gmg">
+          <SectionHead title="Choose where to start." />
+          <div className="grid md:grid-cols-2 gap-6">
+            <article className="card-gmg">
+              <h2 className="text-2xl mb-4">Project examples</h2>
+              <p className="text-muted-foreground mb-6">
+                Explore the businesses and project examples featured in our
+                portfolio.
+              </p>
+              <Link className="btn-primary-gmg" to="/portfolio">
+                Explore the portfolio
+              </Link>
+            </article>
+            <article className="card-gmg">
+              <h2 className="text-2xl mb-4">Guides and tools</h2>
+              <p className="text-muted-foreground mb-6">
+                Use our delegation planners, follow-up checklist, CRM guide, and
+                revenue calculator.
+              </p>
+              <Link className="btn-outline-gmg" to="/resources">
+                Browse resources
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
