@@ -461,7 +461,11 @@
   }
 }
 
-/* ---- Who we help: full-bleed cinematic scroll carousel ---- */
+/* ---- Who we help: full-bleed cinematic vertical STACKING DECK ----
+   Each industry layer is `position: sticky` and pins one screen height
+   apart; scrolling DOWN stacks each card on top of the previous one,
+   scrolling UP naturally un-stacks them in reverse. No JS scroll handlers
+   — the browser drives the stacking, so it reverses smoothly. */
 .who-we-help {
   position: relative;
   background:
@@ -478,7 +482,46 @@
     linear-gradient(170deg, #031024 0%, #061a35 50%, #04132c 100%);
   overflow: hidden;
 }
-/* Layered cinematic backdrop — never a blank BG */
+.who-help-stack-viewport {
+  position: relative;
+  z-index: 1;
+}
+.who-help-stack-intro {
+  text-align: center;
+  padding-top: clamp(72px, 10vw, 120px);
+  padding-bottom: 24px;
+}
+.who-help-stack-intro h2 {
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  margin-top: 8px;
+}
+.who-help-lead {
+  color: #adc0d5;
+  font-size: 1.1rem;
+  max-width: 640px;
+  margin: 16px auto 0;
+  line-height: 1.7;
+}
+
+.who-help-deck {
+  position: relative;
+  padding-top: 56px;
+}
+.who-help-layer {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Each subsequent layer pins on top of the last -> stacking effect */
+  z-index: calc(1 + var(--stack-index, 0));
+}
+.who-help-cta-layer {
+  min-height: 92vh;
+}
+
+/* Cinematic backdrop — never a blank BG */
 .who-help-canvas {
   position: absolute;
   inset: 0;
@@ -541,121 +584,81 @@
     animation: none;
   }
 }
-.who-help-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      ellipse 60% 40% at 85% 20%,
-      rgba(1, 78, 166, 0.32),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 50% 40% at 5% 90%,
-      rgba(114, 228, 212, 0.16),
-      transparent 60%
-    );
-  pointer-events: none;
-}
-.who-help-sticky {
-  position: sticky;
-  top: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 0;
-}
-.who-help-head {
-  text-align: center;
-  margin-bottom: 48px;
-}
-.who-help-head h2 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  margin-top: 8px;
-}
-.who-help-lead {
-  color: #adc0d5;
-  font-size: 1.1rem;
-  max-width: 620px;
-  margin: 16px auto 0;
-  line-height: 1.7;
-}
-.who-help-viewport {
-  overflow: hidden;
-  width: 100%;
+
+.who-help-card {
   position: relative;
-  /* Cinematic edge fade: panels dissolve as they enter/leave the frame */
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 5vw,
-    #000 calc(100% - 5vw),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 5vw,
-    #000 calc(100% - 5vw),
-    transparent 100%
-  );
-}
-.who-help-track {
-  display: flex;
-  gap: 26px;
-  padding: 0 5vw;
-  will-change: transform;
-}
-.who-help-panel {
-  position: relative;
-  flex: 0 0 min(48vw, 620px);
-  height: min(74vh, 560px);
-  border-radius: 22px;
+  width: min(1000px, calc(100vw - 56px));
+  height: min(82vh, 620px);
+  border-radius: 26px;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  border: 1px solid rgba(114, 228, 212, 0.16);
-  box-shadow: 0 24px 60px rgba(2, 10, 24, 0.5);
+  border: 1px solid rgba(114, 228, 212, 0.18);
+  box-shadow:
+    0 30px 80px rgba(2, 10, 24, 0.6),
+    0 0 1px rgba(114, 228, 212, 0.3);
   background: #0b2139;
+  /* Slight ascent per layer so the stacked cards peek from the top */
+  transform: translateY(calc(var(--stack-index, 0) * -10px));
 }
-.who-help-panel.is-static {
-  flex: 0 0 1;
-  height: 380px;
+.who-help-cta {
+  height: min(72vh, 540px);
+  background: linear-gradient(
+    150deg,
+    rgba(8, 30, 60, 0.96),
+    rgba(4, 18, 37, 0.98)
+  );
 }
+
 .who-help-media {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
-.who-help-panel:hover .who-help-media {
-  transform: scale(1.06);
+.who-help-card:hover .who-help-media {
+  transform: scale(1.08);
 }
 .who-help-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(4, 18, 37, 0.1) 0%,
-    rgba(4, 18, 37, 0.55) 55%,
-    rgba(4, 18, 37, 0.9) 100%
+    rgba(4, 18, 37, 0.08) 0%,
+    rgba(4, 18, 37, 0.5) 52%,
+    rgba(4, 18, 37, 0.92) 100%
   );
 }
 .who-help-body {
   position: relative;
   z-index: 2;
-  padding: 26px;
+  padding: clamp(24px, 3vw, 38px);
   color: #f3f8ff;
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  max-width: 560px;
+}
+.who-help-cta-body {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.who-help-count {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: #72e4d4;
+  margin-bottom: 4px;
 }
 .who-help-icon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
   border-radius: 13px;
@@ -674,123 +677,105 @@
   );
 }
 .who-help-label {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 750;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.18;
   color: #f3f8ff;
 }
 .who-help-blurb {
   color: #c5d6ea;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
+  max-width: 46ch;
 }
 .who-help-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   color: #72e4d4;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  margin-top: 4px;
+  margin-top: 6px;
+  min-height: 44px;
 }
 .who-help-link:hover {
   text-decoration: underline;
 }
-.who-help-cta .who-help-body {
-  gap: 14px;
+.who-help-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
 }
-.who-help-cta .btn-primary-gmg {
-  align-self: flex-start;
-  margin-top: 6px;
+.who-help-cta-actions .btn-primary-gmg {
+  align-self: center;
 }
 .who-help-cta-secondary {
   background: none;
   border: 0;
   color: #72e4d4;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  align-self: flex-start;
   min-height: 44px;
   padding: 0;
 }
 .who-help-cta-secondary:hover {
   text-decoration: underline;
 }
-.who-help-bar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 48px;
-  font-size: 12px;
-  color: #8ba5c0;
-}
-.who-help-bar-track {
-  flex: 1;
-  height: 3px;
-  border-radius: 99px;
-  background: rgba(114, 228, 212, 0.16);
-  overflow: hidden;
-}
-.who-help-bar-fill {
-  display: block;
-  height: 100%;
-  border-radius: 99px;
-  background: linear-gradient(90deg, #72e4d4, #3fd8c0);
-}
-.who-help-bar-count {
-  color: #72e4d4;
-  font-weight: 700;
-}
 
-.who-help-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+/* On reduced motion, keep the deck readable without the sticky height spam */
+@media (prefers-reduced-motion: reduce) {
+  .who-help-layer {
+    min-height: auto;
+    padding-block: 48px;
+    position: relative;
+    top: auto;
+  }
+  .who-help-card {
+    transform: none;
+    height: 420px;
+  }
 }
 
 @media (max-width: 820px) {
-  .who-help-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+  .who-help-card {
+    height: min(78vh, 520px);
+    width: calc(100vw - 40px);
+    border-radius: 22px;
   }
-  .who-help-panel,
-  .who-help-panel.is-static {
-    height: 380px;
+  .who-help-layer {
+    min-height: 96vh;
   }
-  .who-help-sticky {
+  .who-help-cta-layer {
     min-height: auto;
-    padding: 64px 0;
+    padding-block: 48px;
   }
   .who-help-canvas {
     opacity: 0.7;
   }
 }
-@media (max-width: 520px) {
-  .who-help-grid {
-    grid-template-columns: 1fr;
-  }
-  .who-help-panel,
-  .who-help-panel.is-static {
-    height: 360px;
-  }
-}
 @media (max-width: 560px) {
-  .who-help-panel,
-  .who-help-panel.is-static {
-    flex: 0 0 82vw;
-    height: 380px;
+  .who-help-card {
+    height: 420px;
+  }
+  .who-help-layer {
+    min-height: auto;
+    padding-block: 40px;
+    position: relative;
+    top: auto;
   }
   .who-help-body {
-    padding: 20px;
+    padding: 22px;
   }
   .who-help-label {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
   }
 }
 

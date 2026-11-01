@@ -1,10 +1,12 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterEach, expect, it } from "vitest";
 import { ModalProvider } from "@/components/modal/ModalProvider";
 import WhoWeHelp from "./WhoWeHelp";
+
 afterEach(cleanup);
-it("offers native horizontal navigation without a giant vertical spacer", () => {
+
+it("renders a full-bleed vertical stacking deck of industry cards", () => {
   render(
     <MemoryRouter>
       <ModalProvider>
@@ -12,14 +14,12 @@ it("offers native horizontal navigation without a giant vertical spacer", () => 
       </ModalProvider>
     </MemoryRouter>,
   );
-  const rail = screen.getByRole("region", { name: "Industries carousel" });
-  const scrollBy = vi.fn();
-  Object.defineProperty(rail, "scrollBy", { value: scrollBy });
-  Object.defineProperty(rail, "clientWidth", { value: 900 });
-  fireEvent.click(screen.getByRole("button", { name: "Next industries" }));
-  expect(scrollBy).toHaveBeenCalledWith({ left: 720, behavior: "smooth" });
-  expect(screen.getAllByRole("heading", { level: 3 }).length).toBeGreaterThan(
-    5,
-  );
-  expect(rail.closest("section")?.style.height).toBe("");
+  // Section is the full-bleed stacking deck (aria-labelledby -> h2 text)
+  const section = screen.getByRole("region", {
+    name: /built for the businesses that never stop moving/i,
+  });
+  expect(section).toHaveClass("who-we-help");
+  // Each industry renders as a stack layer (sticky panel)
+  const panels = screen.getAllByRole("article");
+  expect(panels.length).toBeGreaterThan(5);
 });
