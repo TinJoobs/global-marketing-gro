@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { buildTrackingPayload } from "@/lib/tracking";
+import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
 import { packages, pricingTerms } from "@/data/packages";
 
 const consentText =
@@ -92,39 +92,32 @@ export default function Contact() {
       .filter(Boolean)
       .join("\n\n");
     try {
-      const body = new FormData();
-      body.append(
-        "event",
-        JSON.stringify(
-          buildTrackingPayload(
-            "contact-form",
-            "Consultation Request",
-            {
-              first_name: values.name,
-              email: values.email,
-              calendar_notes: notes,
-              consent: true,
-              "09aZnxiqoakrzk5yfNLB": values.subject,
-            },
-            {
-              first_name: "Full Name",
-              email: "Email Address",
-              calendar_notes: "Consultation Request and Context",
-              consent: "Contact Consent",
-              "09aZnxiqoakrzk5yfNLB": "Subject",
-            },
-          ),
+      await postTrackingEvent(
+        buildTrackingPayload(
+          "contact-form",
+          "Consultation Request",
+          {
+            first_name: values.name,
+            email: values.email,
+            calendar_notes: notes,
+            consent: true,
+          },
+          {
+            first_name: "Full Name",
+            email: "Email Address",
+            calendar_notes: "Consultation Request and Context",
+            consent: "Contact Consent",
+          },
         ),
-      );
-      const response = await fetch(
-        "https://backend.leadconnectorhq.com/external-tracking/events",
         {
-          method: "POST",
-          headers: { version: "2021-07-28" },
-          body,
+          customFields: {
+            "09aZnxiqoakrzk5yfNLB": {
+              value: values.subject,
+              label: "Subject",
+            },
+          },
         },
       );
-      if (!response.ok) throw new Error("Request not accepted");
       setStatus("success");
     } catch {
       setStatus("error");
