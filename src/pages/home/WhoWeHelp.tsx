@@ -3,19 +3,19 @@ import { Icon } from "@/components/Icon";
 import { useModalCTA } from "@/components/modal/useModalCTA";
 import { industryShowcase } from "./homeData";
 
-/* "Who we help" — a full-bleed cinematic stacking deck.
-   Each industry card sticks in place as you scroll downward and the next
-   card stacks on top of it. When you scroll back upward the stack naturally
-   un-stacks in reverse — driven entirely by CSS `position: sticky`, so the
-   effect is smooth, reversible, and requires no JS scroll listeners. */
 export default function WhoWeHelp() {
   const { book } = useModalCTA();
   return (
     <section
       className="who-we-help industry-stack"
       aria-labelledby="who-help-title"
+      style={
+        {
+          ["--deck-count" as string]: industryShowcase.length + 1,
+        } as React.CSSProperties
+      }
     >
-      <div className="who-help-canvas" aria-hidden="true" />
+      <span className="who-help-canvas" aria-hidden="true" />
       <div className="who-help-stack-viewport">
         <div className="who-help-stack-intro container-gmg">
           <span className="eyebrow">Who we help</span>

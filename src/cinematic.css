@@ -466,6 +466,9 @@
    apart; scrolling DOWN stacks each card on top of the previous one,
    scrolling UP naturally un-stacks them in reverse. No JS scroll handlers
    — the browser drives the stacking, so it reverses smoothly. */
+/* NOTE: no `overflow` here — overflow/clip on an ancestor breaks the
+   `position: sticky` layers below. The decorative clipping is handled by
+   the canvas (inset:0, overflow:hidden) instead of the section. */
 .who-we-help {
   position: relative;
   background:
@@ -480,7 +483,6 @@
       transparent 60%
     ),
     linear-gradient(170deg, #031024 0%, #061a35 50%, #04132c 100%);
-  overflow: hidden;
 }
 .who-help-stack-viewport {
   position: relative;
@@ -503,22 +505,35 @@
   line-height: 1.7;
 }
 
+/* The deck: a tall relative container so each sticky layer has room to pin.
+   Each layer sticks at the top of the deck and stays put while the next
+   layer scrolls up and over it — that overlap IS the stacking effect.
+   Scroll down -> layers stack up; scroll up -> the browser un-pins them in
+   reverse automatically. No JS, fully smooth and reversible. */
 .who-help-deck {
   position: relative;
-  padding-top: 56px;
+  /* Total scroll length: one viewport per industry so each can pin and the
+     next has room to rise over it. */
+  height: calc(100vh * var(--deck-count, 6));
+  padding-top: 0;
 }
 .who-help-layer {
   position: sticky;
   top: 0;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Each subsequent layer pins on top of the last -> stacking effect */
+  /* Later layers sit on top of earlier ones -> visual stacking. */
   z-index: calc(1 + var(--stack-index, 0));
 }
+/* A subtle depth cue: each lower layer recedes slightly so the stack
+   reads as depth instead of flat overlap. Purely visual. */
+.who-help-layer .who-help-card {
+  transform: scale(calc(1 - var(--stack-index, 0) * 0.0001));
+}
 .who-help-cta-layer {
-  min-height: 92vh;
+  height: 100vh;
 }
 
 /* Cinematic backdrop — never a blank BG */
@@ -526,6 +541,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
   background-image:
     radial-gradient(
       circle at 18% 22%,
@@ -587,8 +603,9 @@
 
 .who-help-card {
   position: relative;
-  width: min(1000px, calc(100vw - 56px));
-  height: min(82vh, 620px);
+  width: min(1040px, calc(100vw - 56px));
+  /* Fill the sticky layer so each card covers the one beneath it. */
+  height: min(86vh, 680px);
   border-radius: 26px;
   overflow: hidden;
   display: flex;
@@ -598,8 +615,6 @@
     0 30px 80px rgba(2, 10, 24, 0.6),
     0 0 1px rgba(114, 228, 212, 0.3);
   background: #0b2139;
-  /* Slight ascent per layer so the stacked cards peek from the top */
-  transform: translateY(calc(var(--stack-index, 0) * -10px));
 }
 .who-help-cta {
   height: min(72vh, 540px);
@@ -730,13 +745,16 @@
   text-decoration: underline;
 }
 
-/* On reduced motion, keep the deck readable without the sticky height spam */
+/* On reduced motion, drop the tall pin deck and show a readable list. */
 @media (prefers-reduced-motion: reduce) {
+  .who-help-deck {
+    height: auto;
+  }
   .who-help-layer {
-    min-height: auto;
-    padding-block: 48px;
     position: relative;
     top: auto;
+    height: auto;
+    padding-block: 56px;
   }
   .who-help-card {
     transform: none;
@@ -746,30 +764,28 @@
 
 @media (max-width: 820px) {
   .who-help-card {
-    height: min(78vh, 520px);
+    height: min(80vh, 560px);
     width: calc(100vw - 40px);
     border-radius: 22px;
-  }
-  .who-help-layer {
-    min-height: 96vh;
-  }
-  .who-help-cta-layer {
-    min-height: auto;
-    padding-block: 48px;
   }
   .who-help-canvas {
     opacity: 0.7;
   }
 }
 @media (max-width: 560px) {
-  .who-help-card {
-    height: 420px;
+  /* Mobile: the sticky stack fights the small viewport, so collapse to a
+     clean vertical list of cards instead. */
+  .who-help-deck {
+    height: auto;
   }
   .who-help-layer {
-    min-height: auto;
-    padding-block: 40px;
     position: relative;
     top: auto;
+    height: auto;
+    padding-block: 36px;
+  }
+  .who-help-card {
+    height: 420px;
   }
   .who-help-body {
     padding: 22px;
