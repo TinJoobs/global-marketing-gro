@@ -17,7 +17,9 @@ export default function Testimonials() {
               <span className="accent-text">our word for it.</span>
             </h2>
           </div>
-          <p className="test-summary-copy">Client perspectives on the people and systems behind their business.</p>
+          <p className="test-summary-copy">
+            Client perspectives on the people and systems behind their business.
+          </p>
         </div>
 
         <div className="test-grid">
@@ -30,7 +32,9 @@ export default function Testimonials() {
               <div className="test-author">
                 {t.avatar ? (
                   <img
-                    onError={event => { event.currentTarget.hidden = true; }}
+                    onError={(event) => {
+                      event.currentTarget.hidden = true;
+                    }}
                     src={t.avatar}
                     alt={t.name}
                     className="test-avatar w-11 h-11 rounded-full object-cover border border-[#72e4d4]/30"

@@ -78,15 +78,15 @@ export default function Pricing() {
                   className={`card-gmg plan-card flex flex-col relative ${plan.popular ? "border-primary" : ""}`}
                 >
                   <div className="plan-heading">
-                  <div className="plan-badge-slot">
-                  {plan.popular && (
-                    <span className="eyebrow mb-4">Most popular</span>
-                  )}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-muted-foreground mb-7 min-h-12">
-                    {plan.tagline}
-                  </p>
+                    <div className="plan-badge-slot">
+                      {plan.popular && (
+                        <span className="eyebrow mb-4">Most popular</span>
+                      )}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                    <p className="text-muted-foreground mb-7 min-h-12">
+                      {plan.tagline}
+                    </p>
                   </div>
                   <div className="mb-3">
                     <span className="text-4xl xl:text-5xl font-bold">

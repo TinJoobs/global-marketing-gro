@@ -107,7 +107,7 @@ html {
       hsl(var(--pale));
   }
   .eyebrow {
-    @apply uppercase text-teal-dark text-[0.73rem] font-extrabold tracking-[0.15em] block mb-4;
+    @apply uppercase text-teal-dark text-[0.73rem] font-extrabold tracking-[0.15em] block mb-5;
   }
   .eyebrow-pill {
     @apply inline-flex gap-2 items-center bg-mint/40 border border-teal/20 rounded-full px-3 py-1.5 text-[0.69rem] font-extrabold tracking-[0.085em] uppercase text-teal-dark;
@@ -235,7 +235,7 @@ html {
         transparent 55%
       ),
       #f8fbfc;
-    @apply pt-12 pb-16 border-b border-line;
+    @apply pt-20 pb-20 md:pt-28 md:pb-24 border-b border-line;
   }
   .breadcrumb-gmg {
     @apply flex flex-wrap gap-2 items-center text-muted-foreground text-xs mb-10;

@@ -129,36 +129,49 @@ export default function Header() {
   useEffect(() => {
     const close = (event: Event) => {
       if (!ref.current?.contains(event.target as Node)) {
-        setActiveMenu(null); setOpen(false);
+        setActiveMenu(null);
+        setOpen(false);
       }
     };
     const escape = (event: KeyboardEvent) => {
       if (event.key !== "Escape" || (!activeMenu && !open)) return;
       const trigger = activeMenu
-        ? ref.current?.querySelector<HTMLButtonElement>(`[data-menu-trigger="${activeMenu}"]`)
+        ? ref.current?.querySelector<HTMLButtonElement>(
+            `[data-menu-trigger="${activeMenu}"]`,
+          )
         : toggle.current;
-      setActiveMenu(null); if (!activeMenu) setOpen(false); trigger?.focus();
+      setActiveMenu(null);
+      if (!activeMenu) setOpen(false);
+      trigger?.focus();
     };
-    const desktop = matchMedia('(min-width: 1201px)');
+    const desktop = matchMedia("(min-width: 1201px)");
     const resize = () => {
       const focused = document.activeElement;
-      const insideNav = ref.current?.querySelector('nav')?.contains(focused);
-      const submenu = focused?.closest('.gmg-mega');
-      const submenuTrigger = submenu && ref.current?.querySelector<HTMLButtonElement>(`[aria-controls="${submenu.id}"]`);
-      setActiveMenu(null); setOpen(false);
+      const insideNav = ref.current?.querySelector("nav")?.contains(focused);
+      const submenu = focused?.closest(".gmg-mega");
+      const submenuTrigger =
+        submenu &&
+        ref.current?.querySelector<HTMLButtonElement>(
+          `[aria-controls="${submenu.id}"]`,
+        );
+      setActiveMenu(null);
+      setOpen(false);
       if (!desktop.matches && insideNav) toggle.current?.focus();
       else if (desktop.matches && submenuTrigger) submenuTrigger.focus();
-      else if (desktop.matches && focused === toggle.current) ref.current?.querySelector<HTMLButtonElement>('[data-menu-trigger]')?.focus();
+      else if (desktop.matches && focused === toggle.current)
+        ref.current
+          ?.querySelector<HTMLButtonElement>("[data-menu-trigger]")
+          ?.focus();
     };
-    document.addEventListener('pointerdown', close);
-    document.addEventListener('focusin', close);
-    document.addEventListener('keydown', escape);
-    desktop.addEventListener('change', resize);
+    document.addEventListener("pointerdown", close);
+    document.addEventListener("focusin", close);
+    document.addEventListener("keydown", escape);
+    desktop.addEventListener("change", resize);
     return () => {
-      document.removeEventListener('pointerdown', close);
-      document.removeEventListener('focusin', close);
-      document.removeEventListener('keydown', escape);
-      desktop.removeEventListener('change', resize);
+      document.removeEventListener("pointerdown", close);
+      document.removeEventListener("focusin", close);
+      document.removeEventListener("keydown", escape);
+      desktop.removeEventListener("change", resize);
     };
   }, [activeMenu, open]);
 
@@ -307,7 +320,6 @@ export default function Header() {
           setActiveMenu(null);
         }}
       />
-
     </header>
   );
 }

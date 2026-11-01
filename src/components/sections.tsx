@@ -12,13 +12,15 @@ export const SectionHead: React.FC<{
   <div
     className={
       center
-        ? "text-center max-w-3xl mx-auto mb-14 reveal"
-        : "max-w-2xl mb-10 reveal"
+        ? "text-center max-w-3xl mx-auto mb-16 reveal"
+        : "max-w-2xl mb-12 reveal"
     }
   >
     {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-    <h2 className="text-3xl md:text-[2.65rem] font-bold">{title}</h2>
-    {subtitle && <p className="lead-gmg mt-4">{subtitle}</p>}
+    <h2 className="text-3xl md:text-[2.65rem] font-bold leading-[1.1]">
+      {title}
+    </h2>
+    {subtitle && <p className="lead-gmg mt-5">{subtitle}</p>}
   </div>
 );
 
@@ -52,13 +54,15 @@ export const PageHero: React.FC<{
       >
         <div>
           <span className="eyebrow">{eyebrow}</span>
-          <h1 className="text-4xl md:text-[3.8rem] font-bold">{title}</h1>
-          <p className="lead-gmg mt-6 max-w-[610px]">{lead}</p>
+          <h1 className="text-4xl md:text-[3.8rem] font-bold leading-[1.08]">
+            {title}
+          </h1>
+          <p className="lead-gmg mt-7 max-w-[610px]">{lead}</p>
           {note && (
-            <p className="mt-4 text-muted-foreground max-w-[610px]">{note}</p>
+            <p className="mt-5 text-muted-foreground max-w-[610px]">{note}</p>
           )}
           {(primaryCta || secondaryCta) && (
-            <div className="flex flex-wrap items-center gap-5 mt-8">
+            <div className="flex flex-wrap items-center gap-4 mt-10">
               {primaryCta && (
                 <Link to={primaryCta.to} className="btn-primary-gmg">
                   {primaryCta.label}
@@ -96,7 +100,7 @@ export const CTASection: React.FC<{
 }) => {
   const { book, contact } = useModalCTA();
   return (
-    <section className="py-16">
+    <section className="py-20 md:py-24">
       <div className="container-gmg">
         <div className="cta-banner-gmg reveal">
           <div className="relative">
