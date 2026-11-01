@@ -78,16 +78,20 @@ export const submitCalendarBooking = async (
 };
 
 /** Flatten free-slots response into [{date, iso}] sorted ascending. */
-export const slotsToOptions = (data: unknown): { date: string; iso: string }[] => {
+export const slotsToOptions = (
+  data: unknown,
+): { date: string; iso: string }[] => {
   if (!data || typeof data !== "object") return [];
   const out: { date: string; iso: string }[] = [];
   const seen = new Set<number>();
   for (const [date, info] of Object.entries(data)) {
     if (!info || !Array.isArray(info.slots)) continue;
     for (const iso of info.slots) {
-      if (typeof iso !== "string" || !/T.*(?:Z|[+-]\d{2}:\d{2})$/.test(iso)) continue;
+      if (typeof iso !== "string" || !/T.*(?:Z|[+-]\d{2}:\d{2})$/.test(iso))
+        continue;
       const time = Date.parse(iso);
-      if (!Number.isFinite(time) || time <= Date.now() || seen.has(time)) continue;
+      if (!Number.isFinite(time) || time <= Date.now() || seen.has(time))
+        continue;
       seen.add(time);
       out.push({ date, iso });
     }

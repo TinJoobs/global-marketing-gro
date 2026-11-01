@@ -1,0 +1,109 @@
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Icon } from "@/components/Icon";
+import { packages, pricingTerms } from "@/data/packages";
+import { useModalCTA } from "@/components/modal/useModalCTA";
+
+const money = (amount: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(amount);
+
+export default function PricingHighlight() {
+  const { book } = useModalCTA();
+  return (
+    <section
+      className="section-gmg pricing-highlight"
+      aria-labelledby="pricing-highlight-title"
+    >
+      <div className="container-gmg">
+        <div className="pricing-highlight-head">
+          <span className="eyebrow">Simple plans. Real support.</span>
+          <h2 id="pricing-highlight-title">
+            Choose the support{" "}
+            <span className="accent-text">your business needs.</span>
+          </h2>
+          <p className="pricing-highlight-lead">
+            Start with automation. Add dedicated people and operational support
+            as you grow. No guesswork, no surprises.
+          </p>
+        </div>
+
+        <div className="pricing-highlight-grid">
+          {packages.map((p, i) => (
+            <motion.article
+              className={`price-card${p.popular ? " is-popular" : ""}`}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              key={p.slug}
+            >
+              {p.popular && (
+                <span className="price-popular-badge">
+                  <Icon name="star" size={14} /> Most popular
+                </span>
+              )}
+              <div className="price-card-glow" aria-hidden="true" />
+              <div className="price-card-top">
+                <span className="price-tier">{p.name}</span>
+                <p className="price-tagline">{p.tagline}</p>
+              </div>
+              <div className="price-amount">
+                <span className="price-amount-main">
+                  {money(p.monthly)}
+                  <small>/mo</small>
+                </span>
+                <span className="price-setup">
+                  + {money(p.setup)} one-time setup
+                </span>
+              </div>
+              <ul className="price-features">
+                {p.features.map((f) => (
+                  <li key={f}>
+                    <Icon name="check" size={16} />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="price-card-cta">
+                {p.popular ? (
+                  <button
+                    type="button"
+                    className="btn-primary-gmg"
+                    onClick={book({ subject: `${p.name} plan consultation` })}
+                  >
+                    Get started with {p.name} <Icon name="arrow" size={16} />
+                  </button>
+                ) : (
+                  <Link
+                    className="btn-outline-gmg"
+                    to={`/contact?plan=${p.slug}&billing=monthly`}
+                  >
+                    Explore {p.name} <Icon name="arrow" size={16} />
+                  </Link>
+                )}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="pricing-highlight-foot">
+          <p>
+            {pricingTerms.minimum_months}-month minimum · setup billed at
+            signing · annual plans save {pricingTerms.annual_discount_percent}%
+          </p>
+          <Link className="text-link" to="/pricing">
+            Compare every feature and add-on <Icon name="arrow" size={16} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -39,11 +39,18 @@ export function ModalShell({
       if (!previousInert) background?.removeAttribute("inert");
       if (previousHidden == null) background?.removeAttribute("aria-hidden");
       else background?.setAttribute("aria-hidden", previousHidden);
-      const visible = (element: HTMLElement | null) => element?.isConnected && element.getClientRects().length > 0 && !element.closest('[inert]');
+      const visible = (element: HTMLElement | null) =>
+        element?.isConnected &&
+        element.getClientRects().length > 0 &&
+        !element.closest("[inert]");
       const trigger = previouslyFocused.current;
-      const toggle = document.querySelector<HTMLElement>('.gmg-menu-toggle');
+      const toggle = document.querySelector<HTMLElement>(".gmg-menu-toggle");
       // A mobile navigation CTA becomes hidden when its popup opens.
-      const target = visible(trigger) ? trigger : visible(toggle) ? toggle : document.getElementById('main-content');
+      const target = visible(trigger)
+        ? trigger
+        : visible(toggle)
+          ? toggle
+          : document.getElementById("main-content");
       target?.focus({ preventScroll: true });
     };
   }, []);

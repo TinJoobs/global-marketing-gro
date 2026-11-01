@@ -1,20 +1,41 @@
 /* GMG brand: existing blue/navy, with teal light from the headset globe. */
 :root {
   color-scheme: dark;
-  --background: 216 76% 7%; --foreground: 210 50% 97%;
-  --card: 214 62% 11%; --card-foreground: 210 50% 97%;
-  --popover: 214 62% 11%; --popover-foreground: 210 50% 97%;
-  --primary: 171 68% 67%; --primary-foreground: 216 76% 7%;
-  --secondary: 213 55% 15%; --secondary-foreground: 210 50% 97%;
-  --muted: 213 55% 15%; --muted-foreground: 211 24% 73%;
-  --accent: 171 68% 67%; --accent-foreground: 216 76% 7%;
-  --teal: 171 68% 67%; --teal-dark: 171 70% 75%;
-  --mint: 185 48% 17%; --ink: 210 50% 97%; --line: 213 31% 27%;
-  --pale: 216 67% 9%; --border: 213 31% 27%; --input: 213 31% 27%; --ring: 171 68% 67%;
-  --navy: 216 76% 7%; --navy-2: 214 62% 11%;
-  --gold: #72e4d4; --gold-bright: #b7fff2;
-  --brand-blue: #014ea6; --brand-blue-light: #8bbdff; --brand-teal: #72e4d4; --warm: #bd942d;
-  --night: #041225; --surface: #0b2139; --text: #f3f8ff; --soft: #adc0d5;
+  --background: 216 76% 7%;
+  --foreground: 210 50% 97%;
+  --card: 214 62% 11%;
+  --card-foreground: 210 50% 97%;
+  --popover: 214 62% 11%;
+  --popover-foreground: 210 50% 97%;
+  --primary: 171 68% 67%;
+  --primary-foreground: 216 76% 7%;
+  --secondary: 213 55% 15%;
+  --secondary-foreground: 210 50% 97%;
+  --muted: 213 55% 15%;
+  --muted-foreground: 211 24% 73%;
+  --accent: 171 68% 67%;
+  --accent-foreground: 216 76% 7%;
+  --teal: 171 68% 67%;
+  --teal-dark: 171 70% 75%;
+  --mint: 185 48% 17%;
+  --ink: 210 50% 97%;
+  --line: 213 31% 27%;
+  --pale: 216 67% 9%;
+  --border: 213 31% 27%;
+  --input: 213 31% 27%;
+  --ring: 171 68% 67%;
+  --navy: 216 76% 7%;
+  --navy-2: 214 62% 11%;
+  --gold: #72e4d4;
+  --gold-bright: #b7fff2;
+  --brand-blue: #014ea6;
+  --brand-blue-light: #8bbdff;
+  --brand-teal: #72e4d4;
+  --warm: #bd942d;
+  --night: #041225;
+  --surface: #0b2139;
+  --text: #f3f8ff;
+  --soft: #adc0d5;
 }
 body {
   background: #041225;

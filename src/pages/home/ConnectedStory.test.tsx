@@ -1,6 +1,48 @@
-import { act, cleanup, render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { afterEach, expect, it, vi } from 'vitest';
-import ConnectedStory from './ConnectedStory';
-afterEach(()=>{cleanup();vi.unstubAllGlobals()});
-it('keeps every chapter readable and changes the illustrative stage with scroll, cleaning up on unmount',()=>{let callback:IntersectionObserverCallback=()=>{};const disconnect=vi.fn();vi.stubGlobal('IntersectionObserver',class{constructor(fn:IntersectionObserverCallback){callback=fn}observe(){}disconnect=disconnect});vi.stubGlobal('matchMedia',(query:string)=>({matches:query.includes('min-width'),addEventListener:vi.fn(),removeEventListener:vi.fn()}));const {container,unmount}=render(<MemoryRouter><ConnectedStory/></MemoryRouter>);expect(screen.getAllByRole('heading',{level:3})).toHaveLength(3);const second=container.querySelector('[data-chapter="1"]')!;act(()=>callback([{target:second,isIntersecting:true,intersectionRatio:.8}] as IntersectionObserverEntry[],{} as IntersectionObserver));expect(container.querySelector('[data-story-stage]')).toHaveAttribute('data-story-stage','1');unmount();expect(disconnect).toHaveBeenCalled()});
+import { act, cleanup, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import { afterEach, expect, it, vi } from "vitest";
+import ConnectedStory from "./ConnectedStory";
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+});
+it("keeps every chapter readable and changes the illustrative stage with scroll, cleaning up on unmount", () => {
+  let callback: IntersectionObserverCallback = () => {};
+  const disconnect = vi.fn();
+  vi.stubGlobal(
+    "IntersectionObserver",
+    class {
+      constructor(fn: IntersectionObserverCallback) {
+        callback = fn;
+      }
+      observe() {}
+      disconnect = disconnect;
+    },
+  );
+  vi.stubGlobal("matchMedia", (query: string) => ({
+    matches: query.includes("min-width"),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+  }));
+  const { container, unmount } = render(
+    <MemoryRouter>
+      <ConnectedStory />
+    </MemoryRouter>,
+  );
+  expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(3);
+  const second = container.querySelector('[data-chapter="1"]')!;
+  act(() =>
+    callback(
+      [
+        { target: second, isIntersecting: true, intersectionRatio: 0.8 },
+      ] as IntersectionObserverEntry[],
+      {} as IntersectionObserver,
+    ),
+  );
+  expect(container.querySelector("[data-story-stage]")).toHaveAttribute(
+    "data-story-stage",
+    "1",
+  );
+  unmount();
+  expect(disconnect).toHaveBeenCalled();
+});

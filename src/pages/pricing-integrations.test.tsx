@@ -16,9 +16,11 @@ afterEach(cleanup);
 describe("package billing", () => {
   it("shows photo pricing and annual savings without discounting setup", () => {
     render(
-      <MemoryRouter><ModalProvider>
-        <Pricing />
-      </ModalProvider></MemoryRouter>,
+      <MemoryRouter>
+        <ModalProvider>
+          <Pricing />
+        </ModalProvider>
+      </MemoryRouter>,
     );
     const launch = screen.getByRole("article", { name: "Launch plan" });
     expect(within(launch).getByText("$597")).toBeInTheDocument();
@@ -44,9 +46,11 @@ describe("package billing", () => {
 describe("integration directory", () => {
   it("combines category and text search, announces an empty state, and resets", () => {
     render(
-      <MemoryRouter><ModalProvider>
-        <Integrations />
-      </ModalProvider></MemoryRouter>,
+      <MemoryRouter>
+        <ModalProvider>
+          <Integrations />
+        </ModalProvider>
+      </MemoryRouter>,
     );
     expect(
       screen.getAllByRole("link", { name: /Official details for/ }),

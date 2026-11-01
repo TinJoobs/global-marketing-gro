@@ -9,7 +9,11 @@ afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
 });
-const router = (page: React.ReactNode) => <MemoryRouter><ModalProvider>{page}</ModalProvider></MemoryRouter>;
+const router = (page: React.ReactNode) => (
+  <MemoryRouter>
+    <ModalProvider>{page}</ModalProvider>
+  </MemoryRouter>
+);
 
 describe("planning guides", () => {
   it.each([

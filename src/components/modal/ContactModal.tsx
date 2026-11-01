@@ -127,7 +127,11 @@ export function ContactModal({
           autoComplete="name"
           className="h-12"
         />
-        {errors.name && <p id="cm-name-error" className="gmg-field-error">{errors.name}</p>}
+        {errors.name && (
+          <p id="cm-name-error" className="gmg-field-error">
+            {errors.name}
+          </p>
+        )}
       </div>
 
       <div className="gmg-modal-grid mt-5">
@@ -135,15 +139,19 @@ export function ContactModal({
           <Label htmlFor="cm-email">Email</Label>
           <Input
             id="cm-email"
-          aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? "cm-email-error" : undefined}
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "cm-email-error" : undefined}
             name="email"
             type="email"
             required
             autoComplete="email"
             className="h-12"
           />
-          {errors.email && <p id="cm-email-error" className="gmg-field-error">{errors.email}</p>}
+          {errors.email && (
+            <p id="cm-email-error" className="gmg-field-error">
+              {errors.email}
+            </p>
+          )}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="cm-phone">Phone (optional)</Label>
@@ -186,7 +194,11 @@ export function ContactModal({
           className="min-h-28"
           placeholder="Share a little about your business and where you'd like support."
         />
-        {errors.message && <p id="cm-message-error" className="gmg-field-error">{errors.message}</p>}
+        {errors.message && (
+          <p id="cm-message-error" className="gmg-field-error">
+            {errors.message}
+          </p>
+        )}
       </div>
 
       <label className="gmg-consent mt-5">
@@ -200,7 +212,11 @@ export function ContactModal({
         />
         <span>{CONSENT}</span>
       </label>
-      {errors.consent && <p id="cm-consent-error" className="gmg-field-error">{errors.consent}</p>}
+      {errors.consent && (
+        <p id="cm-consent-error" className="gmg-field-error">
+          {errors.consent}
+        </p>
+      )}
 
       <button
         className="btn-primary-gmg w-full mt-6"

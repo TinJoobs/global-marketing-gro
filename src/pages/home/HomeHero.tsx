@@ -23,11 +23,18 @@ export default function HomeHero() {
       <div className="container">
         <div className="hero-grid">
           <div className="hero-copy">
-            <span className="hero-kicker"><span/> SYSTEMS. PEOPLE. GROWTH.</span>
-            <h1>Your business.<br/><span className="accent">In full flow.</span></h1>
+            <span className="hero-kicker">
+              <span /> SYSTEMS. PEOPLE. GROWTH.
+            </span>
+            <h1>
+              Your business.
+              <br />
+              <span className="accent">In full flow.</span>
+            </h1>
             <p className="lead">
-              Connected systems. Dedicated people. More room to grow.
-              Bring your CRM, follow-up, and Philippines-based support team together—and get back to the work you love.
+              Connected systems. Dedicated people. More room to grow. Bring your
+              CRM, follow-up, and Philippines-based support team together—and
+              get back to the work you love.
             </p>
             <div className="actions">
               <button
@@ -49,7 +56,8 @@ export default function HomeHero() {
           <div dangerouslySetInnerHTML={{ __html: visual }} />
         </div>
         <a href="#connected-story" className="hero-scroll-link">
-          <span className="scroll-line"/> Discover a more connected business <Icon name="arrow" size={16}/>
+          <span className="scroll-line" /> Discover a more connected business{" "}
+          <Icon name="arrow" size={16} />
         </a>
         <div className="hero-proof-strip">
           <div>

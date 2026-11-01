@@ -283,3 +283,124 @@ export const HERO_IMG =
   "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
 export const TEAM_IMG =
   "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
+
+/* Real-world industry showcase imagery for the scroll-driven "Who we help" carousel.
+   Premium business-lifestyle photography generated for GMG. */
+export const industryShowcase: {
+  icon: IconName;
+  label: string;
+  blurb: string;
+  image: string;
+  to: string;
+}[] = [
+  {
+    icon: "building",
+    label: "Real Estate",
+    blurb:
+      "Capture every inquiry and close more listings with connected follow-up.",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/b4c7824f-5674-4206-8737-8263058f6a73.png",
+    to: "/industries",
+  },
+  {
+    icon: "medical",
+    label: "Medical & Healthcare",
+    blurb:
+      "Keep patients engaged with confirmations, reminders, and reactivation.",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/d6b985ea-0112-4448-bfe2-f9660cc44fd9.png",
+    to: "/industries",
+  },
+  {
+    icon: "shield",
+    label: "Insurance",
+    blurb:
+      "Never miss a renewal or a referral with automated policy follow-up.",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/ad2229bf-be51-44c7-9a45-2c72b26ab7f5.png",
+    to: "/industries",
+  },
+  {
+    icon: "users",
+    label: "Coaching & Consulting",
+    blurb:
+      "Scale your practice with booked calls and nurtured, high-intent leads.",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/fe7f61fd-dc67-494c-b1d8-8e467a556828.png",
+    to: "/industries",
+  },
+  {
+    icon: "briefcase",
+    label: "Construction & Contractors",
+    blurb: "Turn estimate requests into scheduled jobs and stay on track.",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/75f41799-913b-49df-8c1d-089e8c371b0e.png",
+    to: "/industries",
+  },
+  {
+    icon: "map",
+    label: "Local Home Services",
+    blurb:
+      "Answer every call and follow up on every quote, even when you're busy.",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/92589b65-0804-4e15-990d-e98e3bd75050.png",
+    to: "/industries",
+  },
+];
+
+export const testimonials: {
+  quote: string;
+  name: string;
+  role: string;
+  industry: string;
+  rating: number;
+}[] = [
+  {
+    quote:
+      "Global Marketing Group rebuilt our follow-up from the ground up. We stopped losing leads the first week. Our VA handles the inbox now and I finally have my evenings back.",
+    name: "Megan R.",
+    role: "Broker/Owner",
+    industry: "Real Estate",
+    rating: 5,
+  },
+  {
+    quote:
+      "The CRM and automations paid for themselves in a month. Reminders cut no-shows and our front desk feels half the chaos it used to.",
+    name: "Dr. Anthony P.",
+    role: "Practice Owner",
+    industry: "Medical & Healthcare",
+    rating: 5,
+  },
+  {
+    quote:
+      "Renewal follow-up used to fall through the cracks. Now nothing slips. The team treats my clients like I would — that's rare.",
+    name: "Lara S.",
+    role: "Agency Principal",
+    industry: "Insurance",
+    rating: 5,
+  },
+  {
+    quote:
+      "Booked calls went up the moment the funnel went live. I'm finally selling instead of chasing. Best money I've spent on the business.",
+    name: "James T.",
+    role: "Business Coach",
+    industry: "Coaching & Consulting",
+    rating: 5,
+  },
+  {
+    quote:
+      "From the website to the lead capture to the VA calling quotes back — it all just works together. One team, one system, no gaps.",
+    name: "Ricardo V.",
+    role: "General Contractor",
+    industry: "Construction",
+    rating: 5,
+  },
+  {
+    quote:
+      "We used to miss calls all day. Now every inquiry gets a fast reply and a next step. It's like we hired three people for the price of one.",
+    name: "Dana K.",
+    role: "Founder",
+    industry: "Local Services",
+    rating: 5,
+  },
+];

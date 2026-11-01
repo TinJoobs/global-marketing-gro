@@ -1,10 +1,13 @@
 import ConnectedStory from "./ConnectedStory";
+import WhoWeHelp from "./WhoWeHelp";
+import Testimonials from "./Testimonials";
+import PricingHighlight from "./PricingHighlight";
 import IntegrationLogoSlider from "@/components/IntegrationLogoSlider";
 import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { SectionHead, FAQList, CTASection } from "@/components/sections";
-import { coreSolutions, industries, faqs } from "./homeData";
-import { packages } from "@/data/packages";
+import { coreSolutions, faqs } from "./homeData";
+
 export default function HomeSections() {
   return (
     <>
@@ -30,10 +33,9 @@ export default function HomeSections() {
                 <Icon name="arrow" size={18} />
               </Link>
             </div>
-            <div className="border border-line rounded-xl p-7 bg-background/40">
+            <div className="home-tool-aside">
               <span className="gmg-stat">4 inputs.</span>
-              <br />
-              <span className="text-2xl font-semibold">
+              <span className="home-tool-aside-title">
                 One clearer picture.
               </span>
               <p className="mt-4 text-sm">
@@ -48,7 +50,11 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-      <section className="section-gmg pale-bg solutions-section" id="core-solutions">
+
+      <section
+        className="section-gmg pale-bg solutions-section"
+        id="core-solutions"
+      >
         <div className="container-gmg">
           <SectionHead
             center
@@ -84,7 +90,13 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-      <ConnectedStory/>
+
+      <ConnectedStory />
+
+      <PricingHighlight />
+
+      <WhoWeHelp />
+
       <section className="section-gmg pale-bg">
         <div className="container-gmg grid md:grid-cols-2 gap-12 items-center">
           <img
@@ -107,81 +119,9 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-      <section className="section-gmg">
-        <div className="container-gmg">
-          <SectionHead
-            center
-            eyebrow="Simple plans. Real support."
-            title="Choose the support your business needs."
-            subtitle="Start with automation. Add dedicated people and operational support as you grow."
-          />
-          <div className="gmg-app-grid">
-            {packages.map((p) => (
-              <article
-                className="card-gmg flex flex-col"
-                style={p.popular ? { borderColor: "var(--brand-teal)" } : undefined}
-                key={p.slug}
-              >
-                <span className="eyebrow">
-                  {p.popular ? "Most popular" : p.name}
-                </span>
-                <h3 className="text-2xl">{p.name}</h3>
-                <p className="text-muted-foreground my-4">{p.tagline}</p>
-                <p>
-                  <strong className="gmg-stat">
-                    ${p.monthly.toLocaleString("en-US")}
-                  </strong>
-                  <span className="text-sm text-muted-foreground"> /month</span>
-                </p>
-                <p className="text-sm text-muted-foreground mt-3 mb-6">
-                  + ${p.setup.toLocaleString("en-US")} one-time setup
-                </p>
-                <ul className="space-y-3 text-sm text-muted-foreground mb-7">
-                  {p.features.slice(0, 2).map((f) => (
-                    <li key={f} className="flex gap-2">
-                      <Icon name="check" size={16} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={`/contact?plan=${p.slug}&billing=monthly`}
-                  className="btn-outline-gmg mt-auto"
-                >
-                  Explore {p.name}
-                  <Icon name="arrow" size={16} />
-                </Link>
-              </article>
-            ))}
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-7">
-            3-month minimum. Setup billed at signing. Annual plans save 10%.{" "}
-            <Link className="text-link" to="/pricing">
-              Compare every feature and add-on
-            </Link>
-          </p>
-        </div>
-      </section>
-      <section className="section-gmg pale-bg">
-        <div className="container-gmg">
-          <SectionHead
-            eyebrow="Who we help"
-            title="Built for busy service businesses."
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {industries.map((i) => (
-              <Link
-                key={i.label}
-                to="/industries"
-                className="flex items-center gap-3 border border-line rounded-xl p-5 text-sm"
-              >
-                <Icon name={i.icon} size={20} />
-                {i.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+
+      <Testimonials />
+
       <section className="section-gmg">
         <div className="container-gmg grid lg:grid-cols-2 gap-12">
           <SectionHead
@@ -197,6 +137,7 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
+
       <CTASection
         title="Ready to stop losing leads?"
         body="Bring your CRM, follow-up, and support team together. Start with a free growth audit and a clear plan for what comes next."
