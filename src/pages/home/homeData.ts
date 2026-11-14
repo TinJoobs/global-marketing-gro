@@ -352,6 +352,8 @@ export const testimonials: {
     name: "Chris Borja",
     role: "Become a Better Networker",
     industry: "Professional Networking",
+    avatar:
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c5cc8475422fc318f.png",
   },
   {
     quote:
@@ -359,6 +361,8 @@ export const testimonials: {
     name: "Wayside Bookkeeping",
     role: "Bookkeeping & Accounting Services",
     industry: "Financial Services",
+    avatar:
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2db5921b2f43.png",
   },
   {
     quote:
@@ -366,5 +370,7 @@ export const testimonials: {
     name: "Klinghammer Construction",
     role: "Construction, LLC",
     industry: "General Contracting",
+    avatar:
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2d7d231b2f44.png",
   },
 ];

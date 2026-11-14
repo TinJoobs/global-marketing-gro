@@ -1,3 +1,4 @@
+import { hasConsent } from "./consent";
 /**
  * Canonical CRM form-tracking helper for Global Marketing Group.
  * Used the form-tracking skill. Fires external form submissions to the
@@ -20,6 +21,7 @@ const ENDPOINT = "https://backend.leadconnectorhq.com/external-tracking/events";
  *  visit's page views; fall back to a fresh id when it is absent or unreadable
  *  (document.cookie throws in a sandboxed iframe). */
 const getTrackingSessionId = () => {
+  if (!hasConsent("analytics")) return crypto.randomUUID();
   try {
     const sid = document.cookie.match(
       /(?:^|;\s*)__vibe_sid=([0-9a-f-]{36})(?:;|$)/,

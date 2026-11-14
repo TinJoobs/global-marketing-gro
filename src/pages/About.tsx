@@ -22,7 +22,7 @@ const About = () => {
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
           <Hero3DLayout variant="about">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Who We Are</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Who we are</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Global Marketing Group is a team of pioneers in marketing
             innovation. We combine executive-level support with cutting-edge AI
