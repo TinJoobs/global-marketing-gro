@@ -254,7 +254,7 @@ export default function Integrations() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Browse App Marketplace{" "}
+              Browse app marketplace{" "}
               <ArrowUpRight aria-hidden="true" className="w-4 h-4" />
               <span className="sr-only">(opens in a new tab)</span>
             </a>

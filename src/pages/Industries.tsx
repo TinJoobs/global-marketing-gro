@@ -126,13 +126,13 @@ export default function Industries() {
           </div>
           <div className="text-center mt-10">
             <Link to="/contact" className="btn-primary-gmg">
-              Find Your Industry Fit <Icon name="arrow" size={18} />
+              Find your industry fit <Icon name="arrow" size={18} />
             </Link>
           </div>
         </div>
       </section>
       <CTASection
-        title="Built for Your Industry"
+        title="Built for your industry"
         body="Whatever your field, we connect the right strategy, systems, and support to help you grow."
       />
     </div>

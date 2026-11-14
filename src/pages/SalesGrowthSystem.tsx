@@ -148,7 +148,7 @@ export default function SalesGrowthSystem() {
               ]}
             />
             <Link to="/contact" className="btn-primary-gmg mt-6">
-              Get Your Sales Growth System <Icon name="arrow" size={18} />
+              Get your Sales Growth System <Icon name="arrow" size={18} />
             </Link>
           </div>
         </div>

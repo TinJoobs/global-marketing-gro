@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
 import { PageHero, SectionHead, CTASection } from "@/components/sections";
 

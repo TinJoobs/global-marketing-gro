@@ -11,7 +11,7 @@ export default function NotFound() {
             We couldn't find that page. Choose a service or return to Home.
           </p>
           <Link className="btn-primary-gmg mt-8" to="/">
-            Return to Home
+            Return to home
           </Link>
         </Hero3DLayout>
       </div>

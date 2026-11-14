@@ -88,7 +88,7 @@ for (const item of cases) {
         screen.getByRole("link", { name: "Privacy Policy" }),
       ).toHaveAttribute("href", "/privacy");
       fireEvent.click(
-        screen.getByRole("button", { name: /Application|Referral/ }),
+        screen.getByRole("button", { name: /application|referral/i }),
       );
       expect(fetch).not.toHaveBeenCalled();
     });
@@ -104,7 +104,7 @@ for (const item of cases) {
       fill();
       fireEvent.click(screen.getByRole("checkbox", { name: /I agree/ }));
       fireEvent.click(
-        screen.getByRole("button", { name: /Application|Referral/ }),
+        screen.getByRole("button", { name: /application|referral/i }),
       );
       expect(
         screen.getByRole("button", { name: "Submitting…" }),
@@ -134,7 +134,7 @@ for (const item of cases) {
         const view = fill();
         fireEvent.click(screen.getByRole("checkbox", { name: /I agree/ }));
         fireEvent.click(
-          screen.getByRole("button", { name: /Application|Referral/ }),
+          screen.getByRole("button", { name: /application|referral/i }),
         );
         expect(await screen.findByRole("alert")).toHaveTextContent(
           /try again/i,
@@ -145,12 +145,12 @@ for (const item of cases) {
             value,
           );
         expect(
-          screen.getByRole("button", { name: /Application|Referral/ }),
+          screen.getByRole("button", { name: /application|referral/i }),
         ).toBeEnabled();
         expect(alert).not.toHaveBeenCalled();
         vi.mocked(fetch).mockResolvedValue(new Response(null, { status: 202 }));
         fireEvent.click(
-          screen.getByRole("button", { name: /Application|Referral/ }),
+          screen.getByRole("button", { name: /application|referral/i }),
         );
         expect(await screen.findByRole("status")).toHaveTextContent(
           /received/i,

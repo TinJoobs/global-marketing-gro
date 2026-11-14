@@ -69,7 +69,7 @@ const Referral = () => {
           <Hero3DLayout variant="referral">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Referral <span className="text-primary">Program</span>
+                Referral <span className="text-primary">program</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
                 Know a business that needs to scale? Refer them to Global
@@ -113,7 +113,7 @@ const Referral = () => {
                     Your information
                   </h3>
                   <div className="space-y-2">
-                    <Label htmlFor="yourName">Your Name</Label>
+                    <Label htmlFor="yourName">Your name</Label>
                     <Input
                       id="yourName"
                       name="yourName"
@@ -122,7 +122,7 @@ const Referral = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="yourEmail">Your Email</Label>
+                    <Label htmlFor="yourEmail">Your email</Label>
                     <Input
                       id="yourEmail"
                       name="yourEmail"
@@ -137,7 +137,7 @@ const Referral = () => {
                     Referral information
                   </h3>
                   <div className="space-y-2">
-                    <Label htmlFor="refName">Business Name</Label>
+                    <Label htmlFor="refName">Business name</Label>
                     <Input
                       id="refName"
                       name="refName"
@@ -146,7 +146,7 @@ const Referral = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="refContact">Contact Person</Label>
+                    <Label htmlFor="refContact">Contact person</Label>
                     <Input
                       id="refContact"
                       name="refContact"
@@ -177,7 +177,7 @@ const Referral = () => {
                 size="lg"
                 disabled={status === "pending"}
               >
-                {status === "pending" ? "Submitting…" : "Submit Referral"}
+                {status === "pending" ? "Submitting…" : "Submit referral"}
               </Button>
               {status === "accepted" && (
                 <p role="status" className="text-sm text-primary">

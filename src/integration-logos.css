@@ -204,8 +204,8 @@
   height: 64px;
   border-radius: 16px;
   padding: 14px;
-  background: var(--c-white);
-  border: 1px solid hsl(var(--border));
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: var(--brand-color, hsl(var(--foreground)));
   box-shadow:
     0 1px 2px hsl(var(--foreground) / 0.05),
@@ -224,8 +224,8 @@
   min-width: 0;
   min-height: 0;
   object-fit: contain;
-  filter: grayscale(0.35);
-  opacity: 0.92;
+  filter: none;
+  opacity: 1;
   transition:
     filter 0.2s ease,
     opacity 0.2s ease;

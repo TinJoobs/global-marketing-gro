@@ -45,7 +45,7 @@ const AccountRep = () => {
           customFields: {
             "0v9TM8bBpbR4Dl24FCUW": {
               value: data.linkedin,
-              label: "Linkedin profile",
+              label: "LinkedIn profile",
             },
           },
         },
@@ -65,7 +65,7 @@ const AccountRep = () => {
           <Hero3DLayout variant="career-sales">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Account <span className="text-primary">Representative</span>
+                Account <span className="text-primary">representative</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
                 Help businesses navigate the future of marketing. Join our sales
@@ -126,7 +126,7 @@ const AccountRep = () => {
               </h3>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name">Full name</Label>
                   <Input
                     id="name"
                     name="name"
@@ -135,7 +135,7 @@ const AccountRep = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                  <Label htmlFor="email">Email address</Label>
                   <Input
                     id="email"
                     name="email"
@@ -145,7 +145,7 @@ const AccountRep = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="linkedin">LinkedIn Profile</Label>
+                  <Label htmlFor="linkedin">LinkedIn profile</Label>
                   <Input
                     id="linkedin"
                     name="linkedin"

@@ -45,7 +45,7 @@ const TermsOfService = () => {
         </p>
       </div>
       <Button className="mt-12" asChild>
-        <Link to="/">Back to Home</Link>
+        <Link to="/">Back to home</Link>
       </Button>
     </div>
   );

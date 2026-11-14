@@ -45,7 +45,7 @@ function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
                 className="btn-primary-gmg"
                 style={noMotion}
               >
-                Book a Free Strategy Call
+                Book a free strategy call
               </Link>
               <Link to="/services" className="text-link" style={noMotion}>
                 Explore our services

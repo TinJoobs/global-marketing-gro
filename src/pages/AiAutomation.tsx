@@ -79,7 +79,7 @@ export default function AiAutomation() {
               </p>
             </div>
             <Link to="/contact" className="btn-primary-gmg whitespace-nowrap">
-              Schedule A Demo <Icon name="arrow" size={18} />
+              Schedule a demo <Icon name="arrow" size={18} />
             </Link>
           </div>
         </div>

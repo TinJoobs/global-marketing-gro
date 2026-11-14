@@ -70,7 +70,7 @@ const ExecutiveAssistant = () => {
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Become an AI-enhanced{" "}
-                <span className="text-primary">Executive Assistant</span>
+                <span className="text-primary">executive assistant</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
                 Join our elite team of professional assistants. We provide the
@@ -130,7 +130,7 @@ const ExecutiveAssistant = () => {
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName">First Name</Label>
+                    <Label htmlFor="firstName">First name</Label>
                     <Input
                       id="firstName"
                       name="firstName"
@@ -139,7 +139,7 @@ const ExecutiveAssistant = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName">Last Name</Label>
+                    <Label htmlFor="lastName">Last name</Label>
                     <Input
                       id="lastName"
                       name="lastName"
@@ -159,7 +159,7 @@ const ExecutiveAssistant = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">Phone number</Label>
                   <Input
                     id="phone"
                     name="phone"
@@ -169,7 +169,7 @@ const ExecutiveAssistant = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="experience">Relevant Experience</Label>
+                  <Label htmlFor="experience">Relevant experience</Label>
                   <Textarea
                     id="experience"
                     name="experience"
@@ -199,7 +199,7 @@ const ExecutiveAssistant = () => {
                   size="lg"
                   disabled={status === "pending"}
                 >
-                  {status === "pending" ? "Submitting…" : "Submit Application"}
+                  {status === "pending" ? "Submitting…" : "Submit application"}
                 </Button>
                 {status === "accepted" && (
                   <p role="status" className="text-sm text-primary">

@@ -12,8 +12,8 @@ const Affiliate = () => {
           <Hero3DLayout variant="affiliate">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Unlock Your{" "}
-                <span className="text-primary">Earning Potential</span>
+                Unlock your{" "}
+                <span className="text-primary">earning potential</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
                 Join Global Marketing Group’s exclusive affiliate program.
@@ -21,7 +21,7 @@ const Affiliate = () => {
                 marketing services.
               </p>
               <Button size="lg" asChild>
-                <Link to="/contact">Join the Program</Link>
+                <Link to="/contact">Join the program</Link>
               </Button>
             </div>
           </Hero3DLayout>
@@ -93,7 +93,7 @@ const Affiliate = () => {
                 Our team will review your application within 48 hours.
               </p>
               <Button className="w-full" size="lg" asChild>
-                <Link to="/contact">Apply Now</Link>
+                <Link to="/contact">Apply now</Link>
               </Button>
             </div>
           </div>

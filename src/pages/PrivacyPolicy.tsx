@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
       <section className="legal-page-hero">
         <Hero3DLayout variant="privacy">
           <span className="eyebrow">Legal</span>
-          <h1 className="text-4xl font-bold mb-8">Privacy policy</h1>
+          <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
           <p className="lead-gmg mt-6">
             How we handle the information you share with Global Marketing Group.
           </p>
@@ -44,7 +44,7 @@ const PrivacyPolicy = () => {
         </p>
       </div>
       <Button className="mt-12" asChild>
-        <Link to="/">Back to Home</Link>
+        <Link to="/">Back to home</Link>
       </Button>
     </div>
   );
