@@ -5,22 +5,23 @@ import Header from "./Header";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
 import { useReveal } from "@/hooks/useReveal";
-import { scrollToElement, scrollToTop, startSmoothScroll } from "@/lib/smoothScroll";
+import {
+  scrollToElement,
+  scrollToTop,
+  startSmoothScroll,
+} from "@/lib/smoothScroll";
+import { getSeoMeta } from "@/lib/seo";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, hash } = useLocation();
   const ref = useReveal<HTMLDivElement>();
   useEffect(() => startSmoothScroll(), []);
   useEffect(() => {
-    const heading = document.querySelector("h1")?.textContent;
-    document.title = `${heading || "Sales Systems. People. Growth."} | Global Marketing Group`;
-    const description =
-      pathname === "/missed-revenue-calculator"
-        ? "Estimate the monthly opportunity lost when inquiries go unanswered. Use your own assumptions, follow the checklist, and build a better follow-up process."
-        : "Global Marketing Group connects CRM automation and Philippines-based Virtual Assistant support. Explore Launch, Growth and Scale packages.";
+    const seo = getSeoMeta(pathname);
+    document.title = seo.title;
     document
       .querySelector('meta[name="description"]')
-      ?.setAttribute("content", description);
+      ?.setAttribute("content", seo.description);
     document
       .querySelector('link[rel="canonical"]')
       ?.setAttribute("href", window.location.origin + pathname);

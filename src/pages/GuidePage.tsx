@@ -23,31 +23,35 @@ export default function GuidePage({ slug }: { slug: string }) {
 }
 
 function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
-  const guideScene:Record<string,string>={"guide-va-delegation":"guide-va","guide-lead-follow-up":"guide-lead","guide-crm-readiness":"guide-crm"};
+  const guideScene: Record<string, string> = {
+    "guide-va-delegation": "guide-va",
+    "guide-lead-follow-up": "guide-lead",
+    "guide-crm-readiness": "guide-crm",
+  };
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   return (
     <div>
       <section className="page-hero-gmg">
         <div className="container-gmg">
           <Hero3DLayout variant={guideScene[guide.slug] ?? "resources"}>
-          <span className="eyebrow">{guide.name}</span>
-          <h1 className="text-4xl md:text-[3.5rem] font-bold max-w-4xl">
-            {guide.title}
-          </h1>
-          <p className="lead-gmg mt-6 max-w-3xl">{guide.intro}</p>
-          <div className="flex flex-wrap items-center gap-5 mt-8 print:hidden">
-            <Link
-              to="/book-a-call?service=strategy"
-              className="btn-primary-gmg"
-              style={noMotion}
-            >
-              Book a Free Strategy Call
-            </Link>
-            <Link to="/services" className="text-link" style={noMotion}>
-              Explore our services
-            </Link>
-          </div>
-        </Hero3DLayout>
+            <span className="eyebrow">{guide.name}</span>
+            <h1 className="text-4xl md:text-[3.5rem] font-bold max-w-4xl">
+              {guide.title}
+            </h1>
+            <p className="lead-gmg mt-6 max-w-3xl">{guide.intro}</p>
+            <div className="flex flex-wrap items-center gap-5 mt-8 print:hidden">
+              <Link
+                to="/book-a-call?service=strategy"
+                className="btn-primary-gmg"
+                style={noMotion}
+              >
+                Book a Free Strategy Call
+              </Link>
+              <Link to="/services" className="text-link" style={noMotion}>
+                Explore our services
+              </Link>
+            </div>
+          </Hero3DLayout>
         </div>
       </section>
       <section className="section-gmg">

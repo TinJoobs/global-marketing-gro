@@ -102,24 +102,24 @@ export default function MissedRevenueCalculator() {
       <section className="revenue-hero">
         <div className="container-gmg">
           <Hero3DLayout variant="calculator">
-          <span className="revenue-eyebrow">
-            <Calculator size={16} aria-hidden="true" /> Find the opportunity in
-            your inbox
-          </span>
-          <h1>
-            Missed revenue
-            <br />
-            <span>calculator</span>
-          </h1>
-          <p>
-            More leads aren't always the answer. See what consistent follow-up
-            could mean for the inquiries you already have.
-          </p>
-          <span className="revenue-reassurance">
-            <ShieldCheck size={16} aria-hidden="true" /> Free to use. No email
-            needed to calculate.
-          </span>
-        </Hero3DLayout>
+            <span className="revenue-eyebrow">
+              <Calculator size={16} aria-hidden="true" /> Find the opportunity
+              in your inbox
+            </span>
+            <h1>
+              Missed revenue
+              <br />
+              <span>calculator</span>
+            </h1>
+            <p>
+              More leads aren't always the answer. See what consistent follow-up
+              could mean for the inquiries you already have.
+            </p>
+            <span className="revenue-reassurance">
+              <ShieldCheck size={16} aria-hidden="true" /> Free to use. No email
+              needed to calculate.
+            </span>
+          </Hero3DLayout>
         </div>
       </section>
 

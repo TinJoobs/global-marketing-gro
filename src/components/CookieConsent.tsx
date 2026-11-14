@@ -1,10 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  OPEN_CONSENT_EVENT,
-  readConsent,
-  saveConsent,
-} from "@/lib/consent";
+import { OPEN_CONSENT_EVENT, readConsent, saveConsent } from "@/lib/consent";
 
 export default function CookieConsent() {
   const [open, setOpen] = useState(false);
@@ -51,9 +47,9 @@ export default function CookieConsent() {
       <div className="cookie-copy">
         <h2 id={titleId}>Cookies on this site</h2>
         <p>
-          We use necessary cookies to keep the site and forms working. With
-          your permission we also use analytics to see which pages help people,
-          and marketing cookies to measure our ads. See our{" "}
+          We use necessary cookies to keep the site and forms working. With your
+          permission we also use analytics to see which pages help people, and
+          marketing cookies to measure our ads. See our{" "}
           <Link to="/privacy">Privacy Policy</Link>.
         </p>
       </div>

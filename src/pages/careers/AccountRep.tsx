@@ -63,17 +63,17 @@ const AccountRep = () => {
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
           <Hero3DLayout variant="career-sales">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Account <span className="text-primary">Representative</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Help businesses navigate the future of marketing. Join our sales
-              team and represent a platform that truly delivers results.
-            </p>
-          </div>
-        </Hero3DLayout>
-      </div>
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Account <span className="text-primary">Representative</span>
+              </h1>
+              <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
+                Help businesses navigate the future of marketing. Join our sales
+                team and represent a platform that truly delivers results.
+              </p>
+            </div>
+          </Hero3DLayout>
+        </div>
       </section>
 
       <section className="section-padding">

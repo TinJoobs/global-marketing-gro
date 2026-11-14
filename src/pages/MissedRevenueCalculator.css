@@ -280,7 +280,10 @@
 .revenue-hero::after {
   content: "";
   position: absolute;
-  left: max(clamp(20px, 4vw, 40px), calc((100% - 1240px) / 2 + clamp(20px, 4vw, 40px)));
+  left: max(
+    clamp(20px, 4vw, 40px),
+    calc((100% - 1240px) / 2 + clamp(20px, 4vw, 40px))
+  );
   bottom: 0;
   width: 72px;
   height: 6px;
