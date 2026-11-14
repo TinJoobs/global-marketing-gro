@@ -22,8 +22,9 @@
     --c-white: #0d2c3d;
     --c-error: #b42318;
 
-    --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif, system-ui,
-      -apple-system, "Segoe UI", Arial, sans-serif;
+    --font-sans:
+      "Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif,
+      system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     --wide: 100%;
     --wider: 100%;
 
@@ -40,8 +41,8 @@
     --r-card: 14px;
     --r-control: 999px;
     --r-small: 8px;
-    --shadow-lift: 0 1px 0 rgba(11, 42, 60, 0.04),
-      0 18px 40px -24px rgba(11, 42, 60, 0.28);
+    --shadow-lift:
+      0 1px 0 rgba(11, 42, 60, 0.04), 0 18px 40px -24px rgba(11, 42, 60, 0.28);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
     --background: 199 76% 8%;
@@ -214,7 +215,11 @@
   }
 
   .pale-bg {
-    background: linear-gradient(180deg, rgba(13, 44, 61, 0.55), rgba(13, 44, 61, 0.2));
+    background: linear-gradient(
+      180deg,
+      rgba(13, 44, 61, 0.55),
+      rgba(13, 44, 61, 0.2)
+    );
     border-block: 1px solid rgba(142, 227, 214, 0.08);
   }
 
@@ -426,14 +431,18 @@
     background: var(--c-harbor);
     box-shadow: 0 0 0 100vmax var(--c-harbor);
     clip-path: inset(0 -100vmax);
-    padding-block: clamp(3rem, 2rem + 4vw, 5.5rem) clamp(2.5rem, 2rem + 2vw, 4rem);
+    padding-block: clamp(3rem, 2rem + 4vw, 5.5rem)
+      clamp(2.5rem, 2rem + 2vw, 4rem);
     overflow: clip;
   }
   .page-hero-gmg::before,
   section:has(.hero-page-layout)::before {
     content: "";
     position: absolute;
-    left: max(clamp(20px, 4vw, 40px), calc((100% - 1240px) / 2 + clamp(20px, 4vw, 40px)));
+    left: max(
+      clamp(20px, 4vw, 40px),
+      calc((100% - 1240px) / 2 + clamp(20px, 4vw, 40px))
+    );
     bottom: 0;
     width: 72px;
     height: 6px;
@@ -828,7 +837,11 @@
     border-radius: var(--r-panel);
     overflow: hidden;
     background:
-      radial-gradient(circle at 70% 30%, rgba(14, 112, 105, 0.35), transparent 60%),
+      radial-gradient(
+        circle at 70% 30%,
+        rgba(14, 112, 105, 0.35),
+        transparent 60%
+      ),
       var(--c-harbor);
   }
   .story-photos img {
@@ -1145,7 +1158,11 @@
     inset: 0 0 auto;
     height: 168px;
     background:
-      radial-gradient(circle at 80% 30%, rgba(14, 112, 105, 0.25), transparent 60%),
+      radial-gradient(
+        circle at 80% 30%,
+        rgba(14, 112, 105, 0.25),
+        transparent 60%
+      ),
       var(--c-mist-2);
   }
   .who-help-body {
@@ -1440,7 +1457,10 @@
     content: "";
     position: absolute;
     top: 0;
-    left: max(clamp(20px, 4vw, 40px), calc((100% - 1240px) / 2 + clamp(20px, 4vw, 40px)));
+    left: max(
+      clamp(20px, 4vw, 40px),
+      calc((100% - 1240px) / 2 + clamp(20px, 4vw, 40px))
+    );
     width: 72px;
     height: 6px;
     background: var(--c-sun);
@@ -1817,8 +1837,16 @@
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(60% 50% at 85% 10%, rgba(46, 170, 158, 0.16), transparent 70%),
-    radial-gradient(50% 40% at 10% 90%, rgba(246, 185, 50, 0.07), transparent 70%),
+    radial-gradient(
+      60% 50% at 85% 10%,
+      rgba(46, 170, 158, 0.16),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 40% at 10% 90%,
+      rgba(246, 185, 50, 0.07),
+      transparent 70%
+    ),
     linear-gradient(180deg, rgba(5, 25, 35, 0.6), rgba(5, 25, 35, 0.92)),
     url("/assets/images/plates/hero.webp") center / cover no-repeat;
   pointer-events: none;
@@ -1845,10 +1873,18 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(45% 55% at 0% 30%, rgba(46, 170, 158, 0.1), transparent 70%);
+  background: radial-gradient(
+    45% 55% at 0% 30%,
+    rgba(46, 170, 158, 0.1),
+    transparent 70%
+  );
 }
 .section-gmg:nth-of-type(even):not(:has(.hero-page-layout))::before {
-  background: radial-gradient(45% 55% at 100% 40%, rgba(70, 130, 180, 0.12), transparent 70%);
+  background: radial-gradient(
+    45% 55% at 100% 40%,
+    rgba(70, 130, 180, 0.12),
+    transparent 70%
+  );
 }
 .section-gmg + .section-gmg {
   border-top: 1px solid rgba(142, 227, 214, 0.06);
@@ -1857,7 +1893,11 @@
 .page-hero-gmg,
 section:has(.hero-page-layout) {
   background:
-    radial-gradient(70% 90% at 85% 20%, rgba(46, 170, 158, 0.32), transparent 65%),
+    radial-gradient(
+      70% 90% at 85% 20%,
+      rgba(46, 170, 158, 0.32),
+      transparent 65%
+    ),
     linear-gradient(180deg, rgba(5, 25, 35, 0.35), rgba(5, 25, 35, 0.85)),
     url("/assets/images/plates/story-2.webp") center / cover no-repeat;
   box-shadow: 0 0 0 100vmax var(--c-night);
@@ -1866,8 +1906,16 @@ section:has(.hero-page-layout) {
 
 .cta-banner-gmg {
   background:
-    radial-gradient(80% 120% at 100% 0%, rgba(246, 185, 50, 0.22), transparent 60%),
-    radial-gradient(60% 100% at 0% 100%, rgba(46, 170, 158, 0.25), transparent 60%),
+    radial-gradient(
+      80% 120% at 100% 0%,
+      rgba(246, 185, 50, 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      60% 100% at 0% 100%,
+      rgba(46, 170, 158, 0.25),
+      transparent 60%
+    ),
     url("/assets/images/plates/story-1.webp") center / cover no-repeat;
   border: 1px solid rgba(142, 227, 214, 0.18);
   box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
@@ -1875,7 +1923,11 @@ section:has(.hero-page-layout) {
 
 .site-footer {
   background:
-    radial-gradient(50% 80% at 90% 0%, rgba(46, 170, 158, 0.12), transparent 70%),
+    radial-gradient(
+      50% 80% at 90% 0%,
+      rgba(46, 170, 158, 0.12),
+      transparent 70%
+    ),
     #041520;
   border-top: 1px solid rgba(142, 227, 214, 0.1);
 }
@@ -1887,7 +1939,11 @@ section:has(.hero-page-layout) {
 .who-help-card,
 .home-tool-aside,
 .guide-navigation {
-  background: linear-gradient(180deg, rgba(18, 56, 77, 0.72), rgba(10, 38, 54, 0.72));
+  background: linear-gradient(
+    180deg,
+    rgba(18, 56, 77, 0.72),
+    rgba(10, 38, 54, 0.72)
+  );
   border-color: rgba(142, 227, 214, 0.14);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -1910,7 +1966,11 @@ section:has(.hero-page-layout) {
 }
 .gmg-mega-feature {
   background:
-    radial-gradient(90% 90% at 100% 0%, rgba(246, 185, 50, 0.18), transparent 60%),
+    radial-gradient(
+      90% 90% at 100% 0%,
+      rgba(246, 185, 50, 0.18),
+      transparent 60%
+    ),
     #0f3549;
 }
 .gmg-menu-toggle {
@@ -2025,12 +2085,20 @@ section:has(.hero-page-layout) {
 .home-calc input[type="range"]::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--c-sun) var(--fill), rgba(142, 227, 214, 0.18) var(--fill));
+  background: linear-gradient(
+    90deg,
+    var(--c-sun) var(--fill),
+    rgba(142, 227, 214, 0.18) var(--fill)
+  );
 }
 .home-calc input[type="range"]::-moz-range-track {
   height: 6px;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--c-sun) var(--fill), rgba(142, 227, 214, 0.18) var(--fill));
+  background: linear-gradient(
+    90deg,
+    var(--c-sun) var(--fill),
+    rgba(142, 227, 214, 0.18) var(--fill)
+  );
 }
 .home-calc input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -2064,7 +2132,11 @@ section:has(.hero-page-layout) {
   gap: 10px;
   padding: clamp(22px, 3vw, 36px);
   background:
-    radial-gradient(100% 80% at 100% 0%, rgba(246, 185, 50, 0.22), transparent 60%),
+    radial-gradient(
+      100% 80% at 100% 0%,
+      rgba(246, 185, 50, 0.22),
+      transparent 60%
+    ),
     #0f3549;
   border-left: 1px solid rgba(142, 227, 214, 0.14);
 }
@@ -2261,7 +2333,8 @@ html.lenis body {
     rgba(255, 255, 255, 0.015) 100%
   );
   --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-shine: inset 0 1px 0 rgba(255, 255, 255, 0.12),
+  --glass-shine:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
     inset 0 -1px 0 rgba(255, 255, 255, 0.02);
   --glass-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.75);
   --glass-blur: blur(18px) saturate(150%);
@@ -2288,14 +2361,21 @@ html.lenis body {
 .price-card.is-popular,
 .test-card:first-child {
   background:
-    radial-gradient(120% 80% at 85% 0%, rgba(246, 185, 50, 0.2), transparent 60%),
-    var(--glass-bg),
-    rgba(15, 53, 73, 0.7);
+    radial-gradient(
+      120% 80% at 85% 0%,
+      rgba(246, 185, 50, 0.2),
+      transparent 60%
+    ),
+    var(--glass-bg), rgba(15, 53, 73, 0.7);
   border-color: rgba(246, 185, 50, 0.45);
 }
 .home-calc-result {
   background:
-    radial-gradient(100% 80% at 100% 0%, rgba(246, 185, 50, 0.24), transparent 60%),
+    radial-gradient(
+      100% 80% at 100% 0%,
+      rgba(246, 185, 50, 0.24),
+      transparent 60%
+    ),
     rgba(255, 255, 255, 0.04);
   border-left-color: var(--glass-border);
 }
@@ -2421,7 +2501,9 @@ html.lenis body {
         cinema-settle 2.4s cubic-bezier(0.22, 1, 0.36, 1) both,
         gmg-parallax linear both;
       animation-timeline: auto, scroll(root);
-      animation-range: normal, 0 900px;
+      animation-range:
+        normal,
+        0 900px;
     }
   }
 }

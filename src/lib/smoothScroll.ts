@@ -36,9 +36,13 @@ export function startSmoothScroll(): () => void {
     else instance.start();
   };
   const observer = new MutationObserver(sync);
-  observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["style"],
+  });
   const site = document.getElementById("gmg-site");
-  if (site) observer.observe(site, { attributes: true, attributeFilter: ["inert"] });
+  if (site)
+    observer.observe(site, { attributes: true, attributeFilter: ["inert"] });
   return () => {
     cancelAnimationFrame(frame);
     observer.disconnect();

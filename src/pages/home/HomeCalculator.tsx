@@ -10,10 +10,38 @@ const usd = new Intl.NumberFormat("en-US", {
 });
 
 const sliders = [
-  { key: "inquiries", label: "Inquiries per month", min: 0, max: 1000, step: 10, format: (v: number) => `${v}` },
-  { key: "unfollowed", label: "Never followed up", min: 0, max: 100, step: 1, format: (v: number) => `${v}%` },
-  { key: "closeRate", label: "Could close with follow-up", min: 0, max: 100, step: 1, format: (v: number) => `${v}%` },
-  { key: "saleValue", label: "Average sale value", min: 0, max: 20000, step: 50, format: (v: number) => usd.format(v) },
+  {
+    key: "inquiries",
+    label: "Inquiries per month",
+    min: 0,
+    max: 1000,
+    step: 10,
+    format: (v: number) => `${v}`,
+  },
+  {
+    key: "unfollowed",
+    label: "Never followed up",
+    min: 0,
+    max: 100,
+    step: 1,
+    format: (v: number) => `${v}%`,
+  },
+  {
+    key: "closeRate",
+    label: "Could close with follow-up",
+    min: 0,
+    max: 100,
+    step: 1,
+    format: (v: number) => `${v}%`,
+  },
+  {
+    key: "saleValue",
+    label: "Average sale value",
+    min: 0,
+    max: 20000,
+    step: 50,
+    format: (v: number) => usd.format(v),
+  },
 ] as const;
 
 type Key = (typeof sliders)[number]["key"];
@@ -44,8 +72,8 @@ export default function HomeCalculator() {
               How much revenue slips through the cracks?
             </h2>
             <p>
-              Move the sliders to match a typical month. The estimate updates
-              as you go. Nothing is sent anywhere.
+              Move the sliders to match a typical month. The estimate updates as
+              you go. Nothing is sent anywhere.
             </p>
             <Link className="text-link" to="/missed-revenue-calculator">
               Open the full calculator and checklist
@@ -74,7 +102,10 @@ export default function HomeCalculator() {
                       value={values[s.key]}
                       style={{ ["--fill" as string]: `${pct}%` }}
                       onChange={(e) =>
-                        setValues({ ...values, [s.key]: Number(e.target.value) })
+                        setValues({
+                          ...values,
+                          [s.key]: Number(e.target.value),
+                        })
                       }
                     />
                   </div>
@@ -85,7 +116,9 @@ export default function HomeCalculator() {
               <span className="calc-result-label">
                 Estimated revenue missed each month
               </span>
-              <strong className="calc-result-value">{usd.format(monthly)}</strong>
+              <strong className="calc-result-value">
+                {usd.format(monthly)}
+              </strong>
               <span className="calc-result-sub">
                 {Math.round(leads).toLocaleString("en-US")} inquiries a month
                 get no reply. That is about {usd.format(monthly * 12)} a year.

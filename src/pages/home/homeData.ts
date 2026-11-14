@@ -282,7 +282,7 @@ export const faqs = [
 export const HERO_IMG = "/assets/images/plates/hero.webp";
 export const TEAM_IMG = "/assets/images/plates/team.webp";
 
-/* Neutral image plates for the industry grid. Replace with real photography in public/assets/images/plates. */
+/* Real photography for the industry showcase. No business names. */
 export const industryShowcase: {
   icon: IconName;
   label: string;
@@ -295,7 +295,8 @@ export const industryShowcase: {
     label: "Real estate",
     blurb:
       "Capture every inquiry and close more listings with connected follow-up.",
-    image: "/assets/images/plates/industry-1.webp",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/17e5c75e-d8a8-4c80-8890-78b892f0a10f.png",
     to: "/industries",
   },
   {
@@ -303,7 +304,8 @@ export const industryShowcase: {
     label: "Medical & healthcare",
     blurb:
       "Keep patients engaged with confirmations, reminders, and reactivation.",
-    image: "/assets/images/plates/industry-2.webp",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/329dfae2-1bc5-4159-9135-67aa7ce60f0c.png",
     to: "/industries",
   },
   {
@@ -311,7 +313,8 @@ export const industryShowcase: {
     label: "Insurance",
     blurb:
       "Never miss a renewal or a referral with automated policy follow-up.",
-    image: "/assets/images/plates/industry-3.webp",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/4a52cd68-2d10-4b7b-a8e1-fa5ef8011ab7.png",
     to: "/industries",
   },
   {
@@ -319,14 +322,16 @@ export const industryShowcase: {
     label: "Coaching & consulting",
     blurb:
       "Scale your practice with booked calls and nurtured, high-intent leads.",
-    image: "/assets/images/plates/industry-4.webp",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/bf6d4968-9672-4a55-8612-de93520c65eb.png",
     to: "/industries",
   },
   {
     icon: "briefcase",
     label: "Construction & contractors",
     blurb: "Turn estimate requests into scheduled jobs and stay on track.",
-    image: "/assets/images/plates/industry-5.webp",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/f538550b-0b6d-4765-b7af-b13b41106556.png",
     to: "/industries",
   },
   {
@@ -334,7 +339,8 @@ export const industryShowcase: {
     label: "Local home services",
     blurb:
       "Answer every call and follow up on every quote, even when you're busy.",
-    image: "/assets/images/plates/industry-6.webp",
+    image:
+      "https://vibe.filesafe.space/1778597036474054298/assets/e0150ff7-e805-4248-9f0e-d24e83975295.png",
     to: "/industries",
   },
 ];

@@ -27,11 +27,16 @@
 .cinema-spot {
   position: absolute;
   inset: 0;
-  background: radial-gradient(420px circle at var(--mx, 70%) var(--my, 30%), rgba(142, 227, 214, 0.16), transparent 70%);
+  background: radial-gradient(
+    420px circle at var(--mx, 70%) var(--my, 30%),
+    rgba(142, 227, 214, 0.16),
+    transparent 70%
+  );
   transition: background 0.2s linear;
 }
 .crm-window {
-  transform: perspective(1400px) rotateY(var(--tx, 0deg)) rotateX(var(--ty, 0deg));
+  transform: perspective(1400px) rotateY(var(--tx, 0deg))
+    rotateX(var(--ty, 0deg));
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .cinema-inner {

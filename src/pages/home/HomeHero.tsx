@@ -9,28 +9,55 @@ const columns = [
   {
     stage: "New lead",
     cards: [
-      { name: "Dana Reyes", source: "Website form", value: "$2,400", time: "2m ago" },
-      { name: "Marco Ellis", source: "Facebook ad", value: "$1,150", time: "18m ago" },
-      { name: "Priya Nair", source: "Missed call", value: "$860", time: "1h ago" },
+      {
+        name: "Dana Reyes",
+        source: "Website form",
+        value: "$2,400",
+        time: "2m ago",
+      },
+      {
+        name: "Marco Ellis",
+        source: "Facebook ad",
+        value: "$1,150",
+        time: "18m ago",
+      },
+      {
+        name: "Priya Nair",
+        source: "Missed call",
+        value: "$860",
+        time: "1h ago",
+      },
     ],
   },
   {
     stage: "Contacted",
     cards: [
-      { name: "Sam Whitaker", source: "Referral", value: "$3,200", time: "Today" },
+      {
+        name: "Sam Whitaker",
+        source: "Referral",
+        value: "$3,200",
+        time: "Today",
+      },
       { name: "Lena Ortiz", source: "Google", value: "$940", time: "Today" },
     ],
   },
   {
     stage: "Appointment booked",
     cards: [
-      { name: "Tom Becker", source: "Website form", value: "$4,750", time: "Tue" },
+      {
+        name: "Tom Becker",
+        source: "Website form",
+        value: "$4,750",
+        time: "Tue",
+      },
       { name: "Ava Kim", source: "Instagram", value: "$1,600", time: "Wed" },
     ],
   },
   {
     stage: "Won",
-    cards: [{ name: "Chris Dunn", source: "Referral", value: "$5,200", time: "Mon" }],
+    cards: [
+      { name: "Chris Dunn", source: "Referral", value: "$5,200", time: "Mon" },
+    ],
   },
 ];
 
@@ -69,7 +96,11 @@ export default function HomeHero() {
     };
   }, []);
   return (
-    <section className="hero-cinema" ref={ref} aria-labelledby="home-hero-title">
+    <section
+      className="hero-cinema"
+      ref={ref}
+      aria-labelledby="home-hero-title"
+    >
       <div className="cinema-media" aria-hidden="true">
         <img src={heroImage} alt="" fetchPriority="high" decoding="async" />
         <span className="cinema-shade" />
@@ -107,7 +138,10 @@ export default function HomeHero() {
           </p>
         </div>
 
-        <figure className="crm-shot" aria-label="Example of a sales pipeline inside the CRM">
+        <figure
+          className="crm-shot"
+          aria-label="Example of a sales pipeline inside the CRM"
+        >
           <div className="crm-window">
             <div className="crm-top">
               <span className="crm-dots" aria-hidden="true">
@@ -122,7 +156,16 @@ export default function HomeHero() {
             </div>
             <div className="crm-body">
               <nav className="crm-side" aria-hidden="true">
-                {(["chart", "users", "message", "calendar", "workflow", "settings"] as const).map((n, i) => (
+                {(
+                  [
+                    "chart",
+                    "users",
+                    "message",
+                    "calendar",
+                    "workflow",
+                    "settings",
+                  ] as const
+                ).map((n, i) => (
                   <span key={n} className={i === 0 ? "is-on" : ""}>
                     <Icon name={n} size={16} />
                   </span>
@@ -173,7 +216,9 @@ export default function HomeHero() {
               Tom Becker, Tuesday at 10:30 AM
             </span>
           </div>
-          <figcaption>Sample data. Your pipeline is built around your stages.</figcaption>
+          <figcaption>
+            Sample data. Your pipeline is built around your stages.
+          </figcaption>
         </figure>
       </div>
     </section>

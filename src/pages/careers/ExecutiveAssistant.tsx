@@ -67,19 +67,19 @@ const ExecutiveAssistant = () => {
       <section className="section-padding bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 text-center">
           <Hero3DLayout variant="career-ea">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Become an AI-enhanced{" "}
-              <span className="text-primary">executive assistant</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Join our elite team of professional assistants. We provide the
-              tools, training, and platform to help you deliver exceptional
-              value to global clients.
-            </p>
-          </div>
-        </Hero3DLayout>
-      </div>
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Become an AI-enhanced{" "}
+                <span className="text-primary">executive assistant</span>
+              </h1>
+              <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
+                Join our elite team of professional assistants. We provide the
+                tools, training, and platform to help you deliver exceptional
+                value to global clients.
+              </p>
+            </div>
+          </Hero3DLayout>
+        </div>
       </section>
 
       <section className="section-padding">

@@ -208,8 +208,8 @@ export default function Header() {
           <span className="eyebrow">{label}</span>
           <p>
             One connected system and one dedicated team, built around how your
-            business works so leads, follow-up, and support stop falling
-            through the cracks.
+            business works so leads, follow-up, and support stop falling through
+            the cracks.
           </p>
           <button
             type="button"

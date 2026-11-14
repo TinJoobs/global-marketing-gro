@@ -6,7 +6,15 @@ import { Link } from "react-router-dom";
 const TermsOfService = () => {
   return (
     <div className="container-gmg py-20">
-      <section className="legal-page-hero"><Hero3DLayout variant="terms"><span className="eyebrow">Legal</span><h1 className="text-4xl font-bold mb-8">Terms of service</h1><p className="lead-gmg mt-6">Understand the terms of using Global Marketing Group services.</p></Hero3DLayout></section>
+      <section className="legal-page-hero">
+        <Hero3DLayout variant="terms">
+          <span className="eyebrow">Legal</span>
+          <h1 className="text-4xl font-bold mb-8">Terms of service</h1>
+          <p className="lead-gmg mt-6">
+            Understand the terms of using Global Marketing Group services.
+          </p>
+        </Hero3DLayout>
+      </section>
       <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
         <p>
           Welcome to Global Marketing Group. By using our services, you agree to

@@ -36,36 +36,40 @@ export const PageHero: React.FC<{
   visual,
   simple,
 }) => {
- return <section className="page-hero-gmg page-hero-gmg--3d">
-    <div className="container-gmg">
-      <div
-        className={`hero-page-layout${simple ? " is-compact" : ""}${visual ? "" : " is-text"}`}
-      >
-        <div className="hero-page-copy">
-          <span className="eyebrow">{eyebrow}</span>
-          <h1>{title}</h1>
-          <p className="lead-gmg mt-6">{lead}</p>
-          {note && <p className="mt-4 text-muted-foreground max-w-[60ch]">{note}</p>}
-          {(primaryCta || secondaryCta) && (
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-9">
-              {primaryCta && (
-                <Link to={primaryCta.to} className="btn-primary-gmg">
-                  {primaryCta.label}
-                </Link>
-              )}
-              {secondaryCta && (
-                <Link to={secondaryCta.to} className="text-link">
-                  {secondaryCta.label}
-                  <Icon name="arrow" size={18} />
-                </Link>
-              )}
-            </div>
-          )}
+  return (
+    <section className="page-hero-gmg page-hero-gmg--3d">
+      <div className="container-gmg">
+        <div
+          className={`hero-page-layout${simple ? " is-compact" : ""}${visual ? "" : " is-text"}`}
+        >
+          <div className="hero-page-copy">
+            <span className="eyebrow">{eyebrow}</span>
+            <h1>{title}</h1>
+            <p className="lead-gmg mt-6">{lead}</p>
+            {note && (
+              <p className="mt-4 text-muted-foreground max-w-[60ch]">{note}</p>
+            )}
+            {(primaryCta || secondaryCta) && (
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-9">
+                {primaryCta && (
+                  <Link to={primaryCta.to} className="btn-primary-gmg">
+                    {primaryCta.label}
+                  </Link>
+                )}
+                {secondaryCta && (
+                  <Link to={secondaryCta.to} className="text-link">
+                    {secondaryCta.label}
+                    <Icon name="arrow" size={18} />
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
+          {visual}
         </div>
-        {visual}
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 };
 
 export const CTASection: React.FC<{
@@ -90,9 +94,7 @@ export const CTASection: React.FC<{
         <div className="cta-banner-gmg">
           <div className="relative">
             {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-            <h2 className="max-w-[18ch]">
-              {title}
-            </h2>
+            <h2 className="max-w-[18ch]">{title}</h2>
             <p className="text-muted-foreground mt-4 max-w-[56ch]">{body}</p>
           </div>
           <div className="flex flex-col gap-3 relative">

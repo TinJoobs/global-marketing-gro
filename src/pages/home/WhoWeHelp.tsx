@@ -53,8 +53,8 @@ export default function WhoWeHelp() {
           <div>
             <h3>Don&apos;t see your industry?</h3>
             <p>
-              We build around how your business works, from the first inquiry
-              to the people who follow through.
+              We build around how your business works, from the first inquiry to
+              the people who follow through.
             </p>
           </div>
           <div className="who-help-cta-actions">
