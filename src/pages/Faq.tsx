@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: "What does done-for-you implementation include?",
-    a: "We set up your CRM, build your workflows, create your funnels and landing pages, configure automations, and coordinate your Virtual Assistant — so you can focus on your business.",
+    a: "We set up your CRM, build your workflows, create your funnels and landing pages, configure automations, and coordinate your Virtual Assistant, so you can focus on your business.",
   },
   {
     q: "How quickly can I get started?",
@@ -49,7 +49,7 @@ export default function Faq() {
       <PageHero
         variant="faq"
         eyebrow="Help center"
-        title={<>Frequently Asked Questions</>}
+        title={<>Frequently asked questions</>}
         lead="Start with clarity. Explore how the system and your Virtual Assistant can work for your business."
       />
       <section className="section-gmg">
@@ -71,7 +71,7 @@ export default function Faq() {
         </div>
       </section>
       <CTASection
-        title="Ready to Get Started?"
+        title="Ready to get started?"
         body="Book a free strategy call and we'll help you find the right solution for your business."
       />
     </div>

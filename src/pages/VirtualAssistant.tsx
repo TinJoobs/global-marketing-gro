@@ -11,32 +11,32 @@ import {
 const roles: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "briefcase",
-    title: "Accounting Executive Assistant",
+    title: "Accounting executive assistant",
     body: "Bookkeeping support, invoicing, expense tracking, and financial admin handled with accuracy.",
   },
   {
     icon: "home",
-    title: "Realtor Executive Assistant",
+    title: "Realtor executive assistant",
     body: "Listing management, lead coordination, appointment setting, and transaction support.",
   },
   {
     icon: "medical",
-    title: "Medical Executive Assistant",
+    title: "Medical executive assistant",
     body: "Patient scheduling, records coordination, and front-office support for medical practices.",
   },
   {
     icon: "shield",
-    title: "Insurance Executive Assistant",
+    title: "Insurance executive assistant",
     body: "Policy management, client follow-up, claims support, and administrative coordination.",
   },
   {
     icon: "settings",
-    title: "Customizable Business Needs",
+    title: "Customizable business needs",
     body: "Matched to your specific workflow, industry, and the tasks you need completed.",
   },
   {
     icon: "monitor",
-    title: "Website & Digital Support",
+    title: "Website & digital support",
     body: "Website updates, content management, and digital task support for your online presence.",
   },
 ];
@@ -44,7 +44,7 @@ const roles: { icon: IconName; title: string; body: string }[] = [
 const benefits: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "users",
-    title: "Skilled & Matched",
+    title: "Skilled & matched",
     body: "We profile your needs and match you with a Virtual Assistant whose skills align with your work.",
   },
   {
@@ -59,7 +59,7 @@ const benefits: { icon: IconName; title: string; body: string }[] = [
   },
   {
     icon: "headset",
-    title: "Ongoing Coordination",
+    title: "Ongoing coordination",
     body: "We support onboarding, communication, task coordination, and performance reporting.",
   },
 ];
@@ -70,10 +70,10 @@ export default function VirtualAssistant() {
       <PageHero
         variant="va"
         eyebrow="Our core solution"
-        title={<>Virtual Assistant Services</>}
-        lead="Skilled Virtual Assistants who help manage the daily tasks that keep your business moving — so you can focus on growth."
+        title={<>Virtual Assistant services</>}
+        lead="Skilled Virtual Assistants who help manage the daily tasks that keep your business moving, so you can focus on growth."
         note="Growth includes a dedicated Philippines-based VA for $1,697/month plus $2,997 setup. VA Boost is $1,497/month."
-        primaryCta={{ label: "Get Your Executive Assistant", to: "/contact" }}
+        primaryCta={{ label: "Get your executive assistant", to: "/contact" }}
         secondaryCta={{ label: "View all services", to: "/services" }}
       />
 
@@ -82,7 +82,7 @@ export default function VirtualAssistant() {
           <SectionHead
             center
             eyebrow="Specialized roles"
-            title="The Right Assistant for Your Business."
+            title="The right assistant for your business."
             subtitle="Matched to your industry, workflow, and the work you actually need completed."
           />
           <FeatureGrid items={roles} cols={3} />
@@ -95,7 +95,7 @@ export default function VirtualAssistant() {
             <SectionHead
               eyebrow="Why GMG Virtual Assistants"
               title="Dependable support, coordinated for you."
-              subtitle="More than staffing — we help you connect the right person to the right work."
+              subtitle="More than staffing. We help you connect the right person to the right work."
             />
             <div className="space-y-5">
               {benefits.map((b) => (
@@ -138,9 +138,9 @@ export default function VirtualAssistant() {
       </section>
 
       <CTASection
-        title="Reclaim Your Time with the Right Support"
+        title="Reclaim your time with the right support"
         body="Let us match you with a Virtual Assistant who understands your industry and your specific needs."
-        primaryLabel="Get Your Executive Assistant"
+        primaryLabel="Get your executive assistant"
       />
     </div>
   );

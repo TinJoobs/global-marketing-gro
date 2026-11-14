@@ -10,32 +10,32 @@ import {
 const features: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "monitor",
-    title: "Professional Websites",
+    title: "Professional websites",
     body: "Conversion-focused websites that reflect your vision and deliver results.",
   },
   {
     icon: "capture",
-    title: "Landing Pages",
+    title: "Landing pages",
     body: "High-impact pages built to capture leads and drive action.",
   },
   {
     icon: "workflow",
-    title: "Sales Funnels",
+    title: "Sales funnels",
     body: "Funnels that guide visitors from first click to customer.",
   },
   {
     icon: "search",
-    title: "SEO Built-In",
+    title: "SEO built-in",
     body: "Search-optimized structure so the right people find you.",
   },
   {
     icon: "link",
-    title: "CRM Integration",
+    title: "CRM integration",
     body: "Every form and page connected to your lead-capture process.",
   },
   {
     icon: "headset",
-    title: "Ongoing Support",
+    title: "Ongoing support",
     body: "Updates, content, and maintenance handled for you.",
   },
 ];
@@ -46,9 +46,9 @@ export default function DigitalSolutions() {
       <PageHero
         variant="digital"
         eyebrow="Connected service"
-        title={<>Digital Solutions</>}
-        lead="Create a website that reflects your vision and delivers results — professional development, conversion-focused design, brand alignment, SEO, automation, and support."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        title={<>Digital solutions</>}
+        lead="Create a website that reflects your vision and delivers results: professional development, conversion-focused design, brand alignment, SEO, automation, and support."
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{ label: "View portfolio", to: "/portfolio" }}
       />
       <section className="section-gmg">
@@ -63,8 +63,8 @@ export default function DigitalSolutions() {
         </div>
       </section>
       <CTASection
-        title="Build a Website That Actually Grows Your Business"
-        body="Professional design, conversion focus, and full CRM integration — all handled for you."
+        title="Build a website that actually grows your business"
+        body="Professional design, conversion focus, and full CRM integration, all handled for you."
       />
     </div>
   );

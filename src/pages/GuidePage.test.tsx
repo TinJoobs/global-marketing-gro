@@ -19,12 +19,12 @@ describe("planning guides", () => {
   it.each([
     [
       "guide-va-delegation",
-      "Know What to Delegate. Set Your VA Up to Succeed.",
+      "Know what to delegate. Set your VA up to succeed.",
     ],
-    ["guide-lead-follow-up", "A Practical Checkup for Your Lead Journey."],
+    ["guide-lead-follow-up", "A practical checkup for your lead journey."],
     [
       "guide-crm-readiness",
-      "Build the Process Before You Build the Automation.",
+      "Build the process before you build the automation.",
     ],
   ])("renders the original %s with 24 local checklist items", (slug, title) => {
     render(router(<GuidePage slug={slug} />));

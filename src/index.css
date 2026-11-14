@@ -20,10 +20,10 @@
     --c-white: #ffffff;
     --c-error: #b42318;
 
-    --font-sans: "Archivo Variable", "Archivo", ui-sans-serif, system-ui,
+    --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif, system-ui,
       -apple-system, "Segoe UI", Arial, sans-serif;
-    --wide: 118%;
-    --wider: 125%;
+    --wide: 100%;
+    --wider: 100%;
 
     --step--1: 0.875rem;
     --step-0: 1.0625rem;
@@ -126,9 +126,9 @@
   h3,
   h4 {
     color: hsl(var(--navy));
-    font-weight: 720;
-    line-height: 1.08;
-    letter-spacing: -0.012em;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.028em;
     text-wrap: balance;
   }
 
@@ -1734,5 +1734,70 @@
     background: none;
     box-shadow: none;
     color: #000;
+  }
+}
+
+.report-card {
+  margin: 0;
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--r-panel);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  box-shadow: 0 30px 60px -40px rgba(11, 42, 60, 0.45);
+}
+.report-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--c-line);
+}
+.report-head .crm-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 13px;
+}
+.report-head strong {
+  display: block;
+  font-size: 1rem;
+}
+.report-head div span {
+  font-size: 0.875rem;
+  color: var(--c-graphite);
+}
+.report-list {
+  display: grid;
+  gap: 12px;
+  padding-block: 18px;
+  font-size: 0.9375rem;
+}
+.report-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.report-list .icon {
+  color: var(--c-globe);
+  flex: none;
+}
+.report-list li.is-open .icon {
+  color: var(--c-sun-deep);
+}
+.report-note {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--c-mist);
+  font-size: 0.9375rem;
+  color: var(--c-harbor);
+}
+.report-card figcaption {
+  margin-top: 12px;
+  font-size: 0.8125rem;
+  color: var(--c-graphite);
+}
+
+@media (max-width: 980px) {
+  .story-visual {
+    display: none;
   }
 }

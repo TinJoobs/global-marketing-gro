@@ -1,4 +1,4 @@
-import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,7 +45,7 @@ const AccountRep = () => {
           customFields: {
             "0v9TM8bBpbR4Dl24FCUW": {
               value: data.linkedin,
-              label: "LinkedIn Profile",
+              label: "Linkedin profile",
             },
           },
         },
@@ -80,7 +80,7 @@ const AccountRep = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold">The Opportunity</h2>
+              <h2 className="text-3xl font-bold">The opportunity</h2>
               <p className="text-lg text-muted-foreground">
                 As a GMG Account Representative, you'll be at the forefront of
                 the AI business revolution, helping companies automate their
@@ -90,22 +90,22 @@ const AccountRep = () => {
                 {[
                   {
                     icon: TrendingUp,
-                    title: "High Commission",
+                    title: "High commission",
                     desc: "Competitive earning structure with recurring potential.",
                   },
                   {
                     icon: Target,
-                    title: "Proven Product",
+                    title: "Proven product",
                     desc: "Sell a solution that businesses actually need and love.",
                   },
                   {
                     icon: Users,
-                    title: "Supportive Team",
+                    title: "Supportive team",
                     desc: "Access to elite sales training and marketing assets.",
                   },
                   {
                     icon: ShieldCheck,
-                    title: "Exclusive Territory",
+                    title: "Exclusive territory",
                     desc: "Manage and grow your own dedicated market segment.",
                   },
                 ].map((item, i) => (
@@ -122,7 +122,7 @@ const AccountRep = () => {
 
             <div className="glass-card p-8 rounded-2xl border-primary/20">
               <h3 className="text-2xl font-bold mb-6 text-center">
-                Start Your Journey
+                Start your journey
               </h3>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="space-y-2">

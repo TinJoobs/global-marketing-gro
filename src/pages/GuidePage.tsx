@@ -1,4 +1,4 @@
-import { Hero3DLayout, type Hero3DVariant } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Printer, RotateCcw } from "lucide-react";
@@ -23,7 +23,7 @@ export default function GuidePage({ slug }: { slug: string }) {
 }
 
 function GuideChecklist({ guide }: { guide: (typeof guides)[number] }) {
-  const guideScene:Record<string,Hero3DVariant>={"guide-va-delegation":"guide-va","guide-lead-follow-up":"guide-lead","guide-crm-readiness":"guide-crm"};
+  const guideScene:Record<string,string>={"guide-va-delegation":"guide-va","guide-lead-follow-up":"guide-lead","guide-crm-readiness":"guide-crm"};
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   return (
     <div>

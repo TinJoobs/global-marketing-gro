@@ -11,7 +11,7 @@ const industries: { icon: IconName; label: string; body: string }[] = [
   },
   {
     icon: "home",
-    label: "Real Estate",
+    label: "Real estate",
     body: "Listing management, lead coordination, and transaction support.",
   },
   {
@@ -51,7 +51,7 @@ const industries: { icon: IconName; label: string; body: string }[] = [
   },
   {
     icon: "map",
-    label: "Local Services",
+    label: "Local services",
     body: "Lead capture, scheduling, and reactivation.",
   },
 ];
@@ -62,9 +62,9 @@ export default function Industries() {
       <PageHero
         variant="industries"
         eyebrow="Who we serve"
-        title={<>Industries We Support</>}
-        lead="Built for busy business owners and growing organizations across industries — from accounting and real estate to wellness, education, and local services."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        title={<>Industries we support</>}
+        lead="Built for busy business owners and growing organizations across industries, from accounting and real estate to wellness, education, and local services."
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{ label: "See how it works", to: "/how-it-works" }}
       />
       <section className="section-gmg">

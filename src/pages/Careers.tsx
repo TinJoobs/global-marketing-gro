@@ -12,24 +12,24 @@ const roles: {
 }[] = [
   {
     icon: "headset",
-    title: "Executive Assistant",
+    title: "Executive assistant",
     body: "Join our team of skilled Virtual Assistants supporting businesses across industries.",
     to: "/careers/executive-assistant",
-    cta: "Apply Now",
+    cta: "Apply now",
   },
   {
     icon: "users",
-    title: "Referral Partner",
+    title: "Referral partner",
     body: "Refer businesses to GMG and earn rewards for successful introductions.",
     to: "/careers/referral",
-    cta: "Submit a Referral",
+    cta: "Submit a referral",
   },
   {
     icon: "briefcase",
-    title: "Account Representative",
+    title: "Account representative",
     body: "Help businesses discover the right GMG solutions as part of our growth team.",
     to: "/careers/account-rep",
-    cta: "Apply Now",
+    cta: "Apply now",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Careers() {
       <PageHero
         variant="careers"
         eyebrow="Careers"
-        title={<>Grow With Global Marketing Group</>}
+        title={<>Grow with Global Marketing Group</>}
         lead="Join a team that connects strategy, systems, and support to help businesses grow. Explore our open roles and referral opportunities."
         primaryCta={{ label: "View open roles", to: "#roles" }}
         secondaryCta={{ label: "Contact us", to: "/contact" }}
@@ -72,9 +72,9 @@ export default function Careers() {
         </div>
       </section>
       <CTASection
-        title="Ready to Join the Team?"
-        body="Apply for a role or submit a referral — we'd love to hear from you."
-        primaryLabel="Contact Us"
+        title="Ready to join the team?"
+        body="Apply for a role or submit a referral. We'd love to hear from you."
+        primaryLabel="Contact us"
       />
     </div>
   );

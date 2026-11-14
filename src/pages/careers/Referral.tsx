@@ -1,4 +1,4 @@
-import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,15 +41,15 @@ const Referral = () => {
           customFields: {
             R30rdrrITokjVI26Bz1J: {
               value: data.refContact,
-              label: "Contact Person",
+              label: "Contact person",
             },
             CcvTRPOprQ69M8yF5Oax: {
               value: data.yourName,
-              label: "Referrer Name",
+              label: "Referrer name",
             },
             xCypGtK2FMI2MiqYwqQq: {
               value: data.yourEmail,
-              label: "Referrer Email",
+              label: "Referrer email",
             },
           },
         },
@@ -85,7 +85,7 @@ const Referral = () => {
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             <div className="glass-card p-8 rounded-2xl text-center">
               <Gift className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Earn Rewards</h3>
+              <h3 className="text-xl font-bold mb-2">Earn rewards</h3>
               <p className="text-muted-foreground">
                 Receive generous bonuses for every client that joins our
                 platform through your referral.
@@ -93,7 +93,7 @@ const Referral = () => {
             </div>
             <div className="glass-card p-8 rounded-2xl text-center">
               <Share2 className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Easy Sharing</h3>
+              <h3 className="text-xl font-bold mb-2">Easy sharing</h3>
               <p className="text-muted-foreground">
                 Simply fill out the form below and our team will handle the rest
                 of the outreach.
@@ -103,13 +103,13 @@ const Referral = () => {
 
           <div className="glass-card p-10 rounded-2xl">
             <h2 className="text-3xl font-bold mb-8 text-center">
-              Submit a Referral
+              Submit a referral
             </h2>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
                   <h3 className="font-bold text-primary border-b border-primary/20 pb-2">
-                    Your Information
+                    Your information
                   </h3>
                   <div className="space-y-2">
                     <Label htmlFor="yourName">Your Name</Label>
@@ -133,7 +133,7 @@ const Referral = () => {
                 </div>
                 <div className="space-y-4">
                   <h3 className="font-bold text-primary border-b border-primary/20 pb-2">
-                    Referral Information
+                    Referral information
                   </h3>
                   <div className="space-y-2">
                     <Label htmlFor="refName">Business Name</Label>

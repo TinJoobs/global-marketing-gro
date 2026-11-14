@@ -3,7 +3,7 @@ export const guides = [
   {
     slug: "guide-va-delegation",
     name: "VA Delegation Planner",
-    title: "Know What to Delegate. Set Your VA Up to Succeed.",
+    title: "Know what to delegate. Set your VA up to succeed.",
     intro:
       "Use this planner before a VA discovery call to make your workload, priorities, and expectations easier to explain.",
     sections: [
@@ -72,7 +72,7 @@ export const guides = [
   {
     slug: "guide-lead-follow-up",
     name: "Lead Follow-Up Checklist",
-    title: "A Practical Checkup for Your Lead Journey.",
+    title: "A practical checkup for your lead journey.",
     intro:
       "Use this checklist to find the gaps between receiving an inquiry and giving it a clear next step.",
     sections: [
@@ -141,7 +141,7 @@ export const guides = [
   {
     slug: "guide-crm-readiness",
     name: "CRM Readiness Worksheet",
-    title: "Build the Process Before You Build the Automation.",
+    title: "Build the process before you build the automation.",
     intro:
       "Use this worksheet to prepare the information needed for a practical Sales Growth System assessment.",
     sections: [

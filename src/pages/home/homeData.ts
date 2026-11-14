@@ -30,37 +30,37 @@ export const features: {
 }[] = [
   {
     icon: "capture",
-    title: "Capture More Opportunities",
+    title: "Capture more opportunities",
     body: "Bring leads into one organized CRM through forms, landing pages, appointment calendars, phone calls, and other lead sources.",
     tone: "",
   },
   {
     icon: "message",
-    title: "Follow Up Consistently",
+    title: "Follow up consistently",
     body: "Use automated email and text-message sequences to respond quickly and stay connected with potential customers.",
     tone: "blue",
   },
   {
     icon: "calendar",
-    title: "Book More Appointments",
+    title: "Book more appointments",
     body: "Make it easier for prospects to schedule while using confirmations and reminders to reduce missed appointments.",
     tone: "purple",
   },
   {
     icon: "chart",
-    title: "Organize Your Sales Pipeline",
+    title: "Organize your sales pipeline",
     body: "Know exactly where every lead stands, what action is needed next, and which opportunities require attention.",
     tone: "",
   },
   {
     icon: "users",
-    title: "Support Daily Operations",
+    title: "Support daily operations",
     body: "Delegate administrative, marketing, customer-service, and sales-support tasks to a trained Virtual Assistant.",
     tone: "blue",
   },
   {
     icon: "report",
-    title: "Track Performance",
+    title: "Track performance",
     body: "Receive updates and reports that help you understand completed tasks, lead activity, appointments, and overall progress.",
     tone: "purple",
   },
@@ -99,7 +99,7 @@ export const process: {
   {
     icon: "refresh",
     num: "05",
-    title: "Retain and Reactivate",
+    title: "Retain and reactivate",
     body: "Continue communicating with existing customers while reconnecting with previous leads and inactive contacts.",
   },
 ];
@@ -112,7 +112,7 @@ export const connection: { icon: IconName; title: string; sub: string }[] = [
   },
   {
     icon: "workflow",
-    title: "Follow-Up Workflows",
+    title: "Follow-up workflows",
     sub: "Lead and pipeline management",
   },
   {
@@ -122,47 +122,47 @@ export const connection: { icon: IconName; title: string; sub: string }[] = [
   },
   {
     icon: "clipboard",
-    title: "Project Coordination",
+    title: "Project coordination",
     sub: "Accountability and reporting",
   },
 ];
 
 export const industries: { icon: IconName; label: string; href: string }[] = [
-  { icon: "home", label: "Home Services", href: "/industries" },
-  { icon: "building", label: "Real Estate", href: "/industries" },
+  { icon: "home", label: "Home services", href: "/industries" },
+  { icon: "building", label: "Real estate", href: "/industries" },
   { icon: "shield", label: "Insurance", href: "/industries" },
-  { icon: "users", label: "Coaches & Consultants", href: "/industries" },
-  { icon: "medical", label: "Medical & Professional", href: "/industries" },
-  { icon: "utensils", label: "Restaurants & Hospitality", href: "/industries" },
-  { icon: "heart", label: "Health & Wellness", href: "/industries" },
-  { icon: "hands", label: "Churches & Nonprofits", href: "/industries" },
-  { icon: "map", label: "Local Service Businesses", href: "/industries" },
+  { icon: "users", label: "Coaches & consultants", href: "/industries" },
+  { icon: "medical", label: "Medical & professional", href: "/industries" },
+  { icon: "utensils", label: "Restaurants & hospitality", href: "/industries" },
+  { icon: "heart", label: "Health & wellness", href: "/industries" },
+  { icon: "hands", label: "Churches & nonprofits", href: "/industries" },
+  { icon: "map", label: "Local service businesses", href: "/industries" },
   {
     icon: "briefcase",
-    label: "Entrepreneurs & Small Business",
+    label: "Entrepreneurs & small business",
     href: "/industries",
   },
 ];
 
 export const reasons: { title: string; body: string }[] = [
   {
-    title: "Customized Support",
+    title: "Customized support",
     body: "We begin with a discovery conversation to understand your goals, challenges, workload, and current processes.",
   },
   {
-    title: "The Right Virtual Assistant Match",
+    title: "The right Virtual Assistant match",
     body: "We profile your business needs and match you with a Virtual Assistant whose skills align with the work you need completed.",
   },
   {
-    title: "Integrated CRM and Automation",
+    title: "Integrated CRM and automation",
     body: "We help organize your leads, conversations, appointments, and sales opportunities within one centralized system.",
   },
   {
-    title: "Ongoing Coordination",
+    title: "Ongoing coordination",
     body: "Our team supports onboarding, communication, task coordination, client check-ins, and performance reporting.",
   },
   {
-    title: "Flexible Business Support",
+    title: "Flexible business support",
     body: "Begin with the services you need today and expand your support as your business grows.",
   },
 ];
@@ -235,30 +235,30 @@ export const coreSolutions = [
     tone: "purple" as const,
     num: "02",
     icon: "headset" as IconName,
-    title: "Virtual Assistant Services",
+    title: "Virtual Assistant services",
     body: "Skilled Virtual Assistants who help manage the daily tasks that keep your business moving.",
     tags: ["Included in Growth", "Philippines-based", "Matched to your needs"],
     to: "/virtual-assistant-services",
-    cta: "Find Your Virtual Assistant",
+    cta: "Find your Virtual Assistant",
   },
 ];
 
 export const connectedServices = [
   {
     icon: "database" as IconName,
-    title: "CRM & Automation",
+    title: "CRM & automation",
     body: "Connect your contacts, conversations, appointments, tasks, and sales pipeline in one organized system. Build follow-up around the way your business actually works.",
     to: "/crm-automation",
   },
   {
     icon: "monitor" as IconName,
-    title: "Digital Solutions",
+    title: "Digital solutions",
     body: "Connect websites, landing pages, funnels, and approved marketing content to a clear lead-capture and follow-up process.",
     to: "/digital-solutions",
   },
   {
     icon: "calendar" as IconName,
-    title: "Appointment Setting",
+    title: "Appointment setting",
     body: "Combine online scheduling, confirmations, reminders, and personal follow-up so your team can focus on the conversations that matter.",
     to: "/appointment-setting",
   },
@@ -279,13 +279,10 @@ export const faqs = [
   },
 ];
 
-export const HERO_IMG =
-  "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
-export const TEAM_IMG =
-  "https://vibe.filesafe.space/1778597036474054298/assets/c93d9a0d-ceff-48d4-94df-196954f52891.webp";
+export const HERO_IMG = "/assets/images/plates/hero.webp";
+export const TEAM_IMG = "/assets/images/plates/team.webp";
 
-/* Real-world industry showcase imagery for the scroll-driven "Who we help" carousel.
-   Premium business-lifestyle photography generated for GMG. */
+/* Neutral image plates for the industry grid. Replace with real photography in public/assets/images/plates. */
 export const industryShowcase: {
   icon: IconName;
   label: string;
@@ -295,20 +292,18 @@ export const industryShowcase: {
 }[] = [
   {
     icon: "building",
-    label: "Real Estate",
+    label: "Real estate",
     blurb:
       "Capture every inquiry and close more listings with connected follow-up.",
-    image:
-      "https://vibe.filesafe.space/1778597036474054298/assets/b4c7824f-5674-4206-8737-8263058f6a73.png",
+    image: "/assets/images/plates/industry-1.webp",
     to: "/industries",
   },
   {
     icon: "medical",
-    label: "Medical & Healthcare",
+    label: "Medical & healthcare",
     blurb:
       "Keep patients engaged with confirmations, reminders, and reactivation.",
-    image:
-      "https://vibe.filesafe.space/1778597036474054298/assets/d6b985ea-0112-4448-bfe2-f9660cc44fd9.png",
+    image: "/assets/images/plates/industry-2.webp",
     to: "/industries",
   },
   {
@@ -316,34 +311,30 @@ export const industryShowcase: {
     label: "Insurance",
     blurb:
       "Never miss a renewal or a referral with automated policy follow-up.",
-    image:
-      "https://vibe.filesafe.space/1778597036474054298/assets/ad2229bf-be51-44c7-9a45-2c72b26ab7f5.png",
+    image: "/assets/images/plates/industry-3.webp",
     to: "/industries",
   },
   {
     icon: "users",
-    label: "Coaching & Consulting",
+    label: "Coaching & consulting",
     blurb:
       "Scale your practice with booked calls and nurtured, high-intent leads.",
-    image:
-      "https://vibe.filesafe.space/1778597036474054298/assets/fe7f61fd-dc67-494c-b1d8-8e467a556828.png",
+    image: "/assets/images/plates/industry-4.webp",
     to: "/industries",
   },
   {
     icon: "briefcase",
-    label: "Construction & Contractors",
+    label: "Construction & contractors",
     blurb: "Turn estimate requests into scheduled jobs and stay on track.",
-    image:
-      "https://vibe.filesafe.space/1778597036474054298/assets/75f41799-913b-49df-8c1d-089e8c371b0e.png",
+    image: "/assets/images/plates/industry-5.webp",
     to: "/industries",
   },
   {
     icon: "map",
-    label: "Local Home Services",
+    label: "Local home services",
     blurb:
       "Answer every call and follow up on every quote, even when you're busy.",
-    image:
-      "https://vibe.filesafe.space/1778597036474054298/assets/92589b65-0804-4e15-990d-e98e3bd75050.png",
+    image: "/assets/images/plates/industry-6.webp",
     to: "/industries",
   },
 ];
@@ -361,8 +352,6 @@ export const testimonials: {
     name: "Chris Borja",
     role: "Become a Better Networker",
     industry: "Professional Networking",
-    avatar:
-      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c5cc8475422fc318f.png",
   },
   {
     quote:
@@ -370,8 +359,6 @@ export const testimonials: {
     name: "Wayside Bookkeeping",
     role: "Bookkeeping & Accounting Services",
     industry: "Financial Services",
-    avatar:
-      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2db5921b2f43.png",
   },
   {
     quote:
@@ -379,7 +366,5 @@ export const testimonials: {
     name: "Klinghammer Construction",
     role: "Construction, LLC",
     industry: "General Contracting",
-    avatar:
-      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6b9ZFpsH6Pv0R2iaasp8/media/6850417c681f2d7d231b2f44.png",
   },
 ];

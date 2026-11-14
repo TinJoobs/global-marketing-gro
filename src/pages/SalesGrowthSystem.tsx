@@ -22,7 +22,7 @@ const steps: { icon: IconName; title: string; body: string }[] = [
   },
   {
     icon: "calendar",
-    title: "Set Appointments",
+    title: "Set appointments",
     body: "Online scheduling with confirmations and reminders so your team focuses on the conversations that matter.",
   },
   {
@@ -40,27 +40,27 @@ const features: { icon: IconName; title: string; body: string }[] = [
   },
   {
     icon: "refresh",
-    title: "Lead Reactivation",
+    title: "Lead reactivation",
     body: "Reconnect with previous inquiries and inactive customers through an approved, organized process.",
   },
   {
     icon: "workflow",
-    title: "Workflow Automation",
+    title: "Workflow automation",
     body: "Automate repetitive follow-up so your team can focus on the conversations that need care.",
   },
   {
     icon: "report",
-    title: "Pipeline Visibility",
+    title: "Pipeline visibility",
     body: "See exactly where each opportunity stands and what needs to happen next.",
   },
   {
     icon: "chart",
-    title: "Performance Reporting",
+    title: "Performance reporting",
     body: "Understand activity, follow-up, and results with reporting that reflects how your business works.",
   },
   {
     icon: "headset",
-    title: "Human + AI Support",
+    title: "Human + AI support",
     body: "Combine automation for repetitive work with dependable people for the conversations that matter.",
   },
 ];
@@ -72,9 +72,9 @@ export default function SalesGrowthSystem() {
         variant="crm"
         eyebrow="Our core solution"
         title={<>The Sales Growth System™</>}
-        lead="A complete sales and follow-up system designed to help you capture, organize, nurture, and convert more leads — without doing everything yourself."
+        lead="A complete sales and follow-up system designed to help you capture, organize, nurture, and convert more leads, without doing everything yourself."
         note="The CRM is the central platform, but the service also includes strategy, workflow development, automation, follow-up processes, and optional Virtual Assistant support."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{ label: "See how it works", to: "/how-it-works" }}
       />
 
@@ -155,7 +155,7 @@ export default function SalesGrowthSystem() {
       </section>
 
       <CTASection
-        title="Stop Losing Opportunities to Missed Follow-Up"
+        title="Stop losing opportunities to missed follow-up"
         body="The right system, processes, and people can help your business respond faster, stay organized, and convert more opportunities."
       />
     </div>

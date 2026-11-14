@@ -1,4 +1,4 @@
-import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Users, Target, Rocket, Heart, ShieldCheck } from "lucide-react";
@@ -36,7 +36,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold">Our Mission</h2>
+              <h2 className="text-3xl md:text-4xl font-bold">Our mission</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 We believe that every business deserves access to elite-level
                 support and automation. Our mission is to democratize high-end
@@ -80,7 +80,7 @@ const About = () => {
             </div>
             <div className="glass-card p-4 rounded-2xl">
               <img
-                src="https://vibe.filesafe.space/1778597036474054298/assets/f5a3a1b7-e380-4c7d-8ea4-4c5bcf3ef818.jpg"
+                src="/assets/images/plates/team.webp"
                 alt="Our Team"
                 className="rounded-xl shadow-lg"
               />
@@ -89,7 +89,7 @@ const About = () => {
 
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Leadership Team
+              Leadership team
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">

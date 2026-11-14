@@ -5,7 +5,7 @@ import { PageHero, CTASection } from "@/components/sections";
 
 const sections = [
   {
-    heading: "1. Refund Eligibility",
+    heading: "1. Refund eligibility",
     body: "Refunds are considered for monthly subscription services cancelled within the first 14 days of the billing cycle, provided no significant work has been delivered. One-time setup, implementation, and done-for-you services are non-refundable once work has commenced.",
   },
   {
@@ -13,19 +13,19 @@ const sections = [
     body: "All published plans require a 3-month minimum term. Cancellation timing, notice, and any remaining billing obligations are subject to your signed service agreement. Contact our team to confirm the effective end date and any applicable refund eligibility.",
   },
   {
-    heading: "3. Virtual Assistant Services",
+    heading: "3. Virtual Assistant services",
     body: "Virtual Assistant support is offered through the Growth and Scale plans and the VA Boost add-on. The agreed service scope, billing, cancellation, and any refund eligibility are set out in your signed service agreement.",
   },
   {
-    heading: "4. Requesting a Refund",
+    heading: "4. Requesting a refund",
     body: "To request a refund, contact us at garyb@glomarkgroup.com with your account details and the reason for your request. Approved refunds are processed within 10 business days to the original payment method.",
   },
   {
-    heading: "5. Non-Refundable Items",
+    heading: "5. Non-refundable items",
     body: "Third-party costs, advertising spend, domain registrations, and custom development work already delivered are not eligible for refunds.",
   },
   {
-    heading: "6. Changes to This Policy",
+    heading: "6. Changes to this policy",
     body: "Global Marketing Group reserves the right to update this Refund Policy at any time. Changes take effect upon posting to this page.",
   },
 ];
@@ -36,7 +36,7 @@ export default function RefundPolicy() {
       <PageHero
         variant="refund"
         eyebrow="Legal"
-        title={<>Refund Policy</>}
+        title={<>Refund policy</>}
         lead="Our policy for refunds, cancellations, and service eligibility at Global Marketing Group."
         simple
       />
@@ -62,9 +62,9 @@ export default function RefundPolicy() {
         </div>
       </section>
       <CTASection
-        title="Still Have Questions?"
+        title="Still have questions?"
         body="Our team is happy to walk you through our refund and cancellation process."
-        primaryLabel="Contact Us"
+        primaryLabel="Contact us"
       />
     </div>
   );
