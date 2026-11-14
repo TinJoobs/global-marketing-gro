@@ -2,6 +2,7 @@ import ConnectedStory from "./ConnectedStory";
 import WhoWeHelp from "./WhoWeHelp";
 import Testimonials from "./Testimonials";
 import PricingHighlight from "./PricingHighlight";
+import HomeCalculator from "./HomeCalculator";
 import IntegrationLogoSlider from "@/components/IntegrationLogoSlider";
 import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
@@ -47,46 +48,7 @@ export default function HomeSections() {
 
       <ConnectedStory />
 
-      <section className="section-gmg pt-0">
-        <div className="container-gmg">
-          <div className="home-tool-card grid md:grid-cols-[1.4fr_1fr] items-center gap-10">
-            <div>
-              <h2 className="mb-5">
-                How much revenue slips through the cracks?
-              </h2>
-              <p className="font-semibold text-navy mb-3">
-                Try the free missed revenue calculator.
-              </p>
-              <p>
-                Estimate the monthly opportunity lost when inquiries go
-                unanswered, then build a follow-up process that gives every lead
-                a next step.
-              </p>
-              <Link
-                className="btn-dark-gmg mt-8"
-                to="/missed-revenue-calculator"
-              >
-                Calculate your missed opportunity{" "}
-                <Icon name="arrow" size={18} />
-              </Link>
-            </div>
-            <div className="home-tool-aside">
-              <span className="gmg-stat">4 inputs.</span>
-              <span className="home-tool-aside-title">
-                One clearer picture.
-              </span>
-              <p className="mt-4 text-[0.9375rem]">
-                Your inquiry volume, follow-up gap, estimated close rate, and
-                average sale value. Results are estimates, with every assumption
-                explained.
-              </p>
-              <p className="mt-3 text-[0.9375rem] font-semibold text-navy">
-                No signup needed to see your estimate.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeCalculator />
 
       <PricingHighlight />
 

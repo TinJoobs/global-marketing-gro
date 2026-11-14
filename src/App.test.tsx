@@ -24,7 +24,7 @@ describe("application routes", () => {
   it("renders the actual pricing page instead of the Home fallback", () => {
     visit("/pricing");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      /Simple Plans\. Real Support\.\s*No Guesswork\./,
+      /Simple plans\. Real support\.\s*No guesswork\./,
     );
   });
   it("shows 404 for an unknown route", () => {

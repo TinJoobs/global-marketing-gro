@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { useModalCTA } from "@/components/modal/useModalCTA";
@@ -35,11 +36,44 @@ const columns = [
 
 export default function HomeHero() {
   const { book } = useModalCTA();
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fine = window.matchMedia?.("(hover: hover) and (pointer: fine)");
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (!fine?.matches || reduced?.matches) return;
+    let frame = 0;
+    const move = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        el.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
+        el.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
+        el.style.setProperty("--tx", `${((x - 0.5) * 6).toFixed(2)}deg`);
+        el.style.setProperty("--ty", `${((0.5 - y) * 4).toFixed(2)}deg`);
+      });
+    };
+    const leave = () => {
+      el.style.setProperty("--tx", "0deg");
+      el.style.setProperty("--ty", "0deg");
+    };
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerleave", leave);
+    return () => {
+      cancelAnimationFrame(frame);
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerleave", leave);
+    };
+  }, []);
   return (
-    <section className="hero-cinema" aria-labelledby="home-hero-title">
+    <section className="hero-cinema" ref={ref} aria-labelledby="home-hero-title">
       <div className="cinema-media" aria-hidden="true">
         <img src={heroImage} alt="" fetchPriority="high" decoding="async" />
         <span className="cinema-shade" />
+        <span className="cinema-spot" />
       </div>
 
       <div className="container-gmg cinema-inner">

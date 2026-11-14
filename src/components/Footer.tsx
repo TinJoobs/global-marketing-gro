@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 import { useModalCTA } from "./modal/useModalCTA";
+import { openConsentSettings } from "@/lib/consent";
 
 const BRAND_LOGO = "/assets/images/gmg-headset-logo.webp";
 
@@ -88,6 +89,9 @@ const Footer = () => {
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/terms">Terms & Conditions</Link>
             <Link to="/refund">Refund Policy</Link>
+            <button type="button" onClick={openConsentSettings}>
+              Cookie settings
+            </button>
           </nav>
         </div>
       </div>

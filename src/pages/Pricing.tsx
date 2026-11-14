@@ -22,9 +22,9 @@ export default function Pricing() {
         eyebrow="Pricing & support"
         title={
           <>
-            Simple Plans. Real Support.
+            Simple plans. Real support.
             <br />
-            <span className="text-primary">No Guesswork.</span>
+            <span className="text-primary">No guesswork.</span>
           </>
         }
         lead="Automation plus offshore talent, packaged into three clear plans. Upgrade anytime as you grow."

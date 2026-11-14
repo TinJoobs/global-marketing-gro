@@ -109,7 +109,7 @@ export default function MissedRevenueCalculator() {
           <h1>
             Missed revenue
             <br />
-            <span>Calculator</span>
+            <span>calculator</span>
           </h1>
           <p>
             More leads aren't always the answer. See what consistent follow-up

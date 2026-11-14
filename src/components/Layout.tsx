@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import Header from "./Header";
 import Footer from "./Footer";
+import CookieConsent from "./CookieConsent";
 import { useReveal } from "@/hooks/useReveal";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -51,6 +52,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </main>
         <Footer />
       </div>
+      <CookieConsent />
     </MotionConfig>
   );
 }
