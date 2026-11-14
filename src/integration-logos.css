@@ -1,35 +1,37 @@
 /* Official artwork stays in one unboxed, horizontally scrollable row. */
 
 #gmg-site .integration-logo-band {
-  background: #06172e;
-  color: #f3f8ff;
+  background: var(--c-white);
+  color: var(--c-harbor);
   overflow: hidden;
-  border-block: 1px solid #294862;
-  padding-block: 64px;
+  border-bottom: 1px solid var(--c-line);
+  padding-block: clamp(40px, 5vw, 64px);
 }
 #gmg-site .integration-logo-band .section-head {
-  max-width: 850px;
-  margin: 0 auto 40px;
+  max-width: 46rem;
+  margin: 0 auto 28px;
   text-align: center;
 }
 #gmg-site .integration-logo-band .eyebrow {
-  color: #72e4d4;
+  color: var(--c-globe);
 }
 #gmg-site .integration-logo-band h2 {
-  color: #f3f8ff;
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  color: var(--c-harbor);
+  font-size: var(--step-3);
 }
 #gmg-site .integration-logo-band h2 span {
-  color: #72e4d4;
+  color: inherit;
 }
 #gmg-site .integration-logo-band .section-head p {
-  color: #adc0d5;
+  margin-top: 10px;
+  color: var(--c-graphite);
 }
 #gmg-site .integration-logo-slides {
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  background: linear-gradient(100deg, #f3f8ff, #e9f1fa);
-  border-block: 1px solid #c9d9cf;
+  background: var(--c-white);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 #gmg-site .integration-logo-row {
   overflow-x: auto;
@@ -51,8 +53,8 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
-  gap: 32px;
-  padding-right: 32px;
+  gap: 24px;
+  padding-right: 24px;
   min-width: 100vw;
   flex: none;
 }
@@ -60,25 +62,25 @@
   display: none !important;
 }
 #gmg-site .integration-logo-card {
-  width: 140px;
-  height: 94px;
-  padding: 20px 12px;
+  width: 132px;
+  height: 84px;
+  padding: 16px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 0;
+  border-radius: var(--r-card);
   background: transparent;
   flex: none;
   text-decoration: none;
 }
 #gmg-site .integration-logo-card:hover {
-  background: #d6e6dd;
+  background: var(--c-mist);
   text-decoration: none;
 }
 #gmg-site .integration-logo-card:focus-visible,
 #gmg-site .integration-logo-row:focus-visible {
-  outline: 3px solid #72e4d4;
+  outline: 2px solid var(--c-globe);
   outline-offset: -4px;
 }
 #gmg-site .integration-logo-art {
@@ -93,41 +95,39 @@
 #gmg-site .integration-logo-art img {
   display: block;
   width: 96px;
-  height: 44px;
+  height: 40px;
   max-width: 100%;
-  max-height: 44px;
+  max-height: 40px;
   min-width: 0;
   min-height: 0;
   object-fit: contain;
 }
 #gmg-site .integration-slide-hint {
-  margin: 20px auto 0;
+  margin: 14px auto 0;
   text-align: center;
-  font-size: 0.75rem;
-  color: #adc0d5;
+  font-size: 0.875rem;
+  color: var(--c-graphite);
 }
 #gmg-site .integration-logo-band .actions {
   display: flex;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 #gmg-site .integration-logo-band .btn-outline {
-  border-color: #466050;
-  color: #f3f8ff;
+  border-color: var(--c-harbor);
+  color: var(--c-harbor);
   background: transparent;
 }
 #gmg-site .integration-logo-band .btn-outline:hover {
-  border-color: #72e4d4;
-  color: #f0d29b;
-  background: #183328;
+  background: var(--c-mist);
 }
 #gmg-site .integration-slide-note {
-  max-width: 1080px;
+  max-width: 68ch;
   text-align: center;
-  margin: 28px auto 0;
+  margin: 20px auto 0;
   font-size: 0.8125rem;
-  line-height: 1.7;
-  color: #adc0d5;
+  line-height: 1.6;
+  color: var(--c-graphite);
 }
 @media (max-width: 600px) {
   #gmg-site .integration-logo-band {
@@ -192,7 +192,7 @@
   height: 64px;
   border-radius: 16px;
   padding: 14px;
-  background: color-mix(in oklab, var(--surface, #fff) 92%, transparent);
+  background: var(--c-white);
   border: 1px solid hsl(var(--border));
   color: var(--brand-color, hsl(var(--foreground)));
   box-shadow:

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Icon } from "@/components/Icon";
 import { packages, pricingTerms } from "@/data/packages";
 import { useModalCTA } from "@/components/modal/useModalCTA";
@@ -20,29 +19,19 @@ export default function PricingHighlight() {
     >
       <div className="container-gmg">
         <div className="pricing-highlight-head">
-          <span className="eyebrow">Simple plans. Real support.</span>
           <h2 id="pricing-highlight-title">
-            Choose the support{" "}
-            <span className="accent-text">your business needs.</span>
+            Choose the support your business needs.
           </h2>
           <p className="pricing-highlight-lead">
             Start with automation. Add dedicated people and operational support
-            as you grow. No guesswork, no surprises.
+            as you grow.
           </p>
         </div>
 
         <div className="pricing-highlight-grid">
-          {packages.map((p, i) => (
-            <motion.article
+          {packages.map((p) => (
+            <article
               className={`price-card${p.popular ? " is-popular" : ""}`}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: 0.6,
-                delay: i * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
               key={p.slug}
             >
               <div className="price-badge-slot">
@@ -96,14 +85,14 @@ export default function PricingHighlight() {
                   </Link>
                 )}
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
 
         <div className="pricing-highlight-foot">
           <p>
-            {pricingTerms.minimum_months}-month minimum · setup billed at
-            signing · annual plans save {pricingTerms.annual_discount_percent}%
+            {pricingTerms.minimum_months}-month minimum. Setup is billed at
+            signing. Annual plans save {pricingTerms.annual_discount_percent}%.
           </p>
           <Link className="text-link" to="/pricing">
             Compare every feature and add-on <Icon name="arrow" size={16} />

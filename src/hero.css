@@ -1,521 +1,187 @@
-/* A CSS 3D platform floats above a perspective grid and a projected star field. */
-#gmg-site .hero-experience {
+.hero-cinema {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  background: #041225;
-  padding: 52px 0 28px;
-  border-color: #294862;
+  min-height: min(88vh, 860px);
+  display: flex;
+  background: var(--c-harbor);
+  color: #f4f8f7;
 }
-#gmg-site .hero-experience .container {
-  position: relative;
-  z-index: 1;
+
+.cinema-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 }
-#gmg-site .hero-experience .hero-grid {
-  grid-template-columns: 1.05fr 1fr;
-  gap: 24px;
+
+.cinema-slide,
+.cinema-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-#gmg-site .hero-experience h1 {
-  font-size: clamp(2.7rem, 4.25vw, 4.5rem);
-  line-height: 1.06;
-  letter-spacing: -0.055em;
-  margin: 22px 0 26px;
+
+.cinema-slide {
+  opacity: 0;
+  transform: scale(1.12);
+  transition:
+    opacity 1.8s ease,
+    transform 0s linear 1.8s;
 }
-#gmg-site .hero-experience .lead {
-  font-size: 1.075rem;
-  max-width: 550px;
-  color: #c0d1e6;
+
+.cinema-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 1.8s ease,
+    transform 9s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-#gmg-site .hero-experience .eyebrow.pill {
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  padding: 10px 13px;
-  max-width: 100%;
+
+.hero-cinema[data-paused] .cinema-slide.is-active {
+  transform: scale(1.04);
+  transition: opacity 0.4s ease;
 }
-#gmg-site .hero-experience .actions {
+
+.cinema-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11, 42, 60, 0.92) 0%, rgba(11, 42, 60, 0.72) 42%, rgba(11, 42, 60, 0.18) 100%),
+    linear-gradient(0deg, rgba(11, 42, 60, 0.95) 0%, rgba(11, 42, 60, 0) 38%);
+}
+
+.cinema-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: clamp(40px, 8vh, 96px);
+  padding-block: clamp(4rem, 12vh, 9rem) 0;
+}
+
+.cinema-copy {
+  max-width: 42rem;
+}
+
+.cinema-kicker {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-lagoon);
+}
+
+.hero-cinema h1 {
+  font-size: clamp(2.6rem, 1.3rem + 4.4vw, 5rem);
+  font-stretch: 112%;
+  font-weight: 760;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: #f4f8f7;
+}
+
+.cinema-lead {
+  margin-top: 24px;
+  max-width: 34rem;
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: #d6e3e1;
+}
+
+.cinema-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+  margin-top: 32px;
 }
-#gmg-site .hero-experience .actions .btn {
-  font-size: 0.875rem;
-  padding-inline: 19px;
+
+.cinema-actions .btn-outline-gmg {
+  color: #f4f8f7;
+  border-color: rgba(244, 248, 247, 0.6);
 }
-#gmg-site .hero-experience .hero-note {
-  color: #9eb7cf;
-  font-size: 0.75rem;
+
+.cinema-actions .btn-outline-gmg:hover {
+  border-color: #f4f8f7;
+  background: rgba(244, 248, 247, 0.08);
 }
-#gmg-site .hero-experience .hero-note .icon {
-  color: var(--gold);
-}
-#gmg-site .hero-atmosphere {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-#gmg-site .hero-atmosphere canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  inset: 0;
-  opacity: 0.8;
-}
-#gmg-site .ambient-glow {
-  position: absolute;
-  width: 580px;
-  height: 580px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #014ea66b, transparent 66%);
-  animation: gmg-ambient 17s ease-in-out infinite alternate;
-  animation-play-state: paused;
-}
-#gmg-site .glow-one {
-  right: -100px;
-  top: -90px;
-}
-#gmg-site .glow-two {
-  width: 380px;
-  height: 380px;
-  right: 35%;
-  top: 35%;
-  background: radial-gradient(circle, #19bda92b, transparent 68%);
-  animation-delay: -8s;
-}
-#gmg-site .perspective-grid {
-  position: absolute;
-  width: 130%;
-  height: 110%;
-  left: 10%;
-  top: 47%;
-  background-image:
-    linear-gradient(#8bbdff13 1px, transparent 1px),
-    linear-gradient(90deg, #8bbdff13 1px, transparent 1px);
-  background-size: 55px 55px;
-  transform: perspective(600px) rotateX(65deg) rotateZ(-18deg);
-  transform-origin: 50% 0;
-  mask-image: radial-gradient(ellipse at center, #000, transparent 70%);
-}
-#gmg-site .platform-visual {
-  margin: 0;
-  min-width: 0;
-  position: relative;
-}
-#gmg-site .platform-stage {
-  --pointer-x: 0deg;
-  --pointer-y: 0deg;
-  position: relative;
-  height: 540px;
-  transform: perspective(1100px) rotateX(var(--pointer-y))
-    rotateY(var(--pointer-x));
-  transform-style: preserve-3d;
-  transition: transform 0.45s ease-out;
-}
-#gmg-site .platform-core {
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  width: 215px;
-  height: 180px;
-  transform: translate(-50%, -50%) rotateX(35deg) rotateZ(-32deg);
-  transform-style: preserve-3d;
-}
-#gmg-site .core-layer {
-  position: absolute;
-  inset: 0;
-  border: 1px solid #62c6ee66;
-  border-radius: 34px;
-  background: linear-gradient(135deg, #155284, #072242 65%, #269fa9);
-  box-shadow:
-    0 0 18px #48cdd829,
-    inset 0 0 16px #70aee826;
-}
-#gmg-site .layer-bottom {
-  transform: translateZ(-34px);
-  box-shadow:
-    0 15px 55px #157be345,
-    0 0 0 2px #3db7e749;
-}
-#gmg-site .layer-middle {
-  transform: translateZ(-17px);
-}
-#gmg-site .core-top {
-  position: absolute;
-  inset: 0;
+
+.cinema-foot {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2px;
-  border: 2px solid #72e4d4;
-  border-radius: 34px;
-  background: linear-gradient(135deg, #164973, #06172e 65%);
-  color: var(--gold);
-  box-shadow:
-    inset 0 0 35px #6bc7e020,
-    0 0 28px #3bcbde55;
-  transform: translateZ(6px);
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding-block: 20px 24px;
+  border-top: 1px solid rgba(244, 248, 247, 0.18);
 }
-#gmg-site .core-top > strong {
-  font-size: 2.15rem;
-  letter-spacing: 0.04em;
-  font-weight: 800;
-  line-height: 1.2;
-}
-#gmg-site .core-top > small {
-  font-size: 0.5rem;
-  letter-spacing: 0.16em;
-}
-#gmg-site .core-symbol .icon {
-  width: 47px;
-  height: 47px;
-}
-#gmg-site .platform-orbit {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 90%;
-  height: 74%;
-  border: 1px solid #6bb9ed60;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotateX(56deg) rotateZ(-20deg);
-  box-shadow:
-    0 0 20px #429bd520,
-    inset 0 0 22px #429bd50d;
-}
-#gmg-site .orbit-two {
-  width: 72%;
-  height: 60%;
-  top: 54%;
-  border-style: dashed;
-  border-color: #72e4d455;
-  transform: translate(-50%, -50%) rotateX(56deg) rotateZ(25deg);
-}
-#gmg-site .platform-floor {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  width: 65%;
-  height: 40%;
-  background: radial-gradient(ellipse, #168ad340, transparent 68%);
-  transform: translate(-50%, -50%) rotateX(56deg);
-}
-#gmg-site .platform-links {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-#gmg-site .platform-links path {
-  stroke: #72e4d4;
-  stroke-width: 1;
-  stroke-dasharray: 3 9;
-  opacity: 0.7;
-  animation: gmg-current 18s linear infinite;
-  animation-play-state: paused;
-}
-#gmg-site .platform-node {
-  position: absolute;
-  left: var(--node-x);
-  top: var(--node-y);
-  width: 100px;
-  transform: translate(-50%, -50%);
+
+.cinema-proof {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 11px;
-  animation: gmg-node-float 6s ease-in-out infinite;
-  animation-delay: var(--delay);
-  animation-play-state: paused;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  font-size: 0.9375rem;
+  color: #d6e3e1;
 }
-#gmg-site .platform-node > span {
-  width: 62px;
-  height: 62px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #16466a, #082039);
-  border: 1px solid #6bb9ed90;
-  border-radius: 50%;
-  color: var(--gold-bright);
-  box-shadow:
-    0 0 20px #39b1ee30,
-    inset 0 0 14px #66bbff20;
+
+.cinema-proof a {
+  color: #f4f8f7;
+  text-decoration: underline;
+  text-decoration-color: rgba(246, 185, 50, 0.6);
+  text-underline-offset: 5px;
 }
-#gmg-site .platform-node .icon {
-  width: 29px;
-  height: 29px;
+
+.cinema-proof strong {
+  color: var(--c-sun);
 }
-#gmg-site .platform-node strong {
-  color: #c9dff4;
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-#gmg-site .platform-spark {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: #b7fff2;
-  box-shadow: 0 0 12px 3px #72e4d466;
-  border-radius: 50%;
-  animation: gmg-spark 8s ease-in-out infinite;
-  animation-play-state: paused;
-}
-#gmg-site .spark-one {
-  left: 34%;
-  top: 33%;
-}
-#gmg-site .spark-two {
-  left: 67%;
-  top: 67%;
-  animation-delay: -4s;
-}
-#gmg-site .platform-visual figcaption {
-  text-align: center;
-  color: #c0d1e6;
-  font-size: 0.8125rem;
-  line-height: 1.6;
-}
-#gmg-site .platform-visual figcaption > span {
-  font-size: 0.625rem;
-  color: #9eb7cf;
-}
-#gmg-site .hero-motion-control {
-  gap: 8px;
-  background: transparent;
-  color: #adc0d5;
-  border: 1px solid #36556f;
-  border-radius: 6px;
-  padding: 5px 12px;
-  margin-top: 17px;
-  min-height: 44px;
-  font-size: 0.6875rem;
-}
-#gmg-site.gmg-js .hero-motion-control {
+
+.cinema-pause {
   display: inline-flex;
   align-items: center;
-}
-#gmg-site .hero-motion-control:before {
-  content: "Ⅱ";
-  color: var(--gold);
-  font-size: 14px;
-}
-#gmg-site .hero-proof-strip {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid #8bbdff26;
-  margin-top: 24px;
-  padding-top: 25px;
-  gap: 20px;
-}
-#gmg-site .hero-proof-strip > div,
-#gmg-site .hero-proof-strip > a {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  color: #adc0d5;
-  font-size: 0.8125rem;
+  gap: 8px;
   min-height: 44px;
-}
-#gmg-site .hero-proof-strip .icon {
-  width: 20px;
-  height: 20px;
-  color: var(--gold);
-}
-#gmg-site .hero-proof-strip > a {
-  flex-wrap: wrap;
-  column-gap: 6px;
-}
-#gmg-site .hero-proof-strip strong {
-  color: var(--gold-bright);
-}
-#gmg-site
-  .hero-experience[data-in-view="true"][data-page-visible="true"]
-  .ambient-glow,
-#gmg-site
-  .hero-experience[data-in-view="true"][data-page-visible="true"]
-  .platform-node,
-#gmg-site
-  .hero-experience[data-in-view="true"][data-page-visible="true"]
-  .platform-links
-  path,
-#gmg-site
-  .hero-experience[data-in-view="true"][data-page-visible="true"]
-  .platform-spark {
-  animation-play-state: running;
-}
-#gmg-site[data-motion="off"] .hero-experience *,
-#gmg-site .hero-experience[data-in-view="false"] * {
-  animation-play-state: paused !important;
-}
-
-@keyframes gmg-ambient {
-  from {
-    transform: translate3d(0, 0, 0) scale(0.95);
-  }
-  to {
-    transform: translate3d(-60px, 35px, 0) scale(1.12);
-  }
-}
-@keyframes gmg-current {
-  to {
-    stroke-dashoffset: -120;
-  }
-}
-@keyframes gmg-node-float {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) translateY(-5px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(5px);
-  }
-}
-@keyframes gmg-spark {
-  0%,
-  100% {
-    transform: translate(0, 0);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translate(18px, -12px);
-    opacity: 0.9;
-  }
-}
-/* Geographic backdrop sits behind the animated workflow. */
-#gmg-site .philippines-backdrop {
-  position: absolute;
-  width: 76%;
-  height: 100%;
-  left: 15%;
-  top: -3%;
-  fill: #32cbb3;
-  fill-opacity: 0.12;
-  stroke: #72dfc4;
-  stroke-opacity: 0.5;
-  stroke-width: 1;
-  filter: drop-shadow(0 0 18px #36c9af40);
-  pointer-events: none;
-  transform: translateZ(-60px) rotate(-7deg);
-}
-#gmg-site .platform-stage > :not(.philippines-backdrop) {
-  z-index: 1;
-}
-/* Interactive 3D scene slot in the home hero */
-#gmg-site .hero-3d-slot {
-  position: relative;
-  min-height: 360px;
-  display: grid;
-  place-items: center;
-}
-@media (max-width: 760px) {
-  #gmg-site .hero-3d-slot {
-    min-height: 280px;
-  }
-}
-@media (max-width: 460px) {
-  #gmg-site .brand img {
-    width: 64px;
-    height: 64px;
-  }
-  #gmg-site .hero-3d-slot {
-    min-height: 240px;
-  }
-}
-
-#gmg-site .hero-experience .container {
-  width: min(1216px, calc(100% - 40px));
-  margin: auto;
-}
-#gmg-site .hero-grid {
-  display: grid;
-  align-items: center;
-}
-#gmg-site .hero-experience .lead {
-  font-size: 1.08rem;
-  line-height: 1.8;
-  color: #adc0d5;
-  margin-top: 28px;
-  max-width: 590px;
-}
-#gmg-site .hero-experience .actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 30px;
-}
-#gmg-site .hero-note {
-  display: flex;
-  gap: 10px;
-  font-size: 0.8rem;
-  margin-top: 20px;
-  color: #adc0d5;
-}
-#gmg-site .icon {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
+  padding: 0 14px;
+  border-radius: var(--r-control);
+  border: 1px solid rgba(244, 248, 247, 0.3);
+  font-size: 0.875rem;
+  color: #f4f8f7;
   flex: none;
 }
-#gmg-site .hero-experience h1 {
-  font-size: clamp(2.7rem, 4.2vw, 4.1rem);
-  font-weight: 800;
-  line-height: 1.09;
-  letter-spacing: -0.055em;
+
+.cinema-pause:hover {
+  background: rgba(244, 248, 247, 0.1);
 }
-#gmg-site .accent {
-  color: var(--gold);
+
+.hero-cinema :focus-visible {
+  outline-color: var(--c-sun);
 }
-@media (max-width: 1100px) {
-  #gmg-site .platform-stage {
-    height: 460px;
-  }
-  #gmg-site .hero-experience h1 {
-    font-size: 2.9rem;
-  }
-  #gmg-site .hero-experience .actions {
-    flex-direction: column;
-  }
-}
+
 @media (max-width: 760px) {
-  #gmg-site .hero-experience .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .hero-cinema {
+    min-height: 0;
   }
-  #gmg-site .hero-proof-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .cinema-shade {
+    background:
+      linear-gradient(0deg, rgba(11, 42, 60, 0.96) 0%, rgba(11, 42, 60, 0.82) 55%, rgba(11, 42, 60, 0.45) 100%);
   }
-  #gmg-site .platform-stage {
-    height: 430px;
+  .cinema-inner {
+    padding-top: 5rem;
   }
-}
-@media (max-width: 460px) {
-  #gmg-site .platform-stage {
-    height: 370px;
+  .cinema-actions > * {
+    width: 100%;
   }
-  #gmg-site .platform-core {
-    width: 150px;
-    height: 128px;
+  .cinema-foot {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  #gmg-site .platform-node {
-    width: 76px;
-  }
-  #gmg-site .platform-node > span {
-    width: 47px;
-    height: 47px;
-  }
-  #gmg-site .platform-node strong {
-    font-size: 0.55rem;
-  }
-  #gmg-site .hero-experience .hero-grid {
-    gap: 20px;
-  }
-  #gmg-site .hero-experience h1 {
-    font-size: 2.75rem;
+  .cinema-proof {
+    flex-direction: column;
+    gap: 6px;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  #gmg-site .hero-experience * {
-    animation: none !important;
-    transition: none !important;
+  .cinema-slide,
+  .cinema-slide.is-active {
+    transform: none;
+    transition: opacity 0.01ms;
   }
 }

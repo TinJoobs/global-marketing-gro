@@ -21,16 +21,11 @@ npm run build
 npm run preview
 # With the preview running and Chrome installed:
 npm run test:browser
-npm run test:cinematic
-npm run test:glass
-npm run test:heroes
 ```
 
-Shared glass surfaces, restored workflow layouts, accessible native industry scrolling, and responsive menu repairs are documented in [docs/GLASS-POLISH.md](docs/GLASS-POLISH.md).
+The Home hero is a full-bleed photo or video background with a pause control; swap media in `src/data/heroMedia.ts`. The interactive Philippines map appears in the Home support section.
 
-Interactive hero objects cover every canonical page, with mouse/touch/keyboard rotation, reset controls, and a selectable extruded Philippines map on Home. See [docs/HERO-3D.md](docs/HERO-3D.md) for coverage and interaction details.
-
-The cinematic design follows the live GMG navy/blue identity with logo-inspired teal lighting. The homepage includes the Philippines-backed 3D hero and a three-chapter connected-workflow story. See [docs/CINEMATIC-AUDIT.md](docs/CINEMATIC-AUDIT.md) for the audit and verified fixes.
+The visual design uses one token-based system derived from the GMG logo. See [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) for palette, type, layout rules and component classes.
 
 Browser QA accepts `GMG_TEST_URL` and `GMG_BROWSER_EXECUTABLE` for a different server or Chromium executable. Set `GMG_TEST_ARTIFACT_DIR` to write browser screenshots outside `docs/previews`. It intercepts CRM submissions.
 
@@ -42,7 +37,7 @@ Type checking does not emit JavaScript, declaration files or build-info files in
 - `src/components`: shared navigation, footer, layout and the native single-line integration-logo strip.
 - `src/pages`: GMG service pages, pricing, integration directory, contact, guides, careers and the Missed Revenue Calculator.
 - `src/data`: source-backed packages, integration options, official logo manifest and guide content.
-- `src/index.css`, `src/theme.css`, `src/hero.css`: reused GMG styles and the approved dark/gold design.
+- `src/index.css`: the design system (tokens, base, components). `src/hero.css`: Home hero. See `docs/DESIGN-SYSTEM.md`.
 - `public/assets/images`: local brand, logo and support artwork.
 - `public/robots.txt`, `public/sitemap.xml`: crawler files copied into the production build.
 - `docs/HARNESS-REPAIR.md`: assessment, verification and operational limits.

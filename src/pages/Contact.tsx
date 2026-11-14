@@ -6,8 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
 import { packages, pricingTerms } from "@/data/packages";
-import { Hero3DScene } from "@/components/hero3d/Hero3DScene";
-import "@/components/hero3d/hero3d.css";
 
 const consentText =
   "I agree that Global Marketing Group may contact me by email about this consultation request.";
@@ -128,8 +126,8 @@ export default function Contact() {
 
   return (
     <div>
-      <section className="section-gmg page-hero-gmg--3d border-b border-line">
-        <div className="container-gmg grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
+      <section className="section-gmg page-hero-gmg--3d">
+        <div className="container-gmg hero-page-layout is-text">
           <div className="max-w-4xl">
             <span className="eyebrow">
               Let's find your next growth opportunity
@@ -146,9 +144,6 @@ export default function Contact() {
               Submit a consultation request below. We'll coordinate availability
               by email; submitting does not reserve an appointment.
             </p>
-          </div>
-          <div className="hero-3d-slot">
-            <Hero3DScene variant="contact" />
           </div>
         </div>
       </section>
@@ -205,7 +200,7 @@ export default function Contact() {
                     ref={errorSummary}
                     tabIndex={-1}
                     role="alert"
-                    className="border border-red-400 rounded-lg p-4 mb-6 text-sm"
+                    className="border border-destructive rounded-lg p-4 mb-6 text-sm"
                   >
                     <p className="font-semibold mb-2">
                       Please check these fields:
@@ -249,7 +244,7 @@ export default function Contact() {
                       {errors.name && (
                         <p
                           id="contact-name-error"
-                          className="text-sm text-red-300"
+                          className="text-sm text-destructive"
                         >
                           {errors.name}
                         </p>
@@ -273,7 +268,7 @@ export default function Contact() {
                       {errors.email && (
                         <p
                           id="contact-email-error"
-                          className="text-sm text-red-300"
+                          className="text-sm text-destructive"
                         >
                           {errors.email}
                         </p>
@@ -297,7 +292,7 @@ export default function Contact() {
                     {errors.subject && (
                       <p
                         id="contact-subject-error"
-                        className="text-sm text-red-300"
+                        className="text-sm text-destructive"
                       >
                         {errors.subject}
                       </p>
@@ -321,7 +316,7 @@ export default function Contact() {
                     {errors.message && (
                       <p
                         id="contact-message-error"
-                        className="text-sm text-red-300"
+                        className="text-sm text-destructive"
                       >
                         {errors.message}
                       </p>
@@ -348,7 +343,7 @@ export default function Contact() {
                     {errors.consent && (
                       <p
                         id="contact-consent-error"
-                        className="text-sm text-red-300"
+                        className="text-sm text-destructive"
                       >
                         {errors.consent}
                       </p>
@@ -388,7 +383,7 @@ export default function Contact() {
                 {status === "error" && (
                   <p
                     role="alert"
-                    className="mt-5 border border-red-400 rounded-lg p-4"
+                    className="mt-5 border border-destructive rounded-lg p-4"
                   >
                     We could not receive your request. Please try again or{" "}
                     <a

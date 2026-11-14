@@ -14,12 +14,10 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:browser": "node scripts/check-browser.cjs",
-    "test:cinematic": "node scripts/check-cinematic.cjs",
-    "test:glass": "node scripts/check-glass.cjs",
-    "test:heroes": "node scripts/check-hero-objects.cjs"
+    "test:browser": "node scripts/check-browser.cjs"
   },
   "dependencies": {
+    "@fontsource-variable/archivo": "5.2.5",
     "@radix-ui/react-label": "2.1.17",
     "@radix-ui/react-slot": "1.5.0",
     "class-variance-authority": "0.7.1",
@@ -46,13 +44,13 @@
     "eslint-plugin-react-refresh": "0.5.7",
     "globals": "17.13.0",
     "jsdom": "27.4.0",
+    "playwright-core": "1.64.1",
     "postcss": "8.5.32",
     "tailwindcss": "3.4.19",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1",
     "vite": "8.3.5",
-    "vitest": "4.1.12",
-    "playwright-core": "1.64.1"
+    "vitest": "4.1.12"
   },
   "overrides": {
     "minimatch": "11.0.1"
