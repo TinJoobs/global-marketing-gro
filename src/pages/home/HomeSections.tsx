@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { SectionHead, FAQList, CTASection } from "@/components/sections";
 import { coreSolutions, faqs } from "./homeData";
+import { Hero3DScene } from "@/components/hero3d/Hero3DScene";
+import "@/components/hero3d/hero3d.css";
 
 const supportFacts = [
   "Recruiting and vetting handled for you",
@@ -21,10 +23,7 @@ export default function HomeSections() {
 
       <section className="section-gmg solutions-section" id="core-solutions">
         <div className="container-gmg">
-          <SectionHead
-            eyebrow="Systems and people"
-            title="Build the system. Put the right people behind it."
-          />
+          <SectionHead title="A sales system, and the people to run it." />
           <div className="grid md:grid-cols-2 gap-5">
             {coreSolutions.map((c) => (
               <article className="card-gmg" key={c.title}>
@@ -54,10 +53,12 @@ export default function HomeSections() {
         <div className="container-gmg">
           <div className="home-tool-card grid md:grid-cols-[1.4fr_1fr] items-center gap-10">
             <div>
-              <span className="eyebrow">Free missed revenue calculator</span>
               <h2 className="mb-5">
                 How much revenue slips through the cracks?
               </h2>
+              <p className="font-semibold text-navy mb-3">
+                Try the free missed revenue calculator.
+              </p>
               <p>
                 Estimate the monthly opportunity lost when inquiries go
                 unanswered, then build a follow-up process that gives every lead
@@ -93,22 +94,15 @@ export default function HomeSections() {
 
       <WhoWeHelp />
 
-      <section className="section-gmg pale-bg">
-        <div className="container-gmg grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <figure className="people-figure">
-            <img
-              src="/assets/images/support-professional.webp"
-              alt="Support professional working at a laptop with a headset"
-              width="780"
-              height="660"
-              loading="lazy"
-            />
-          </figure>
+      <section className="section-gmg pale-bg people-section">
+        <div className="container-gmg grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
+          <div className="people-map">
+            <Hero3DScene variant="philippines" />
+          </div>
           <div>
             <SectionHead
-              eyebrow="Real people. Reliable follow-through."
-              title="More room to run your business."
-              subtitle="A trained Philippines-based Virtual Assistant helps keep the daily work moving."
+              title="Your assistant works from our team in the Philippines."
+              subtitle="A trained Virtual Assistant keeps the daily work moving, with the support of the people around them."
             />
             <ul className="people-facts">
               {supportFacts.map((fact) => (
@@ -131,9 +125,8 @@ export default function HomeSections() {
         <div className="container-gmg grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20">
           <div>
             <SectionHead
-              eyebrow="A few helpful answers"
-              title="Start with clarity."
-              subtitle="Understand how the platform and your support team work together."
+              title="Common questions"
+              subtitle="How the platform and your support team work together."
             />
             <Link className="text-link" to="/faq">
               Read all questions <Icon name="arrow" size={16} />

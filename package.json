@@ -14,8 +14,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:browser": "node scripts/check-browser.cjs",
-    "test:heroes": "node scripts/check-hero-objects.cjs"
+    "test:browser": "node scripts/check-browser.cjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "5.2.5",

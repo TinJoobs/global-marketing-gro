@@ -19,13 +19,12 @@ export default function PricingHighlight() {
     >
       <div className="container-gmg">
         <div className="pricing-highlight-head">
-          <span className="eyebrow">Simple plans. Real support.</span>
           <h2 id="pricing-highlight-title">
             Choose the support your business needs.
           </h2>
           <p className="pricing-highlight-lead">
             Start with automation. Add dedicated people and operational support
-            as you grow. No guesswork, no surprises.
+            as you grow.
           </p>
         </div>
 

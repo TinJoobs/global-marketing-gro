@@ -9,11 +9,10 @@ export default function Testimonials() {
       <div className="container-gmg">
         <div className="test-head">
           <div>
-            <span className="eyebrow">Loved by growing teams</span>
-            <h2 id="testimonials-title">Don't just take our word for it.</h2>
+            <h2 id="testimonials-title">What our clients say</h2>
           </div>
           <p className="test-summary-copy">
-            Client perspectives on the people and systems behind their business.
+            In their own words, from the businesses we work with.
           </p>
         </div>
 

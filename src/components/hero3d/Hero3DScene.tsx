@@ -107,5 +107,5 @@ export function Hero3DScene({variant}:{variant:Hero3DVariant}) {
  const scene=heroScenes[variant];
  return <Hero3DStage variant={variant}>{scene.kind==='map'?<PhilippinesMap/>:<><div className={`hero3d-object hero3d-object--${scene.kind}`} aria-hidden="true"><Model kind={scene.kind} variant={variant}/></div><div className="hero3d-chips" aria-hidden="true">{scene.labels.map((label,index)=><span className={`hero3d-chip chip-${index}`} key={label}><i/>{label}</span>)}</div></>}</Hero3DStage>;
 }
-export function Hero3DLayout({children,variant}:{children:ReactNode;variant:Hero3DVariant}) {return <div className="hero-page-layout"><div className="hero-page-copy">{children}</div><Hero3DScene variant={variant}/></div>}
+export function Hero3DLayout({children}:{children:ReactNode;variant?:Hero3DVariant}) {return <div className="hero-page-layout is-text"><div className="hero-page-copy">{children}</div></div>}
 export default Hero3DScene;

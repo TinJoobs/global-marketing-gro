@@ -21,10 +21,9 @@ npm run build
 npm run preview
 # With the preview running and Chrome installed:
 npm run test:browser
-npm run test:heroes
 ```
 
-Interactive hero objects cover every canonical page, with mouse/touch/keyboard rotation, reset controls, and a selectable extruded Philippines map on Home. See [docs/HERO-3D.md](docs/HERO-3D.md) for coverage and interaction details.
+The Home hero is a full-bleed photo or video background with a pause control; swap media in `src/data/heroMedia.ts`. The interactive Philippines map appears in the Home support section.
 
 The visual design uses one token-based system derived from the GMG logo. See [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) for palette, type, layout rules and component classes.
 

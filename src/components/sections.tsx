@@ -1,10 +1,9 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Icon, type IconName } from "./Icon";
 import { useModalCTA } from "./modal/useModalCTA";
-import { Hero3DScene, type Hero3DVariant } from "./hero3d/Hero3DScene";
+import { type Hero3DVariant } from "./hero3d/Hero3DScene";
 import "./hero3d/hero3d.css";
-import { pageHeroVariants } from "./hero3d/heroScenes";
 
 export const SectionHead: React.FC<{
   eyebrow?: string;
@@ -28,7 +27,7 @@ export const PageHero: React.FC<{
   secondaryCta?: { label: string; to: string };
   visual?: React.ReactNode;
   simple?: boolean;
-  /** Themed 3D object rendered in the hero's visual slot. */
+  /** Kept for compatibility; page heroes no longer render 3D objects. */
   variant?: Hero3DVariant;
 }> = ({
   eyebrow,
@@ -39,14 +38,11 @@ export const PageHero: React.FC<{
   secondaryCta,
   visual,
   simple,
-  variant,
 }) => {
- const {pathname}=useLocation();
- const sceneVariant=variant ?? pageHeroVariants[pathname] ?? 'generic';
  return <section className="page-hero-gmg page-hero-gmg--3d">
     <div className="container-gmg">
       <div
-        className={`hero-page-layout ${simple ? "is-compact" : ""}`}
+        className={`hero-page-layout${simple ? " is-compact" : ""}${visual ? "" : " is-text"}`}
       >
         <div className="hero-page-copy">
           <span className="eyebrow">{eyebrow}</span>
@@ -69,7 +65,7 @@ export const PageHero: React.FC<{
             </div>
           )}
         </div>
-        {visual ?? <Hero3DScene variant={sceneVariant}/>}
+        {visual}
       </div>
     </div>
   </section>;
@@ -83,7 +79,7 @@ export const CTASection: React.FC<{
   primaryTo?: string;
   secondaryLabel?: string;
 }> = ({
-  eyebrow = "Your next step",
+  eyebrow,
   title,
   body,
   primaryLabel = "Book your free growth audit",
@@ -96,7 +92,7 @@ export const CTASection: React.FC<{
       <div className="container-gmg">
         <div className="cta-banner-gmg">
           <div className="relative">
-            <span className="eyebrow">{eyebrow}</span>
+            {eyebrow && <span className="eyebrow">{eyebrow}</span>}
             <h2 className="max-w-[18ch]">
               {title}
             </h2>

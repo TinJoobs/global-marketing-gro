@@ -9,13 +9,11 @@ export default function WhoWeHelp() {
     <section className="who-we-help" aria-labelledby="who-help-title">
       <div className="container-gmg">
         <div className="who-help-stack-intro">
-          <span className="eyebrow">Who we help</span>
           <h2 id="who-help-title">
             Built for the businesses that never stop moving.
           </h2>
           <p className="who-help-lead">
-            Real work. Connected support. See how GMG fits the industry you
-            serve.
+            See how GMG fits the industry you serve.
           </p>
         </div>
         <div className="who-help-deck">
@@ -53,10 +51,10 @@ export default function WhoWeHelp() {
         </div>
         <div className="who-help-cta-row">
           <div>
-            <h3>Every industry. One connected system.</h3>
+            <h3>Don&apos;t see your industry?</h3>
             <p>
-              Built around your business, from the first inquiry to the people
-              who follow through.
+              We build around how your business works, from the first inquiry
+              to the people who follow through.
             </p>
           </div>
           <div className="who-help-cta-actions">

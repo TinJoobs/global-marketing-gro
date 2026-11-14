@@ -200,9 +200,8 @@ export default function IntegrationLogoSlider() {
     >
       <div className="container">
         <div className="section-head center">
-          <span className="eyebrow">Connect the tools you already use</span>
           <h2 id="integration-logos-title">
-            Your business. <span>Connected.</span>
+            Works with the tools you already use
           </h2>
           <p>
             Lead sources, calendars, payments, and daily work can connect to one

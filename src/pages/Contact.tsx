@@ -6,8 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
 import { packages, pricingTerms } from "@/data/packages";
-import { Hero3DScene } from "@/components/hero3d/Hero3DScene";
-import "@/components/hero3d/hero3d.css";
 
 const consentText =
   "I agree that Global Marketing Group may contact me by email about this consultation request.";
@@ -128,8 +126,8 @@ export default function Contact() {
 
   return (
     <div>
-      <section className="section-gmg page-hero-gmg--3d border-b border-line">
-        <div className="container-gmg grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
+      <section className="section-gmg page-hero-gmg--3d">
+        <div className="container-gmg hero-page-layout is-text">
           <div className="max-w-4xl">
             <span className="eyebrow">
               Let's find your next growth opportunity
@@ -146,9 +144,6 @@ export default function Contact() {
               Submit a consultation request below. We'll coordinate availability
               by email; submitting does not reserve an appointment.
             </p>
-          </div>
-          <div className="hero-3d-slot">
-            <Hero3DScene variant="contact" />
           </div>
         </div>
       </section>

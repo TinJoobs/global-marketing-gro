@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "@/components/Icon";
+import { storyPhotos } from "@/data/heroMedia";
 
 const chapters: {
   title: string;
@@ -12,29 +13,29 @@ const chapters: {
   cta: string;
 }[] = [
   {
-    title: "Every opportunity, in view.",
+    title: "Every inquiry lands in one place.",
     body: "Bring calls, forms, messages, and campaign inquiries into one CRM. Know who reached out, what they need, and where the conversation stands.",
     icon: "capture",
     label: "Capture",
-    detail: "Inquiries → Your CRM",
+    detail: "Calls, forms and messages in one CRM",
     to: "/crm-automation",
     cta: "Connect your lead sources",
   },
   {
-    title: "Follow-up that follows through.",
+    title: "Someone follows up, every time.",
     body: "Build timely acknowledgments, personal outreach, appointment reminders, and a clear next step. Give promising conversations the attention they deserve.",
     icon: "message",
     label: "Connect",
-    detail: "Your CRM → Consistent follow-up",
+    detail: "Reminders and personal outreach",
     to: "/lead-follow-up",
     cta: "Explore the follow-up system",
   },
   {
-    title: "Real people. More possibility.",
+    title: "A real person keeps the work moving.",
     body: "Put a trained Philippines-based Virtual Assistant behind the process. Keep the daily work moving while you focus on your customers and your next chapter.",
     icon: "headset",
     label: "Grow",
-    detail: "Your team → Room to grow",
+    detail: "Your assistant handles the daily work",
     to: "/virtual-assistant-services",
     cta: "Find your support team",
   },
@@ -88,70 +89,40 @@ export default function ConnectedStory() {
     >
       <div className="container-gmg">
         <div className="story-intro">
-          <span className="eyebrow">Less friction. More forward.</span>
-          <h2 id="story-title">
-            A better rhythm
-            <br />
-            for your business.
-          </h2>
-          <p>Your tools and your team, finally working together.</p>
+          <h2 id="story-title">How it works, day to day</h2>
+          <p>
+            Your tools and your team working from the same list, so nothing
+            waits on someone remembering.
+          </p>
         </div>
         <div className="story-layout">
           <figure className="story-visual" data-story-stage={active}>
-            <div className="story-window" aria-hidden="true">
-              <div className="story-window-top">
-                <span className="story-window-dots">
-                  <i />
-                  <i />
-                  <i />
-                </span>
-                <span>THE CONNECTED BUSINESS</span>
-                <Icon name="lock" size={13} />
-              </div>
-              <div className="story-diagram">
-                <div className="story-orbit" />
-                <div className="story-orbit story-orbit-inner" />
-                <div className="story-brand">
-                  <img
-                    src="/assets/images/gmg-headset-logo.webp"
-                    alt=""
-                    width="128"
-                    height="128"
-                  />
-                  <span>YOUR GROWTH SYSTEM</span>
-                </div>
-                <div className="story-signal signal-inquiry">
-                  <Icon name="capture" size={24} />
-                  <span>New inquiry</span>
-                </div>
-                <div className="story-signal signal-followup">
-                  <Icon name="message" size={24} />
-                  <span>Follow-up</span>
-                </div>
-                <div className="story-signal signal-person">
-                  <Icon name="headset" size={24} />
-                  <span>Your people</span>
-                </div>
-                <span className="story-connection connection-one" />
-                <span className="story-connection connection-two" />
-                <span className="story-connection connection-three" />
-              </div>
-              <div className="story-stage-label">
-                <span className="story-status-dot" />
-                <span>{chapters[active].detail}</span>
-                <span className="story-stage-number">0{active + 1} / 03</span>
-              </div>
+            <div className="story-photos">
+              {storyPhotos.map((src, index) => (
+                <img
+                  key={src + index}
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className={index === active ? "is-active" : ""}
+                  onError={(event) => {
+                    event.currentTarget.hidden = true;
+                  }}
+                />
+              ))}
+              <span className="story-photo-caption">
+                <Icon name={chapters[active].icon} size={18} />
+                {chapters[active].detail}
+              </span>
             </div>
-            <figcaption>
-              One possible workflow. Built around your business.
-            </figcaption>
             <ol className="story-progress" aria-label="The connected workflow">
               {chapters.map((chapter, index) => (
                 <li
                   className={index === active ? "is-current" : ""}
                   key={chapter.label}
                 >
-                  <span>0{index + 1}</span>
+                  <span>{index + 1}</span>
                   {chapter.label}
                 </li>
               ))}
@@ -165,7 +136,7 @@ export default function ConnectedStory() {
                 key={chapter.label}
               >
                 <span className="chapter-number">
-                  0{index + 1}
+                  {index + 1}
                   <span>{chapter.label}</span>
                 </span>
                 <h3>{chapter.title}</h3>
