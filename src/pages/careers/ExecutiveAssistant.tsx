@@ -69,7 +69,7 @@ const ExecutiveAssistant = () => {
           <Hero3DLayout variant="career-ea">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Become an AI-Enhanced{" "}
+              Become an AI-enhanced{" "}
               <span className="text-primary">Executive Assistant</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
@@ -103,7 +103,7 @@ const ExecutiveAssistant = () => {
                   },
                   {
                     icon: Calendar,
-                    title: "Professional Growth",
+                    title: "Professional growth",
                     desc: "Continuous training and development in modern business systems.",
                   },
                   {

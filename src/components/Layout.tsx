@@ -5,10 +5,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
 import { useReveal } from "@/hooks/useReveal";
+import { scrollToElement, scrollToTop, startSmoothScroll } from "@/lib/smoothScroll";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, hash } = useLocation();
   const ref = useReveal<HTMLDivElement>();
+  useEffect(() => startSmoothScroll(), []);
   useEffect(() => {
     const heading = document.querySelector("h1")?.textContent;
     document.title = `${heading || "Sales Systems. People. Growth."} | Global Marketing Group`;
@@ -23,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       .querySelector('link[rel="canonical"]')
       ?.setAttribute("href", window.location.origin + pathname);
     if (!hash) {
-      window.scrollTo(0, 0);
+      scrollToTop();
       ref.current?.focus({ preventScroll: true });
     }
   }, [pathname, ref, hash]);
@@ -35,9 +37,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     } catch {
       return;
     }
-    const frame = requestAnimationFrame(() =>
-      document.getElementById(id)?.scrollIntoView({ block: "start" }),
-    );
+    const frame = requestAnimationFrame(() => {
+      const target = document.getElementById(id);
+      if (target) scrollToElement(target);
+    });
     return () => cancelAnimationFrame(frame);
   }, [pathname, hash]);
   return (

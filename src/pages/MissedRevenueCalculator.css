@@ -1,7 +1,7 @@
 .revenue-calculator {
   --revenue-gold: var(--c-globe);
   --revenue-muted: var(--c-graphite);
-  color: var(--c-harbor);
+  color: var(--c-ink);
   background: var(--c-mist);
   padding-bottom: 5rem;
 }
@@ -27,7 +27,7 @@
   line-height: 1.05;
   letter-spacing: -0.05em;
   margin: 1.5rem 0;
-  color: var(--c-harbor);
+  color: var(--c-ink);
 }
 .revenue-hero h1 span {
   color: var(--revenue-gold);
@@ -70,7 +70,7 @@
   margin-bottom: 1rem;
 }
 .revenue-calculator h2 {
-  color: var(--c-harbor);
+  color: var(--c-ink);
   font-size: clamp(1.4rem, 2.8vw, 1.8rem);
   line-height: 1.25;
   letter-spacing: -0.025em;
@@ -115,7 +115,7 @@
   min-height: 3.25rem;
   border: 1px solid #7b8f97;
   border-radius: 0.6rem;
-  color: var(--c-harbor);
+  color: var(--c-ink);
   background: var(--c-white);
   padding: 0.75rem 4rem 0.75rem 1rem;
   font-size: 1.1rem;
@@ -167,16 +167,16 @@
 .revenue-assumptions summary {
   cursor: pointer;
   min-height: 44px;
-  color: var(--c-harbor);
+  color: var(--c-ink);
   font-weight: 600;
 }
 .revenue-assumptions p {
   margin-bottom: 1rem;
 }
 .revenue-calculator .btn-primary-gmg {
-  background: var(--revenue-gold);
-  color: var(--c-harbor);
-  border: 1px solid var(--revenue-gold);
+  background: var(--c-sun);
+  color: #0b2a3c;
+  border: 1px solid var(--c-sun);
   font-size: 0.9rem;
   min-height: 48px;
   box-shadow: none;
@@ -184,7 +184,7 @@
   text-align: center;
 }
 .revenue-calculator .btn-primary-gmg:hover {
-  background: var(--c-sun);
+  background: var(--c-sun-deep);
   box-shadow: none;
   transform: none;
 }
