@@ -115,7 +115,7 @@ export default function VirtualAssistant() {
               ))}
             </div>
             <Link to="/contact" className="btn-primary-gmg mt-8">
-              Quick Hire Services <Icon name="arrow" size={18} />
+              Quick hire services <Icon name="arrow" size={18} />
             </Link>
           </div>
           <div className="card-gmg">

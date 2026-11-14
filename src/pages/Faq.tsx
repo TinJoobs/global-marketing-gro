@@ -65,7 +65,7 @@ export default function Faq() {
               Still have questions? We're happy to help.
             </p>
             <Link to="/contact" className="btn-primary-gmg">
-              Contact Us <Icon name="arrow" size={18} />
+              Contact us <Icon name="arrow" size={18} />
             </Link>
           </div>
         </div>

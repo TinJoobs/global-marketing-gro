@@ -6,7 +6,7 @@ export default function ThankYou() {
       <div className="container-gmg">
           <Hero3DLayout variant="thanks">
         <span className="eyebrow">Global Marketing Group</span>
-        <h1 className="text-4xl md:text-5xl">Thank You for Connecting.</h1>
+        <h1 className="text-4xl md:text-5xl">Thank you for connecting.</h1>
         <p className="lead-gmg mt-6">
           For successfully submitted inquiries, the next step is a review of
           your business goals and support needs. A consultation request does not
@@ -21,7 +21,7 @@ export default function ThankYou() {
             Contact our team
           </Link>
           <Link className="btn-outline-gmg" to="/">
-            Back to Home
+            Back to home
           </Link>
         </div>
       </Hero3DLayout>

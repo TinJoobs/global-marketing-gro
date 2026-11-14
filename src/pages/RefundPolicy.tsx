@@ -56,7 +56,7 @@ export default function RefundPolicy() {
               Reach out and our team will help you with your request.
             </p>
             <Link to="/contact" className="btn-primary-gmg">
-              Contact Us <Icon name="arrow" size={18} />
+              Contact us <Icon name="arrow" size={18} />
             </Link>
           </div>
         </div>

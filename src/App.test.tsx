@@ -34,7 +34,7 @@ describe("application routes", () => {
   it("preserves the legacy confirmation route", () => {
     visit("/thank-you.html");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Thank You for Connecting.",
+      "Thank you for connecting.",
     );
     expect(screen.getByTestId("location")).toHaveTextContent("/thank-you");
   });
