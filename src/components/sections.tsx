@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Icon, type IconName } from "./Icon";
 import { useModalCTA } from "./modal/useModalCTA";
-import { type Hero3DVariant } from "./hero3d/Hero3DScene";
-import "./hero3d/hero3d.css";
 
 export const SectionHead: React.FC<{
   eyebrow?: string;
@@ -27,8 +25,7 @@ export const PageHero: React.FC<{
   secondaryCta?: { label: string; to: string };
   visual?: React.ReactNode;
   simple?: boolean;
-  /** Kept for compatibility; page heroes no longer render 3D objects. */
-  variant?: Hero3DVariant;
+  variant?: string;
 }> = ({
   eyebrow,
   title,
@@ -210,3 +207,16 @@ export const FeatureGrid: React.FC<{
     ))}
   </div>
 );
+
+export function Hero3DLayout({
+  children,
+}: {
+  children: React.ReactNode;
+  variant?: string;
+}) {
+  return (
+    <div className="hero-page-layout is-text">
+      <div className="hero-page-copy">{children}</div>
+    </div>
+  );
+}

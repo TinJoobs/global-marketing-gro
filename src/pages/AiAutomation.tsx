@@ -11,7 +11,7 @@ import {
 const tools: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "message",
-    title: "Automated Engagement",
+    title: "Automated engagement",
     body: "AI-driven conversations that keep leads moving without manual effort.",
   },
   {
@@ -21,22 +21,22 @@ const tools: { icon: IconName; title: string; body: string }[] = [
   },
   {
     icon: "search",
-    title: "Predictive Lead Identification",
+    title: "Predictive lead identification",
     body: "Smart scoring that surfaces the leads most likely to convert.",
   },
   {
     icon: "cpu",
-    title: "Instant Intelligent Responses",
+    title: "Instant intelligent responses",
     body: "GPT-powered replies that sound human and stay on-brand.",
   },
   {
     icon: "target",
-    title: "Precision Targeting",
+    title: "Precision targeting",
     body: "Reach the right audience with the right message at the right time.",
   },
   {
     icon: "refresh",
-    title: "Efficient Follow-Ups",
+    title: "Efficient follow-ups",
     body: "Automated sequences that nurture leads until they're ready to buy.",
   },
 ];
@@ -47,9 +47,9 @@ export default function AiAutomation() {
       <PageHero
         variant="ai"
         eyebrow="Connected service"
-        title={<>AI & Human Support</>}
-        lead="Unleash the power of AI with Global Marketing Group — conversations, live chat, chatbot workflow automation, smart lead scoring, and GPT-powered content creation."
-        primaryCta={{ label: "Schedule A Demo", to: "/contact" }}
+        title={<>AI & human support</>}
+        lead="Put AI to work on the repetitive parts: conversations, live chat, chatbot workflow automation, smart lead scoring, and GPT-powered content creation."
+        primaryCta={{ label: "Schedule a demo", to: "/contact" }}
         secondaryCta={{ label: "Explore services", to: "/services" }}
       />
       <section className="section-gmg">
@@ -73,7 +73,7 @@ export default function AiAutomation() {
                 relationships.
               </h2>
               <p className="text-muted-foreground mt-3 max-w-[680px]">
-                Smart lead scoring, instant responses, and automated follow-up —
+                Smart lead scoring, instant responses, and automated follow-up,
                 balanced with dependable human support for the conversations
                 that matter.
               </p>
@@ -85,7 +85,7 @@ export default function AiAutomation() {
         </div>
       </section>
       <CTASection
-        title="Put AI to Work for Your Business"
+        title="Put AI to work for your business"
         body="See how AI-enhanced automation can capture, engage, and convert more leads for your business."
       />
     </div>

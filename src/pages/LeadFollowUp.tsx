@@ -10,7 +10,7 @@ import {
 const features: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "message",
-    title: "Automated Sequences",
+    title: "Automated sequences",
     body: "Follow-up that starts within minutes and continues until the lead is ready.",
   },
   {
@@ -20,22 +20,22 @@ const features: { icon: IconName; title: string; body: string }[] = [
   },
   {
     icon: "refresh",
-    title: "Lead Reactivation",
+    title: "Lead reactivation",
     body: "Reconnect with past inquiries and inactive customers through an approved process.",
   },
   {
     icon: "clock",
-    title: "Speed to Lead",
-    body: "Respond fast — before your competition does.",
+    title: "Speed to lead",
+    body: "Respond before your competition does.",
   },
   {
     icon: "chart",
-    title: "Follow-Up Tracking",
+    title: "Follow-up tracking",
     body: "See exactly where each lead is in the follow-up process.",
   },
   {
     icon: "headset",
-    title: "Human Touch",
+    title: "Human touch",
     body: "Personal follow-up for the conversations automation can't handle.",
   },
 ];
@@ -46,9 +46,9 @@ export default function LeadFollowUp() {
       <PageHero
         variant="lead"
         eyebrow="Connected service"
-        title={<>Lead Follow-Up</>}
-        lead="Your business may not have a lead problem — it may have a follow-up and execution problem. We fix that."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        title={<>Lead follow-up</>}
+        lead="Your business may not have a lead problem. It may have a follow-up and execution problem. We fix that."
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{ label: "See how it works", to: "/how-it-works" }}
       />
       <section className="section-gmg">
@@ -63,7 +63,7 @@ export default function LeadFollowUp() {
         </div>
       </section>
       <CTASection
-        title="Every Missed Follow-Up Can Become a Missed Sale"
+        title="Every missed follow-up can become a missed sale"
         body="Put the right processes in place so your business responds faster and converts more opportunities."
       />
     </div>

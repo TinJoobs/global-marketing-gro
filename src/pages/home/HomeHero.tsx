@@ -1,71 +1,44 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { useModalCTA } from "@/components/modal/useModalCTA";
-import { heroSlides, heroVideo } from "@/data/heroMedia";
+import { heroImage } from "@/data/heroMedia";
 import "@/hero.css";
 
-const SLIDE_MS = 7000;
+const columns = [
+  {
+    stage: "New lead",
+    cards: [
+      { name: "Dana Reyes", source: "Website form", value: "$2,400", time: "2m ago" },
+      { name: "Marco Ellis", source: "Facebook ad", value: "$1,150", time: "18m ago" },
+      { name: "Priya Nair", source: "Missed call", value: "$860", time: "1h ago" },
+    ],
+  },
+  {
+    stage: "Contacted",
+    cards: [
+      { name: "Sam Whitaker", source: "Referral", value: "$3,200", time: "Today" },
+      { name: "Lena Ortiz", source: "Google", value: "$940", time: "Today" },
+    ],
+  },
+  {
+    stage: "Appointment booked",
+    cards: [
+      { name: "Tom Becker", source: "Website form", value: "$4,750", time: "Tue" },
+      { name: "Ava Kim", source: "Instagram", value: "$1,600", time: "Wed" },
+    ],
+  },
+  {
+    stage: "Won",
+    cards: [{ name: "Chris Dunn", source: "Referral", value: "$5,200", time: "Mon" }],
+  },
+];
 
 export default function HomeHero() {
   const { book } = useModalCTA();
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-
-  useEffect(() => {
-    if (paused || heroVideo || heroSlides.length < 2) return;
-    const id = window.setInterval(
-      () => setIndex((i) => (i + 1) % heroSlides.length),
-      SLIDE_MS,
-    );
-    return () => window.clearInterval(id);
-  }, [paused]);
-
-  useEffect(() => {
-    const video = document.querySelector<HTMLVideoElement>(".cinema-video");
-    if (!video) return;
-    if (paused) video.pause();
-    else void video.play().catch(() => undefined);
-  }, [paused]);
-
   return (
-    <section
-      className="hero-cinema"
-      data-paused={paused ? "true" : undefined}
-      aria-labelledby="home-hero-title"
-    >
+    <section className="hero-cinema" aria-labelledby="home-hero-title">
       <div className="cinema-media" aria-hidden="true">
-        {heroVideo ? (
-          <video
-            className="cinema-video"
-            src={heroVideo.src}
-            poster={heroVideo.poster}
-            autoPlay={!paused}
-            muted
-            loop
-            playsInline
-          />
-        ) : (
-          heroSlides.map((slide, i) => (
-            <img
-              key={slide.src + i}
-              className={`cinema-slide${i === index ? " is-active" : ""}`}
-              src={slide.src}
-              alt=""
-              style={{ objectPosition: slide.position }}
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
-              onError={(event) => {
-                event.currentTarget.hidden = true;
-              }}
-            />
-          ))
-        )}
+        <img src={heroImage} alt="" fetchPriority="high" decoding="async" />
         <span className="cinema-shade" />
       </div>
 
@@ -95,31 +68,79 @@ export default function HomeHero() {
               Schedule a demo
             </button>
           </div>
+          <p className="cinema-price">
+            Plans from <Link to="/pricing">$597/month</Link>.
+          </p>
         </div>
 
-        <div className="cinema-foot">
-          <ul className="cinema-proof">
-            <li>One organized CRM</li>
-            <li>Connected follow-up</li>
-            <li>Philippines-based support</li>
-            <li>
-              <Link to="/pricing">
-                Plans from <strong>$597/month</strong>
-              </Link>
-            </li>
-          </ul>
-          {!heroVideo && heroSlides.length < 2 ? null : (
-            <button
-              type="button"
-              className="cinema-pause"
-              onClick={() => setPaused((p) => !p)}
-              aria-pressed={paused}
-            >
-              <Icon name={paused ? "play" : "pause"} size={14} />
-              {paused ? "Play background" : "Pause background"}
-            </button>
-          )}
-        </div>
+        <figure className="crm-shot" aria-label="Example of a sales pipeline inside the CRM">
+          <div className="crm-window">
+            <div className="crm-top">
+              <span className="crm-dots" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="crm-title">Opportunities</span>
+              <span className="crm-search" aria-hidden="true">
+                <Icon name="search" size={14} /> Search contacts
+              </span>
+            </div>
+            <div className="crm-body">
+              <nav className="crm-side" aria-hidden="true">
+                {(["chart", "users", "message", "calendar", "workflow", "settings"] as const).map((n, i) => (
+                  <span key={n} className={i === 0 ? "is-on" : ""}>
+                    <Icon name={n} size={16} />
+                  </span>
+                ))}
+              </nav>
+              <div className="crm-board">
+                <div className="crm-board-head">
+                  <strong>Sales pipeline</strong>
+                  <span>10 open opportunities</span>
+                </div>
+                <div className="crm-cols">
+                  {columns.map((col) => (
+                    <div className="crm-col" key={col.stage}>
+                      <div className="crm-col-head">
+                        {col.stage}
+                        <b>{col.cards.length}</b>
+                      </div>
+                      {col.cards.map((c) => (
+                        <div className="crm-card" key={c.name}>
+                          <div className="crm-card-row">
+                            <span className="crm-avatar">
+                              {c.name
+                                .split(" ")
+                                .map((p) => p[0])
+                                .join("")}
+                            </span>
+                            <strong>{c.name}</strong>
+                          </div>
+                          <div className="crm-card-meta">
+                            <span>{c.source}</span>
+                            <span>{c.value}</span>
+                          </div>
+                          <span className="crm-card-time">{c.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="crm-toast" aria-hidden="true">
+            <span className="crm-toast-icon">
+              <Icon name="calendar" size={16} />
+            </span>
+            <span>
+              <strong>Appointment booked</strong>
+              Tom Becker, Tuesday at 10:30 AM
+            </span>
+          </div>
+          <figcaption>Sample data. Your pipeline is built around your stages.</figcaption>
+        </figure>
       </div>
     </section>
   );

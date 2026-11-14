@@ -1,4 +1,4 @@
-import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Calculator, Check, ShieldCheck } from "lucide-react";
@@ -107,7 +107,7 @@ export default function MissedRevenueCalculator() {
             your inbox
           </span>
           <h1>
-            Missed Revenue
+            Missed revenue
             <br />
             <span>Calculator</span>
           </h1>

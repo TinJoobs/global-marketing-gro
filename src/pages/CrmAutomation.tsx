@@ -10,32 +10,32 @@ import {
 const features: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "capture",
-    title: "Lead Capture",
+    title: "Lead capture",
     body: "Bring leads into one organized CRM through forms, landing pages, calendars, calls, and other sources.",
   },
   {
     icon: "message",
-    title: "Conversation Management",
-    body: "Every message, call, and email tracked in one place — no more scattered inboxes.",
+    title: "Conversation management",
+    body: "Every message, call, and email tracked in one place, so there are no more scattered inboxes.",
   },
   {
     icon: "calendar",
-    title: "Appointment Scheduling",
+    title: "Appointment scheduling",
     body: "Online calendars with confirmations and reminders built into your CRM.",
   },
   {
     icon: "chart",
-    title: "Sales Pipeline",
+    title: "Sales pipeline",
     body: "Track opportunities from first contact to close with a pipeline built around your process.",
   },
   {
     icon: "refresh",
-    title: "Lead Reactivation",
+    title: "Lead reactivation",
     body: "Reconnect with previous inquiries and inactive customers through an organized process.",
   },
   {
     icon: "report",
-    title: "Reporting & Analytics",
+    title: "Reporting & analytics",
     body: "Understand activity, follow-up, and results with reporting that reflects your business.",
   },
 ];
@@ -46,9 +46,9 @@ export default function CrmAutomation() {
       <PageHero
         variant="crm"
         eyebrow="Connected service"
-        title={<>CRM & Automation</>}
+        title={<>CRM & automation</>}
         lead="Connect contacts, conversations, appointments, tasks, and your sales pipeline in one organized system."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{
           label: "See the Sales Growth System",
           to: "/sales-growth-system",
@@ -66,8 +66,8 @@ export default function CrmAutomation() {
         </div>
       </section>
       <CTASection
-        title="Put Your Whole Business in One System"
-        body="Capture, organize, follow up, and convert — all from a single CRM built around your process."
+        title="Put your whole business in one system"
+        body="Capture, organize, follow up, and convert, all from a single CRM built around your process."
       />
     </div>
   );

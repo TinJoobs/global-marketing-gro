@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import { Icon } from "@/components/Icon";
 import { SectionHead, FAQList, CTASection } from "@/components/sections";
 import { coreSolutions, faqs } from "./homeData";
-import { Hero3DScene } from "@/components/hero3d/Hero3DScene";
-import "@/components/hero3d/hero3d.css";
 
 const supportFacts = [
   "Recruiting and vetting handled for you",
@@ -96,9 +94,26 @@ export default function HomeSections() {
 
       <section className="section-gmg pale-bg people-section">
         <div className="container-gmg grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
-          <div className="people-map">
-            <Hero3DScene variant="philippines" />
-          </div>
+          <figure className="report-card" aria-label="Example of a weekly assistant report">
+            <div className="report-head">
+              <span className="crm-avatar">JM</span>
+              <div>
+                <strong>Weekly update from your assistant</strong>
+                <span>Friday, 4:45 PM</span>
+              </div>
+            </div>
+            <ul className="report-list">
+              <li><Icon name="check" size={16} /> Followed up with 38 new inquiries</li>
+              <li><Icon name="check" size={16} /> Booked 11 appointments, 2 rescheduled</li>
+              <li><Icon name="check" size={16} /> Reactivated 6 past customers</li>
+              <li className="is-open"><Icon name="clock" size={16} /> 3 quotes waiting on your approval</li>
+            </ul>
+            <p className="report-note">
+              &ldquo;Two of the quotes are ready to send once you confirm
+              pricing. I&rsquo;ll call the rest back Monday morning.&rdquo;
+            </p>
+            <figcaption>Sample report. Your reporting is set up around your goals.</figcaption>
+          </figure>
           <div>
             <SectionHead
               title="Your assistant works from our team in the Philippines."

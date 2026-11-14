@@ -1,4 +1,4 @@
-import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
@@ -33,7 +33,7 @@ const Affiliate = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {[
               {
-                label: "Sales Commission",
+                label: "Sales commission",
                 value: "10%",
                 desc: "Flat-rate on all service sales.",
               },
@@ -43,12 +43,12 @@ const Affiliate = () => {
                 desc: "Recurring monthly commission.",
               },
               {
-                label: "Payout Structure",
+                label: "Payout structure",
                 value: "5-Tier",
                 desc: "Multi-level earning potential.",
               },
               {
-                label: "Earning Limit",
+                label: "Earning limit",
                 value: "Unlimited",
                 desc: "No caps on your success.",
               },
@@ -66,7 +66,7 @@ const Affiliate = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">
-                Why Partner With <span className="text-primary">GMG?</span>
+                Why partner with <span className="text-primary">GMG?</span>
               </h2>
               <p className="text-lg text-muted-foreground">
                 We provide all the assets and support you need to succeed as an

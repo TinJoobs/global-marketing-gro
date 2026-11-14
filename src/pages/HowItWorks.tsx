@@ -5,22 +5,22 @@ import { PageHero, SectionHead, CTASection } from "@/components/sections";
 const steps: { icon: IconName; title: string; body: string }[] = [
   {
     icon: "calendar",
-    title: "Book a Strategy Call",
+    title: "Book a strategy call",
     body: "We start with a discovery conversation to understand your goals, challenges, workload, and current processes.",
   },
   {
     icon: "settings",
-    title: "Choose Your Solution",
+    title: "Choose your solution",
     body: "We recommend the right combination of CRM automation, AI tools, and Virtual Assistant support for your business.",
   },
   {
     icon: "rocket",
-    title: "Launch Your Assistant & Automation",
+    title: "Launch your assistant & automation",
     body: "We set up your system, build your workflows, and match you with the right Virtual Assistant.",
   },
   {
     icon: "growth",
-    title: "Scale with Ongoing Support",
+    title: "Scale with ongoing support",
     body: "We coordinate onboarding, communication, task management, and performance reporting as you grow.",
   },
 ];
@@ -31,9 +31,9 @@ export default function HowItWorks() {
       <PageHero
         variant="how"
         eyebrow="How it works"
-        title={<>A Clearer Path from Inquiry to Opportunity</>}
+        title={<>A clearer path from inquiry to opportunity</>}
         lead="Four simple steps to put the right technology, processes, and people in place so your business can respond faster and convert more."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{
           label: "See the Sales Growth System",
           to: "/sales-growth-system",
@@ -75,17 +75,17 @@ export default function HowItWorks() {
             {[
               {
                 icon: "database" as IconName,
-                title: "Customized Support",
+                title: "Customized support",
                 body: "We begin with discovery to understand your goals and current processes.",
               },
               {
                 icon: "users" as IconName,
-                title: "The Right Match",
+                title: "The right match",
                 body: "We match you with a Virtual Assistant whose skills align with your work.",
               },
               {
                 icon: "refresh" as IconName,
-                title: "Ongoing Coordination",
+                title: "Ongoing coordination",
                 body: "We support onboarding, communication, and performance reporting.",
               },
             ].map((c) => (
@@ -101,7 +101,7 @@ export default function HowItWorks() {
         </div>
       </section>
       <CTASection
-        title="Ready to Put the Right System in Place?"
+        title="Ready to put the right system in place?"
         body="Book a free strategy call and we'll help you map out the right combination of automation and support."
       />
     </div>

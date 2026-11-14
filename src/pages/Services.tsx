@@ -7,31 +7,31 @@ const services: { icon: IconName; title: string; body: string; to: string }[] =
   [
     {
       icon: "database",
-      title: "CRM & Automation",
+      title: "CRM & automation",
       body: "Connect contacts, conversations, appointments, tasks, and your sales pipeline in one organized system.",
       to: "/crm-automation",
     },
     {
       icon: "cpu",
-      title: "AI & Human Support",
+      title: "AI & human support",
       body: "Use automation for repetitive work while keeping your people in control of the conversations that need care.",
       to: "/ai-automation",
     },
     {
       icon: "monitor",
-      title: "Digital Solutions",
+      title: "Digital solutions",
       body: "Websites, landing pages, funnels, and approved marketing content connected to a clear lead-capture process.",
       to: "/digital-solutions",
     },
     {
       icon: "calendar",
-      title: "Appointment Setting",
+      title: "Appointment setting",
       body: "Online scheduling, confirmations, reminders, and personal follow-up so your team can focus on what matters.",
       to: "/appointment-setting",
     },
     {
       icon: "refresh",
-      title: "Lead Follow-Up",
+      title: "Lead follow-up",
       body: "Automated and personal follow-up so no inquiry is left waiting and every lead has a clear next step.",
       to: "/lead-follow-up",
     },
@@ -49,9 +49,9 @@ export default function Services() {
       <PageHero
         variant="services"
         eyebrow="What we do"
-        title={<>Elevate Your Marketing Strategy</>}
-        lead="Sales funnel creation, CRM setup, marketing automation, campaign optimization, and full-service digital strategy — all under one roof."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        title={<>Elevate your marketing strategy</>}
+        lead="Sales funnel creation, CRM setup, marketing automation, campaign optimization, and full-service digital strategy, all under one roof."
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{ label: "View pricing", to: "/pricing" }}
       />
 
@@ -86,28 +86,28 @@ export default function Services() {
             center
             eyebrow="Full-service strategy"
             title="Done-for-you implementation, end to end."
-            subtitle="We don't just give you tools — we set them up and manage them for you."
+            subtitle="We don't just give you tools. We set them up and manage them for you."
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: "workflow" as IconName,
-                title: "Sales Funnel Creation",
+                title: "Sales funnel creation",
                 body: "High-converting funnels built around your offer and process.",
               },
               {
                 icon: "database" as IconName,
-                title: "CRM Setup",
+                title: "CRM setup",
                 body: "Customized CRM built around how your business actually works.",
               },
               {
                 icon: "refresh" as IconName,
-                title: "Marketing Automation",
+                title: "Marketing automation",
                 body: "Workflows that nurture leads and reactivate past customers.",
               },
               {
                 icon: "chart" as IconName,
-                title: "Campaign Optimization",
+                title: "Campaign optimization",
                 body: "Data-driven refinement for better results over time.",
               },
             ].map((c) => (
@@ -124,7 +124,7 @@ export default function Services() {
       </section>
 
       <CTASection
-        title="Build Your Full-Service Growth Strategy"
+        title="Build your full-service Growth strategy"
         body="From funnel creation to CRM setup to ongoing automation, we handle the implementation so you can focus on your business."
       />
     </div>

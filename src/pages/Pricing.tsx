@@ -54,7 +54,7 @@ export default function Pricing() {
               aria-pressed={annual}
               onClick={() => setBilling("annual")}
             >
-              Annual — save 10%
+              Annual, save 10%
             </button>
           </div>
           <p
@@ -181,9 +181,9 @@ export default function Pricing() {
         </div>
       </section>
       <CTASection
-        title="Ready to Stop Losing Leads?"
+        title="Ready to stop losing leads?"
         body="Tell us where your business needs support. We’ll help you choose the right plan."
-        primaryLabel="Book Your Free Growth Audit"
+        primaryLabel="Book your free Growth audit"
       />
     </div>
   );

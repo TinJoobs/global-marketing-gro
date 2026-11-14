@@ -15,12 +15,12 @@ const resources: { icon: IconName; title: string; body: string; to: string }[] =
     {
       icon: "monitor",
       title: "Portfolio",
-      body: "Client success gallery — websites, funnels, and AI solutions we've built.",
+      body: "Client work: websites, funnels, and AI solutions we've built.",
       to: "/portfolio",
     },
     {
       icon: "megaphone",
-      title: "Affiliate Program",
+      title: "Affiliate program",
       body: "Unlock your earning potential with our exclusive affiliate program.",
       to: "/resources/affiliate",
     },
@@ -38,7 +38,7 @@ const resources: { icon: IconName; title: string; body: string; to: string }[] =
     },
     {
       icon: "globe",
-      title: "Media Center",
+      title: "Media center",
       body: "Our connected toolkit and client/project media examples.",
       to: "/resources/media",
     },
@@ -56,9 +56,9 @@ export default function Resources() {
       <PageHero
         variant="resources"
         eyebrow="Resources"
-        title={<>Guides, Tools & Insights</>}
-        lead="Explore our portfolio, affiliate program, services, and media center — everything you need to learn about GMG and grow your business."
-        primaryCta={{ label: "Book a Free Strategy Call", to: "/contact" }}
+        title={<>Guides, tools & insights</>}
+        lead="Explore our portfolio, affiliate program, services, and media center. Everything you need to learn about GMG and grow your business."
+        primaryCta={{ label: "Book a free strategy call", to: "/contact" }}
         secondaryCta={{ label: "View all services", to: "/services" }}
       />
       <section className="section-gmg">
@@ -86,7 +86,7 @@ export default function Resources() {
         </div>
       </section>
       <CTASection
-        title="Ready to Put These Resources to Work?"
+        title="Ready to put these resources to work?"
         body="Book a free strategy call and we'll help you apply these insights to your business."
       />
     </div>

@@ -32,8 +32,8 @@ export default function Portfolio() {
         variant="portfolio"
         eyebrow="Resources"
         title={<>Portfolio</>}
-        lead="Client success gallery — website and landing page development, funnel design, AI chatbots, and AI lead generation across industries."
-        primaryCta={{ label: "Start Your Project", to: "/contact" }}
+        lead="Client work: website and landing page development, funnel design, AI chatbots, and AI lead generation across industries."
+        primaryCta={{ label: "Start your project", to: "/contact" }}
         secondaryCta={{ label: "View services", to: "/services" }}
       />
       <section className="section-gmg">
@@ -70,9 +70,9 @@ export default function Portfolio() {
         </div>
       </section>
       <CTASection
-        title="Your Project Could Be Next"
+        title="Your project could be next"
         body="From websites and funnels to AI lead generation, we build the digital assets that grow your business."
-        primaryLabel="Start Your Project"
+        primaryLabel="Start your project"
       />
     </div>
   );

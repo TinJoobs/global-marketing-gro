@@ -1,4 +1,4 @@
-import { Hero3DLayout } from "@/components/hero3d/Hero3DScene";
+import { Hero3DLayout } from "@/components/sections";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,7 +49,7 @@ const ExecutiveAssistant = () => {
           customFields: {
             "3wgex2CP4Qcr8NXsjtAr": {
               value: data.experience,
-              label: "Relevant Experience",
+              label: "Relevant experience",
             },
           },
         },
@@ -87,18 +87,18 @@ const ExecutiveAssistant = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="space-y-8">
               <h2 className="text-3xl font-bold">
-                Why Join <span className="text-primary">GMG?</span>
+                Why join <span className="text-primary">GMG?</span>
               </h2>
               <div className="grid gap-6">
                 {[
                   {
                     icon: ShieldCheck,
-                    title: "AI-Powered Tools",
+                    title: "AI-powered tools",
                     desc: "Work more efficiently with our proprietary automation stack.",
                   },
                   {
                     icon: Mail,
-                    title: "Global Clients",
+                    title: "Global clients",
                     desc: "Support industry leaders across Real Estate, Medical, and more.",
                   },
                   {
@@ -108,7 +108,7 @@ const ExecutiveAssistant = () => {
                   },
                   {
                     icon: ShieldCheck,
-                    title: "Flexible Environment",
+                    title: "Flexible environment",
                     desc: "Modern, tech-forward work culture designed for success.",
                   },
                 ].map((item, i) => (
@@ -126,7 +126,7 @@ const ExecutiveAssistant = () => {
             </div>
 
             <div className="glass-card p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-6">Apply Now</h3>
+              <h3 className="text-2xl font-bold mb-6">Apply now</h3>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
