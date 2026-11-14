@@ -207,9 +207,9 @@ export default function Header() {
         <aside className="gmg-mega-feature">
           <span className="eyebrow">{label}</span>
           <p>
-            One connected system. One dedicated team. Built around how your
-            business actually works — so leads, follow-up, and support stop
-            falling through the cracks.
+            One connected system and one dedicated team, built around how your
+            business works so leads, follow-up, and support stop falling
+            through the cracks.
           </p>
           <button
             type="button"
@@ -241,13 +241,13 @@ export default function Header() {
           <img
             src="/assets/images/gmg-headset-logo.webp"
             alt=""
-            width="76"
-            height="76"
+            width="52"
+            height="52"
           />
           <span>
-            GLOBAL
+            Global
             <br />
-            MARKETING GROUP<small>SYSTEMS. PEOPLE. GROWTH.</small>
+            Marketing Group<small>Systems. People. Growth.</small>
           </span>
         </Link>
 

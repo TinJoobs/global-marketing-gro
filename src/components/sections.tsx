@@ -12,17 +12,9 @@ export const SectionHead: React.FC<{
   subtitle?: React.ReactNode;
   center?: boolean;
 }> = ({ eyebrow, title, subtitle, center }) => (
-  <div
-    className={
-      center
-        ? "text-center max-w-3xl mx-auto mb-16 reveal"
-        : "max-w-2xl mb-12 reveal"
-    }
-  >
+  <div className={center ? "section-head is-center" : "section-head"}>
     {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-    <h2 className="text-3xl md:text-[2.65rem] font-bold leading-[1.1]">
-      {title}
-    </h2>
+    <h2 className="section-title">{title}</h2>
     {subtitle && <p className="lead-gmg mt-5">{subtitle}</p>}
   </div>
 );
@@ -58,15 +50,11 @@ export const PageHero: React.FC<{
       >
         <div className="hero-page-copy">
           <span className="eyebrow">{eyebrow}</span>
-          <h1 className="text-4xl md:text-[3.8rem] font-bold leading-[1.08]">
-            {title}
-          </h1>
-          <p className="lead-gmg mt-7 max-w-[610px]">{lead}</p>
-          {note && (
-            <p className="mt-5 text-muted-foreground max-w-[610px]">{note}</p>
-          )}
+          <h1>{title}</h1>
+          <p className="lead-gmg mt-6">{lead}</p>
+          {note && <p className="mt-4 text-muted-foreground max-w-[60ch]">{note}</p>}
           {(primaryCta || secondaryCta) && (
-            <div className="flex flex-wrap items-center gap-4 mt-10">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-9">
               {primaryCta && (
                 <Link to={primaryCta.to} className="btn-primary-gmg">
                   {primaryCta.label}
@@ -104,15 +92,15 @@ export const CTASection: React.FC<{
 }) => {
   const { book, contact } = useModalCTA();
   return (
-    <section className="py-20 md:py-24">
+    <section className="cta-section pb-[var(--space-section)]">
       <div className="container-gmg">
-        <div className="cta-banner-gmg reveal">
+        <div className="cta-banner-gmg">
           <div className="relative">
             <span className="eyebrow">{eyebrow}</span>
-            <h2 className="text-2xl md:text-[2rem] font-bold max-w-[660px]">
+            <h2 className="max-w-[18ch]">
               {title}
             </h2>
-            <p className="text-muted-foreground mt-3 max-w-[680px]">{body}</p>
+            <p className="text-muted-foreground mt-4 max-w-[56ch]">{body}</p>
           </div>
           <div className="flex flex-col gap-3 relative">
             {primaryTo ? (
@@ -149,36 +137,30 @@ export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({
   items,
 }) => {
   const [open, setOpen] = React.useState<number | null>(0);
+  const base = React.useId();
   return (
-    <div className="space-y-3">
+    <div>
       {items.map((item, i) => (
-        <div
-          key={i}
-          className="rounded-2xl border border-line bg-white overflow-hidden transition-colors hover:border-teal/30"
-        >
+        <div key={i} className="faq-item">
           <button
             type="button"
+            id={`${base}-q${i}`}
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between gap-4 text-left p-5 font-semibold text-navy"
+            className="faq-trigger"
             aria-expanded={open === i}
+            aria-controls={`${base}-a${i}`}
           >
             {item.q}
-            <Icon
-              name="plus"
-              size={18}
-              className={`shrink-0 transition-transform duration-300 ${open === i ? "rotate-45 text-teal" : ""}`}
-            />
+            <Icon name="plus" size={20} />
           </button>
           <div
-            className="grid transition-all duration-300 ease-out"
-            style={{
-              gridTemplateRows: open === i ? "1fr" : "0fr",
-            }}
+            id={`${base}-a${i}`}
+            className="faq-panel"
+            style={{ gridTemplateRows: open === i ? "1fr" : "0fr" }}
+            aria-hidden={open !== i}
           >
-            <div className="overflow-hidden">
-              <p className="px-5 pb-5 text-muted-foreground leading-relaxed">
-                {item.a}
-              </p>
+            <div>
+              <p>{item.a}</p>
             </div>
           </div>
         </div>
@@ -190,7 +172,7 @@ export const FAQList: React.FC<{ items: { q: string; a: string }[] }> = ({
 export const FlowBoard: React.FC<{
   rows: { title: string; sub: string; icon?: IconName }[];
 }> = ({ rows }) => (
-  <div className="rounded-2xl border border-line bg-white p-6 space-y-4 shadow-sm">
+  <div className="rounded-[14px] border border-line bg-white p-6 space-y-4">
     {rows.map((r, i) => (
       <div key={i} className="flex items-center gap-4">
         <span className="icon-box">
@@ -217,17 +199,17 @@ export const FeatureGrid: React.FC<{
   <div
     className={
       cols === 2
-        ? "grid md:grid-cols-2 gap-6"
-        : "grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ? "grid md:grid-cols-2 gap-5"
+        : "grid md:grid-cols-2 lg:grid-cols-3 gap-5"
     }
   >
     {items.map((f, i) => (
-      <article key={i} className="card-gmg reveal">
-        <span className={`icon-box ${f.tone || ""} mb-5`}>
-          <Icon name={f.icon || "check"} size={24} />
+      <article key={i} className="card-gmg">
+        <span className="icon-box mb-5">
+          <Icon name={f.icon || "check"} size={22} />
         </span>
-        <h3 className="text-lg font-bold mb-2">{f.title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{f.body}</p>
+        <h3 className="text-[1.1875rem] mb-2">{f.title}</h3>
+        <p className="text-muted-foreground">{f.body}</p>
       </article>
     ))}
   </div>

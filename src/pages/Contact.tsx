@@ -205,7 +205,7 @@ export default function Contact() {
                     ref={errorSummary}
                     tabIndex={-1}
                     role="alert"
-                    className="border border-red-400 rounded-lg p-4 mb-6 text-sm"
+                    className="border border-destructive rounded-lg p-4 mb-6 text-sm"
                   >
                     <p className="font-semibold mb-2">
                       Please check these fields:
@@ -249,7 +249,7 @@ export default function Contact() {
                       {errors.name && (
                         <p
                           id="contact-name-error"
-                          className="text-sm text-red-300"
+                          className="text-sm text-destructive"
                         >
                           {errors.name}
                         </p>
@@ -273,7 +273,7 @@ export default function Contact() {
                       {errors.email && (
                         <p
                           id="contact-email-error"
-                          className="text-sm text-red-300"
+                          className="text-sm text-destructive"
                         >
                           {errors.email}
                         </p>
@@ -297,7 +297,7 @@ export default function Contact() {
                     {errors.subject && (
                       <p
                         id="contact-subject-error"
-                        className="text-sm text-red-300"
+                        className="text-sm text-destructive"
                       >
                         {errors.subject}
                       </p>
@@ -321,7 +321,7 @@ export default function Contact() {
                     {errors.message && (
                       <p
                         id="contact-message-error"
-                        className="text-sm text-red-300"
+                        className="text-sm text-destructive"
                       >
                         {errors.message}
                       </p>
@@ -348,7 +348,7 @@ export default function Contact() {
                     {errors.consent && (
                       <p
                         id="contact-consent-error"
-                        className="text-sm text-red-300"
+                        className="text-sm text-destructive"
                       >
                         {errors.consent}
                       </p>
@@ -388,7 +388,7 @@ export default function Contact() {
                 {status === "error" && (
                   <p
                     role="alert"
-                    className="mt-5 border border-red-400 rounded-lg p-4"
+                    className="mt-5 border border-destructive rounded-lg p-4"
                   >
                     We could not receive your request. Please try again or{" "}
                     <a

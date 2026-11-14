@@ -25,17 +25,13 @@ export default function HomeHero() {
         <div className="hero-grid">
           <div className="hero-copy">
             <span className="hero-kicker">
-              <span /> AI-ENHANCED EXECUTIVE ASSISTANTS
+              <span /> Global Marketing Group
             </span>
-            <h1>
-              Global Marketing Group
-              <br />
-              <span className="accent">Delegate smarter, not harder.</span>
-            </h1>
+            <h1>Delegate smarter, not harder.</h1>
             <p className="lead">
-              Our AI-driven assistants and all-in-one CRM automate workflows,
-              streamline operations, and free you to focus on scaling your
-              business with less friction and more momentum.
+              AI-enhanced executive assistants and an all-in-one CRM that
+              automate workflows, streamline operations, and free you to focus
+              on scaling your business.
             </p>
             <div className="actions">
               <button
@@ -43,14 +39,14 @@ export default function HomeHero() {
                 type="button"
                 onClick={book({ subject: "Quick Hire / EA Discovery Call" })}
               >
-                Quick Hire Services <Icon name="arrow" size={18} />
+                Quick hire services <Icon name="arrow" size={18} />
               </button>
               <button
                 className="btn-outline-gmg"
                 type="button"
                 onClick={book({ subject: "Schedule A Demo" })}
               >
-                Schedule A Demo <Icon name="calendar" size={18} />
+                Schedule a demo <Icon name="calendar" size={18} />
               </button>
             </div>
             <p className="hero-note">
@@ -62,10 +58,6 @@ export default function HomeHero() {
             <Hero3DScene variant="philippines" />
           </div>
         </div>
-        <a href="#connected-story" className="hero-scroll-link">
-          <span className="scroll-line" /> Discover a more connected business{" "}
-          <Icon name="arrow" size={16} />
-        </a>
         <div className="hero-proof-strip">
           <div>
             <Icon name="database" />
