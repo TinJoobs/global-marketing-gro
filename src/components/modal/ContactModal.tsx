@@ -1,10 +1,18 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Icon } from "@/components/Icon";
+import { Honeypot } from "@/components/Honeypot";
 import type { ContactPreset } from "./modalContext";
 import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
+import {
+  isBot,
+  isEmail,
+  isPersonName,
+  looksLikeSpam,
+  useRenderedAt,
+} from "@/lib/formSecurity";
 
 const CONSENT =
   "I agree that Global Marketing Group may contact me by email about this request.";
@@ -34,11 +42,19 @@ export function ContactModal({
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [subject, setSubject] = useState(preset?.subject ?? SUBJECTS[0]);
+  const renderedAt = useRenderedAt();
+  const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "submitting" || status === "success") return;
     const form = new FormData(e.currentTarget);
+    // Bot detection: honeypot + submit timing.
+    if (isBot(form, renderedAt)) {
+      setStatus("success");
+      formRef.current?.reset();
+      return;
+    }
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const phone = String(form.get("phone") ?? "").trim();
@@ -46,11 +62,14 @@ export function ContactModal({
     const consent = form.get("consent") === "on";
 
     const next: Record<string, string> = {};
-    if (!name || name.length > 100) next.name = "Enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)
-      next.email = "Enter a valid email.";
+    if (!isPersonName(name)) next.name = "Enter your full name.";
+    if (!isEmail(email)) next.email = "Enter a valid email address.";
+    if (phone && !/^\+?[\d\s().-]{7,20}$/.test(phone))
+      next.phone = "Enter a valid phone number.";
     if (!message || message.length > 5000)
       next.message = "Tell us what you need (up to 5,000 characters).";
+    else if (looksLikeSpam(message))
+      next.message = "Your message looks like spam. Please rephrase.";
     if (!consent) next.consent = "Please agree to email contact.";
     setErrors(next);
     if (Object.keys(next).length) return;
@@ -108,7 +127,13 @@ export function ContactModal({
   }
 
   return (
-    <form className="gmg-modal-body" onSubmit={handleSubmit} noValidate>
+    <form
+      ref={formRef}
+      className="gmg-modal-body"
+      onSubmit={handleSubmit}
+      noValidate
+    >
+      <Honeypot />
       <span className="eyebrow">We'd love to help</span>
       <h2 className="text-2xl md:text-3xl font-bold mt-1">Send us a message</h2>
       <p className="text-muted-foreground mt-2">
@@ -154,14 +179,22 @@ export function ContactModal({
           )}
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="cm-phone">Phone (optional)</Label>
+          <Label htmlFor="cm-phone">Phone</Label>
           <Input
             id="cm-phone"
             name="phone"
             type="tel"
+            required
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "cm-phone-error" : undefined}
             autoComplete="tel"
             className="h-12"
           />
+          {errors.phone && (
+            <p id="cm-phone-error" className="gmg-field-error">
+              {errors.phone}
+            </p>
+          )}
         </div>
       </div>
 
