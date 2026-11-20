@@ -50,6 +50,8 @@ const ExecutiveAssistant = () => {
       next.experience = "Tell us about your relevant experience.";
     else if (looksLikeSpam(data.experience))
       next.experience = "Your entry looks like spam. Please rephrase.";
+    if (formData.get("consent") !== "on")
+      next.consent = "Please agree to the Privacy Policy to continue.";
     setErrors(next);
     if (Object.keys(next).length) return;
 
@@ -249,6 +251,7 @@ const ExecutiveAssistant = () => {
                     name="consent"
                     required
                     className="mt-1 accent-primary"
+                    aria-invalid={!!errors.consent}
                   />
                   <span>
                     I agree to the{" "}
@@ -258,6 +261,9 @@ const ExecutiveAssistant = () => {
                     and the use of these details to process this application.
                   </span>
                 </label>
+                {errors.consent && (
+                  <p className="text-sm text-destructive">{errors.consent}</p>
+                )}
                 <Button
                   type="submit"
                   className="w-full"

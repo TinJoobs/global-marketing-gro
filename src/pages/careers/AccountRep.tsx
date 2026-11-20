@@ -42,6 +42,8 @@ const AccountRep = () => {
     if (!isEmail(data.email)) next.email = "Enter a valid email address.";
     if (!isUrl(data.linkedin)) next.linkedin = "Enter a valid LinkedIn URL.";
     if (!data.location) next.location = "Enter your city and country.";
+    if (formData.get("consent") !== "on")
+      next.consent = "Please agree to the Privacy Policy to continue.";
     setErrors(next);
     if (Object.keys(next).length) return;
 
@@ -220,6 +222,7 @@ const AccountRep = () => {
                     name="consent"
                     required
                     className="mt-1 accent-primary"
+                    aria-invalid={!!errors.consent}
                   />
                   <span>
                     I agree to the{" "}
@@ -229,6 +232,9 @@ const AccountRep = () => {
                     and the use of these details to process this application.
                   </span>
                 </label>
+                {errors.consent && (
+                  <p className="text-sm text-destructive">{errors.consent}</p>
+                )}
                 <Button
                   type="submit"
                   className="w-full"

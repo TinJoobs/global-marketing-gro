@@ -18,6 +18,15 @@ vi.mock("@/lib/tracking", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/tracking")>()),
   postTrackingEvent: vi.fn(),
 }));
+// Bypass the submit-timing heuristic (tests submit instantly); keep honeypot.
+vi.mock("@/lib/formSecurity", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/formSecurity")>();
+  return {
+    ...actual,
+    isBot: (form: FormData) =>
+      Boolean(String(form.get(actual.HONEYPOT_FIELD) ?? "").trim()),
+  };
+});
 const slots = Array.from(
   { length: 14 },
   (_, i) => `2030-12-02T${String(i + 8).padStart(2, "0")}:00:00Z`,
