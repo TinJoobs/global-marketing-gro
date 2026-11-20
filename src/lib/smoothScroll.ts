@@ -14,7 +14,7 @@ export function startSmoothScroll(): () => void {
       smoothWheel: true,
       prevent: (node) =>
         !!node.closest?.(
-          ".gmg-modal-overlay, .cookie-panel, #gmg-nav, .integration-logo-row",
+          ".gmg-modal-overlay, .cookie-panel, #gmg-nav-list, .gmg-mega, .integration-logo-row",
         ),
     });
   } catch {

@@ -5,6 +5,9 @@ import App from "./App";
 import "@fontsource-variable/plus-jakarta-sans/wght.css";
 import "./index.css";
 import "./components/modal/modal.css";
+if (!Object.hasOwn(HTMLElement.prototype, "popover")) {
+  import("@oddbird/popover-polyfill");
+}
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
