@@ -1999,6 +1999,7 @@ section:has(.hero-page-layout) {
   border: 1px solid rgba(142, 227, 214, 0.14);
 }
 .report-card {
+  color-scheme: light;
   background: #ffffff;
   color: #0b2a3c;
   border-color: transparent;
@@ -2077,6 +2078,9 @@ section:has(.hero-page-layout) {
 .home-calc input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
+  margin: 0;
+  border: 0;
+  accent-color: var(--c-sun);
   width: 100%;
   height: 28px;
   background: transparent;
@@ -2469,7 +2473,7 @@ html.lenis body {
   opacity: 0;
 }
 
-@supports (animation-timeline: view()) {
+@supports ((animation-timeline: view()) and (animation-range: entry)) {
   @media (prefers-reduced-motion: no-preference) {
     .section-head,
     .story-intro,
@@ -2491,6 +2495,10 @@ html.lenis body {
       animation-timeline: view();
       animation-range: entry 0% cover 22%;
     }
+  }
+}
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  @media (prefers-reduced-motion: no-preference) {
     .gmg-header {
       animation: gmg-header-solid linear both;
       animation-timeline: scroll(root);
@@ -2539,5 +2547,43 @@ html.lenis body {
   #gmg-site::after,
   .cookie-panel {
     display: none !important;
+  }
+}
+
+.cookie-short {
+  display: none;
+}
+@media (max-width: 640px) {
+  .cookie-panel:not(:has(.cookie-options)) {
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+  .cookie-panel:not(:has(.cookie-options)) h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .cookie-panel:not(:has(.cookie-options)) .cookie-long,
+  .cookie-panel:not(:has(.cookie-options)) .cookie-wide {
+    display: none;
+  }
+  .cookie-panel:not(:has(.cookie-options)) .cookie-short {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+  .cookie-panel:not(:has(.cookie-options)) .cookie-actions {
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .cookie-panel:not(:has(.cookie-options)) .cookie-actions > * {
+    flex: 1 1 0;
+    min-height: 44px;
+    padding-inline: 8px;
+    font-size: 0.875rem;
   }
 }

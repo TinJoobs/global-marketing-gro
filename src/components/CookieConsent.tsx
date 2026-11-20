@@ -46,11 +46,15 @@ export default function CookieConsent() {
     >
       <div className="cookie-copy">
         <h2 id={titleId}>Cookies on this site</h2>
-        <p>
+        <p className="cookie-long">
           We use necessary cookies to keep the site and forms working. With your
           permission we also use analytics to see which pages help people, and
           marketing cookies to measure our ads. See our{" "}
           <Link to="/privacy">Privacy Policy</Link>.
+        </p>
+        <p className="cookie-short">
+          Optional analytics and ad cookies.{" "}
+          <Link to="/privacy">Privacy</Link>
         </p>
       </div>
 
@@ -102,24 +106,27 @@ export default function CookieConsent() {
           <button
             type="button"
             className="btn-outline-gmg"
+            aria-label="Choose cookies"
             onClick={() => setDetails(true)}
           >
-            Choose cookies
+            Choose<span className="cookie-wide"> cookies</span>
           </button>
         )}
         <button
           type="button"
           className="btn-outline-gmg"
+          aria-label="Reject optional cookies"
           onClick={() => decide(false, false)}
         >
-          Reject optional
+          Reject<span className="cookie-wide"> optional</span>
         </button>
         <button
           type="button"
           className="btn-primary-gmg"
+          aria-label="Accept all cookies"
           onClick={() => decide(true, true)}
         >
-          Accept all
+          Accept<span className="cookie-wide"> all</span>
         </button>
       </div>
     </div>
