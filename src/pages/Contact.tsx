@@ -4,7 +4,15 @@ import { Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Honeypot } from "@/components/Honeypot";
 import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
+import {
+  isBot,
+  isEmail,
+  isPersonName,
+  looksLikeSpam,
+  useRenderedAt,
+} from "@/lib/formSecurity";
 import { packages, pricingTerms } from "@/data/packages";
 
 const consentText =
@@ -27,6 +35,7 @@ type Field = keyof typeof labels;
 
 export default function Contact() {
   const [params] = useSearchParams();
+  const renderedAt = useRenderedAt();
   const plan = packages.find((item) => item.slug === params.get("plan"));
   const annual = params.get("billing") === "annual";
   const leadFollowUp = params.get("service") === "lead-follow-up";
@@ -56,6 +65,11 @@ export default function Contact() {
     event.preventDefault();
     if (status === "pending" || status === "success") return;
     const form = new FormData(event.currentTarget);
+    // Bot detection: honeypot + submit timing.
+    if (isBot(form, renderedAt)) {
+      setStatus("success");
+      return;
+    }
     const values = {
       name: String(form.get("name") ?? "").trim(),
       email: String(form.get("email") ?? "").trim(),
@@ -63,18 +77,17 @@ export default function Contact() {
       message: String(form.get("message") ?? "").trim(),
     };
     const nextErrors: Partial<Record<Field, string>> = {};
-    if (!values.name || values.name.length > 100)
-      nextErrors.name = "Enter your name (up to 100 characters).";
-    if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) ||
-      values.email.length > 254
-    )
+    if (!isPersonName(values.name))
+      nextErrors.name = "Enter your full name (up to 100 characters).";
+    if (!isEmail(values.email))
       nextErrors.email = "Enter a valid email address.";
     if (!values.subject || values.subject.length > 200)
       nextErrors.subject = "Enter a subject (up to 200 characters).";
     if (!values.message || values.message.length > 5000)
       nextErrors.message =
         "Tell us what you need help with (up to 5,000 characters).";
+    else if (looksLikeSpam(values.message))
+      nextErrors.message = "Your message looks like spam. Please rephrase.";
     if (form.get("consent") !== "on")
       nextErrors.consent = "Please agree to email contact about your request.";
     setErrors(nextErrors);
@@ -195,6 +208,7 @@ export default function Contact() {
                 aria-label="Consultation request"
                 aria-busy={status === "pending"}
               >
+                <Honeypot />
                 {Object.keys(errors).length > 0 && (
                   <div
                     ref={errorSummary}

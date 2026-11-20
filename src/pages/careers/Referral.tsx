@@ -1,26 +1,52 @@
 import { Hero3DLayout } from "@/components/sections";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Gift, Share2 } from "lucide-react";
+import { Honeypot } from "@/components/Honeypot";
 import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
+import {
+  isBot,
+  isEmail,
+  isPersonName,
+  useRenderedAt,
+} from "@/lib/formSecurity";
 
 const Referral = () => {
   const [status, setStatus] = useState<
     "idle" | "pending" | "accepted" | "error"
   >("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const renderedAt = useRenderedAt();
+  const formRef = useRef<HTMLFormElement>(null);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === "pending") return;
     const form = e.currentTarget;
-    if (status === "pending" || !form.reportValidity()) return;
     const formData = new FormData(form);
+    if (isBot(formData, renderedAt)) {
+      setStatus("accepted");
+      form.reset();
+      return;
+    }
     const data = {
-      yourName: formData.get("yourName") as string,
-      yourEmail: formData.get("yourEmail") as string,
-      refName: formData.get("refName") as string,
-      refContact: formData.get("refContact") as string,
+      yourName: String(formData.get("yourName") ?? "").trim(),
+      yourEmail: String(formData.get("yourEmail") ?? "").trim(),
+      refName: String(formData.get("refName") ?? "").trim(),
+      refContact: String(formData.get("refContact") ?? "").trim(),
     };
+    const next: Record<string, string> = {};
+    if (!isPersonName(data.yourName)) next.yourName = "Enter your name.";
+    if (!isEmail(data.yourEmail))
+      next.yourEmail = "Enter a valid email address.";
+    if (!data.refName) next.refName = "Enter the business name.";
+    if (!isPersonName(data.refContact))
+      next.refContact = "Enter a contact name.";
+    if (formData.get("consent") !== "on")
+      next.consent = "Please agree to the Privacy Policy to continue.";
+    setErrors(next);
+    if (Object.keys(next).length) return;
 
     setStatus("pending");
     try {
@@ -106,7 +132,13 @@ const Referral = () => {
             <h2 className="text-3xl font-bold mb-8 text-center">
               Submit a referral
             </h2>
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form
+              ref={formRef}
+              className="space-y-6"
+              onSubmit={handleSubmit}
+              noValidate
+            >
+              <Honeypot />
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
                   <h3 className="font-bold text-primary border-b border-primary/20 pb-2">
@@ -119,7 +151,14 @@ const Referral = () => {
                       name="yourName"
                       placeholder="Full Name"
                       required
+                      autoComplete="name"
+                      aria-invalid={!!errors.yourName}
                     />
+                    {errors.yourName && (
+                      <p className="text-sm text-destructive">
+                        {errors.yourName}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="yourEmail">Your email</Label>
@@ -129,7 +168,14 @@ const Referral = () => {
                       type="email"
                       placeholder="email@example.com"
                       required
+                      autoComplete="email"
+                      aria-invalid={!!errors.yourEmail}
                     />
+                    {errors.yourEmail && (
+                      <p className="text-sm text-destructive">
+                        {errors.yourEmail}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -143,7 +189,13 @@ const Referral = () => {
                       name="refName"
                       placeholder="Company Name"
                       required
+                      aria-invalid={!!errors.refName}
                     />
+                    {errors.refName && (
+                      <p className="text-sm text-destructive">
+                        {errors.refName}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="refContact">Contact person</Label>
@@ -152,7 +204,13 @@ const Referral = () => {
                       name="refContact"
                       placeholder="Contact Name"
                       required
+                      aria-invalid={!!errors.refContact}
                     />
+                    {errors.refContact && (
+                      <p className="text-sm text-destructive">
+                        {errors.refContact}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -162,6 +220,7 @@ const Referral = () => {
                   name="consent"
                   required
                   className="mt-1 accent-primary"
+                  aria-invalid={!!errors.consent}
                 />
                 <span>
                   I agree to the{" "}
@@ -171,6 +230,9 @@ const Referral = () => {
                   and the use of these details to process this referral.
                 </span>
               </label>
+              {errors.consent && (
+                <p className="text-sm text-destructive">{errors.consent}</p>
+              )}
               <Button
                 type="submit"
                 className="w-full"

@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Icon } from "@/components/Icon";
+import { Honeypot } from "@/components/Honeypot";
 import type { ContactPreset } from "./modalContext";
 import {
   fetchCalendarFreeSlots,
@@ -11,6 +12,14 @@ import {
   submitCalendarBooking,
 } from "@/lib/booking";
 import { buildTrackingPayload, postTrackingEvent } from "@/lib/tracking";
+import {
+  isBot,
+  isEmail,
+  isPersonName,
+  isPhone,
+  looksLikeSpam,
+  useRenderedAt,
+} from "@/lib/formSecurity";
 
 const CONSENT =
   "I agree that Global Marketing Group may contact me about this booking request.";
@@ -38,6 +47,7 @@ export function BookingModal({
   const [selected, setSelected] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const formRef = useRef<HTMLFormElement>(null);
+  const renderedAt = useRenderedAt();
 
   useEffect(() => {
     let active = true;
@@ -71,6 +81,12 @@ export function BookingModal({
     e.preventDefault();
     if (status === "submitting" || status === "success") return;
     const form = new FormData(e.currentTarget);
+    // Bot detection: honeypot + submit timing.
+    if (isBot(form, renderedAt)) {
+      setStatus("success");
+      formRef.current?.reset();
+      return;
+    }
     const firstName = String(form.get("firstName") ?? "").trim();
     const lastName = String(form.get("lastName") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
@@ -79,12 +95,12 @@ export function BookingModal({
     const consent = form.get("consent") === "on";
 
     const next: Record<string, string> = {};
-    if (!firstName) next.firstName = "Enter your first name.";
-    if (!lastName) next.lastName = "Enter your last name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      next.email = "Enter a valid email.";
-    if (phone.replace(/\D/g, "").length < 7)
-      next.phone = "Enter a phone number.";
+    if (!isPersonName(firstName)) next.firstName = "Enter your first name.";
+    if (!isPersonName(lastName)) next.lastName = "Enter your last name.";
+    if (!isEmail(email)) next.email = "Enter a valid email address.";
+    if (!isPhone(phone)) next.phone = "Enter a valid phone number.";
+    if (notes && looksLikeSpam(notes))
+      next.notes = "Your notes look like spam. Please rephrase.";
     if (!selected || !slots.some((slot) => slot.iso === selected))
       next.slot = "Choose a time.";
     if (!consent) next.consent = "Please agree to be contacted.";
@@ -152,6 +168,7 @@ export function BookingModal({
       onSubmit={handleSubmit}
       noValidate
     >
+      <Honeypot />
       <fieldset disabled={status === "submitting"} className="booking-fields">
         <span className="eyebrow">Free discovery call</span>
         <h2 className="text-2xl md:text-3xl font-bold mt-1">

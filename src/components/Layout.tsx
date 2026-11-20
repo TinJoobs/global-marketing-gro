@@ -11,20 +11,28 @@ import {
   startSmoothScroll,
 } from "@/lib/smoothScroll";
 import { getSeoMeta } from "@/lib/seo";
+import { SEOHead } from "./SEOHead";
+
+const ORG_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Global Marketing Group",
+  url: "https://glomarkgroup.com/",
+  logo: "https://glomarkgroup.com/assets/images/gmg-headset-logo.webp",
+  sameAs: ["https://glomarkgroup.com/"],
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, hash } = useLocation();
   const ref = useReveal<HTMLDivElement>();
   useEffect(() => startSmoothScroll(), []);
+
+  const seo = getSeoMeta(pathname);
+  const canonical = `https://glomarkgroup.com${pathname === "/" ? "/" : pathname}`;
+  // Thank-you / confirmation pages should not be indexed.
+  const noIndex = pathname === "/thank-you";
+
   useEffect(() => {
-    const seo = getSeoMeta(pathname);
-    document.title = seo.title;
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", seo.description);
-    document
-      .querySelector('link[rel="canonical"]')
-      ?.setAttribute("href", window.location.origin + pathname);
     if (!hash) {
       scrollToTop();
       ref.current?.focus({ preventScroll: true });
@@ -46,6 +54,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [pathname, hash]);
   return (
     <MotionConfig reducedMotion="user">
+      <SEOHead
+        title={seo.title}
+        description={seo.description}
+        canonical={canonical}
+        noIndex={noIndex}
+        schemaJson={ORG_SCHEMA}
+      />
       <div id="gmg-site" className="flex flex-col min-h-screen">
         <a className="skip-to-content" href="#main-content">
           Skip to content

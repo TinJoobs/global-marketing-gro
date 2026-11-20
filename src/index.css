@@ -2682,3 +2682,19 @@ html.lenis body {
   box-shadow: none;
   backdrop-filter: none;
 }
+
+/* ===== Honeypot (bot trap) ===== */
+.gmg-honeypot {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.gmg-honeypot input {
+  width: 1px;
+  height: 1px;
+}

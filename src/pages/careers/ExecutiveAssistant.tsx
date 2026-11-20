@@ -1,28 +1,59 @@
 import { Hero3DLayout } from "@/components/sections";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Calendar, ShieldCheck } from "lucide-react";
+import { Honeypot } from "@/components/Honeypot";
 import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
+import {
+  isBot,
+  isEmail,
+  isPersonName,
+  isPhone,
+  looksLikeSpam,
+  useRenderedAt,
+} from "@/lib/formSecurity";
 
 const ExecutiveAssistant = () => {
   const [status, setStatus] = useState<
     "idle" | "pending" | "accepted" | "error"
   >("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const renderedAt = useRenderedAt();
+  const formRef = useRef<HTMLFormElement>(null);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === "pending") return;
     const form = e.currentTarget;
-    if (status === "pending" || !form.reportValidity()) return;
     const formData = new FormData(form);
+    if (isBot(formData, renderedAt)) {
+      setStatus("accepted");
+      form.reset();
+      return;
+    }
     const data = {
-      firstName: formData.get("firstName") as string,
-      lastName: formData.get("lastName") as string,
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      experience: formData.get("experience") as string,
+      firstName: String(formData.get("firstName") ?? "").trim(),
+      lastName: String(formData.get("lastName") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      experience: String(formData.get("experience") ?? "").trim(),
     };
+    const next: Record<string, string> = {};
+    if (!isPersonName(data.firstName))
+      next.firstName = "Enter your first name.";
+    if (!isPersonName(data.lastName)) next.lastName = "Enter your last name.";
+    if (!isEmail(data.email)) next.email = "Enter a valid email address.";
+    if (!isPhone(data.phone)) next.phone = "Enter a valid phone number.";
+    if (!data.experience)
+      next.experience = "Tell us about your relevant experience.";
+    else if (looksLikeSpam(data.experience))
+      next.experience = "Your entry looks like spam. Please rephrase.";
+    if (formData.get("consent") !== "on")
+      next.consent = "Please agree to the Privacy Policy to continue.";
+    setErrors(next);
+    if (Object.keys(next).length) return;
 
     setStatus("pending");
     try {
@@ -127,7 +158,13 @@ const ExecutiveAssistant = () => {
 
             <div className="glass-card p-8 rounded-2xl">
               <h3 className="text-2xl font-bold mb-6">Apply now</h3>
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form
+                ref={formRef}
+                className="space-y-4"
+                onSubmit={handleSubmit}
+                noValidate
+              >
+                <Honeypot />
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First name</Label>
@@ -136,7 +173,14 @@ const ExecutiveAssistant = () => {
                       name="firstName"
                       placeholder="John"
                       required
+                      autoComplete="given-name"
+                      aria-invalid={!!errors.firstName}
                     />
+                    {errors.firstName && (
+                      <p className="text-sm text-destructive">
+                        {errors.firstName}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last name</Label>
@@ -145,7 +189,14 @@ const ExecutiveAssistant = () => {
                       name="lastName"
                       placeholder="Doe"
                       required
+                      autoComplete="family-name"
+                      aria-invalid={!!errors.lastName}
                     />
+                    {errors.lastName && (
+                      <p className="text-sm text-destructive">
+                        {errors.lastName}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -156,7 +207,12 @@ const ExecutiveAssistant = () => {
                     type="email"
                     placeholder="john@example.com"
                     required
+                    autoComplete="email"
+                    aria-invalid={!!errors.email}
                   />
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email}</p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone number</Label>
@@ -166,7 +222,12 @@ const ExecutiveAssistant = () => {
                     type="tel"
                     placeholder="+1 (555) 000-0000"
                     required
+                    autoComplete="tel"
+                    aria-invalid={!!errors.phone}
                   />
+                  {errors.phone && (
+                    <p className="text-sm text-destructive">{errors.phone}</p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="experience">Relevant experience</Label>
@@ -176,7 +237,13 @@ const ExecutiveAssistant = () => {
                     placeholder="Tell us about your background..."
                     className="min-h-[120px]"
                     required
+                    aria-invalid={!!errors.experience}
                   />
+                  {errors.experience && (
+                    <p className="text-sm text-destructive">
+                      {errors.experience}
+                    </p>
+                  )}
                 </div>
                 <label className="flex items-start gap-3 text-sm text-muted-foreground">
                   <input
@@ -184,6 +251,7 @@ const ExecutiveAssistant = () => {
                     name="consent"
                     required
                     className="mt-1 accent-primary"
+                    aria-invalid={!!errors.consent}
                   />
                   <span>
                     I agree to the{" "}
@@ -193,6 +261,9 @@ const ExecutiveAssistant = () => {
                     and the use of these details to process this application.
                   </span>
                 </label>
+                {errors.consent && (
+                  <p className="text-sm text-destructive">{errors.consent}</p>
+                )}
                 <Button
                   type="submit"
                   className="w-full"

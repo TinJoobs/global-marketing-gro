@@ -1,26 +1,51 @@
 import { Hero3DLayout } from "@/components/sections";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Target, TrendingUp, Users, ShieldCheck } from "lucide-react";
+import { Honeypot } from "@/components/Honeypot";
 import { postTrackingEvent, buildTrackingPayload } from "@/lib/tracking";
+import {
+  isBot,
+  isEmail,
+  isPersonName,
+  isUrl,
+  useRenderedAt,
+} from "@/lib/formSecurity";
 
 const AccountRep = () => {
   const [status, setStatus] = useState<
     "idle" | "pending" | "accepted" | "error"
   >("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const renderedAt = useRenderedAt();
+  const formRef = useRef<HTMLFormElement>(null);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === "pending") return;
     const form = e.currentTarget;
-    if (status === "pending" || !form.reportValidity()) return;
     const formData = new FormData(form);
+    if (isBot(formData, renderedAt)) {
+      setStatus("accepted");
+      form.reset();
+      return;
+    }
     const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      linkedin: formData.get("linkedin") as string,
-      location: formData.get("location") as string,
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      linkedin: String(formData.get("linkedin") ?? "").trim(),
+      location: String(formData.get("location") ?? "").trim(),
     };
+    const next: Record<string, string> = {};
+    if (!isPersonName(data.name)) next.name = "Enter your full name.";
+    if (!isEmail(data.email)) next.email = "Enter a valid email address.";
+    if (!isUrl(data.linkedin)) next.linkedin = "Enter a valid LinkedIn URL.";
+    if (!data.location) next.location = "Enter your city and country.";
+    if (formData.get("consent") !== "on")
+      next.consent = "Please agree to the Privacy Policy to continue.";
+    setErrors(next);
+    if (Object.keys(next).length) return;
 
     setStatus("pending");
     try {
@@ -124,7 +149,13 @@ const AccountRep = () => {
               <h3 className="text-2xl font-bold mb-6 text-center">
                 Start your journey
               </h3>
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form
+                ref={formRef}
+                className="space-y-4"
+                onSubmit={handleSubmit}
+                noValidate
+              >
+                <Honeypot />
                 <div className="space-y-2">
                   <Label htmlFor="name">Full name</Label>
                   <Input
@@ -132,7 +163,12 @@ const AccountRep = () => {
                     name="name"
                     placeholder="Full Name"
                     required
+                    autoComplete="name"
+                    aria-invalid={!!errors.name}
                   />
+                  {errors.name && (
+                    <p className="text-sm text-destructive">{errors.name}</p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email address</Label>
@@ -142,7 +178,12 @@ const AccountRep = () => {
                     type="email"
                     placeholder="email@example.com"
                     required
+                    autoComplete="email"
+                    aria-invalid={!!errors.email}
                   />
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email}</p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="linkedin">LinkedIn profile</Label>
@@ -151,7 +192,14 @@ const AccountRep = () => {
                     name="linkedin"
                     placeholder="https://linkedin.com/in/username"
                     required
+                    inputMode="url"
+                    aria-invalid={!!errors.linkedin}
                   />
+                  {errors.linkedin && (
+                    <p className="text-sm text-destructive">
+                      {errors.linkedin}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="location">Location</Label>
@@ -160,7 +208,13 @@ const AccountRep = () => {
                     name="location"
                     placeholder="City, Country"
                     required
+                    aria-invalid={!!errors.location}
                   />
+                  {errors.location && (
+                    <p className="text-sm text-destructive">
+                      {errors.location}
+                    </p>
+                  )}
                 </div>
                 <label className="flex items-start gap-3 text-sm text-muted-foreground">
                   <input
@@ -168,6 +222,7 @@ const AccountRep = () => {
                     name="consent"
                     required
                     className="mt-1 accent-primary"
+                    aria-invalid={!!errors.consent}
                   />
                   <span>
                     I agree to the{" "}
@@ -177,6 +232,9 @@ const AccountRep = () => {
                     and the use of these details to process this application.
                   </span>
                 </label>
+                {errors.consent && (
+                  <p className="text-sm text-destructive">{errors.consent}</p>
+                )}
                 <Button
                   type="submit"
                   className="w-full"

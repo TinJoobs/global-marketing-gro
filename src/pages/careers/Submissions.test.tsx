@@ -4,6 +4,16 @@ import AccountRep from "./AccountRep";
 import ExecutiveAssistant from "./ExecutiveAssistant";
 import Referral from "./Referral";
 
+// Bypass the submit-timing heuristic (tests submit instantly); keep honeypot.
+vi.mock("@/lib/formSecurity", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/formSecurity")>();
+  return {
+    ...actual,
+    isBot: (form: FormData) =>
+      Boolean(String(form.get(actual.HONEYPOT_FIELD) ?? "").trim()),
+  };
+});
+
 const cases = [
   {
     name: "account representative",

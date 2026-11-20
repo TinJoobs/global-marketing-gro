@@ -9,6 +9,16 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import Contact from "./Contact";
 
+// Bypass the submit-timing heuristic (tests submit instantly); keep honeypot.
+vi.mock("@/lib/formSecurity", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/formSecurity")>();
+  return {
+    ...actual,
+    isBot: (form: FormData) =>
+      Boolean(String(form.get(actual.HONEYPOT_FIELD) ?? "").trim()),
+  };
+});
+
 function openContact(search = "") {
   render(
     <MemoryRouter initialEntries={[`/contact${search}`]}>
